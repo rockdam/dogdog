@@ -26,6 +26,7 @@ public class JoinActivity extends BaseActivity {
 
         mJoinMessage.setText(Html.fromHtml("<b>"+"만나서 반가워요!"+"<br>"+"반려견의 이름"+"</br>"+"</b>"+"이 궁금해요.") );
         //깃 연동 기념
+        //슬랙 연동 기념
 
 
 
