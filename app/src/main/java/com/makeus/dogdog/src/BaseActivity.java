@@ -2,12 +2,16 @@ package com.makeus.dogdog.src;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.makeus.dogdog.R;
@@ -21,11 +25,19 @@ public class BaseActivity extends AppCompatActivity { // 얘가 근본이 되서
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setStatusBarColor(Color.BLACK);
+        }
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide(); // 이 두줄을 쓰면 타이틀 바를 없앨 수가 있습니다.
+
 
     }
+
+
 
     public void showProgressDialog() {
         if (mProgressDialog == null) {
@@ -48,7 +60,6 @@ public class BaseActivity extends AppCompatActivity { // 얘가 근본이 되서
         super.onStop();
         hideProgressDialog(); // 스톱 되면 하이드
     }
-
 
 
 }
