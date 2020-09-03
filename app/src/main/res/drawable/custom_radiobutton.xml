@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- UNSELECTED -->
+    <item android:state_checked="false">
+        <layer-list>
+            <item android:drawable="@drawable/gray_ring" android:right="10dp"  android:left="8dp" />
+
+        </layer-list>
+
+
+    </item>
+    <!-- SELECTED -->
+    <item android:state_checked="true">
+        <layer-list>
+            <!-- 배경 -->
+            <!-- 이미지 영역 -->
+            <item android:drawable="@drawable/blue_ring"   android:right="10dp" android:left="8dp"   ></item>
+
+        </layer-list>
+    </item>
+</selector>
+
+
+
+<!--    출처: https://ghj1001020.tistory.com/3 [혁준 블로그]-->

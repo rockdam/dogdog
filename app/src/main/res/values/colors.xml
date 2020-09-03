@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="colorDogDogBlue">#4766ff</color>
+    <color name="ringBorderGray">#cccccc</color>
     <color name="offborder">#CBCBCB</color>
 
     <!-- Material Design - Color Palette -->
