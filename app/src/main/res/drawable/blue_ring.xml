@@ -8,7 +8,7 @@
     <solid android:color="@color/colorDogDogBlue" />
 
     <size
-        android:height="22dp"
-        android:width="22dp" />
+        android:height="16dp"
+        android:width="16dp" />
 
 </shape>

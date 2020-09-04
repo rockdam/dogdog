@@ -3,7 +3,7 @@
     <!-- UNSELECTED -->
     <item android:state_checked="false">
         <layer-list>
-            <item android:drawable="@drawable/gray_ring" android:right="10dp"  android:left="8dp" />
+            <item android:drawable="@drawable/gray_ring" android:right="0dp"  android:left="2dp" />
 
         </layer-list>
 
@@ -14,7 +14,7 @@
         <layer-list>
             <!-- 배경 -->
             <!-- 이미지 영역 -->
-            <item android:drawable="@drawable/blue_ring"   android:right="10dp" android:left="8dp"   ></item>
+            <item android:drawable="@drawable/blue_ring"   android:right="8dp" android:left="8dp"   ></item>
 
         </layer-list>
     </item>

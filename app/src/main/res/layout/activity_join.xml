@@ -13,7 +13,7 @@
         android:layout_height="36dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="36dp"
         android:src="@drawable/ic_arrow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,24 +43,24 @@
         android:layout_marginTop="37dp"
         android:text="STEP 1"
         android:textColor="@color/colorDogDogBlue"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
-        android:id="@+id/welcome_message_join"
+        android:id="@+id/tellUsAge_Step2Activity"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="130dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="53dp"
         android:layout_marginRight="53dp"
         android:lineSpacingExtra="0dp"
         android:text="만나서 반가워요!\n반려견의 이름이 궁금해요."
         android:textColor="@color/black"
-        android:textSize="30dp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -71,22 +71,20 @@
         android:layout_height="60dp"
         android:layout_marginStart="34dp"
         android:layout_marginLeft="34dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="48dp"
         android:layout_marginRight="48dp"
         android:ems="10"
-        android:inputType="textPersonName"
 
+        android:inputType="textPersonName"
         android:maxLines="1"
         android:paddingBottom="15dp"
         android:text="뽀삐"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
+        app:layout_constraintHorizontal_bias="0.06"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome_message_join"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintTop_toBottomOf="@+id/tellUsAge_Step2Activity" />
 
     <TextView
         android:id="@+id/textView3"
@@ -99,10 +97,9 @@
         android:layout_marginRight="5dp"
         android:background="@drawable/shape"
         android:gravity="center|center_vertical"
-        android:letterSpacing="-0.03"
         android:text="이전"
         android:textColor="@color/colorDogDogBlue"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/nextTxt_joinActivity"
         app:layout_constraintEnd_toStartOf="@+id/nextTxt_joinActivity"
@@ -127,7 +124,7 @@
 
         android:text="다음"
         android:textColor="@color/white"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -146,18 +143,18 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView4"
-        app:srcCompat="@drawable/oval_6" />
+        android:src="@drawable/oval_6" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="47dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/oval_6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:srcCompat="@drawable/oval_6" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
