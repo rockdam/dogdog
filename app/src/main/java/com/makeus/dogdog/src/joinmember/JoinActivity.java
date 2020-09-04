@@ -19,6 +19,7 @@ public class JoinActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
         mJoinMessage=findViewById(R.id.tellUsAge_Step2Activity);
+
         mNextTxt=findViewById(R.id.nextTxt_joinActivity);
         mJoinMessage.setText(Html.fromHtml("<b>"+"만나서 반가워요!"+"<br>"+"반려견의 이름"+"</br>"+"</b>"+"이 궁금해요.") );
         //깃 연동 기념
@@ -38,6 +39,8 @@ public class JoinActivity extends BaseActivity implements View.OnClickListener {
 
             case R.id.nextTxt_joinActivity:
                 Intent intent =new Intent(JoinActivity.this , Step2.class);
+                intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
 
                 startActivity(intent);
 
