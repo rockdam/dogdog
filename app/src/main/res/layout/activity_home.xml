@@ -33,14 +33,6 @@
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
-    <!--bottom_navigation_item_color.xml에 선택자를 만들어서 클릭시 , 아닐 때 글씨를 설정-->
-    <!--    app:labelVisibilityMode="labeled" 해야지 타이틀이 항상 떠 있음-->
-    <!--    app:itemIconTint="@drawable/bottom_navigation_item_color" 아이템 색깔-->
-    <!--    app:itemTextColor="@drawable/bottom_navigation_item_color" 타이틀 색깔-->
-    <!--  버튼 관련 답변   https://stackoverflow.com/questions/44495764/how-to-set-floating-action-button-image-to-fill-the-button-->
-    <!-- 요걸하면 안보인다   app:backgroundTint="@android:color/transparent"-->
-    <!--  이것도 해줘야 테두리가 안 보여 .  app:borderWidth="0dp"-->
-    <!--   이것도  android:adjustViewBounds="true"-->
-    <!--    결국 fab사이즈를 줄여야 해결 되는 것이었다.. 테두리는 안 없어지고 -->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

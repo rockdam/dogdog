@@ -7,6 +7,8 @@
     <color name="ringBorderGray">#cccccc</color>
     <color name="editTextUnderLine">#dddddd</color>
     <color name="offborder">#CBCBCB</color>
+    <color name="homeBackgroundmMustard">
+        #ffdb48</color>
 
     <!-- Material Design - Color Palette -->
     <!-- Date: 1/15/2015 -->
