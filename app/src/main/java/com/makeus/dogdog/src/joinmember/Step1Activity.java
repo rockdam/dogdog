@@ -8,9 +8,9 @@ import android.widget.TextView;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
-import com.makeus.dogdog.src.joinmember.step2.Step2;
+import com.makeus.dogdog.src.joinmember.step2.Step2Activity;
 
-public class JoinActivity extends BaseActivity implements View.OnClickListener {
+public class Step1Activity extends BaseActivity implements View.OnClickListener {
 
 
     TextView mJoinMessage,mNextTxt;
@@ -38,7 +38,7 @@ public class JoinActivity extends BaseActivity implements View.OnClickListener {
         {
 
             case R.id.nextTxt_joinActivity:
-                Intent intent =new Intent(JoinActivity.this , Step2.class);
+                Intent intent =new Intent(Step1Activity.this , Step2Activity.class);
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
 

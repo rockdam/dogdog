@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
 
-public class Step2 extends BaseActivity implements View.OnClickListener {
+public class Step2Activity extends BaseActivity implements View.OnClickListener {
 
     TextView mTellUsAge,mBackButton;
 
