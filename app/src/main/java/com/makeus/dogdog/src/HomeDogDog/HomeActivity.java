@@ -46,17 +46,22 @@ public class HomeActivity extends FragmentActivity {
                 switch (item.getItemId()) {
                     case R.id.home:
                         mFragmentTransaction.replace(R.id.FrameChanger, mHomeFragment).commitAllowingStateLoss();
+                        mBottomNavigationView.getMenu().findItem(R.id.home).setChecked(true);
                         break;
                     case R.id.feed:
                         mFragmentTransaction.replace(R.id.FrameChanger, mFeedFragment).commitAllowingStateLoss();
+                        mBottomNavigationView.getMenu().findItem(R.id.feed).setChecked(true);
                         break;
                     case R.id.tracking_note:
+                        mBottomNavigationView.getMenu().findItem(R.id.tracking_note).setChecked(true);
                         mFragmentTransaction.replace(R.id.FrameChanger, mTrackingNote).commitAllowingStateLoss();
                         break;
                     case R.id.ranking:
+                        mBottomNavigationView.getMenu().findItem(R.id.ranking).setChecked(true);
                         mFragmentTransaction.replace(R.id.FrameChanger, mRanking).commitAllowingStateLoss();
                         break;
                     case R.id.mypage:
+                        mBottomNavigationView.getMenu().findItem(R.id.mypage).setChecked(true);
                         mFragmentTransaction.replace(R.id.FrameChanger, mMypage).commitAllowingStateLoss();
                         break;
 
