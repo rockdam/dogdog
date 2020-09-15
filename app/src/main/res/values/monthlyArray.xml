@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name = "monthly">
+        <item>1 월</item>
+        <item>2 월</item>
+        <item>3 월</item>
+        <item>4 월</item>
+        <item>5 월</item>
+        <item>6 월</item>
+        <item>7 월</item>
+    </string-array>
+
+</resources>
