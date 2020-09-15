@@ -20,7 +20,7 @@
         android:icon="@drawable/trackingnote"
         android:title="산책일지" />
     <item
-        android:id="@+id/news"
+        android:id="@+id/ranking"
         android:icon="@drawable/ranking"
         android:title="랭킹" />
     <item

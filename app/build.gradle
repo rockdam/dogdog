@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.makeus.dogdog"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -24,6 +24,7 @@ android {
 
 dependencies {
     implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.github.prolificinteractive:material-calendarview:2.0.0'
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
