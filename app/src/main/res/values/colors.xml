@@ -5,10 +5,18 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorDogDogBlue">#4766ff</color>
     <color name="BorderGray">#cccccc</color>
+    <color name="donutUnFinished">#eeeeee
+    </color>
     <color name="editTextUnderLine">#dddddd</color>
     <color name="offborder">#CBCBCB</color>
     <color name="homeBackgroundmMustard">
         #ffdb48</color>
+
+    <color name="donutFinished">
+        #ffbf27
+
+
+    </color>
 
     <!-- Material Design - Color Palette -->
     <!-- Date: 1/15/2015 -->
