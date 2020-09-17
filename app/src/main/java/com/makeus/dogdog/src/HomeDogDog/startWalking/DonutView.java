@@ -9,6 +9,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.makeus.dogdog.R;
 
@@ -78,8 +79,17 @@ public class DonutView extends View {
         paint.setStrokeWidth(strokeSize);
 
         canvas.drawArc(recF,0,360,false,paint);
+        int color = ContextCompat.getColor(context, R.color.donutFinished);
 
-        paint.setColor(Color.RED);
+        if(value==0)
+        {
+
+            paint.setColor(Color.GRAY);
+        }else{
+
+            paint.setColor(color);
+
+        }
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeCap(Paint.Cap.ROUND);
         canvas.drawArc(recF,-90,value,false,paint);
