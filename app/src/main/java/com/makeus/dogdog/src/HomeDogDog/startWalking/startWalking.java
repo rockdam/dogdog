@@ -9,8 +9,9 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 
 import com.makeus.dogdog.R;
+import com.makeus.dogdog.src.BaseActivity;
 
-public class startWalking extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
+public class startWalking extends BaseActivity implements SeekBar.OnSeekBarChangeListener {
 
     SeekBar seekBar;
     DonutView mDonutView;

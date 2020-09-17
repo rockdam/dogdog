@@ -115,8 +115,9 @@ public class DonutView extends View {
 
         canvas.drawText(result, xPos, yPos, paint);
 
-        int xNewPos = width / 2 + (int) (paint.measureText(testSizeText)/2) -percentSize;
+        int xNewPos = width / 2 + (int) (paint.measureText(testSizeText)/2) -percentSize +10;
         // 퍼센트 글자만큼 앞으로 얘는 숫자보다 뒤로 가기 위해서 덧셈함 ..
+        //너무 붙어있어서 10 더함
         paint.setTextSize(percentSize);
         canvas.drawText("%", xNewPos, yPos, paint);
 
