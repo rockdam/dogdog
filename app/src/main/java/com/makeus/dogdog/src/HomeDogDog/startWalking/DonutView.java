@@ -73,8 +73,7 @@ public class DonutView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawColor(Color.alpha(Color.CYAN));
-        RectF recF = new RectF(20, 20, size - 20, size - 20);
+        RectF recF = new RectF(40, 40, size-40, size-40);
 
         Paint paint = new Paint();
         int colorDonutUnfinished = ContextCompat.getColor(context, R.color.donutUnFinished);
