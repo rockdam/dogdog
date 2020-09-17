@@ -17,6 +17,11 @@
 
 
     </color>
+    <color name="initDonutTextColor">
+
+        #bbbbbb
+
+    </color>
 
     <!-- Material Design - Color Palette -->
     <!-- Date: 1/15/2015 -->
