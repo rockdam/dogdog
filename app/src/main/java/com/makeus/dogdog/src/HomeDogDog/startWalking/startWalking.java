@@ -23,7 +23,6 @@ public class startWalking extends BaseActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_start_walking);
         mStartWalking =findViewById(R.id.start_walking);
         mWalkingTime = findViewById(R.id.walking_time_startwalking);
