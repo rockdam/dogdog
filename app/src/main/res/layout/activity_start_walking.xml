@@ -20,25 +20,13 @@
 
         android:layout_marginBottom="79dp"
         android:padding="10dp"
-        custom:layout_constraintBottom_toTopOf="@+id/textView28"
+        custom:layout_constraintBottom_toTopOf="@+id/walking_distance_startwalking"
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintStart_toStartOf="parent"
         custom:layout_constraintTop_toTopOf="@+id/textView29">
 
 
     </com.makeus.dogdog.src.HomeDogDog.startWalking.DonutView>
-
-    <SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="300dp"
-        android:max="100"
-        custom:layout_constraintBottom_toBottomOf="parent"
-        custom:layout_constraintEnd_toEndOf="parent"
-        custom:layout_constraintStart_toStartOf="parent"></SeekBar>
 
     <ImageView
         android:id="@+id/imageView13"
@@ -77,55 +65,48 @@
         android:id="@+id/view5"
         android:layout_width="1dp"
         android:layout_height="40dp"
-        android:layout_marginStart="61dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="61dp"
-        android:layout_marginBottom="14dp"
         android:background="@color/black"
-        custom:layout_constraintBottom_toBottomOf="@+id/textView26"
-        custom:layout_constraintEnd_toEndOf="@+id/textView30"
-        custom:layout_constraintStart_toEndOf="@+id/textView28"
-        custom:layout_constraintTop_toBottomOf="@+id/seekBar" />
+        custom:layout_constraintEnd_toStartOf="@+id/textView25"
+        custom:layout_constraintHorizontal_bias="0.5"
+        custom:layout_constraintStart_toEndOf="@+id/textView27"
+        custom:layout_constraintTop_toTopOf="@+id/textView27" />
 
     <TextView
         android:id="@+id/textView25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="산책시간"
-        custom:layout_constraintStart_toStartOf="@+id/walking_time_startwalking"
-        custom:layout_constraintTop_toBottomOf="@+id/seekBar" />
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintHorizontal_bias="0.5"
+        custom:layout_constraintStart_toEndOf="@+id/view5"
+        custom:layout_constraintTop_toTopOf="@+id/view5" />
 
     <Chronometer
         android:id="@+id/walking_time_startwalking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="49dp"
-        custom:layout_constraintEnd_toEndOf="@+id/imageView13"
-        custom:layout_constraintStart_toEndOf="@+id/view5"
-        custom:layout_constraintTop_toBottomOf="@+id/textView25" />
+        custom:layout_constraintEnd_toEndOf="@+id/textView25"
+        custom:layout_constraintStart_toStartOf="@+id/textView25"
+        tools:layout_editor_absoluteY="479dp" />
 
     <TextView
         android:id="@+id/textView27"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginBottom="13dp"
         android:text="산책거리"
-        custom:layout_constraintBottom_toTopOf="@+id/textView28"
-        custom:layout_constraintStart_toStartOf="@+id/textView28" />
+        custom:layout_constraintEnd_toStartOf="@+id/view5"
+        custom:layout_constraintHorizontal_bias="0.5"
+        custom:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="457dp" />
 
-    <TextView
-        android:id="@+id/textView28"
+    <Chronometer
+        android:id="@+id/walking_distance_startwalking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="82dp"
-        android:layout_marginTop="48dp"
         android:text="0.4km"
-        custom:layout_constraintStart_toStartOf="@+id/seekBar"
-        custom:layout_constraintTop_toBottomOf="@+id/seekBar" />
+        custom:layout_constraintEnd_toEndOf="@+id/textView27"
+        custom:layout_constraintStart_toStartOf="@+id/textView27"
+        tools:layout_editor_absoluteY="482dp" />
 
     <TextView
         android:id="@+id/textView29"
