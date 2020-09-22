@@ -17,16 +17,23 @@
         <activity android:name=".src.joinmember.step4.Step4Activity" />
         <activity android:name=".src.joinmember.step3.Step3Activity" />
         <activity android:name=".src.joinmember.JoinActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+
         <activity android:name=".src.HomeDogDog.startWalking.startWalking" />
         <activity android:name=".src.HomeDogDog.HomeActivity" />
         <activity android:name=".src.joinmember.step2.Step2Activity" />
         <activity android:name=".src.joinmember.step1.Step1Activity" />
+        <activity android:name=".src.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".src.TaTCalendarActivity"/>
+        <activity android:name=".src.TaTCalendarWeekActivity"/>
+
     </application>
 
 </manifest>
