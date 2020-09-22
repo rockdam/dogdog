@@ -58,6 +58,7 @@
         android:layout_marginEnd="53dp"
         android:layout_marginRight="53dp"
         android:lineSpacingExtra="0dp"
+
         android:text="만나서 반가워요!\n반려견의 이름이 궁금해요."
         android:textColor="@color/black"
         android:textSize="30sp"
