@@ -10,15 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".src.HomeDogDog.startWalking.startWalking">
+
+
+        </activity>
+        <activity android:name=".src.HomeDogDog.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-        <activity android:name=".src.HomeDogDog.HomeActivity">
-
         </activity>
         <activity android:name=".src.joinmember.step2.Step2Activity" />
         <activity android:name=".src.joinmember.Step1Activity"></activity>

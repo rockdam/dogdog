@@ -58,7 +58,7 @@
         android:layout_marginEnd="53dp"
         android:layout_marginRight="53dp"
         android:lineSpacingExtra="0dp"
-        android:text="로그인 시 사용할 \n아이디를 입력해주세요"
+        android:text="비밀번호를 \n다시 한번 입력해주세요"
         android:textColor="@color/black"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"

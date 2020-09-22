@@ -46,11 +46,11 @@
         custom:layout_constraintBottom_toBottomOf="parent"
         custom:layout_constraintEnd_toStartOf="@+id/imageView13"
         custom:layout_constraintHorizontal_bias="0.5"
-        custom:layout_constraintStart_toEndOf="@+id/imageView16"
+        custom:layout_constraintStart_toEndOf="@+id/stopbutton_startwalking"
         custom:srcCompat="@drawable/start" />
 
     <ImageView
-        android:id="@+id/imageView16"
+        android:id="@+id/stopbutton_startwalking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
