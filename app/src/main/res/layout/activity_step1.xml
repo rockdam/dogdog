@@ -86,49 +86,24 @@
         app:layout_constraintTop_toBottomOf="@+id/tellUsAge_Step2Activity" />
 
     <TextView
-        android:id="@+id/backButton_step2"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:background="@drawable/shape"
-        android:gravity="center|center_vertical"
-        android:text="이전"
-        android:textColor="@color/colorDogDogBlue"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/startwalking_button_home"
-        app:layout_constraintEnd_toStartOf="@+id/startwalking_button_home"
-        app:layout_constraintHorizontal_bias="0.24"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="이전" />
-
-    <TextView
         android:id="@+id/startwalking_button_home"
         android:layout_width="0dp"
         android:layout_height="80dp"
 
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="161dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
         android:layout_marginBottom="40dp"
+
         android:background="@drawable/shape_full"
         android:gravity="center|center_vertical"
-
         android:text="다음"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/backButton_step2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
         app:layout_constraintVertical_bias="1.0" />
 

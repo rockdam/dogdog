@@ -29,7 +29,7 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:srcCompat="@drawable/rectangle_13" />
+        app:srcCompat="@drawable/oval_6" />
 
 
     <TextView
@@ -137,7 +137,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="112dp"
         android:layout_marginEnd="5dp"
-        android:src="@drawable/oval_6"
+        android:src="@drawable/rectangle_13"
         app:layout_constraintEnd_toStartOf="@+id/imageView25"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
