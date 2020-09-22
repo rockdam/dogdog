@@ -27,10 +27,10 @@ public class BaseActivity extends AppCompatActivity { // 얘가 근본이 되서
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(Color.BLACK);
-        }
-        //이거 말고도 초기 실행될 때 상단바 색 바꿔야함
+//        if (Build.VERSION.SDK_INT >= 21) {
+//            getWindow().setStatusBarColor(Color.BLACK);
+//        }
+//        //이거 말고도 초기 실행될 때 상단바 색 바꿔야함
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide(); // 이 두줄을 쓰면 타이틀 바를 없앨 수가 있습니다.
