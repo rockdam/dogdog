@@ -4,26 +4,27 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:hardwareAccelerated="false"
-        android:largeHeap="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".src.joinmember.step7.Step7Activity"></activity>
+        <activity android:name=".src.joinmember.step6.Step6Activity" />
+        <activity android:name=".src.joinmember.step5.Step5Activity" />
+        <activity android:name=".src.joinmember.step4.Step4Activity" />
+        <activity android:name=".src.joinmember.step3.Step3Activity" />
         <activity android:name=".src.joinmember.JoinActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".src.HomeDogDog.startWalking.startWalking"></activity>
-        <activity android:name=".src.HomeDogDog.HomeActivity">
-
-        </activity>
+        <activity android:name=".src.HomeDogDog.startWalking.startWalking" />
+        <activity android:name=".src.HomeDogDog.HomeActivity" />
         <activity android:name=".src.joinmember.step2.Step2Activity" />
         <activity android:name=".src.joinmember.step1.Step1Activity" />
     </application>

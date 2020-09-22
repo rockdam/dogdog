@@ -34,6 +34,7 @@ public class JoinActivity extends BaseActivity implements View.OnClickListener {
             case R.id.joinmember_acitivity_join:
 
                 Intent intent =new Intent(JoinActivity.this, Step1Activity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
 
 

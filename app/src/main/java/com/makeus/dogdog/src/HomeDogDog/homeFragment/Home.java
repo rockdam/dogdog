@@ -67,7 +67,7 @@ public class Home extends Fragment implements View.OnClickListener {
 
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
-        TextView startWalking =v.findViewById(R.id.startwalking_button_home);
+        TextView startWalking =v.findViewById(R.id.next_button_step);
         startWalking.setOnClickListener(this);
         // Inflate the layout for this fragment
         return v;
@@ -80,7 +80,7 @@ public class Home extends Fragment implements View.OnClickListener {
         {
 
 
-          case  R.id.startwalking_button_home:
+          case  R.id.next_button_step:
               Intent intent =new Intent(getActivity(), startWalking.class);
               startActivity(intent);
 
