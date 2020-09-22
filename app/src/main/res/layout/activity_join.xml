@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/login_activity_join"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="68dp"
 
 
         android:layout_marginStart="28dp"
@@ -20,16 +20,16 @@
         android:gravity="center|center_vertical"
         android:text="로그인"
         android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/join_acitivity_join"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/joinmember_acitivity_join"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
     <TextView
-        android:id="@+id/join_acitivity_join"
+        android:id="@+id/joinmember_acitivity_join"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="68dp"
 
 
         android:layout_marginStart="28dp"
@@ -39,8 +39,9 @@
         android:fontFamily="@font/natosanscjkkrmedium"
         android:gravity="center|center_vertical"
         android:text="회원가입"
+
         android:textColor="@color/colorDogDogBlue"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +77,7 @@
     <EditText
         android:id="@+id/editTextTextPersonName2"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="60dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="83dp"
@@ -85,7 +86,7 @@
         android:fontFamily="@font/spoqahansansregular"
         android:hint="  아이디"
         android:inputType="textPersonName"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/login_activity_join"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +96,7 @@
 
         android:id="@+id/editTextTextPersonName3"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="60dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="30dp"
@@ -105,7 +106,7 @@
         android:fontFamily="@font/spoqahansansregular"
         android:hint="  비밀번호"
         android:inputType="textPersonName"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/login_activity_join"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,21 +117,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="53dp"
-        android:layout_marginEnd="14dp"
-        android:text="아이디 찾기"
-        android:textSize="14sp"
-        android:textColor="#dddddd"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/spoqahansansbold"
+        android:text="아이디 찾기"
+        android:textColor="#dddddd"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/view6"
         app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/join_acitivity_join" />
+        app:layout_constraintTop_toBottomOf="@+id/joinmember_acitivity_join" />
 
     <View
         android:id="@+id/view6"
         android:layout_width="2dp"
-        android:layout_height="10dp"
+        android:layout_height="12dp"
         android:background="@color/BorderGray"
         app:layout_constraintBottom_toBottomOf="@+id/textView31"
         app:layout_constraintEnd_toStartOf="@+id/textView32"
@@ -142,11 +143,11 @@
         android:id="@+id/textView32"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:text="비밀번호 찾기"
+        android:layout_marginStart="20dp"
         android:fontFamily="@font/spoqahansansbold"
+        android:text="비밀번호 찾기"
         android:textColor="#dddddd"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/view6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
