@@ -52,4 +52,9 @@
             android:layout_height="wrap_content"
             android:text="같은 목표" />
     </com.google.android.material.tabs.TabLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_Feed"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

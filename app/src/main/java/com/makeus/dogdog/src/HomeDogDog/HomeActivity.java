@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.makeus.dogdog.R;
+import com.makeus.dogdog.src.BaseActivity;
 import com.makeus.dogdog.src.HomeDogDog.FeedFragment.Feed;
 import com.makeus.dogdog.src.HomeDogDog.MypageFragment.Mypage;
 import com.makeus.dogdog.src.HomeDogDog.RankingFragment.Ranking;
@@ -21,7 +22,7 @@ import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.TrackingNote;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.Home;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
-public class HomeActivity extends FragmentActivity {
+public class HomeActivity extends BaseActivity {
     private BottomNavigationView mBottomNavigationView;
     private FragmentManager mfragmentManager = getSupportFragmentManager();
     private FragmentTransaction mFragmentTransaction;

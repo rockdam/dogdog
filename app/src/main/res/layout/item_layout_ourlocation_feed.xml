@@ -12,107 +12,107 @@
 
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/title_item_feed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/textView13"
-        app:layout_constraintStart_toStartOf="@+id/textView13"
+        app:layout_constraintBottom_toTopOf="@+id/contents_item_feed"
+        app:layout_constraintStart_toStartOf="@+id/contents_item_feed"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/contents_item_feed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/textView14"
-        app:layout_constraintStart_toStartOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintBottom_toTopOf="@+id/id_item_feed"
+        app:layout_constraintStart_toStartOf="@+id/id_item_feed"
+        app:layout_constraintTop_toBottomOf="@+id/title_item_feed" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/id_item_feed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/contents_item_feed" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/imgageUrl_item_feed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView12"
+        app:layout_constraintTop_toTopOf="@+id/title_item_feed"
         app:srcCompat="@drawable/custom_rantangle" />
 
     <View
         android:id="@+id/view3"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="20dp"
 
         android:background="@color/BorderGray"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8"
-        tools:layout_editor_absoluteX="15dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgageUrl_item_feed" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/heart_boolean_item_feed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView15"
         app:layout_constraintEnd_toStartOf="@+id/textView15"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/heart"
-        tools:layout_editor_absoluteY="154dp" />
+        app:srcCompat="@drawable/heart" />
 
     <ImageView
         android:id="@+id/imageView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/textView15"
         app:layout_constraintEnd_toStartOf="@+id/textView16"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textView15"
-        app:srcCompat="@drawable/comment"
-        tools:layout_editor_absoluteY="154dp" />
+        app:srcCompat="@drawable/comment" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageView10"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView9"
-        tools:layout_editor_absoluteY="153dp" />
+        app:layout_constraintStart_toEndOf="@+id/heart_boolean_item_feed" />
 
     <TextView
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/textView17"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
+        app:layout_constraintEnd_toStartOf="@+id/currentTime_item_feed"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView10"
-        tools:layout_editor_absoluteY="153dp" />
+        app:layout_constraintStart_toEndOf="@+id/imageView10" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/currentTime_item_feed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/textView16"
-        tools:layout_editor_absoluteX="329dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

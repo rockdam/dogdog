@@ -2,10 +2,15 @@ package com.makeus.dogdog.src.HomeDogDog.FeedFragment;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.makeus.dogdog.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +19,10 @@ import com.makeus.dogdog.R;
  *
  */
 public class Feed extends Fragment {
+
+    RecyclerView mFeedRecyclerView;
+    ArrayList<FeedDatalist> mFeedDataList;
+    FeedAdapter mFeedAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +68,22 @@ public class Feed extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_feed, container, false);
+
+        mFeedDataList =new ArrayList<>();
+        View view =inflater.inflate(R.layout.fragment_feed, container, false);
+
+        mFeedRecyclerView=view.findViewById(R.id.recyclerview_Feed);
+
+        LinearLayoutManager linearLayoutManager =new LinearLayoutManager(getContext());
+        mFeedRecyclerView.setLayoutManager(linearLayoutManager);
+        mFeedDataList.add(new FeedDatalist("비오는 날 산책 인증","비가 조금 내려서 우비 입히고 ","록",false));
+        mFeedDataList.add(new FeedDatalist("비오는 날 산책 인증","비가 조금 내려서 우비 입히고 ","록",false));
+        mFeedDataList.add(new FeedDatalist("비오는 날 산책 인증","비가 조금 내려서 우비 입히고 ","록",false));
+        mFeedAdapter=new FeedAdapter(getContext(),mFeedDataList);
+
+        mFeedRecyclerView.setAdapter(mFeedAdapter);
+
+
+        return view;
     }
 }
