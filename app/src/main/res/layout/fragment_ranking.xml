@@ -28,8 +28,8 @@
         app:tabIndicatorColor="@color/colorDogDogBlue"
         app:tabSelectedTextColor="@color/colorDogDogBlue"
         app:tabIndicatorFullWidth="false"
-        app:tabPaddingEnd="2dp"
-        app:tabPaddingStart="2dp"
+        app:tabPaddingEnd="10dp"
+        app:tabPaddingStart="10dp"
         app:tabTextColor="@color/bottom_navigation_item_color"
         >
 
@@ -107,7 +107,7 @@
             android:fontFamily="@font/spoqahansansbold"
             android:text="1등"
             android:textColor="@color/donutFinished"
-            android:textSize="14sp"
+            android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/textView36"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/imageView51"
@@ -119,8 +119,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="34dp"
             android:fontFamily="@font/spoqahansansbold"
-            android:textSize="14sp"
             android:text="철수"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/textView35"
@@ -130,8 +130,9 @@
             android:id="@+id/textView37"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="50dp"
             android:fontFamily="@font/spoqahansansregular"
+            android:textSize="14sp"
             android:text="산책횟수"
             android:textColor="@color/BorderGray"
             app:layout_constraintEnd_toStartOf="@+id/view7"
@@ -144,6 +145,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/spoqahansansbold"
+            android:textSize="18sp"
             android:text="10회"
             app:layout_constraintStart_toStartOf="@+id/textView37"
             app:layout_constraintTop_toBottomOf="@+id/textView37" />
@@ -152,8 +154,9 @@
             android:id="@+id/textView39"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
+            android:layout_marginEnd="50dp"
             android:fontFamily="@font/spoqahansansregular"
+            android:textSize="14sp"
             android:text="성공률"
             android:textColor="@color/BorderGray"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -165,11 +168,11 @@
             android:id="@+id/textView40"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="104dp"
             android:fontFamily="@font/spoqahansansbold"
-
             android:text="100%"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/textView39"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView39" />
 
         <TextView
@@ -221,7 +224,7 @@
         <View
             android:id="@+id/view7"
             android:layout_width="1dp"
-            android:layout_height="50dp"
+            android:layout_height="56dp"
             android:background="@color/BorderGray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -233,6 +236,16 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView44" />
+
+        <ImageView
+            android:id="@+id/imageView52"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/paper" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
