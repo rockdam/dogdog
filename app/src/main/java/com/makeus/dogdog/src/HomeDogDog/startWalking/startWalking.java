@@ -49,14 +49,14 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
                 // time % 500 < 100 && time >= 500
                 if (time % 18000 < 1000 && time >= 18000) //18초에 1초씩 증가 .. 18초 이상일 때 부터 1%증가
                 {
-                    mTimetickin+=((double)1/(double)36);
+                    mTimetickin+=((double)1/(double)18);
                     System.out.println(mTimetickin);
                     percent++;
                     mDonutView.setValue(mTimetickin,percent);
-                }else if( time % 500 < 100 && time >= 500)
+                }else if( time % 1000 < 1000 && time >= 1000)
                 {
 
-                    mTimetickin+=((double)1/(double)36);
+                    mTimetickin+=((double)1/(double)18);
                     mDonutView.setValue(mTimetickin,percent);
 
                 }
