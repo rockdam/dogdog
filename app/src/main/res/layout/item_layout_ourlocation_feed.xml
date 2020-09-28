@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="188dp"
+    android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp"
+    android:elevation="10dp"
 
 
     >
@@ -57,12 +58,11 @@
         android:id="@+id/view3"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginTop="20dp"
 
         android:background="@color/BorderGray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgageUrl_item_feed" />
+        app:layout_constraintTop_toBottomOf="parent" />
 
     <ImageView
         android:id="@+id/heart_boolean_item_feed"
@@ -112,8 +112,10 @@
         android:id="@+id/currentTime_item_feed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="24dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/textView16"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgageUrl_item_feed" />
 </androidx.constraintlayout.widget.ConstraintLayout>
