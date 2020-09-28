@@ -2,7 +2,6 @@ package com.makeus.dogdog.src.HomeDogDog.startWalking;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Typeface;
@@ -18,10 +17,11 @@ import com.makeus.dogdog.R;
 public class DonutView extends View {
     Context context;
     int size;
-    int value;
+    double value;
     int strokeSize;
     int textSize;
 
+    int percent;
     int width;
     int height;
     int percentSize;
@@ -66,14 +66,16 @@ public class DonutView extends View {
 
     }
 
-    public void setValue(int value) {
+    public void setValue(double value, int percent) {
         this.value = value;
+
+        this.percent = percent;
         invalidate(); // 그림 다시 그리기
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        RectF recF = new RectF(40, 40, size-40, size-40);
+        RectF recF = new RectF(40, 40, size - 40, size - 40);
 
         Paint paint = new Paint();
         int colorDonutUnfinished = ContextCompat.getColor(context, R.color.donutUnFinished);
@@ -103,9 +105,11 @@ public class DonutView extends View {
         paint.setStyle(Paint.Style.FILL); //이래야 글자에 색깔이 가득 찹니다 .
         paint.setStrokeWidth(20);
 
-        String txt = String.valueOf(value);
-        String result = "" + value;
-        String testSizeText=value+"%";
+
+        String txt = String.valueOf(percent);
+        String result = "" + percent;
+        String testSizeText = percent + "%";
+
         int xPos = width / 2 - (int) (paint.measureText(testSizeText) / 2);
         int yPos = (int) (height / 2 - ((paint.descent() + paint.ascent()) / 2));
 
@@ -114,7 +118,7 @@ public class DonutView extends View {
 
         canvas.drawText(result, xPos, yPos, paint);
 
-        int xNewPos = width / 2 + (int) (paint.measureText(testSizeText)/2) -percentSize +10;
+        int xNewPos = width / 2 + (int) (paint.measureText(testSizeText) / 2) - percentSize + 10;
         // 퍼센트 글자만큼 앞으로 얘는 숫자보다 뒤로 가기 위해서 덧셈함 ..
         //너무 붙어있어서 10 더함
         paint.setTextSize(percentSize);

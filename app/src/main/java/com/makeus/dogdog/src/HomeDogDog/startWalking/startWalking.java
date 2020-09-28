@@ -1,8 +1,10 @@
 package com.makeus.dogdog.src.HomeDogDog.startWalking;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -16,7 +18,8 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
     DonutView mDonutView;
     Chronometer mWalkingTime, mWalkingDistance;
     ImageView mStartWalking, mStopButton;
-    private int mTimetickin = 0;
+    private double mTimetickin = 0;
+    private int percent;
     private boolean mRunning;
     private long timeWhenStopped = 0;
 
@@ -40,10 +43,22 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
                 int s = (int) (time - h * 3600000 - m * 60000) / 1000;
                 String t = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
                 chronometer.setText(t);
+
+
+                // 0.5초 단위로 계속 그릴려면?
+                // time % 500 < 100 && time >= 500
                 if (time % 18000 < 1000 && time >= 18000) //18초에 1초씩 증가 .. 18초 이상일 때 부터 1%증가
                 {
-                    mTimetickin++;
-                    mDonutView.setValue(mTimetickin);
+                    mTimetickin+=((double)1/(double)36);
+                    System.out.println(mTimetickin);
+                    percent++;
+                    mDonutView.setValue(mTimetickin,percent);
+                }else if( time % 500 < 100 && time >= 500)
+                {
+
+                    mTimetickin+=((double)1/(double)36);
+                    mDonutView.setValue(mTimetickin,percent);
+
                 }
 //                if(true)
 //                {
