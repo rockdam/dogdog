@@ -30,10 +30,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
+        app:tabSelectedTextColor="@color/colorDogDogBlue"
 
         app:tabIndicatorColor="@color/colorDogDogBlue"
-
-
+        app:tabIndicatorFullWidth="false"
+        app:tabPaddingEnd="5dp"
+        app:tabPaddingStart="5dp"
         >
 
         <com.google.android.material.tabs.TabItem

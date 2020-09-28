@@ -1,4 +1,4 @@
-package com.makeus.dogdog.src;
+package com.makeus.dogdog.src.calendar;
 
 import android.animation.ValueAnimator;
 import android.os.Bundle;
@@ -11,30 +11,31 @@ import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
 import com.makeus.dogdog.R;
+import com.makeus.dogdog.src.BaseActivity;
 
 /**
- * Created by kitte on 2016-12-25.
+ * Created by kitte on 2016-12-29.
  */
 
-public class TaTCalendarActivity extends BaseActivity implements TaTCalendarFragment.OnFragmentListener{
-    private static final String TAG = "TaTCalendarActivity";
-    private static final int COUNT_PAGE = 12;
+public class TaTCalendarWeekActivity extends BaseActivity implements TaTCalendarWeekFragment.OnFragmentListener {
+    private static final String TAG = "TaTCalendarWeekActivity";
+    private static final int COUNT_PAGE = 50;
     private ViewPager viewPager;
-    private TaTCalendarAdapter taTCalendarAdapter;
+    private TaTCalendarWeekAdapter taTCalendarWeekAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar_main);
+        setContentView(R.layout.activity_calendar_week_main);
 
-        viewPager = (ViewPager)findViewById(R.id.calendar_pager);
-        taTCalendarAdapter = new TaTCalendarAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(taTCalendarAdapter);
+        viewPager = findViewById(R.id.calendar_week_pager);
+        taTCalendarWeekAdapter = new TaTCalendarWeekAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(taTCalendarWeekAdapter);
 
-        taTCalendarAdapter.setOnFragmentListener(this);
-        taTCalendarAdapter.setNumOfMonth(COUNT_PAGE);
+        taTCalendarWeekAdapter.setOnFragmentListener(this);
+        taTCalendarWeekAdapter.setNumOfWeek(COUNT_PAGE);
         viewPager.setCurrentItem(COUNT_PAGE);
-        String title = taTCalendarAdapter.getMonthDisplayed(COUNT_PAGE);
+        String title = taTCalendarWeekAdapter.getMonthDisplayed(COUNT_PAGE);
         getSupportActionBar().setTitle(title);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -45,17 +46,17 @@ public class TaTCalendarActivity extends BaseActivity implements TaTCalendarFrag
 
             @Override
             public void onPageSelected(int position) {
-                String title = taTCalendarAdapter.getMonthDisplayed(position);
+                String title = taTCalendarWeekAdapter.getMonthDisplayed(position);
                 getSupportActionBar().setTitle(title);
 
                 if (position == 0) {
-                    taTCalendarAdapter.addPrev();
+                    taTCalendarWeekAdapter.addPrev();
                     viewPager.setCurrentItem(COUNT_PAGE, false);
                     Log.d("TaTCalendarActivity","position("+position+") COUNT_PAGE("+COUNT_PAGE+")");
-                } else if (position == taTCalendarAdapter.getCount() - 1) {
-                    taTCalendarAdapter.addNext();
-                    viewPager.setCurrentItem(taTCalendarAdapter.getCount() - (COUNT_PAGE + 1), false);
-                    Log.d("TaTCalendarActivity","position("+position+") COUNT_PAGE("+(taTCalendarAdapter.getCount() - (COUNT_PAGE + 1))+")");
+                } else if (position == taTCalendarWeekAdapter.getCount() - 1) {
+                    taTCalendarWeekAdapter.addNext();
+                    viewPager.setCurrentItem(taTCalendarWeekAdapter.getCount() - (COUNT_PAGE + 1), false);
+                    Log.d("TaTCalendarActivity","position("+position+") COUNT_PAGE("+(taTCalendarWeekAdapter.getCount() - (COUNT_PAGE + 1))+")");
                 }
             }
 

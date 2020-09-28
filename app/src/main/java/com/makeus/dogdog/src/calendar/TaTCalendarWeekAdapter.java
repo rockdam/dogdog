@@ -1,8 +1,5 @@
-package com.makeus.dogdog.src;
+package com.makeus.dogdog.src.calendar;
 
-import android.annotation.SuppressLint;
-
-import android.util.Log;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -17,29 +14,29 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by kitte on 2016-12-25.
+ * Created by kitte on 2016-12-29.
  */
 
-public class TaTCalendarAdapter extends FragmentStatePagerAdapter {
-    private HashMap<Integer, TaTCalendarFragment> frgMap;
+public class TaTCalendarWeekAdapter extends FragmentStatePagerAdapter {
+    private HashMap<Integer, TaTCalendarWeekFragment> frgMap;
     private ArrayList<Long> listMonthByMillis = new ArrayList<>();
     private int numOfMonth;
-    private TaTCalendarFragment.OnFragmentListener onFragmentListener;
+    private TaTCalendarWeekFragment.OnFragmentListener onFragmentListener;
 
-    public TaTCalendarAdapter(FragmentManager fm) {
+    public TaTCalendarWeekAdapter(FragmentManager fm) {
         super(fm);
         clearPrevFragments(fm);
-        frgMap = new HashMap<Integer, TaTCalendarFragment>();
+        frgMap = new HashMap<Integer, TaTCalendarWeekFragment>();
     }
 
     private void clearPrevFragments(FragmentManager fm) {
-        @SuppressLint("RestrictedApi") List<Fragment> listFragment = fm.getFragments();
+        List<Fragment> listFragment = fm.getFragments();
 
         if (listFragment != null) {
             FragmentTransaction ft = fm.beginTransaction();
 
             for (Fragment f : listFragment) {
-                if (f instanceof TaTCalendarFragment) {
+                if (f instanceof TaTCalendarWeekFragment) {
                     ft.remove(f);
                 }
             }
@@ -48,13 +45,13 @@ public class TaTCalendarAdapter extends FragmentStatePagerAdapter {
     }
     @Override
     public Fragment getItem(int position) {
-        TaTCalendarFragment frg = null;
+        TaTCalendarWeekFragment frg = null;
         if (frgMap.size() > 0) {
             frg = frgMap.get(position);
 //            Log.d("TaTCalendarAdapter","frgMap not null position("+position+")");
         }
         if (frg == null) {
-            frg = TaTCalendarFragment.newInstance(position);
+            frg = TaTCalendarWeekFragment.newInstance(position);
             frg.setOnFragmentListener(onFragmentListener);
             frgMap.put(position, frg);
 //            Log.d("TaTCalendarAdapter","frgMap null position("+position+")");
@@ -69,22 +66,18 @@ public class TaTCalendarAdapter extends FragmentStatePagerAdapter {
         return listMonthByMillis.size();
     }
 
-    public void setNumOfMonth(int numOfMonth) {
+    public void setNumOfWeek(int numOfMonth) {
         this.numOfMonth = numOfMonth;
 
         Calendar calendar = Calendar.getInstance();
-        ///< 12달 전
-        calendar.add(Calendar.MONTH, -numOfMonth);
-//        Log.d("TaTCalendarAdapter",calendar.toString());
-        calendar.set(Calendar.DATE, 1);
-//        Log.d("TaTCalendarAdapter",calendar.toString());
+        calendar.set(Calendar.DAY_OF_WEEK,Calendar.SUNDAY);
+        calendar.add(Calendar.WEEK_OF_MONTH, -numOfMonth);
 
         for (int i = 0; i < numOfMonth * 2 + 1; i++) {
             listMonthByMillis.add(calendar.getTimeInMillis());
-            calendar.add(Calendar.MONTH, 1);
-//            Log.d("TaTCalendarAdapter",calendar.toString());
+            calendar.add(Calendar.WEEK_OF_MONTH,1);
         }
-        Log.d("TaTCalendarAdapter","numOfMonth("+numOfMonth+") listMonthByMillis size("+listMonthByMillis.size()+")");
+
         notifyDataSetChanged();
     }
 
@@ -94,11 +87,9 @@ public class TaTCalendarAdapter extends FragmentStatePagerAdapter {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(lastMonthMillis);
         for (int i = 0; i < numOfMonth; i++) {
-            calendar.add(Calendar.MONTH, 1);
+            calendar.add(Calendar.WEEK_OF_MONTH, 1);
             listMonthByMillis.add(calendar.getTimeInMillis());
         }
-        Log.d("TaTCalendarAdapter","numOfMonth("+numOfMonth+") listMonthByMillis size("+listMonthByMillis.size()+")");
-
         notifyDataSetChanged();
     }
 
@@ -107,13 +98,13 @@ public class TaTCalendarAdapter extends FragmentStatePagerAdapter {
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(lastMonthMillis);
-        calendar.set(Calendar.DATE, 1);
+        calendar.set(Calendar.DAY_OF_WEEK,Calendar.SUNDAY);
+
         for (int i = numOfMonth; i > 0; i--) {
-            calendar.add(Calendar.MONTH, -1);
+            calendar.add(Calendar.WEEK_OF_MONTH, -1);
 
             listMonthByMillis.add(0, calendar.getTimeInMillis());
         }
-        Log.d("TaTCalendarAdapter","numOfMonth("+numOfMonth+") listMonthByMillis size("+listMonthByMillis.size()+")");
 
         notifyDataSetChanged();
     }
@@ -133,18 +124,9 @@ public class TaTCalendarAdapter extends FragmentStatePagerAdapter {
         date.setTime(listMonthByMillis.get(position));
 
         return sdf.format(date);
-//        if (yyyy != calendar.get(Calendar.YEAR)) {
-//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy년. MM");
-//            Date date = new Date();
-//            date.setTime(listMonthByMillis.get(position));
-//
-//            return sdf.format(date);
-//        } else {
-//            return calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault());
-//        }
     }
 
-    public void setOnFragmentListener(TaTCalendarFragment.OnFragmentListener onFragmentListener) {
+    public void setOnFragmentListener(TaTCalendarWeekFragment.OnFragmentListener onFragmentListener) {
         this.onFragmentListener = onFragmentListener;
     }
 }

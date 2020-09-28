@@ -1,4 +1,4 @@
-package com.makeus.dogdog.src;
+package com.makeus.dogdog.src.calendar;
 
 import android.os.Bundle;
 

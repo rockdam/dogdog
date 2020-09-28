@@ -22,6 +22,11 @@
         #bbbbbb
 
     </color>
+    <color name ="background_white"
+        >
+        #f8f8f8
+
+    </color>
 
     <!-- Material Design - Color Palette -->
     <!-- Date: 1/15/2015 -->
