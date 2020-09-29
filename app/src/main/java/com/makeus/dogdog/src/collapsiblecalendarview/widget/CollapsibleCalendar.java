@@ -199,7 +199,7 @@ public class CollapsibleCalendar extends UICalendar {
             int leftMargin = 0;
             int topMargin = 0; //이래야 위에서 떨어진 이쁜 위치가 된다 .
             int rightMargin = 0;
-            int bottomMargin = 15;
+            int bottomMargin = 0;
 
             // set day of week
             int[] dayOfWeekIds = {
