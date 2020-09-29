@@ -4,5 +4,13 @@
     <dimen name ="donut_stroke_size">24dp</dimen>
     <dimen name="donut_textSize">40sp</dimen>
     <dimen name="donut_percentSize">32sp</dimen>
+    <!-- title bar -->
+    <dimen name="title_bar_button_width">36dp</dimen>
+    <dimen name="title_bar_button_height">36dp</dimen>
 
+    <!-- day -->
+    <dimen name="day_circle_width">24dp</dimen>
+    <dimen name="day_circle_height">24dp</dimen>
+    <dimen name="day_circle_radius">120dp</dimen>
+    <dimen name="day_circle_stroke_width">1dp</dimen>
 </resources>

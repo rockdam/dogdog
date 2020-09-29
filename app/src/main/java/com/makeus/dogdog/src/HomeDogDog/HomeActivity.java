@@ -20,7 +20,6 @@ import com.makeus.dogdog.src.HomeDogDog.MypageFragment.Mypage;
 import com.makeus.dogdog.src.HomeDogDog.RankingFragment.Ranking;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.TrackingNote;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.Home;
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 public class HomeActivity extends BaseActivity {
     private BottomNavigationView mBottomNavigationView;

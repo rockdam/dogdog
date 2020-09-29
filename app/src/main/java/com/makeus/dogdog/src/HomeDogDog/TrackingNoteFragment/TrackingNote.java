@@ -84,44 +84,7 @@ public class TrackingNote extends Fragment {
 
     }
 
-    public void createCalendar()
-    {
-// 오늘에 날짜를 세팅 해준다.
-        long now = System.currentTimeMillis();
-        final Date date = new Date(now);
-        //연,월,일을 따로 저장
-        final SimpleDateFormat curYearFormat = new SimpleDateFormat("yyyy", Locale.KOREA);
-        final SimpleDateFormat curMonthFormat = new SimpleDateFormat("MM", Locale.KOREA);
-        final SimpleDateFormat curDayFormat = new SimpleDateFormat("dd", Locale.KOREA);
 
-        //현재 날짜 텍스트뷰에 뿌려줌
-        // tvDate.setText(curYearFormat.format(date) + "/" + curMonthFormat.format(date));
-
-        //gridview 요일 표시
-        dayList = new ArrayList<String>();
-        dayList.add("일");
-        dayList.add("월");
-        dayList.add("화");
-        dayList.add("수");
-        dayList.add("목");
-        dayList.add("금");
-        dayList.add("토");
-
-        mCal = Calendar.getInstance();
-
-        //이번달 1일 무슨요일인지 판단 mCal.set(Year,Month,Day)
-        mCal.set(Integer.parseInt(curYearFormat.format(date)), Integer.parseInt(curMonthFormat.format(date)) - 1, 1);
-        int dayNum = mCal.get(Calendar.DAY_OF_WEEK);
-        //1일 - 요일 매칭 시키기 위해 공백 add
-        for (int i = 1; i < dayNum; i++) {
-            dayList.add("");
-        }
-        setCalendarDate(mCal.get(Calendar.MONTH) + 1);
-
-        gridAdapter = new GridAdapter(getContext(), dayList);
-        mCalendar.setAdapter(gridAdapter);
-
-    }
 
     /**
      * 해당 월에 표시할 일 수 구함
@@ -143,9 +106,7 @@ public class TrackingNote extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.fragment_tracking_note, container, false);
-        mCalendar =v.findViewById(R.id.calendar);
 
-        createCalendar();
         // Inflate the layout for this fragment
         return v;
     }

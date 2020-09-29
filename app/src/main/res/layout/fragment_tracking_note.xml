@@ -13,13 +13,9 @@
         android:textColor="@color/black"
         android:textSize="20dp"
         ></TextView>
-    <GridView
-        android:id="@+id/calendar"
-        android:layout_weight="1"
-        android:layout_height="0dp"
-        android:layout_width="match_parent"
-        android:numColumns="7"
-        android:listSelector="@color/transparent"
+  <com.makeus.dogdog.src.collapsiblecalendarview.widget.CollapsibleCalendar
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
 
-        ></GridView>
+  </com.makeus.dogdog.src.collapsiblecalendarview.widget.CollapsibleCalendar>
 </LinearLayout>
