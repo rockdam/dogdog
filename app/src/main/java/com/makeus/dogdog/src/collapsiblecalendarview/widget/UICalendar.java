@@ -61,9 +61,9 @@ public abstract class UICalendar extends LinearLayout {
     private int mTextColor = Color.BLACK;
     private int mPrimaryColor = Color.WHITE;
 
-    private int mTodayItemTextColor = Color.BLACK;
-    private Drawable mTodayItemBackgroundDrawable =
-            getResources().getDrawable(R.drawable.circle_black_stroke_background);
+    private int mTodayItemTextColor = R.color.colorDogDogBlue;
+//    private Drawable mTodayItemBackgroundDrawable =
+//            getResources().getDrawable(R.drawable.circle_black_stroke_background);
     private int mSelectedItemTextColor = Color.WHITE;
     private Drawable mSelectedItemBackgroundDrawable =
             getResources().getDrawable(R.drawable.circle_dogdogblue_solid_background);
@@ -140,13 +140,14 @@ public abstract class UICalendar extends LinearLayout {
 
         setTodayItemTextColor(attrs.getColor(
                 R.styleable.UICalendar_todayItem_textColor, mTodayItemTextColor));
-        Drawable todayItemBackgroundDrawable =
-                attrs.getDrawable(R.styleable.UICalendar_todayItem_background);
-        if (todayItemBackgroundDrawable != null) {
-            setTodayItemBackgroundDrawable(todayItemBackgroundDrawable);
-        } else {
-            setTodayItemBackgroundDrawable(mTodayItemBackgroundDrawable);
-        }
+
+//        Drawable todayItemBackgroundDrawable =
+//                attrs.getDrawable(R.styleable.UICalendar_todayItem_background);
+//        if (todayItemBackgroundDrawable != null) {
+//            setTodayItemBackgroundDrawable(todayItemBackgroundDrawable);
+//        } else {
+//            setTodayItemBackgroundDrawable(mTodayItemBackgroundDrawable);
+//        }
 
         setSelectedItemTextColor(attrs.getColor(
                 R.styleable.UICalendar_selectedItem_textColor, mSelectedItemTextColor));
@@ -271,14 +272,14 @@ public abstract class UICalendar extends LinearLayout {
         redraw();
     }
 
-    public Drawable getTodayItemBackgroundDrawable() {
-        return mTodayItemBackgroundDrawable;
-    }
+//    public Drawable getTodayItemBackgroundDrawable() {
+//        return mTodayItemBackgroundDrawable;
+//    }
 
-    public void setTodayItemBackgroundDrawable(Drawable todayItemBackgroundDrawable) {
-        this.mTodayItemBackgroundDrawable = todayItemBackgroundDrawable;
-        redraw();
-    }
+//    public void setTodayItemBackgroundDrawable(Drawable todayItemBackgroundDrawable) {
+//        this.mTodayItemBackgroundDrawable = todayItemBackgroundDrawable;
+//        redraw();
+//    }
 
     public int getSelectedItemTextColor() {
         return mSelectedItemTextColor;

@@ -7,6 +7,7 @@ package com.makeus.dogdog.src.collapsiblecalendarview.widget;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
@@ -16,6 +17,9 @@ import android.view.animation.Transformation;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.collapsiblecalendarview.data.CalendarAdapter;
@@ -158,7 +162,7 @@ public class CollapsibleCalendar extends UICalendar {
 
                 // set today's item
                 if (isToady(day)) {
-                    txtDay.setBackgroundDrawable(getTodayItemBackgroundDrawable());
+//                    txtDay.setBackgroundDrawable(getTodayItemBackgroundDrawable());
                     txtDay.setTextColor(getTodayItemTextColor());
                 }
 
@@ -191,7 +195,7 @@ public class CollapsibleCalendar extends UICalendar {
             int leftMargin = 0;
             int topMargin = 0; //이래야 위에서 떨어진 이쁜 위치가 된다 .
             int rightMargin = 0;
-            int bottomMargin = 30;
+            int bottomMargin = 15;
 
             // set day of week
             int[] dayOfWeekIds = {
@@ -204,21 +208,28 @@ public class CollapsibleCalendar extends UICalendar {
                     R.string.saturday
             };
             rowCurrent = new TableRow(mContext);
-//            rowCurrent.setLayoutParams(new TableLayout.LayoutParams(
-//                    ViewGroup.LayoutParams.MATCH_PARENT,
-//                    ViewGroup.LayoutParams.WRAP_CONTENT));
+            rowCurrent.setLayoutParams(new TableLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
 
-            tableRowParams.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
-            rowCurrent.setLayoutParams(tableRowParams);
+//            tableRowParams.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
+//            rowCurrent.setLayoutParams(tableRowParams);
 //            https://stackoverflow.com/questions/4577644/programmatically-set-margin-for-tablerow
 //            여기를 참조하였습니다.
 
-            // 이 위는 월화수목금토일 .아래는 날짜
+            // 여기는 월화수목금토일 .
             for (int i = 0; i < 7; i++) {
                 View view = mInflater.inflate(R.layout.layout_day_of_week, null);
                 TextView txtDayOfWeek = (TextView) view.findViewById(R.id.txt_day_of_week);
-                txtDayOfWeek.setText(dayOfWeekIds[(i + getFirstDayOfWeek()) % 7]);
 
+                Typeface typeface = ResourcesCompat.getFont(mContext, R.font.spoqahansansregular);
+
+
+                txtDayOfWeek.setTextSize(14);
+
+                txtDayOfWeek.setText(dayOfWeekIds[(i + getFirstDayOfWeek()) % 7]);
+                txtDayOfWeek.setTextColor(ContextCompat.getColor(mContext, R.color.dayColor));
+                txtDayOfWeek.setTypeface(typeface);
                 TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(
                         0,
                         ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -228,10 +239,11 @@ public class CollapsibleCalendar extends UICalendar {
 //                        0,
 //                        ViewGroup.LayoutParams.WRAP_CONTENT,
 //                        1));
+                layoutParams.setMargins(0,0,0,10);
                 view.setLayoutParams(layoutParams);
                 rowCurrent.addView(view);
             }
-            mTableHead.addView(rowCurrent);
+            mTableHead.addView(rowCurrent); //여기는 헤드
 
             // set day
 //             view 여기가 날짜. 간격은 여기서

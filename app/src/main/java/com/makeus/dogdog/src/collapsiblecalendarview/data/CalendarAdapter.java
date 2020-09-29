@@ -120,6 +120,7 @@ public class CalendarAdapter {
 
             Typeface typeface = ResourcesCompat.getFont(mContext, R.font.spoqahansansbold);
 
+
             txtDay.setText(String.valueOf(day.getDay()));
             txtDay.setTypeface(typeface);
             txtDay.setTextSize(16);
