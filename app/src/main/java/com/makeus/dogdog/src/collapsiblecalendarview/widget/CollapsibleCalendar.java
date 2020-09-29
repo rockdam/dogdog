@@ -32,7 +32,7 @@ public class CollapsibleCalendar extends UICalendar {
     private CalendarAdapter mAdapter;
     private CalendarListener mListener;
 
-    private boolean expanded=false;
+    private boolean expanded = false;
 
     private int mInitHeight = 0;
 
@@ -58,12 +58,9 @@ public class CollapsibleCalendar extends UICalendar {
         super.init(context);
 
 
-
-            Calendar cal = Calendar.getInstance();
-            CalendarAdapter adapter = new CalendarAdapter(context, cal);
-            setAdapter(adapter);
-
-
+        Calendar cal = Calendar.getInstance();
+        CalendarAdapter adapter = new CalendarAdapter(context, cal);
+        setAdapter(adapter);
 
 
         // bind events
@@ -96,16 +93,15 @@ public class CollapsibleCalendar extends UICalendar {
             }
         });
 
-        expandIconView.setState(ExpandIconView.MORE,true);
+        expandIconView.setState(ExpandIconView.MORE, true);
 
 
         expandIconView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(expanded){
+                if (expanded) {
                     collapse(400);
-                }
-                else{
+                } else {
                     expand(400);
                 }
             }
@@ -117,7 +113,6 @@ public class CollapsibleCalendar extends UICalendar {
                 collapseTo(mCurrentWeekIndex);
             }
         });
-
 
 
     }
@@ -190,6 +185,14 @@ public class CollapsibleCalendar extends UICalendar {
 
             TableRow rowCurrent;
 
+            TableLayout.LayoutParams tableRowParams = new TableLayout.LayoutParams(
+                    TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT
+            );
+            int leftMargin = 0;
+            int topMargin = 0; //이래야 위에서 떨어진 이쁜 위치가 된다 .
+            int rightMargin = 0;
+            int bottomMargin = 30;
+
             // set day of week
             int[] dayOfWeekIds = {
                     R.string.sunday,
@@ -201,30 +204,48 @@ public class CollapsibleCalendar extends UICalendar {
                     R.string.saturday
             };
             rowCurrent = new TableRow(mContext);
-            rowCurrent.setLayoutParams(new TableLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT));
+//            rowCurrent.setLayoutParams(new TableLayout.LayoutParams(
+//                    ViewGroup.LayoutParams.MATCH_PARENT,
+//                    ViewGroup.LayoutParams.WRAP_CONTENT));
+
+            tableRowParams.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
+            rowCurrent.setLayoutParams(tableRowParams);
+//            https://stackoverflow.com/questions/4577644/programmatically-set-margin-for-tablerow
+//            여기를 참조하였습니다.
+
+            // 이 위는 월화수목금토일 .아래는 날짜
             for (int i = 0; i < 7; i++) {
                 View view = mInflater.inflate(R.layout.layout_day_of_week, null);
                 TextView txtDayOfWeek = (TextView) view.findViewById(R.id.txt_day_of_week);
                 txtDayOfWeek.setText(dayOfWeekIds[(i + getFirstDayOfWeek()) % 7]);
-                view.setLayoutParams(new TableRow.LayoutParams(
+
+                TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(
                         0,
                         ViewGroup.LayoutParams.WRAP_CONTENT,
-                        1));
+                        1
+                );
+//                view.setLayoutParams(new TableRow.LayoutParams(
+//                        0,
+//                        ViewGroup.LayoutParams.WRAP_CONTENT,
+//                        1));
+                view.setLayoutParams(layoutParams);
                 rowCurrent.addView(view);
             }
             mTableHead.addView(rowCurrent);
 
-            // set day view
+            // set day
+//             view 여기가 날짜. 간격은 여기서
             for (int i = 0; i < mAdapter.getCount(); i++) {
                 final int position = i;
 
                 if (position % 7 == 0) {
                     rowCurrent = new TableRow(mContext);
-                    rowCurrent.setLayoutParams(new TableLayout.LayoutParams(
-                            ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT));
+//                    rowCurrent.setLayoutParams(new TableLayout.LayoutParams(
+//                            ViewGroup.LayoutParams.MATCH_PARENT,
+//                            ViewGroup.LayoutParams.WRAP_CONTENT
+//                    ));
+                    rowCurrent.setLayoutParams(tableRowParams);
+
                     mTableBody.addView(rowCurrent);
                 }
                 final View view = mAdapter.getView(position);
@@ -232,6 +253,9 @@ public class CollapsibleCalendar extends UICalendar {
                         0,
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         1));
+                //요기에 글씨만 키우면 되는건데...
+
+
                 view.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -363,14 +387,14 @@ public class CollapsibleCalendar extends UICalendar {
     }
 
     public Day getSelectedDay() {
-        if (getSelectedItem()==null){
+        if (getSelectedItem() == null) {
             Calendar cal = Calendar.getInstance();
             int day = cal.get(Calendar.DAY_OF_MONTH);
             int month = cal.get(Calendar.MONTH);
             int year = cal.get(Calendar.YEAR);
             return new Day(
                     year,
-                    month+1,
+                    month + 1,
                     day);
         }
         return new Day(
@@ -468,7 +492,7 @@ public class CollapsibleCalendar extends UICalendar {
             startAnimation(anim);
         }
 
-        expandIconView.setState(ExpandIconView.MORE,true);
+        expandIconView.setState(ExpandIconView.MORE, true);
     }
 
     private void collapseTo(int index) {
@@ -535,16 +559,16 @@ public class CollapsibleCalendar extends UICalendar {
             startAnimation(anim);
         }
 
-        expandIconView.setState(ExpandIconView.LESS,true);
+        expandIconView.setState(ExpandIconView.LESS, true);
     }
 
     @Override
     public void setState(int state) {
         super.setState(state);
-        if(state == STATE_COLLAPSED) {
+        if (state == STATE_COLLAPSED) {
             expanded = false;
         }
-        if(state == STATE_EXPANDED) {
+        if (state == STATE_EXPANDED) {
             expanded = true;
         }
     }
@@ -590,7 +614,6 @@ public class CollapsibleCalendar extends UICalendar {
         // triggered when the week position are changed.
         void onWeekChange(int position);
     }
-
 
 
 }

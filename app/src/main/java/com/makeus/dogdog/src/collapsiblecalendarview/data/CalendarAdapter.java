@@ -1,6 +1,7 @@
 package com.makeus.dogdog.src.collapsiblecalendarview.data;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -114,7 +115,10 @@ public class CalendarAdapter {
             TextView txtDay = (TextView) view.findViewById(R.id.txt_day);
             ImageView imgEventTag = (ImageView) view.findViewById(R.id.img_event_tag);
 
+
             txtDay.setText(String.valueOf(day.getDay()));
+            txtDay.setTextSize(16);
+            //여기가 달력 날짜 글씨 크기 조정 .
             if (day.getMonth() != mCal.get(Calendar.MONTH)) {
                 txtDay.setAlpha(0.3f);
             }
