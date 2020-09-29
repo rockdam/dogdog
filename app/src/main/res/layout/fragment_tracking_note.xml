@@ -18,7 +18,8 @@
         ></TextView>
   <com.makeus.dogdog.src.collapsiblecalendarview.widget.CollapsibleCalendar
       android:layout_width="match_parent"
-      android:layout_height="wrap_content">
+      android:layout_height="wrap_content"
+      >
 
   </com.makeus.dogdog.src.collapsiblecalendarview.widget.CollapsibleCalendar>
 

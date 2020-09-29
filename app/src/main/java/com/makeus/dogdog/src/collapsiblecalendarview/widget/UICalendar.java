@@ -24,16 +24,16 @@ public abstract class UICalendar extends LinearLayout {
 
 
     // Day of Week
-    public static final int SUNDAY    = 0;
-    public static final int MONDAY    = 1;
-    public static final int TUESDAY   = 2;
+    public static final int SUNDAY = 0;
+    public static final int MONDAY = 1;
+    public static final int TUESDAY = 2;
     public static final int WEDNESDAY = 3;
-    public static final int THURSDAY  = 4;
-    public static final int FRIDAY    = 5;
-    public static final int SATURDAY  = 6;
+    public static final int THURSDAY = 4;
+    public static final int FRIDAY = 5;
+    public static final int SATURDAY = 6;
     // State
-    public static final int STATE_EXPANDED   = 0;
-    public static final int STATE_COLLAPSED  = 1;
+    public static final int STATE_EXPANDED = 0;
+    public static final int STATE_COLLAPSED = 1;
     public static final int STATE_PROCESSING = 2;
 
     protected Context mContext;
@@ -61,10 +61,12 @@ public abstract class UICalendar extends LinearLayout {
     private int mTextColor = Color.BLACK;
     private int mPrimaryColor = Color.WHITE;
 
-    private int mTodayItemTextColor = R.color.colorDogDogBlue;
-//    private Drawable mTodayItemBackgroundDrawable =
-//            getResources().getDrawable(R.drawable.circle_black_stroke_background);
+    private int mTodayItemTextColor = getResources().getColor(R.color.colorDogDogBlue);
+
+    private Drawable mTodayItemBackgroundDrawable =
+            getResources().getDrawable(R.drawable.circle_black_stroke_background);
     private int mSelectedItemTextColor = Color.WHITE;
+
     private Drawable mSelectedItemBackgroundDrawable =
             getResources().getDrawable(R.drawable.circle_dogdogblue_solid_background);
 
@@ -75,8 +77,8 @@ public abstract class UICalendar extends LinearLayout {
 
     private Day mSelectedItem = null;
 
-    private int mButtonLeftDrawableTintColor= Color.BLACK;
-    private int mButtonRightDrawableTintColor= Color.BLACK;
+    private int mButtonLeftDrawableTintColor = Color.BLACK;
+    private int mButtonRightDrawableTintColor = Color.BLACK;
 
     private int mExpandIconColor = Color.BLACK;
 
@@ -99,6 +101,7 @@ public abstract class UICalendar extends LinearLayout {
     }
 
     protected abstract void redraw();
+
     protected abstract void reload();
 
     protected void init(Context context) {
@@ -109,21 +112,19 @@ public abstract class UICalendar extends LinearLayout {
         View rootView = mInflater.inflate(R.layout.widget_collapsible_calendarview, this, true);
 
         // init UI
-        mLayoutRoot          = rootView.findViewById(R.id.layout_root);
-        mTxtTitle            = rootView.findViewById(R.id.txt_title);
+        mLayoutRoot = rootView.findViewById(R.id.layout_root);
+        mTxtTitle = rootView.findViewById(R.id.txt_title);
 
-        mTableHead           = rootView.findViewById(R.id.table_head);
-        mScrollViewBody      = rootView.findViewById(R.id.scroll_view_body);
-        mTableBody           = rootView.findViewById(R.id.table_body);
+        mTableHead = rootView.findViewById(R.id.table_head);
+        mScrollViewBody = rootView.findViewById(R.id.scroll_view_body);
+        mTableBody = rootView.findViewById(R.id.table_body);
         mLayoutBtnGroupMonth = rootView.findViewById(R.id.layout_btn_group_month);
-        mLayoutBtnGroupWeek  = rootView.findViewById(R.id.layout_btn_group_week);
-        mBtnPrevMonth        = rootView.findViewById(R.id.btn_prev_month);
-        mBtnNextMonth        = rootView.findViewById(R.id.btn_next_month);
-        mBtnPrevWeek         = rootView.findViewById(R.id.btn_prev_week);
-        mBtnNextWeek         = rootView.findViewById(R.id.btn_next_week);
-        expandIconView       = rootView.findViewById(R.id.expandIcon);
-
-
+        mLayoutBtnGroupWeek = rootView.findViewById(R.id.layout_btn_group_week);
+        mBtnPrevMonth = rootView.findViewById(R.id.btn_prev_month);
+        mBtnNextMonth = rootView.findViewById(R.id.btn_next_month);
+        mBtnPrevWeek = rootView.findViewById(R.id.btn_prev_week);
+        mBtnNextWeek = rootView.findViewById(R.id.btn_next_week);
+        expandIconView = rootView.findViewById(R.id.expandIcon);
 
 
     }
@@ -141,13 +142,13 @@ public abstract class UICalendar extends LinearLayout {
         setTodayItemTextColor(attrs.getColor(
                 R.styleable.UICalendar_todayItem_textColor, mTodayItemTextColor));
 
-//        Drawable todayItemBackgroundDrawable =
-//                attrs.getDrawable(R.styleable.UICalendar_todayItem_background);
-//        if (todayItemBackgroundDrawable != null) {
-//            setTodayItemBackgroundDrawable(todayItemBackgroundDrawable);
-//        } else {
-//            setTodayItemBackgroundDrawable(mTodayItemBackgroundDrawable);
-//        }
+        Drawable todayItemBackgroundDrawable =
+                attrs.getDrawable(R.styleable.UICalendar_todayItem_background);
+        if (todayItemBackgroundDrawable != null) {
+            setTodayItemBackgroundDrawable(todayItemBackgroundDrawable);
+        } else {
+            setTodayItemBackgroundDrawable(mTodayItemBackgroundDrawable);
+        }
 
         setSelectedItemTextColor(attrs.getColor(
                 R.styleable.UICalendar_selectedItem_textColor, mSelectedItemTextColor));
@@ -175,20 +176,20 @@ public abstract class UICalendar extends LinearLayout {
             setButtonRightDrawable(mButtonRightDrawable);
         }
 
-        setButtonLeftDrawableTintColor(attrs.getColor(R.styleable.UICalendar_buttonLeft_drawableTintColor,mButtonLeftDrawableTintColor));
-        setButtonRightDrawableTintColor(attrs.getColor(R.styleable.UICalendar_buttonRight_drawableTintColor,mButtonRightDrawableTintColor));
-        setExpandIconColor(attrs.getColor(R.styleable.UICalendar_expandIconColor,mExpandIconColor));
-        Day selectedItem   = null;
+        setButtonLeftDrawableTintColor(attrs.getColor(R.styleable.UICalendar_buttonLeft_drawableTintColor, mButtonLeftDrawableTintColor));
+        setButtonRightDrawableTintColor(attrs.getColor(R.styleable.UICalendar_buttonRight_drawableTintColor, mButtonRightDrawableTintColor));
+        setExpandIconColor(attrs.getColor(R.styleable.UICalendar_expandIconColor, mExpandIconColor));
+        Day selectedItem = null;
     }
 
-    public void setButtonLeftDrawableTintColor(int color){
+    public void setButtonLeftDrawableTintColor(int color) {
         this.mButtonLeftDrawableTintColor = color;
         mBtnPrevMonth.getDrawable().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
         mBtnPrevWeek.getDrawable().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
         redraw();
     }
 
-    public void setButtonRightDrawableTintColor(int color){
+    public void setButtonRightDrawableTintColor(int color) {
 
         this.mButtonRightDrawableTintColor = color;
         mBtnNextMonth.getDrawable().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
@@ -196,7 +197,7 @@ public abstract class UICalendar extends LinearLayout {
         redraw();
     }
 
-    public void setExpandIconColor(int color){
+    public void setExpandIconColor(int color) {
         this.mExpandIconColor = color;
         expandIconView.setColor(color);
     }
@@ -252,6 +253,7 @@ public abstract class UICalendar extends LinearLayout {
         mTxtTitle.setTextColor(mTextColor);
     }
 
+
     public int getPrimaryColor() {
         return mPrimaryColor;
     }
@@ -272,14 +274,14 @@ public abstract class UICalendar extends LinearLayout {
         redraw();
     }
 
-//    public Drawable getTodayItemBackgroundDrawable() {
-//        return mTodayItemBackgroundDrawable;
-//    }
+    public Drawable getTodayItemBackgroundDrawable() {
+        return mTodayItemBackgroundDrawable;
+    }
 
-//    public void setTodayItemBackgroundDrawable(Drawable todayItemBackgroundDrawable) {
-//        this.mTodayItemBackgroundDrawable = todayItemBackgroundDrawable;
-//        redraw();
-//    }
+    public void setTodayItemBackgroundDrawable(Drawable todayItemBackgroundDrawable) {
+        this.mTodayItemBackgroundDrawable = todayItemBackgroundDrawable;
+        redraw();
+    }
 
     public int getSelectedItemTextColor() {
         return mSelectedItemTextColor;
@@ -326,8 +328,6 @@ public abstract class UICalendar extends LinearLayout {
     public void setSelectedItem(Day selectedItem) {
         this.mSelectedItem = selectedItem;
     }
-
-
 
 
 }

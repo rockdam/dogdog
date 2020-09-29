@@ -148,9 +148,11 @@ public class CollapsibleCalendar extends UICalendar {
         TableRow rowWeek = (TableRow) mTableHead.getChildAt(0);
         if (rowWeek != null) {
             for (int i = 0; i < rowWeek.getChildCount(); i++) {
-                ((TextView) rowWeek.getChildAt(i)).setTextColor(getTextColor());
-            }
+                ((TextView) rowWeek.getChildAt(i)).setTextColor(ContextCompat.getColor(mContext, R.color.dayColor));
+            } //이게 월 화 수 목 금 토 색깔 바꾸는거
         }
+        Typeface typeface = ResourcesCompat.getFont(mContext, R.font.spoqahansansbold);
+
         // redraw all views of day
         if (mAdapter != null) {
             for (int i = 0; i < mAdapter.getCount(); i++) {
@@ -162,8 +164,10 @@ public class CollapsibleCalendar extends UICalendar {
 
                 // set today's item
                 if (isToady(day)) {
-//                    txtDay.setBackgroundDrawable(getTodayItemBackgroundDrawable());
+                    txtDay.setTypeface(typeface);
+//                    txtDay.setBackgroundDrawable(getTodayItemBackgroundDrawable()); 백그라운드
                     txtDay.setTextColor(getTodayItemTextColor());
+
                 }
 
                 // set the selected item
@@ -222,14 +226,11 @@ public class CollapsibleCalendar extends UICalendar {
                 View view = mInflater.inflate(R.layout.layout_day_of_week, null);
                 TextView txtDayOfWeek = (TextView) view.findViewById(R.id.txt_day_of_week);
 
-                Typeface typeface = ResourcesCompat.getFont(mContext, R.font.spoqahansansregular);
 
 
                 txtDayOfWeek.setTextSize(14);
 
                 txtDayOfWeek.setText(dayOfWeekIds[(i + getFirstDayOfWeek()) % 7]);
-                txtDayOfWeek.setTextColor(ContextCompat.getColor(mContext, R.color.dayColor));
-                txtDayOfWeek.setTypeface(typeface);
                 TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(
                         0,
                         ViewGroup.LayoutParams.WRAP_CONTENT,

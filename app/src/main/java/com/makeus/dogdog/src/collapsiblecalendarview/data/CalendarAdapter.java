@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.makeus.dogdog.R;
@@ -125,8 +126,8 @@ public class CalendarAdapter {
             txtDay.setTypeface(typeface);
             txtDay.setTextSize(16);
             //여기가 달력 날짜 글씨 크기 조정 .
-            if (day.getMonth() != mCal.get(Calendar.MONTH)) {
-                txtDay.setAlpha(0.3f);
+            if (day.getMonth() != mCal.get(Calendar.MONTH)) { //이번달이 아니면
+                txtDay.setAlpha(0.2f);
             }
 
             for (int j = 0; j < mEventList.size(); j++) {
