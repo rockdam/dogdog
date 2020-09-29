@@ -85,27 +85,28 @@ public class DonutView extends View {
         paint.setStrokeWidth(strokeSize);
 
         canvas.drawArc(recF, 0, 360, false, paint);
-
-
         int colorDonutFinished = ContextCompat.getColor(context, R.color.donutFinished);
+        int initDonutTextColor = ContextCompat.getColor(context, R.color.initDonutTextColor);
 
-        if (value == 0) {// 초기에 글자 색
-            int initDonutTextColor = ContextCompat.getColor(context, R.color.initDonutTextColor);
-            paint.setColor(initDonutTextColor);
-        } else {
 
-            paint.setColor(colorDonutFinished);
-
-        }
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setColor(colorDonutFinished);
         canvas.drawArc(recF, -90, (float) (value * 3.6), false, paint);
 //        (value * 3.6) 이래야 한바퀴가 맞습니다. value 360 기준이 꽉차는거 .
         paint.setTextSize(textSize);
         paint.setStyle(Paint.Style.FILL); //이래야 글자에 색깔이 가득 찹니다 .
         paint.setStrokeWidth(20);
 
+        if (percent == 0) {// 초기에 글자 색
 
+            paint.setColor(initDonutTextColor);
+        } else {
+
+
+            paint.setColor(colorDonutFinished);
+
+        }
         String txt = String.valueOf(percent);
         String result = "" + percent;
         String testSizeText = percent + "%";
