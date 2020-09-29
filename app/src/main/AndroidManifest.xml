@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".src.joinmember.step7.Step7Activity"></activity>
+        <activity android:name=".src.joinmember.step3repeat.Step3ReeatActivity"></activity>
         <activity android:name=".src.joinmember.step6.Step6Activity" />
         <activity android:name=".src.joinmember.step5.Step5Activity" />
         <activity android:name=".src.joinmember.step4.Step4Activity" />
