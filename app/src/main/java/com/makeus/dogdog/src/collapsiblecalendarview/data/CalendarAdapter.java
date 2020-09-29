@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.content.res.ResourcesCompat;
+
 import com.makeus.dogdog.R;
 
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ public class CalendarAdapter {
     private int mFirstDayOfWeek = 0;
     private Calendar mCal;
     private LayoutInflater mInflater;
+    private Context mContext;
 
     List<Day> mItemList = new ArrayList<>();
     List<View> mViewList = new ArrayList<>();
@@ -29,7 +32,7 @@ public class CalendarAdapter {
     public CalendarAdapter(Context context, Calendar cal) {
         this.mCal = (Calendar) cal.clone();
         this.mCal.set(Calendar.DAY_OF_MONTH, 1);
-
+        mContext=context;
         mInflater = LayoutInflater.from(context);
 
         refresh();
@@ -115,8 +118,10 @@ public class CalendarAdapter {
             TextView txtDay = (TextView) view.findViewById(R.id.txt_day);
             ImageView imgEventTag = (ImageView) view.findViewById(R.id.img_event_tag);
 
+            Typeface typeface = ResourcesCompat.getFont(mContext, R.font.spoqahansansbold);
 
             txtDay.setText(String.valueOf(day.getDay()));
+            txtDay.setTypeface(typeface);
             txtDay.setTextSize(16);
             //여기가 달력 날짜 글씨 크기 조정 .
             if (day.getMonth() != mCal.get(Calendar.MONTH)) {
