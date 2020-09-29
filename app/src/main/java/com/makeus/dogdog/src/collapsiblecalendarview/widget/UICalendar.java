@@ -66,7 +66,7 @@ public abstract class UICalendar extends LinearLayout {
             getResources().getDrawable(R.drawable.circle_black_stroke_background);
     private int mSelectedItemTextColor = Color.WHITE;
     private Drawable mSelectedItemBackgroundDrawable =
-            getResources().getDrawable(R.drawable.circle_black_solid_background);
+            getResources().getDrawable(R.drawable.circle_dogdogblue_solid_background);
 
     private Drawable mButtonLeftDrawable =
             getResources().getDrawable(R.drawable.left_icon);
