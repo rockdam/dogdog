@@ -1,10 +1,9 @@
 package com.makeus.dogdog.src.HomeDogDog.startWalking;
 
-import android.animation.ObjectAnimator;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -19,9 +18,11 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
     Chronometer mWalkingTime, mWalkingDistance;
     ImageView mStartWalking, mStopButton;
     private double mTimetickin = 0;
-    private int percent;
+    private int mPercent;
     private boolean mRunning;
     private long timeWhenStopped = 0;
+
+// 넘어는 오는데 초기 시간 표시 , 처음 화면 바꿔야함
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,8 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
         mWalkingDistance = findViewById(R.id.walking_distance_startwalking);
         mDonutView = findViewById(R.id.donut);
         mStopButton = findViewById(R.id.stopbutton_startwalking);
-
+        mTimetickin = Double.parseDouble(getIntent().getStringExtra("time"));
+        mPercent = getIntent().getIntExtra("percent", 0);
 
         mWalkingTime.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
@@ -49,16 +51,15 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
                 // time % 500 < 100 && time >= 500
                 if (time % 18000 < 1000 && time >= 18000) //18초에 1초씩 증가 .. 18초 이상일 때 부터 1%증가
                 {
-                    mTimetickin+=((double)1/(double)18);
+                    mTimetickin += ((double) 1 / (double) 18);
                     System.out.println(mTimetickin);
-                    percent++;
-                    mDonutView.setValue(mTimetickin,percent);
-                }else if( time % 1000 < 1000 && time >= 1000)
-                {
+                    mPercent++;
+                    mDonutView.setValue(mTimetickin, mPercent);
+                } else if (time % 1000 < 1000 && time >= 1000) {
 
-                    mTimetickin+=((double)1/(double)18);
-                    mDonutView.setValue(mTimetickin,percent);
-
+                    mTimetickin += ((double) 1 / (double) 18);
+                    mDonutView.setValue(mTimetickin, mPercent);
+//                    mDonutView.setValue(Double.parseDouble(getIntent().getStringExtra("time")), getIntent().getIntExtra("percent", 0));
                 }
 //                if(true)
 //                {
@@ -84,6 +85,19 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
 
     }
 
+    SharedPreferences.Editor putDouble(final SharedPreferences.Editor edit, final String key, final double value) {
+        return edit.putLong(key, Double.doubleToRawLongBits(value));
+    }
+
+    double getDouble(final SharedPreferences prefs, final String key, final double defaultValue) {
+        return Double.longBitsToDouble(prefs.getLong(key, Double.doubleToLongBits(defaultValue)));
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 
     @Override
     public void onClick(View view) {
@@ -110,13 +124,23 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
                     mRunning = false;
 
 
-
                 }
 
                 break;
             case R.id.stopbutton_startwalking:
+
+
+                SharedPreferences prefs = getSharedPreferences("startwalking", MODE_PRIVATE);
+
+                SharedPreferences.Editor editor = prefs.edit();
+
+                editor.putString("time", String.valueOf(mTimetickin));
+                editor.putInt("percent", mPercent);
+
+                editor.commit();
                 finish();
                 break;
+
 
         }
     }

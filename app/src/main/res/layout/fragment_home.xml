@@ -208,7 +208,7 @@
 
 
             <ProgressBar
-                android:id="@+id/progress"
+                android:id="@+id/progressbar_home"
                 style="@android:style/Widget.ProgressBar.Horizontal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -246,12 +246,12 @@
                 android:fontFamily="@font/spoqahansansbold"
                 android:text="%"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView11"
-                app:layout_constraintEnd_toEndOf="@+id/progress"
-                app:layout_constraintTop_toTopOf="@+id/textView11" />
+                app:layout_constraintBottom_toBottomOf="@+id/percent_home"
+                app:layout_constraintEnd_toEndOf="@+id/progressbar_home"
+                app:layout_constraintTop_toTopOf="@+id/percent_home" />
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/percent_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16sp"

@@ -130,6 +130,10 @@ public class CalendarAdapter {
                 txtDay.setAlpha(0.2f);
             }
 
+
+            // 여기다 추가로 글이 등록된 날짜는 파랗게 칠하면 될 듯
+
+
             for (int j = 0; j < mEventList.size(); j++) {
                 Event event = mEventList.get(j);
                 if (day.getYear() == event.getYear()
