@@ -35,6 +35,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
         mStopButton = findViewById(R.id.stopbutton_startwalking);
         mTimetickin = Double.parseDouble(getIntent().getStringExtra("time"));
         mPercent = getIntent().getIntExtra("percent", 0);
+        mDonutView.setValue(mTimetickin, mPercent);
 
         mWalkingTime.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
@@ -85,13 +86,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
 
     }
 
-    SharedPreferences.Editor putDouble(final SharedPreferences.Editor edit, final String key, final double value) {
-        return edit.putLong(key, Double.doubleToRawLongBits(value));
-    }
 
-    double getDouble(final SharedPreferences prefs, final String key, final double defaultValue) {
-        return Double.longBitsToDouble(prefs.getLong(key, Double.doubleToLongBits(defaultValue)));
-    }
 
 
     @Override
