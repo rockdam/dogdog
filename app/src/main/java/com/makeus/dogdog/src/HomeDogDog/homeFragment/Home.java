@@ -31,7 +31,9 @@ public class Home extends Fragment implements View.OnClickListener {
     private static final String ARG_PARAM2 = "param2";
 
     int mPercent;
-    String mTime;
+    String mTimeTickin;
+    long mTime;
+
     TextView mPercentHome;
     ProgressBar mAimProgressBar;
     SharedPreferences mPrefs;
@@ -83,9 +85,7 @@ public class Home extends Fragment implements View.OnClickListener {
         //저장된 값을 불러오기 위해 같은 네임파일을 찾음.
 
 
-//        mPercent = mPrefs.getInt("percent", 0);
-//        mTime = mPrefs.getString("time", "0");
-//        System.out.println("percent:" + mPercent);
+
 
         mAimProgressBar.setProgress(mPercent);
         mPercentHome.setText(String.valueOf(mPercent));
@@ -100,10 +100,17 @@ public class Home extends Fragment implements View.OnClickListener {
     public void onStart() {
         super.onStart();
 
+//        mPrefs.edit().clear().commit() ;
+//        얘를 자정 지나면 발동 되도록 .;
         mPercent = mPrefs.getInt("percent", 0);
-        mTime = mPrefs.getString("time", "0");
+        mTimeTickin = mPrefs.getString("timetickin", "0");
+
+
+        mTime=mPrefs.getLong("time",0);
+
         mAimProgressBar.setProgress(mPercent);
         mPercentHome.setText(String.valueOf(mPercent));
+
         System.out.println("여기호출");
     }
 
@@ -118,7 +125,8 @@ public class Home extends Fragment implements View.OnClickListener {
                 Intent intent = new Intent(getActivity(), startWalking.class);
 
                 intent.putExtra("percent", mPercent);
-                intent.putExtra("time", mTime);
+                intent.putExtra("timetickin", mTimeTickin);
+                intent.putExtra("time",mTime);
                 startActivity(intent);
 
                 break;
