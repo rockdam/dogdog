@@ -100,7 +100,7 @@ public class Home extends Fragment implements View.OnClickListener {
     public void onStart() {
         super.onStart();
 
-//        mPrefs.edit().clear().commit() ;
+        mPrefs.edit().clear().commit() ;
 //        얘를 자정 지나면 발동 되도록 .;
         mPercent = mPrefs.getInt("percent", 0);
         mTimeTickin = mPrefs.getString("timetickin", "0");

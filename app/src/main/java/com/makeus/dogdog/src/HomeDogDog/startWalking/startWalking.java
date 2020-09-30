@@ -22,8 +22,8 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
     private boolean mRunning;
     private long timeWhenStopped = 0;
     private long mStartTime;
-    long time ;
-    long bugCheck=0; // 크로메타 이거 버그 있다; 0,1 몇 번 나온다음 상승함 .
+    long time;
+    long bugCheck = 0; // 크로메타 이거 버그 있다; 0,1 몇 번 나온다음 상승함 .
 // 넘어는 오는데 초기 시간 표시 , 처음 화면 바꿔야함
 
     @Override
@@ -46,36 +46,35 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
             public void onChronometerTick(Chronometer chronometer) {
 
 
+                time = mStartTime + SystemClock.elapsedRealtime() - chronometer.getBase();
 
-                bugCheck=SystemClock.elapsedRealtime() - chronometer.getBase();
+                System.out.println("time : " + time);
 
-                System.out.println("버그 체크"+bugCheck);
-                if(bugCheck>1 ) {
-                    time = mStartTime + SystemClock.elapsedRealtime() - chronometer.getBase();
+                chronometer.setText(calculate(time));
 
-                    System.out.println("time : " + mStartTime);
-
-                    chronometer.setText(calculate(time));
+                //1000
 
 
+                // 아록이 천잰데?
+                // 0.5초 단위로 계속 그릴려면?
+                // time % 500 < 100 && time >= 500
+                if (time % 18000 < 1000 && time >= 18000) //18초에 1초씩 증가 .. 18초 이상일 때 부터 1%증가
+                {
+                    mTimetickin = (double) ((double) time / 1000) / (18 * 60);
 
-                    // 아록이 천잰데?
-                    // 0.5초 단위로 계속 그릴려면?
-                    // time % 500 < 100 && time >= 500
-                    if (time % 18000 < 1000 && time >= 18000) //18초에 1초씩 증가 .. 18초 이상일 때 부터 1%증가
-                    {
-                        mTimetickin += ((double) 1 / (double) 18);
-                        System.out.println("mTimetickin"+mTimetickin);
-                        mPercent++;
-                        mDonutView.setValue(mTimetickin, mPercent);
-                    } else if (time % 1000 < 1000 && time >= 1000) {
+                    System.out.println("time : " + time);
+                    System.out.println("mTimetickin" + mTimetickin);
 
-                        mTimetickin += ((double) 1 / (double) 18);
-                        mDonutView.setValue(mTimetickin, mPercent);
+                    mDonutView.setValue(mTimetickin, (int) ((time / 1000) / 18));
+                } else if (time % 1000 < 1000 && time >= 1000) {
+
+                    mTimetickin = (double) ((double) time / 1000) / (double) (18 * 60);
+                    mDonutView.setValue(mTimetickin, (int) ((time / 1000) / 18));
+                    System.out.println("mTimetickin" + mTimetickin);
 //                    mDonutView.setValue(Double.parseDouble(getIntent().getStringExtra("time")), getIntent().getIntExtra("percent", 0));
-                    }
-
                 }
+
+
             }
         });
 
@@ -97,7 +96,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
 
     }
 
-    public String calculate(long time ){
+    public String calculate(long time) {
         int h = (int) (time / 3600000);
         int m = (int) (time - h * 3600000) / 60000;
         int s = (int) (time - h * 3600000 - m * 60000) / 1000;
