@@ -36,6 +36,7 @@
         custom:layout_constraintHorizontal_bias="0.5"
         custom:layout_constraintStart_toEndOf="@+id/start_walking"
         custom:layout_constraintTop_toBottomOf="@+id/walking_time_startwalking"
+        custom:layout_constraintVertical_bias="0.8"
         custom:srcCompat="@drawable/camera" />
 
     <ImageView
