@@ -17,9 +17,8 @@
         android:layout_width="@dimen/donut_size"
         android:layout_height="@dimen/donut_size"
 
-        android:layout_marginBottom="48dp"
+        android:layout_marginTop="20dp"
         android:padding="10dp"
-        custom:layout_constraintBottom_toTopOf="@+id/view5"
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintHorizontal_bias="0.5"
         custom:layout_constraintStart_toStartOf="parent"
@@ -32,19 +31,18 @@
         android:id="@+id/cameraApp_startWalking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
         custom:layout_constraintBottom_toBottomOf="parent"
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintHorizontal_bias="0.5"
         custom:layout_constraintStart_toEndOf="@+id/start_walking"
+        custom:layout_constraintTop_toBottomOf="@+id/walking_time_startwalking"
         custom:srcCompat="@drawable/camera" />
 
     <ImageView
         android:id="@+id/start_walking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="57dp"
-        custom:layout_constraintBottom_toBottomOf="parent"
+        custom:layout_constraintBottom_toBottomOf="@+id/cameraApp_startWalking"
         custom:layout_constraintEnd_toStartOf="@+id/cameraApp_startWalking"
         custom:layout_constraintHorizontal_bias="0.5"
         custom:layout_constraintStart_toEndOf="@+id/stopbutton_startwalking"
@@ -54,8 +52,7 @@
         android:id="@+id/stopbutton_startwalking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        custom:layout_constraintBottom_toBottomOf="parent"
+        custom:layout_constraintBottom_toBottomOf="@+id/start_walking"
         custom:layout_constraintEnd_toStartOf="@+id/start_walking"
         custom:layout_constraintHorizontal_bias="0.5"
         custom:layout_constraintStart_toStartOf="parent"
@@ -65,23 +62,25 @@
         android:id="@+id/view5"
         android:layout_width="1dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="68dp"
 
         android:background="@color/BorderGray"
         custom:layout_constraintBottom_toTopOf="@+id/start_walking"
         custom:layout_constraintEnd_toStartOf="@+id/textView25"
         custom:layout_constraintHorizontal_bias="0.493"
-        custom:layout_constraintStart_toEndOf="@+id/textView27" />
+        custom:layout_constraintStart_toEndOf="@+id/textView27"
+        custom:layout_constraintTop_toBottomOf="@+id/donut"
+        custom:layout_constraintVertical_bias="0.33999997" />
 
     <TextView
         android:id="@+id/textView25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="68dp"
         android:text="산책시간"
+        custom:layout_constraintBottom_toTopOf="@+id/start_walking"
         custom:layout_constraintEnd_toEndOf="parent"
-        custom:layout_constraintTop_toBottomOf="@+id/donut" />
+        custom:layout_constraintStart_toEndOf="@+id/view5"
+        custom:layout_constraintTop_toBottomOf="@+id/donut"
+        custom:layout_constraintVertical_bias="0.19999999" />
 
     <Chronometer
         android:id="@+id/walking_time_startwalking"
@@ -107,16 +106,19 @@
         android:id="@+id/textView27"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
         android:text="산책거리"
+        custom:layout_constraintBottom_toTopOf="@+id/start_walking"
+        custom:layout_constraintEnd_toStartOf="@+id/view5"
+        custom:layout_constraintHorizontal_bias="0.4"
         custom:layout_constraintStart_toStartOf="parent"
-        custom:layout_constraintTop_toTopOf="@+id/textView25" />
+        custom:layout_constraintTop_toBottomOf="@+id/donut"
+        custom:layout_constraintVertical_bias="0.19999999" />
 
     <TextView
         android:id="@+id/textView29"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:text="목표"
         android:textSize="28sp"
@@ -124,17 +126,15 @@
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintHorizontal_bias="0.5"
         custom:layout_constraintStart_toStartOf="parent"
-        custom:layout_constraintTop_toTopOf="parent" />
+        custom:layout_constraintTop_toBottomOf="@+id/imageView18" />
 
     <TextView
         android:id="@+id/textView30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="5dp"
         android:text="🐶하루 30분 산책하기"
         android:textSize="20sp"
-        custom:layout_constraintBottom_toTopOf="@+id/donut"
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintStart_toStartOf="parent"
         custom:layout_constraintTop_toBottomOf="@+id/textView29" />
@@ -142,9 +142,9 @@
     <ImageView
         android:id="@+id/imageView17"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
+        custom:layout_constraintHeight_percent="0.1"
         custom:layout_constraintStart_toStartOf="parent"
         custom:layout_constraintTop_toTopOf="parent"
         custom:srcCompat="@drawable/ic_arrow" />
@@ -152,9 +152,9 @@
     <ImageView
         android:id="@+id/imageView18"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="20dp"
+        custom:layout_constraintHeight_percent="0.1"
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintTop_toTopOf="parent"
         custom:srcCompat="@drawable/more" />
