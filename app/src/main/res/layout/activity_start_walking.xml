@@ -22,13 +22,14 @@
         custom:layout_constraintBottom_toTopOf="@+id/view5"
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintHorizontal_bias="0.5"
-        custom:layout_constraintStart_toStartOf="parent">
+        custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintTop_toBottomOf="@+id/textView30">
 
 
     </com.makeus.dogdog.src.HomeDogDog.startWalking.DonutView>
 
     <ImageView
-        android:id="@+id/imageView13"
+        android:id="@+id/cameraApp_startWalking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
@@ -44,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="57dp"
         custom:layout_constraintBottom_toBottomOf="parent"
-        custom:layout_constraintEnd_toStartOf="@+id/imageView13"
+        custom:layout_constraintEnd_toStartOf="@+id/cameraApp_startWalking"
         custom:layout_constraintHorizontal_bias="0.5"
         custom:layout_constraintStart_toEndOf="@+id/stopbutton_startwalking"
         custom:srcCompat="@drawable/start" />
@@ -130,7 +131,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
-        android:layout_marginBottom="66dp"
+        android:layout_marginBottom="24dp"
         android:text="🐶하루 30분 산책하기"
         android:textSize="20sp"
         custom:layout_constraintBottom_toTopOf="@+id/donut"

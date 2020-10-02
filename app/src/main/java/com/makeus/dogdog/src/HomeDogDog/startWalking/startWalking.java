@@ -1,8 +1,10 @@
 package com.makeus.dogdog.src.HomeDogDog.startWalking;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Chronometer;
 import android.widget.ImageView;
@@ -16,15 +18,23 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
     SeekBar seekBar;
     DonutView mDonutView;
     Chronometer mWalkingTime, mWalkingDistance;
-    ImageView mStartWalking, mStopButton;
+    ImageView mStartWalking, mStopButton, mStartCamera;
     private double mTimetickin = 0;
     private int mPercent;
     private boolean mRunning;
     private long timeWhenStopped = 0;
     private long mStartTime;
     long time;
-    long bugCheck = 0; // 크로메타 이거 버그 있다; 0,1 몇 번 나온다음 상승함 .
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 // 넘어는 오는데 초기 시간 표시 , 처음 화면 바꿔야함
+
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +45,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
         mWalkingDistance = findViewById(R.id.walking_distance_startwalking);
         mDonutView = findViewById(R.id.donut);
         mStopButton = findViewById(R.id.stopbutton_startwalking);
+        mStartCamera = findViewById(R.id.cameraApp_startWalking);
         mTimetickin = Double.parseDouble(getIntent().getStringExtra("timetickin"));
         mPercent = getIntent().getIntExtra("percent", 0);
         mStartTime = getIntent().getLongExtra("time", 0);
@@ -48,31 +59,27 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
 
                 time = mStartTime + SystemClock.elapsedRealtime() - chronometer.getBase();
 
-                System.out.println("time : " + time);
+//                System.out.println("time : " + time);
 
                 chronometer.setText(calculate(time));
 
                 //1000
 
+                int h = (int) (time / 3600000);
+                int m = (int) (time - h * 3600000) / 60000;
+                int s = (int) (time - h * 3600000) / 1000;
 
-                // 아록이 천잰데?
                 // 0.5초 단위로 계속 그릴려면?
                 // time % 500 < 100 && time >= 500
-                if (time % 18000 < 1000 && time >= 18000) //18초에 1초씩 증가 .. 18초 이상일 때 부터 1%증가
-                {
-                    mTimetickin = (double) ((double) time / 1000) / (18 * 60);
 
-                    System.out.println("time : " + time);
-                    System.out.println("mTimetickin" + mTimetickin);
 
-                    mDonutView.setValue(mTimetickin, (int) ((time / 1000) / 18));
-                } else if (time % 1000 < 1000 && time >= 1000) {
+                mTimetickin = ((double) s / (18));
+                mDonutView.setValue(mTimetickin, s / 18);
+//                    System.out.println("time : " + time);
+                System.out.println("mTimetickin" + mTimetickin);
+                System.out.println("Time체크" + s);
 
-                    mTimetickin = (double) ((double) time / 1000) / (double) (18 * 60);
-                    mDonutView.setValue(mTimetickin, (int) ((time / 1000) / 18));
-                    System.out.println("mTimetickin" + mTimetickin);
 //                    mDonutView.setValue(Double.parseDouble(getIntent().getStringExtra("time")), getIntent().getIntExtra("percent", 0));
-                }
 
 
             }
@@ -133,6 +140,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
 
                     timeWhenStopped = mWalkingTime.getBase() - SystemClock.elapsedRealtime();
                     mWalkingTime.stop();
+                    mWalkingDistance.stop();
                     mStartWalking.setImageResource(R.drawable.start);
                     mRunning = false;
 
@@ -153,6 +161,10 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
 
                 editor.commit();
                 finish();
+                break;
+            case R.id.cameraApp_startWalking:
+
+                dispatchTakePictureIntent();
                 break;
 
 

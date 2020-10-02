@@ -92,7 +92,7 @@ public class DonutView extends View {
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setColor(colorDonutFinished);
-        canvas.drawArc(recF, -90, (float) (value * 3.6), false, paint);
+        canvas.drawArc(recF, -90, (float) (value * (double)3.6), false, paint);
 //        (value * 3.6) 이래야 한바퀴가 맞습니다. value 360 기준이 꽉차는거 .
         paint.setTextSize(textSize);
         paint.setStyle(Paint.Style.FILL); //이래야 글자에 색깔이 가득 찹니다 .
