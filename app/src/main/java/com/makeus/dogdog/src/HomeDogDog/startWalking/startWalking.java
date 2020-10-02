@@ -52,6 +52,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
         mDonutView.setValue(mTimetickin, mPercent);
 
 
+        mStartCamera.setOnClickListener(this);
         mWalkingTime.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
@@ -69,8 +70,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
                 int m = (int) (time - h * 3600000) / 60000;
                 int s = (int) (time - h * 3600000) / 1000;
 
-                // 0.5초 단위로 계속 그릴려면?
-                // time % 500 < 100 && time >= 500
+
 
 
                 mTimetickin = ((double) s / (18));
