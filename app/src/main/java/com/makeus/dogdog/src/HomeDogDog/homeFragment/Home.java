@@ -30,8 +30,8 @@ public class Home extends Fragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    int mPercent;
-    String mTimeTickin;
+    int mPercent = 0;
+    double mTimeTickin;
     long mTime;
 
     TextView mPercentHome;
@@ -85,10 +85,6 @@ public class Home extends Fragment implements View.OnClickListener {
         //저장된 값을 불러오기 위해 같은 네임파일을 찾음.
 
 
-
-
-        mAimProgressBar.setProgress(mPercent);
-        mPercentHome.setText(String.valueOf(mPercent));
         TextView startWalking = v.findViewById(R.id.next_button_step);
 
         startWalking.setOnClickListener(this);
@@ -100,15 +96,19 @@ public class Home extends Fragment implements View.OnClickListener {
     public void onStart() {
         super.onStart();
 
-        mPrefs.edit().clear().commit() ;
+//        mPrefs.edit().clear().commit() ;
 //        얘를 자정 지나면 발동 되도록 .;
         mPercent = mPrefs.getInt("percent", 0);
-        mTimeTickin = mPrefs.getString("timetickin", "0");
+        mTimeTickin = Double.parseDouble(mPrefs.getString("timetickin", "0"));
 
 
-        mTime=mPrefs.getLong("time",0);
+        mTime = mPrefs.getLong("time", 0);
 
-        mAimProgressBar.setProgress(mPercent);
+        mAimProgressBar.setMax(1000);
+        System.out.println()
+        mAimProgressBar.setProgress((int) (mTimeTickin * (double) 100));
+//        https://stackoverflow.com/questions/18192454/progress-bar-pass-float-argument/2133259
+//        max값을 올려서 생각하면 됌 .
         mPercentHome.setText(String.valueOf(mPercent));
 
         System.out.println("여기호출");
@@ -124,10 +124,23 @@ public class Home extends Fragment implements View.OnClickListener {
             case R.id.next_button_step:
                 Intent intent = new Intent(getActivity(), startWalking.class);
 
-                intent.putExtra("percent", mPercent);
-                intent.putExtra("timetickin", mTimeTickin);
-                intent.putExtra("time",mTime);
+
+                if (mPercent != 0) {
+
+                    intent.putExtra("percent", mPercent);
+                }
+                if (mTimeTickin != 0) {
+                    intent.putExtra("timeTickin", mTimeTickin);
+
+                }
+                if (mTime != 0) {
+                    intent.putExtra("time", mTime);
+
+                }
+
+
                 startActivity(intent);
+
 
                 break;
 

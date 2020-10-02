@@ -75,6 +75,7 @@
         android:id="@+id/textView25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/startwalkingGray"
         android:text="산책시간"
         android:fontFamily="@font/spoqahansansbold"
         custom:layout_constraintBottom_toTopOf="@+id/start_walking"
@@ -110,6 +111,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/spoqahansansbold"
+        android:textColor="@color/startwalkingGray"
         android:text="산책거리"
         custom:layout_constraintBottom_toTopOf="@+id/start_walking"
         custom:layout_constraintEnd_toStartOf="@+id/view5"
@@ -122,21 +124,21 @@
         android:id="@+id/textView29"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="목표"
+        android:layout_marginBottom="5dp"
         android:fontFamily="@font/spoqahansansbold"
+        android:text="목표"
         android:textSize="28sp"
         custom:layout_constraintBottom_toTopOf="@+id/textView30"
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintHorizontal_bias="0.5"
         custom:layout_constraintStart_toStartOf="parent"
-        custom:layout_constraintTop_toBottomOf="@+id/imageView18" />
+        custom:layout_constraintTop_toBottomOf="@+id/imageView18"
+        custom:layout_constraintVertical_bias="0.3" />
 
     <TextView
         android:id="@+id/textView30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:fontFamily="@font/spoqahansansregular"
         android:text="🐶하루 30분 산책하기"
         android:textSize="20sp"
@@ -147,9 +149,9 @@
     <ImageView
         android:id="@+id/imageView17"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        custom:layout_constraintHeight_percent="0.1"
+        android:layout_marginTop="10dp"
         custom:layout_constraintStart_toStartOf="parent"
         custom:layout_constraintTop_toTopOf="parent"
         custom:srcCompat="@drawable/ic_arrow" />
@@ -157,9 +159,10 @@
     <ImageView
         android:id="@+id/imageView18"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+
         android:layout_marginEnd="20dp"
-        custom:layout_constraintHeight_percent="0.1"
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintTop_toTopOf="parent"
         custom:srcCompat="@drawable/more" />

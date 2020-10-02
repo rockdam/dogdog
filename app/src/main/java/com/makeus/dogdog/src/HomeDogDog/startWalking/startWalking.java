@@ -46,7 +46,9 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
         mDonutView = findViewById(R.id.donut);
         mStopButton = findViewById(R.id.stopbutton_startwalking);
         mStartCamera = findViewById(R.id.cameraApp_startWalking);
-        mTimetickin = Double.parseDouble(getIntent().getStringExtra("timetickin"));
+        if(getIntent().getStringExtra("timeTickin")!=null) {
+            mTimetickin = Double.parseDouble(getIntent().getStringExtra("timeTickin"));
+        }
         mPercent = getIntent().getIntExtra("percent", 0);
         mStartTime = getIntent().getLongExtra("time", 0);
         mDonutView.setValue(mTimetickin, mPercent);
