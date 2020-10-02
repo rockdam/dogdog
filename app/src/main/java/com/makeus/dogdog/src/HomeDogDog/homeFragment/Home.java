@@ -105,8 +105,8 @@ public class Home extends Fragment implements View.OnClickListener {
         mTime = mPrefs.getLong("time", 0);
 
         mAimProgressBar.setMax(1000);
-        System.out.println()
-        mAimProgressBar.setProgress((int) (mTimeTickin * (double) 100));
+        System.out.println("이건 어떻게 찍히나"+(int) (mTimeTickin * (double) 10));
+        mAimProgressBar.setProgress((int) (mTimeTickin * (double) 10));
 //        https://stackoverflow.com/questions/18192454/progress-bar-pass-float-argument/2133259
 //        max값을 올려서 생각하면 됌 .
         mPercentHome.setText(String.valueOf(mPercent));

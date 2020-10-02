@@ -76,7 +76,8 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
 
 
                 mTimetickin = ((double) s / (18));
-                mDonutView.setValue(mTimetickin, s / 18);
+                mPercent=s/18;
+                mDonutView.setValue(mTimetickin, mPercent);
 //                    System.out.println("time : " + time);
                 System.out.println("mTimetickin" + mTimetickin);
                 System.out.println("Time체크" + s);
