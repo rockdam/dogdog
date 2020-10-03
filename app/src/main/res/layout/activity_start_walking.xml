@@ -17,11 +17,11 @@
         android:layout_width="@dimen/donut_size"
         android:layout_height="@dimen/donut_size"
 
-        android:layout_marginTop="20dp"
         android:padding="10dp"
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintHorizontal_bias="0.5"
         custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintBottom_toTopOf="@id/view5"
         custom:layout_constraintTop_toBottomOf="@+id/textView30">
 
 
@@ -69,21 +69,20 @@
         custom:layout_constraintEnd_toStartOf="@+id/textView25"
         custom:layout_constraintHorizontal_bias="0.493"
         custom:layout_constraintStart_toEndOf="@+id/textView27"
-        custom:layout_constraintTop_toBottomOf="@+id/donut"
-        custom:layout_constraintVertical_bias="0.33999997" />
+        custom:layout_constraintTop_toBottomOf="@+id/donut" />
 
     <TextView
         android:id="@+id/textView25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/startwalkingGray"
-        android:text="산책시간"
         android:fontFamily="@font/spoqahansansbold"
+        android:text="산책시간"
+        android:textColor="@color/startwalkingGray"
         custom:layout_constraintBottom_toTopOf="@+id/start_walking"
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintStart_toEndOf="@+id/view5"
         custom:layout_constraintTop_toBottomOf="@+id/donut"
-        custom:layout_constraintVertical_bias="0.19999999" />
+        custom:layout_constraintVertical_bias="0.41000003" />
 
     <Chronometer
         android:id="@+id/walking_time_startwalking"
@@ -95,7 +94,7 @@
         custom:layout_constraintStart_toStartOf="@+id/textView25"
         custom:layout_constraintTop_toBottomOf="@+id/textView25" />
 
-    <Chronometer
+    <TextView
         android:id="@+id/walking_distance_startwalking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -112,14 +111,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/spoqahansansbold"
-        android:textColor="@color/startwalkingGray"
         android:text="산책거리"
+        android:textColor="@color/startwalkingGray"
         custom:layout_constraintBottom_toTopOf="@+id/start_walking"
         custom:layout_constraintEnd_toStartOf="@+id/view5"
         custom:layout_constraintHorizontal_bias="0.4"
         custom:layout_constraintStart_toStartOf="parent"
         custom:layout_constraintTop_toBottomOf="@+id/donut"
-        custom:layout_constraintVertical_bias="0.19999999" />
+        custom:layout_constraintVertical_bias="0.41000003" />
 
     <TextView
         android:id="@+id/textView29"

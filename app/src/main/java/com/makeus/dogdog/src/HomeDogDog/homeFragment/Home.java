@@ -106,6 +106,7 @@ public class Home extends Fragment implements View.OnClickListener {
 
         mAimProgressBar.setMax(1000);
         System.out.println("이건 어떻게 찍히나"+(int) (mTimeTickin * (double) 10));
+        // 몇 초까지는 안 보이니깐 .. 눈 속임으로 대체 합시다 !... 몇 초까진지 확인 후 조건문 걸기!
         mAimProgressBar.setProgress((int) (mTimeTickin * (double) 10));
 //        https://stackoverflow.com/questions/18192454/progress-bar-pass-float-argument/2133259
 //        max값을 올려서 생각하면 됌 .
