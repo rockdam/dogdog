@@ -76,6 +76,63 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
         mStartTime = getIntent().getLongExtra("time", 0);
         mDonutView.setValue(mTimetickin, mPercent);
 
+
+
+
+        mStartCamera.setOnClickListener(this);
+
+
+
+        mWalkingTime.setBase(SystemClock.elapsedRealtime());
+        mWalkingTime.setText(calculate(time));
+
+        mStartWalking.setOnClickListener(this);
+        mStopButton.setOnClickListener(this);
+
+
+    }
+
+
+    //실제로 onCreate() 너무 많은걸 넣으면 동작을 안하네? onClick 같은건 onResume에 넣자 .
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mWalkingTime.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+
+
+                time = mStartTime + SystemClock.elapsedRealtime() - chronometer.getBase();
+
+//                System.out.println("time : " + time);
+
+                chronometer.setText(calculate(time));
+
+                //1000
+
+                int h = (int) (time / 3600000);
+                int m = (int) (time - h * 3600000) / 60000;
+                int s = (int) (time - h * 3600000) / 1000;
+
+
+
+
+                mTimetickin = ((double) s / (18));
+                mPercent=s/18;
+                mDonutView.setValue(mTimetickin, mPercent);
+//                    System.out.println("time : " + time);
+                System.out.println("mTimetickin" + mTimetickin);
+                System.out.println("Time체크" + s);
+
+//                    mDonutView.setValue(Double.parseDouble(getIntent().getStringExtra("time")), getIntent().getIntExtra("percent", 0));
+
+
+            }
+        });
+
+
+
         locationManager = (LocationManager) getSystemService(this.LOCATION_SERVICE);
         criteria = new Criteria();
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
@@ -99,6 +156,12 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
         } catch (Exception e) {
 
         }
+
+
+
+
+
+
 
         locationManager.requestLocationUpdates(provider, 15000, 1, new LocationListener() {
 
@@ -179,56 +242,6 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
 
             }
         });
-
-
-
-
-
-
-
-
-        mStartCamera.setOnClickListener(this);
-        mWalkingTime.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
-            @Override
-            public void onChronometerTick(Chronometer chronometer) {
-
-
-                time = mStartTime + SystemClock.elapsedRealtime() - chronometer.getBase();
-
-//                System.out.println("time : " + time);
-
-                chronometer.setText(calculate(time));
-
-                //1000
-
-                int h = (int) (time / 3600000);
-                int m = (int) (time - h * 3600000) / 60000;
-                int s = (int) (time - h * 3600000) / 1000;
-
-
-
-
-                mTimetickin = ((double) s / (18));
-                mPercent=s/18;
-                mDonutView.setValue(mTimetickin, mPercent);
-//                    System.out.println("time : " + time);
-                System.out.println("mTimetickin" + mTimetickin);
-                System.out.println("Time체크" + s);
-
-//                    mDonutView.setValue(Double.parseDouble(getIntent().getStringExtra("time")), getIntent().getIntExtra("percent", 0));
-
-
-            }
-        });
-
-
-
-        mWalkingTime.setBase(SystemClock.elapsedRealtime());
-        mWalkingTime.setText(calculate(time));
-
-        mStartWalking.setOnClickListener(this);
-        mStopButton.setOnClickListener(this);
-
 
     }
 
