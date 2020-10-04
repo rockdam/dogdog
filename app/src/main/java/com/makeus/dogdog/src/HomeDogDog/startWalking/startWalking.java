@@ -11,11 +11,11 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.provider.MediaStore;
-import android.view.Menu;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.Chronometer;
 import android.widget.ImageView;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +26,6 @@ import com.makeus.dogdog.src.BaseActivity;
 
 public class startWalking extends BaseActivity implements View.OnClickListener {
 
-    SeekBar seekBar;
     DonutView mDonutView;
     Chronometer mWalkingTime;
     TextView mWalkingDistance;
@@ -38,7 +37,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
     private long mStartTime;
     long time;
     static final int REQUEST_IMAGE_CAPTURE = 1;
-
+    private static final int PERMISSION_REQUEST_CODE = 1;
     LocationManager locationManager;
     Criteria criteria;
     String provider;
@@ -49,6 +48,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
     double new_longitude; // longitude
     float total_distance = 0.0f;
     String details;
+    TextView test;
 // 넘어는 오는데 초기 시간 표시 , 처음 화면 바꿔야함
 
 
@@ -58,7 +58,10 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
-//https://stackoverflow.com/questions/42619863/how-to-calculate-distance-every-15-sec-with-using-gps-heavy-accuracy
+
+    //https://stackoverflow.com/questions/42619863/how-to-calculate-distance-every-15-sec-with-using-gps-heavy-accuracy
+//거리구현은 서비스로 하는게 좋습니다..gps
+//    https://stackoverflow.com/questions/28535703/best-way-to-get-user-gps-location-in-background-in-android
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +72,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
         mDonutView = findViewById(R.id.donut);
         mStopButton = findViewById(R.id.stopbutton_startwalking);
         mStartCamera = findViewById(R.id.cameraApp_startWalking);
-        if(getIntent().getStringExtra("timeTickin")!=null) {
+        if (getIntent().getStringExtra("timeTickin") != null) {
             mTimetickin = Double.parseDouble(getIntent().getStringExtra("timeTickin"));
         }
         mPercent = getIntent().getIntExtra("percent", 0);
@@ -77,10 +80,9 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
         mDonutView.setValue(mTimetickin, mPercent);
 
 
-
+        test = findViewById(R.id.detail);
 
         mStartCamera.setOnClickListener(this);
-
 
 
         mWalkingTime.setBase(SystemClock.elapsedRealtime());
@@ -88,8 +90,25 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
 
         mStartWalking.setOnClickListener(this);
         mStopButton.setOnClickListener(this);
+        locationManager = (LocationManager) getSystemService(this.LOCATION_SERVICE);
+        criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+        criteria.setPowerRequirement(Criteria.POWER_MEDIUM);
 
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
 
+            if (checkSelfPermission(Manifest.permission.SEND_SMS)
+                    == PackageManager.PERMISSION_DENIED) {
+
+                Log.d("permission", "permission denied to SEND_SMS - requesting it");
+                String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION};
+
+                requestPermissions(permissions, PERMISSION_REQUEST_CODE);
+
+            }
+        }
+
+        provider = locationManager.getBestProvider(criteria, true);
     }
 
 
@@ -98,6 +117,8 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
     protected void onResume() {
         super.onResume();
 
+
+//        출처: https://ghj1001020.tistory.com/14 [혁준 블로그]
         mWalkingTime.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
@@ -116,10 +137,8 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
                 int s = (int) (time - h * 3600000) / 1000;
 
 
-
-
                 mTimetickin = ((double) s / (18));
-                mPercent=s/18;
+                mPercent = s / 18;
                 mDonutView.setValue(mTimetickin, mPercent);
 //                    System.out.println("time : " + time);
                 System.out.println("mTimetickin" + mTimetickin);
@@ -133,12 +152,19 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
 
 
 
-        locationManager = (LocationManager) getSystemService(this.LOCATION_SERVICE);
-        criteria = new Criteria();
-        criteria.setAccuracy(Criteria.ACCURACY_FINE);
-        criteria.setPowerRequirement(Criteria.POWER_HIGH);
-        provider = locationManager.getBestProvider(criteria, true);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//        provider=LocationManager.GPS_PROVIDER;
+        //GPS가 켜져있는지 체크
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            //GPS 설정화면으로 이동
+            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            intent.addCategory(Intent.CATEGORY_DEFAULT);
+            startActivity(intent);
+        }
+
+
+
+
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -148,6 +174,8 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+
+
         location = locationManager.getLastKnownLocation(provider);
 
         try {
@@ -158,12 +186,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
         }
 
 
-
-
-
-
-
-        locationManager.requestLocationUpdates(provider, 15000, 1, new LocationListener() {
+        locationManager.requestLocationUpdates(provider, 3000, 0, new LocationListener() {
 
 
             @Override
@@ -197,8 +220,10 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
                     details = details + "\n" + "----------------------------------------------" + "\n";
                 }
 
-                mWalkingDistance.setText(details);
+                Log.e("이거 ",details);
+                mWalkingDistance.setText(String.valueOf(total_distance));
 
+                test.setText(details);
                 old_latitude = new_latitude;
                 old_longitude = new_longitude;
 
@@ -208,6 +233,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
                 Toast.makeText(startWalking.this, "LocationChanged" + Math.abs((float) old_latitude - (float) new_latitude) + "," + Math.abs((float) old_longitude - (float) new_longitude), Toast.LENGTH_LONG).show();
 
             }
+
             private float meterDistanceBetweenPoints(double lat_a, double lng_a, double lat_b, double lng_b) {
                 double earthRadius = 6371000; //meters
                 double dLat = Math.toRadians(lat_b - lat_a);
@@ -220,7 +246,8 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
                 Toast.makeText(startWalking.this, "calculated distance" + dist + "," + Math.abs((float) old_longitude - (float) new_longitude), Toast.LENGTH_LONG).show();
                 System.out.println("**********this is distance calculation**********" + dist);
                 return dist;
-            }
+            }//미터 계산함수
+
             @Override
             public void onStatusChanged(String s, int i, Bundle bundle) {
                 System.out.println("**********this is StatusChanged**********" + 15000);
@@ -242,6 +269,8 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
 
             }
         });
+
+
 
     }
 
