@@ -24,6 +24,8 @@ import androidx.core.app.ActivityCompat;
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
 
+import java.util.List;
+
 public class startWalking extends BaseActivity implements View.OnClickListener {
 
     DonutView mDonutView;
@@ -38,7 +40,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
     long time;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int PERMISSION_REQUEST_CODE = 1;
-    LocationManager locationManager;
+    LocationManager mLocationManager;
     Criteria criteria;
     String provider;
     Location location;
@@ -90,28 +92,34 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
 
         mStartWalking.setOnClickListener(this);
         mStopButton.setOnClickListener(this);
-        locationManager = (LocationManager) getSystemService(this.LOCATION_SERVICE);
+        mLocationManager = (LocationManager) getSystemService(this.LOCATION_SERVICE);
         criteria = new Criteria();
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
         criteria.setPowerRequirement(Criteria.POWER_MEDIUM);
-
+//https://stackoverflow.com/questions/32635704/android-permission-doesnt-work-even-if-i-have-declared-it
+//        Target api 23 이상인 경우 .. ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION 위험해서 이런 설정을 해야한다.
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
 
             if (checkSelfPermission(Manifest.permission.SEND_SMS)
                     == PackageManager.PERMISSION_DENIED) {
 
                 Log.d("permission", "permission denied to SEND_SMS - requesting it");
-                String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION};
+                String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
 
                 requestPermissions(permissions, PERMISSION_REQUEST_CODE);
 
             }
         }
 
-        provider = locationManager.getBestProvider(criteria, true);
+        provider = mLocationManager.getBestProvider(criteria, true);
     }
 
 
+    private void checkUsesPermission()
+    {
+
+
+    }
     //실제로 onCreate() 너무 많은걸 넣으면 동작을 안하네? onClick 같은건 onResume에 넣자 .
     @Override
     protected void onResume() {
@@ -151,17 +159,14 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
         });
 
 
-
 //        provider=LocationManager.GPS_PROVIDER;
         //GPS가 켜져있는지 체크
-        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+        if (!mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             //GPS 설정화면으로 이동
             Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
             intent.addCategory(Intent.CATEGORY_DEFAULT);
             startActivity(intent);
         }
-
-
 
 
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -176,8 +181,9 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
         }
 
 
-        location = locationManager.getLastKnownLocation(provider);
-
+        if(location !=null) {
+            location = mLocationManager.getLastKnownLocation(provider);
+        }
         try {
             old_latitude = location.getLatitude();
             old_longitude = location.getLongitude();
@@ -186,12 +192,12 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
         }
 
 
-        locationManager.requestLocationUpdates(provider, 3000, 0, new LocationListener() {
+        mLocationManager.requestLocationUpdates(provider, 3000, 1, new LocationListener() {
 
 
             @Override
             public void onLocationChanged(Location location) {
-                if (ActivityCompat.checkSelfPermission(startWalking.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(startWalking.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(startWalking.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(startWalking.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
                     //    ActivityCompat#requestPermissions
                     // here to request the missing permissions, and then overriding
@@ -201,7 +207,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
                     // for ActivityCompat#requestPermissions for more details.
                     return;
                 }
-                location = locationManager.getLastKnownLocation(provider);
+                location = mLocationManager.getLastKnownLocation(provider);
                 new_latitude = location.getLatitude();
                 new_longitude = location.getLongitude();
 
@@ -220,7 +226,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
                     details = details + "\n" + "----------------------------------------------" + "\n";
                 }
 
-                Log.e("이거 ",details);
+                Log.e("이거 ", details);
                 mWalkingDistance.setText(String.valueOf(total_distance));
 
                 test.setText(details);
@@ -228,9 +234,9 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
                 old_longitude = new_longitude;
 
                 System.out.println("**********this is LocationChanged**********" + 15000);
-                Toast.makeText(startWalking.this, "current location" + new_latitude + new_longitude, Toast.LENGTH_LONG).show();
-                Toast.makeText(startWalking.this, "old location" + old_latitude + old_longitude, Toast.LENGTH_LONG).show();
-                Toast.makeText(startWalking.this, "LocationChanged" + Math.abs((float) old_latitude - (float) new_latitude) + "," + Math.abs((float) old_longitude - (float) new_longitude), Toast.LENGTH_LONG).show();
+//                Toast.makeText(startWalking.this, "current location" + new_latitude + new_longitude, Toast.LENGTH_LONG).show();
+//                Toast.makeText(startWalking.this, "old location" + old_latitude + old_longitude, Toast.LENGTH_LONG).show();
+//                Toast.makeText(startWalking.this, "LocationChanged" + Math.abs((float) old_latitude - (float) new_latitude) + "," + Math.abs((float) old_longitude - (float) new_longitude), Toast.LENGTH_LONG).show();
 
             }
 
@@ -271,7 +277,6 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
         });
 
 
-
     }
 
     public String calculate(long time) {
@@ -284,6 +289,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
 
 
     }
+
 
     @Override
     protected void onStart() {
