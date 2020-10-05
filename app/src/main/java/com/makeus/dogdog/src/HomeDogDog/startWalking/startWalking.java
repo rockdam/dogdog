@@ -71,6 +71,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener{
 
     float distance = 0;
     Location oldLocation,newLocation;
+    TextView test;
     LocationCallback locationCallback = new LocationCallback() {
         @Override
         public void onLocationResult(LocationResult locationResult) {
@@ -87,14 +88,22 @@ public class startWalking extends BaseActivity implements View.OnClickListener{
             }else{
                 Location newLocation =locationResult.getLastLocation();
 
-                distance=newLocation.distanceTo(oldLocation);
+                distance+=oldLocation.distanceTo(newLocation);
+
+                oldLocation=locationResult.getLastLocation();
+                String dist=String.valueOf(distance/1000);
+                test.setText(dist+"km");
+                Log.e("거리 ",""+distance); //반환 m
             }
+            //내가 짠코드 .. 새로 재생되면 늘어나게 .
+//            https://stackoverflow.com/questions/34551318/calculate-actual-distance-travelled-by-mobile/34575257#34575257
+//            여기 참조
 //            Location newLocation =locationResult.getLastLocation();
 
         }
     };
 
-    TextView test;
+
 // 넘어는 오는데 초기 시간 표시 , 처음 화면 바꿔야함
 
 
