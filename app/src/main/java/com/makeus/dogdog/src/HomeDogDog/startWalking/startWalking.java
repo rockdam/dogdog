@@ -1,5 +1,7 @@
 package com.makeus.dogdog.src.HomeDogDog.startWalking;
-
+/*
+* 아직 해야되는 사항 .. 버튼 누를때 산책 되게 .. 그리고 view랑 산책 시간이랑 따로 논다.
+* */
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -88,17 +90,26 @@ public class startWalking extends BaseActivity implements View.OnClickListener{
             }else{
                 Location newLocation =locationResult.getLastLocation();
 
-                distance+=oldLocation.distanceTo(newLocation);
 
+
+                distance+=oldLocation.distanceTo(newLocation);
+//                이걸 계속 더하고 있네 ;;
+                //위의 코드가 원래는 지구 반지름 들어간 .. 뭐 공식있는거 그거였다고 한다..
                 oldLocation=locationResult.getLastLocation();
                 String dist=String.format("%.2f",distance/1000);
+                Log.e("산책 거리 ",""+dist); //반환 m
+
+                Toast.makeText(getBaseContext(),"df"+dist,Toast.LENGTH_SHORT);
                 mWalkingDistance.setText(dist+"km");
                 Log.e("거리 ",""+distance); //반환 m
+                Toast.makeText(getBaseContext(),"fd"+distance,Toast.LENGTH_SHORT);
             }
             //내가 짠코드 .. 새로 재생되면 늘어나게 .
 //            https://stackoverflow.com/questions/34551318/calculate-actual-distance-travelled-by-mobile/34575257#34575257
 //            여기 참조
 //            Location newLocation =locationResult.getLastLocation();
+//https://stackoverflow.com/questions/38072228/android-getting-different-latitude-and-longitude-on-same-location
+//            정확도는 어쩔 수가 없다.;;; 10m 오차 남;
 
         }
     };
@@ -137,9 +148,10 @@ public class startWalking extends BaseActivity implements View.OnClickListener{
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         locationRequest = LocationRequest.create();
-        locationRequest.setInterval(4000);
-        locationRequest.setFastestInterval(2000);
+        locationRequest.setInterval(5000);
+        locationRequest.setFastestInterval(3000);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+//        locationRequest.setPriority(LocationRequest.);
 
 
 
