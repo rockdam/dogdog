@@ -98,9 +98,9 @@
         android:id="@+id/walking_distance_startwalking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0.4km"
-
         android:fontFamily="@font/spoqahansansregular"
+
+        android:text="0.0km"
         android:textSize="20sp"
         custom:layout_constraintEnd_toEndOf="@+id/textView27"
         custom:layout_constraintStart_toStartOf="@+id/textView27"

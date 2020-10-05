@@ -1,14 +1,18 @@
 package com.makeus.dogdog.src.HomeDogDog.startWalking;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -19,14 +23,31 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
 
 import java.util.List;
 
-public class startWalking extends BaseActivity implements View.OnClickListener {
+public class startWalking extends BaseActivity implements View.OnClickListener{
 
     DonutView mDonutView;
     Chronometer mWalkingTime;
@@ -38,18 +59,41 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
     private long timeWhenStopped = 0;
     private long mStartTime;
     long time;
+    float distanceInMeters = 0;
     static final int REQUEST_IMAGE_CAPTURE = 1;
-    private static final int PERMISSION_REQUEST_CODE = 1;
     LocationManager mLocationManager;
-    Criteria criteria;
-    String provider;
-    Location location;
-    double old_latitude; // latitude
-    double old_longitude; // longitude
-    double new_latitude; // latitude
-    double new_longitude; // longitude
-    float total_distance = 0.0f;
-    String details;
+    private Location lastLocation;
+    private static final String TAG = "MainActivity";
+    int LOCATION_REQUEST_CODE = 10001;
+    boolean isFirst=true;
+    FusedLocationProviderClient fusedLocationProviderClient;
+    LocationRequest locationRequest;
+
+    float distance = 0;
+    Location oldLocation,newLocation;
+    LocationCallback locationCallback = new LocationCallback() {
+        @Override
+        public void onLocationResult(LocationResult locationResult) {
+            if (locationResult == null) {
+                return;
+            }
+            for (Location location : locationResult.getLocations()) {
+                Log.d(TAG, "onLocationResult: " + location.toString());
+            }
+
+            if(isFirst) {
+                oldLocation = locationResult.getLastLocation();
+                isFirst=false;
+            }else{
+                Location newLocation =locationResult.getLastLocation();
+
+                distance=newLocation.distanceTo(oldLocation);
+            }
+//            Location newLocation =locationResult.getLastLocation();
+
+        }
+    };
+
     TextView test;
 // 넘어는 오는데 초기 시간 표시 , 처음 화면 바꿔야함
 
@@ -59,7 +103,8 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
-    }
+    }// 사진 어플 실행
+
 
     //https://stackoverflow.com/questions/42619863/how-to-calculate-distance-every-15-sec-with-using-gps-heavy-accuracy
 //거리구현은 서비스로 하는게 좋습니다..gps
@@ -80,6 +125,12 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
         mPercent = getIntent().getIntExtra("percent", 0);
         mStartTime = getIntent().getLongExtra("time", 0);
         mDonutView.setValue(mTimetickin, mPercent);
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
+        locationRequest = LocationRequest.create();
+        locationRequest.setInterval(4000);
+        locationRequest.setFastestInterval(2000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
 
         test = findViewById(R.id.detail);
@@ -92,38 +143,164 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
 
         mStartWalking.setOnClickListener(this);
         mStopButton.setOnClickListener(this);
-        mLocationManager = (LocationManager) getSystemService(this.LOCATION_SERVICE);
-        criteria = new Criteria();
-        criteria.setAccuracy(Criteria.ACCURACY_FINE);
-        criteria.setPowerRequirement(Criteria.POWER_MEDIUM);
-//https://stackoverflow.com/questions/32635704/android-permission-doesnt-work-even-if-i-have-declared-it
-//        Target api 23 이상인 경우 .. ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION 위험해서 이런 설정을 해야한다.
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
 
-            if (checkSelfPermission(Manifest.permission.SEND_SMS)
-                    == PackageManager.PERMISSION_DENIED) {
+        //add(Location.api) play-services 라이브러리와 그 라이브러리에서 제공하는 GoogleApiClient 는 Fused Location API 만을 제공하는 라이브러리 및 클래스가
+//        아닙니다. 다양한 구글의 서비스를 활용하기 위한.. 그래서 그중에서 LocationService를 사용하겠다는 구문 .
 
-                Log.d("permission", "permission denied to SEND_SMS - requesting it");
-                String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
 
-                requestPermissions(permissions, PERMISSION_REQUEST_CODE);
+//        mLocationManager = (LocationManager) getSystemService(this.LOCATION_SERVICE);
+//        criteria = new Criteria();
+//        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+//        criteria.setPowerRequirement(Criteria.POWER_MEDIUM);
+////https://stackoverflow.com/questions/32635704/android-permission-doesnt-work-even-if-i-have-declared-it
+////        Target api 23 이상인 경우 .. ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION 위험해서 이런 설정을 해야한다.
+//
+//
+//        provider = mLocationManager.getBestProvider(criteria, true);
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+//            getLastLocation();
+            checkSettingsAndStartLocationUpdates();
+        } else {
+            askLocationPermission();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        stopLocationUpdates();
+    }
+
+    private void checkSettingsAndStartLocationUpdates() {
+        LocationSettingsRequest request = new LocationSettingsRequest.Builder()
+                .addLocationRequest(locationRequest).build();
+        SettingsClient client = LocationServices.getSettingsClient(this);
+
+        Task<LocationSettingsResponse> locationSettingsResponseTask = client.checkLocationSettings(request);
+        locationSettingsResponseTask.addOnSuccessListener(new OnSuccessListener<LocationSettingsResponse>() {
+            @Override
+            public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+                //Settings of device are satisfied and we can start location updates
+                startLocationUpdates();
+            }
+        });
+        locationSettingsResponseTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                if (e instanceof ResolvableApiException) {
+                    ResolvableApiException apiException = (ResolvableApiException) e;
+                    try {
+                        apiException.startResolutionForResult(startWalking.this, 1001);
+                    } catch (IntentSender.SendIntentException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+
+    private void startLocationUpdates() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
+    }
+//    private void checkPermission() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//                requestPermissions(new String[]{
+//                        Manifest.permission.ACCESS_COARSE_LOCATION,
+//                }, REQUEST_LOCATION_PERMISSIONS);
+//            } else {
+//                getLocation();
+//            }
+//        } else {
+//            getLocation();
+//        }
+//    }
+    private void stopLocationUpdates() {
+        fusedLocationProviderClient.removeLocationUpdates(locationCallback);
+    }
+    private void askLocationPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+                Log.d(TAG, "askLocationPermission: you should show an alert dialog...");
+                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
+            } else {
+                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
             }
         }
-
-        provider = mLocationManager.getBestProvider(criteria, true);
     }
 
-
-    private void checkUsesPermission()
-    {
-
-
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == LOCATION_REQUEST_CODE) {
+            if (grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted
+//                getLastLocation();
+                checkSettingsAndStartLocationUpdates();
+            } else {
+                //Permission not granted
+            }
+        }
     }
+
+//    private void getLocation() {
+//
+//
+//        if (mFusedLocationClient == null) {
+//            mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+//        }
+//
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            // TODO: Consider calling
+//            //    ActivityCompat#requestPermissions
+//            // here to request the missing permissions, and then overriding
+//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//            //                                          int[] grantResults)
+//            // to handle the case where the user grants the permission. See the documentation
+//            // for ActivityCompat#requestPermissions for more details.
+//            return;
+//        }
+//        //마지막으로 알려진 위치
+////        https://developers.google.com/location-context/fused-location-provider
+//        mFusedLocationClient.getLastLocation()
+//                .addOnCompleteListener(this, task -> {
+//                    if (!task.isSuccessful()) {
+//                        return;
+//                    }
+//
+//                    lastLocation = task.getResult();
+//                    if (lastLocation == null) {
+//                        return;
+//                    }
+////                    updateLocation();
+//                });
+//    }
+
+
+
     //실제로 onCreate() 너무 많은걸 넣으면 동작을 안하네? onClick 같은건 onResume에 넣자 .
     @Override
     protected void onResume() {
         super.onResume();
+
+
+//        apiClient.connect();//connect ->onConnected() or OnConnectedFail()
+
+        mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
 
 //        출처: https://ghj1001020.tistory.com/14 [혁준 블로그]
@@ -168,115 +345,6 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
             startActivity(intent);
         }
 
-
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-
-
-        if(location !=null) {
-            location = mLocationManager.getLastKnownLocation(provider);
-        }
-        try {
-            old_latitude = location.getLatitude();
-            old_longitude = location.getLongitude();
-        } catch (Exception e) {
-
-        }
-
-
-        mLocationManager.requestLocationUpdates(provider, 3000, 1, new LocationListener() {
-
-
-            @Override
-            public void onLocationChanged(Location location) {
-                if (ActivityCompat.checkSelfPermission(startWalking.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(startWalking.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
-                location = mLocationManager.getLastKnownLocation(provider);
-                new_latitude = location.getLatitude();
-                new_longitude = location.getLongitude();
-
-                total_distance = meterDistanceBetweenPoints(old_latitude, old_longitude, new_latitude, new_longitude) + total_distance;
-
-                if (details == null) {
-                    details = "current location:" + new_latitude + ", " + new_longitude;
-                    details = details + "\n" + "old location:" + old_latitude + ", " + old_longitude;
-                    details = details + "\n" + "\n" + "total distance:" + total_distance + " m";
-                    details = details + "\n" + "----------------------------------------------" + "\n";
-                } else {
-
-                    details = details + "\n" + "current location:" + new_latitude + ", " + new_longitude;
-                    details = details + "\n" + "old location:" + old_latitude + ", " + old_longitude;
-                    details = details + "\n" + "\n" + "total distance:" + total_distance + " m";
-                    details = details + "\n" + "----------------------------------------------" + "\n";
-                }
-
-                Log.e("이거 ", details);
-                mWalkingDistance.setText(String.valueOf(total_distance));
-
-                test.setText(details);
-                old_latitude = new_latitude;
-                old_longitude = new_longitude;
-
-                System.out.println("**********this is LocationChanged**********" + 15000);
-//                Toast.makeText(startWalking.this, "current location" + new_latitude + new_longitude, Toast.LENGTH_LONG).show();
-//                Toast.makeText(startWalking.this, "old location" + old_latitude + old_longitude, Toast.LENGTH_LONG).show();
-//                Toast.makeText(startWalking.this, "LocationChanged" + Math.abs((float) old_latitude - (float) new_latitude) + "," + Math.abs((float) old_longitude - (float) new_longitude), Toast.LENGTH_LONG).show();
-
-            }
-
-            private float meterDistanceBetweenPoints(double lat_a, double lng_a, double lat_b, double lng_b) {
-                double earthRadius = 6371000; //meters
-                double dLat = Math.toRadians(lat_b - lat_a);
-                double dLng = Math.toRadians(lng_b - lng_a);
-                double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                        Math.cos(Math.toRadians(lat_a)) * Math.cos(Math.toRadians(lat_b)) *
-                                Math.sin(dLng / 2) * Math.sin(dLng / 2);
-                double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-                float dist = (float) (earthRadius * c);
-                Toast.makeText(startWalking.this, "calculated distance" + dist + "," + Math.abs((float) old_longitude - (float) new_longitude), Toast.LENGTH_LONG).show();
-                System.out.println("**********this is distance calculation**********" + dist);
-                return dist;
-            }//미터 계산함수
-
-            @Override
-            public void onStatusChanged(String s, int i, Bundle bundle) {
-                System.out.println("**********this is StatusChanged**********" + 15000);
-                Toast.makeText(startWalking.this, "StatusChanged" + Math.abs((float) old_latitude - (float) new_latitude) + "," + Math.abs((float) old_longitude - (float) new_longitude), Toast.LENGTH_LONG).show();
-
-            }
-
-            @Override
-            public void onProviderEnabled(String s) {
-                System.out.println("**********this is ProviderEnabled**********" + 15000);
-                Toast.makeText(startWalking.this, "ProviderDisabled" + Math.abs((float) old_latitude - (float) new_latitude) + "," + Math.abs((float) old_longitude - (float) new_longitude), Toast.LENGTH_LONG).show();
-
-            }
-
-            @Override
-            public void onProviderDisabled(String s) {
-                System.out.println("**********this is ProviderDisabled**********" + 15000);
-                Toast.makeText(startWalking.this, "ProviderDisabled" + Math.abs((float) old_latitude - (float) new_latitude) + "," + Math.abs((float) old_longitude - (float) new_longitude), Toast.LENGTH_LONG).show();
-
-            }
-        });
-
-
     }
 
     public String calculate(long time) {
@@ -290,11 +358,6 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
 
     }
 
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
 
     @Override
     public void onClick(View view) {
@@ -344,5 +407,6 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
 
         }
     }
+
 
 }
