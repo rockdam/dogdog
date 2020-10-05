@@ -91,8 +91,8 @@ public class startWalking extends BaseActivity implements View.OnClickListener{
                 distance+=oldLocation.distanceTo(newLocation);
 
                 oldLocation=locationResult.getLastLocation();
-                String dist=String.valueOf(distance/1000);
-                test.setText(dist+"km");
+                String dist=String.format("%.2f",distance/1000);
+                mWalkingDistance.setText(dist+"km");
                 Log.e("거리 ",""+distance); //반환 m
             }
             //내가 짠코드 .. 새로 재생되면 늘어나게 .
@@ -142,7 +142,6 @@ public class startWalking extends BaseActivity implements View.OnClickListener{
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
 
-        test = findViewById(R.id.detail);
 
         mStartCamera.setOnClickListener(this);
 
