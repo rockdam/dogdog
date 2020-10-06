@@ -18,10 +18,10 @@
         android:layout_height="@dimen/donut_size"
 
         android:padding="10dp"
+        custom:layout_constraintBottom_toTopOf="@id/view5"
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintHorizontal_bias="0.5"
         custom:layout_constraintStart_toStartOf="parent"
-        custom:layout_constraintBottom_toTopOf="@id/view5"
         custom:layout_constraintTop_toBottomOf="@+id/textView30">
 
 
@@ -88,8 +88,8 @@
         android:id="@+id/walking_time_startwalking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
         android:fontFamily="@font/spoqahansansregular"
+        android:textSize="20sp"
         custom:layout_constraintEnd_toEndOf="@+id/textView25"
         custom:layout_constraintStart_toStartOf="@+id/textView25"
         custom:layout_constraintTop_toBottomOf="@+id/textView25" />
@@ -166,6 +166,15 @@
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintTop_toTopOf="parent"
         custom:srcCompat="@drawable/more" />
+
+    <TextView
+        android:id="@+id/test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        custom:layout_constraintBottom_toBottomOf="parent"
+        custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

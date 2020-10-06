@@ -71,6 +71,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener{
     FusedLocationProviderClient fusedLocationProviderClient;
     LocationRequest locationRequest;
 
+
     float distance = 0;
     Location oldLocation,newLocation;
     TextView test;
@@ -88,11 +89,9 @@ public class startWalking extends BaseActivity implements View.OnClickListener{
                 oldLocation = locationResult.getLastLocation();
                 isFirst=false;
             }else{
-                Location newLocation =locationResult.getLastLocation();
 
 
-
-                distance+=oldLocation.distanceTo(newLocation);
+                distance+=oldLocation.distanceTo(locationResult.getLastLocation());
 //                이걸 계속 더하고 있네 ;;
                 //위의 코드가 원래는 지구 반지름 들어간 .. 뭐 공식있는거 그거였다고 한다..
                 oldLocation=locationResult.getLastLocation();
@@ -102,7 +101,8 @@ public class startWalking extends BaseActivity implements View.OnClickListener{
                 Toast.makeText(getBaseContext(),"df"+dist,Toast.LENGTH_SHORT);
                 mWalkingDistance.setText(dist+"km");
                 Log.e("거리 ",""+distance); //반환 m
-                Toast.makeText(getBaseContext(),"fd"+distance,Toast.LENGTH_SHORT);
+
+                test.setText(""+distance);
             }
             //내가 짠코드 .. 새로 재생되면 늘어나게 .
 //            https://stackoverflow.com/questions/34551318/calculate-actual-distance-travelled-by-mobile/34575257#34575257
@@ -134,6 +134,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_walking);
         mStartWalking = findViewById(R.id.start_walking);
+        test=findViewById(R.id.test);
         mWalkingTime = findViewById(R.id.walking_time_startwalking);
         mWalkingDistance = findViewById(R.id.walking_distance_startwalking);
         mDonutView = findViewById(R.id.donut);
@@ -148,8 +149,8 @@ public class startWalking extends BaseActivity implements View.OnClickListener{
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         locationRequest = LocationRequest.create();
-        locationRequest.setInterval(5000);
-        locationRequest.setFastestInterval(3000);
+        locationRequest.setInterval(10000);
+        locationRequest.setFastestInterval(6000);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 //        locationRequest.setPriority(LocationRequest.);
 
@@ -182,12 +183,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener{
     @Override
     protected void onStart() {
         super.onStart();
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-//            getLastLocation();
-            checkSettingsAndStartLocationUpdates();
-        } else {
-            askLocationPermission();
-        }
+
     }
 
     @Override
@@ -251,6 +247,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener{
 //        }
 //    }
     private void stopLocationUpdates() {
+
         fusedLocationProviderClient.removeLocationUpdates(locationCallback);
     }
     private void askLocationPermission() {
@@ -378,6 +375,15 @@ public class startWalking extends BaseActivity implements View.OnClickListener{
 
     }
 
+    private void startLocationUpdate(){
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+//            getLastLocation();
+            checkSettingsAndStartLocationUpdates();
+        } else {
+            askLocationPermission();
+        }
+    }
 
     @Override
     public void onClick(View view) {
@@ -394,12 +400,15 @@ public class startWalking extends BaseActivity implements View.OnClickListener{
                     mWalkingTime.start();
                     mStartWalking.setImageResource(R.drawable.pause_pause);
                     mRunning = true;
+                    startLocationUpdate();
+
                 } else { //일시 중지
 
                     timeWhenStopped = mWalkingTime.getBase() - SystemClock.elapsedRealtime();
                     mWalkingTime.stop();
                     mStartWalking.setImageResource(R.drawable.start);
                     mRunning = false;
+                    stopLocationUpdates();
 
 
                 }
@@ -408,16 +417,26 @@ public class startWalking extends BaseActivity implements View.OnClickListener{
             case R.id.stopbutton_startwalking:
 
 
-                SharedPreferences prefs = getSharedPreferences("startwalking", MODE_PRIVATE);
+                if(mRunning)
+                {
 
-                SharedPreferences.Editor editor = prefs.edit();
+                    Toast.makeText(getApplicationContext(),"일시 중지를 눌러주세요 :)",Toast.LENGTH_SHORT);
 
-                editor.putString("timetickin", String.valueOf(mTimetickin));
-                editor.putInt("percent", mPercent);
-                editor.putLong("time", time);
+                }else{
 
-                editor.commit();
-                finish();
+                    SharedPreferences prefs = getSharedPreferences("startwalking", MODE_PRIVATE);
+
+                    SharedPreferences.Editor editor = prefs.edit();
+
+                    editor.putString("timetickin", String.valueOf(mTimetickin));
+                    editor.putInt("percent", mPercent);
+                    editor.putLong("time", time);
+
+                    editor.commit();
+                    finish();
+
+                }
+
                 break;
             case R.id.cameraApp_startWalking:
 
@@ -428,5 +447,16 @@ public class startWalking extends BaseActivity implements View.OnClickListener{
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if(mRunning)
+        {
 
+            Toast.makeText(getApplicationContext(),"일시 중지를 눌러주세요 :)",Toast.LENGTH_SHORT);
+
+        }else{
+            finish();
+        }
+    }
 }
