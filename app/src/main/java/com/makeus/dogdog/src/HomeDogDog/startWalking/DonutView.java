@@ -25,7 +25,8 @@ public class DonutView extends View {
     int width;
     int height;
     int percentSize;
-
+    Paint paint;
+    RectF recF;
     public DonutView(Context context) {
         super(context);
         this.context = context;
@@ -44,18 +45,14 @@ public class DonutView extends View {
         init();
     }
 
-    public DonutView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        this.context = context;
-        init();
-    }
 
     private void init() {
         size = getResources().getDimensionPixelSize(R.dimen.donut_size);
         strokeSize = getResources().getDimensionPixelSize(R.dimen.donut_stroke_size);
         textSize = getResources().getDimensionPixelSize(R.dimen.donut_textSize);
         percentSize = getResources().getDimensionPixelSize(R.dimen.donut_percentSize);
-
+        paint =new Paint();
+        recF = new RectF(40, 40, size - 40, size - 40);
     }
 
     @Override
@@ -70,14 +67,13 @@ public class DonutView extends View {
         this.value = value;
 
         this.percent = percent;
+
+
         invalidate(); // 그림 다시 그리기
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        RectF recF = new RectF(40, 40, size - 40, size - 40);
-
-        Paint paint = new Paint();
         int colorDonutUnfinished = ContextCompat.getColor(context, R.color.donutUnFinished);
         paint.setColor(colorDonutUnfinished);
         paint.setAntiAlias(true);
@@ -107,7 +103,6 @@ public class DonutView extends View {
             paint.setColor(colorDonutFinished);
 
         }
-        String txt = String.valueOf(percent);
         String result = "" + percent;
         String testSizeText = percent + "%";
 
