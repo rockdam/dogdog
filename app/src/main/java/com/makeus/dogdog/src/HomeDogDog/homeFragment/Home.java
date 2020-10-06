@@ -131,7 +131,7 @@ public class Home extends Fragment implements View.OnClickListener {
                     intent.putExtra("percent", mPercent);
                 }
                 if (mTimeTickin != 0) {
-                    intent.putExtra("timeTickin", mTimeTickin);
+                    intent.putExtra("timeTicking", String.valueOf(mTimeTickin));
 
                 }
                 if (mTime != 0) {

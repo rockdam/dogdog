@@ -49,7 +49,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
     Chronometer mWalkingTime;
     TextView mWalkingDistance;
     ImageView mStartWalking, mStopButton, mStartCamera;
-    private double mTimetickin = 0;
+    private double mTimetickin ;
     private int mPercent;
     private boolean mRunning;
     private long timeWhenStopped = 0;
@@ -66,7 +66,6 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
 
     float distance = 0;
     Location oldLocation;
-
 
 
     @SuppressLint("QueryPermissionsNeeded")
@@ -91,26 +90,24 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
         mDonutView = findViewById(R.id.donut);
         mStopButton = findViewById(R.id.stopbutton_startwalking);
         mStartCamera = findViewById(R.id.cameraApp_startWalking);
-        if (getIntent().getStringExtra("timeTickin") != null) {
-            mTimetickin = Double.parseDouble(getIntent().getStringExtra("timeTickin"));
+        if (getIntent().getStringExtra("timeTicking") != null) {
+            mTimetickin = Double.parseDouble(getIntent().getStringExtra("timeTicking"));
         }
         mPercent = getIntent().getIntExtra("percent", 0);
         mStartTime = getIntent().getLongExtra("time", 0);
-        mDonutView.setValue(mTimetickin, mPercent);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         locationRequest = LocationRequest.create();
         locationRequest.setInterval(10000);
         locationRequest.setFastestInterval(6000);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-//        locationRequest.setPriority(LocationRequest.);
 
 
         mStartCamera.setOnClickListener(this);
 
 
-        mWalkingTime.setBase(SystemClock.elapsedRealtime());
-        mWalkingTime.setText(calculate(time));
+        mWalkingTime.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
+        mWalkingTime.setText(calculate(mStartTime));
 
         mStartWalking.setOnClickListener(this);
         mStopButton.setOnClickListener(this);
@@ -200,6 +197,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
+
         mDonutView.setValue(mTimetickin, mPercent);
 
 //        apiClient.connect();//connect ->onConnected() or OnConnectedFail()
@@ -356,10 +354,10 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
                 distance += oldLocation.distanceTo(locationResult.getLastLocation());
                 //위의 코드가 원래는 지구 반지름 들어간 .. 뭐 공식있는거 그거였다고 한다..
                 oldLocation = locationResult.getLastLocation();
-                String dist = String.format(Locale.getDefault(),"%.2f", (distance / 1000));
+                String dist = String.format(Locale.getDefault(), "%.2f", (distance / 1000));
                 Log.e("산책 거리 ", "" + dist); //반환 m
 
-                Toast.makeText(getBaseContext(), dist, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), ""+ distance, Toast.LENGTH_SHORT).show();
                 String output = dist + "km";
                 mWalkingDistance.setText(output);
                 Log.e("거리 ", "" + distance); //반환 m
