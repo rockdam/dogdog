@@ -1,5 +1,7 @@
 package com.makeus.dogdog.config;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 
 import java.io.IOException;
@@ -15,9 +17,10 @@ public class XAccessTokenInterceptor implements Interceptor {
 
     @Override
     @NonNull
-    public Response intercept(@NonNull final Interceptor.Chain chain) throws IOException {
+    public Response intercept(@NonNull final Chain chain) throws IOException {
         final Request.Builder builder = chain.request().newBuilder();
-        final String jwtToken = sSharedPreferences.getString(X_ACCESS_TOKEN, null); //sharedPreference에 서버에서 받은 값 잘 저장하기 .
+
+        final String jwtToken = sSharedPreferences.getString(X_ACCESS_TOKEN, null);
         if (jwtToken != null) {
             builder.addHeader("X-ACCESS-TOKEN", jwtToken);
         }

@@ -20,9 +20,6 @@ import com.makeus.dogdog.R;
 public class BaseActivity extends AppCompatActivity { // 얘가 근본이 되서 한다.
     public ProgressDialog mProgressDialog;
 
-    public void showCustomToast(final String message) {
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

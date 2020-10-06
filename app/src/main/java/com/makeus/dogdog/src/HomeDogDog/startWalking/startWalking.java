@@ -354,7 +354,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
                 distance += oldLocation.distanceTo(locationResult.getLastLocation());
                 //위의 코드가 원래는 지구 반지름 들어간 .. 뭐 공식있는거 그거였다고 한다..
                 oldLocation = locationResult.getLastLocation();
-                String dist = String.format(Locale.getDefault(), "%.2f", (distance / 1000));
+                String dist = String.format(Locale.getDefault(), "%.1f", (distance / 1000));
                 Log.e("산책 거리 ", "" + dist); //반환 m
 
                 Toast.makeText(getBaseContext(), ""+ distance, Toast.LENGTH_SHORT).show();

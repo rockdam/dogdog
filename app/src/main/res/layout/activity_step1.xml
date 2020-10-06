@@ -65,7 +65,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/etxId_step2"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginStart="34dp"
@@ -78,7 +78,8 @@
         android:inputType="textPersonName"
         android:maxLines="1"
         android:paddingBottom="15dp"
-        android:text="뽀삐"
+        android:text=""
+        android:maxLength="10"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.06"
@@ -104,7 +105,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/etxId_step2"
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
