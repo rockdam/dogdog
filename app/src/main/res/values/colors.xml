@@ -7,6 +7,8 @@
     <color name="BorderGray">#cccccc</color>
     <color name="donutUnFinished">#eeeeee
     </color>
+    <color name ="warningRed">#ff6969
+    </color>
     <color name="editTextUnderLine">#dddddd</color>
     <color name="offborder">#CBCBCB</color>
     <color name="homeBackgroundmMustard">

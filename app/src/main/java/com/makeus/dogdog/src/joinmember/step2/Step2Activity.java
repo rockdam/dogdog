@@ -26,7 +26,7 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
         mNextButton=findViewById(R.id.next_button_step);
         mBackButton=findViewById(R.id.backButton_step);
         mNextButton.setOnClickListener(this);
-        mInputIdEdt=findViewById(R.id.etxId_step2);
+        mInputIdEdt=findViewById(R.id.edit_Input_Text_joinmember);
         mBackButton.setOnClickListener(this);
 
            }

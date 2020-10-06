@@ -64,7 +64,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/etxId_step2"
+        android:id="@+id/edit_Input_Text_joinmember"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -147,7 +147,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/backButton_step"
-        app:layout_constraintTop_toBottomOf="@+id/etxId_step2"
+        app:layout_constraintTop_toBottomOf="@+id/edit_Input_Text_joinmember"
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
