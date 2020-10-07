@@ -11,6 +11,8 @@ import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
 import com.makeus.dogdog.src.joinmember.step2.Step2Activity;
 import com.makeus.dogdog.src.joinmember.step3.Step3Activity;
+import com.makeus.dogdog.src.joinmember.step4.Step4Activity;
+import com.makeus.dogdog.src.joinmember.step5.Step5Activity;
 import com.makeus.dogdog.src.joinmember.step7.Step7Activity;
 
 public class Step6Activity extends BaseActivity implements View.OnClickListener {
@@ -30,9 +32,13 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener 
         switch (view.getId())
         {
             case R.id.backButton_step:
-                finish();
-                overridePendingTransition(0,0); // finish()시 애니메이션 삭제
+                Intent back = new Intent(Step6Activity.this, Step5Activity.class);
+                back.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
+
+
+                overridePendingTransition(0,0); // finish()시 애니메이션 삭제
+                startActivity(back);
                 break;
             case R.id.next_button_step:
                 Intent intent = new Intent(Step6Activity.this, Step7Activity.class);
@@ -40,6 +46,7 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener 
 
 
                 startActivity(intent);
+                finish();
                 break;
 
 

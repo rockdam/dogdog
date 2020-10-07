@@ -15,6 +15,9 @@ import androidx.core.content.ContextCompat;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
+import com.makeus.dogdog.src.joinmember.step1.Step1Activity;
+import com.makeus.dogdog.src.joinmember.step2.Step2Activity;
+import com.makeus.dogdog.src.joinmember.step3.Step3Activity;
 import com.makeus.dogdog.src.joinmember.step4.Step4Activity;
 
 import java.util.regex.Matcher;
@@ -72,8 +75,7 @@ public class Step3ReeatActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
 
-                mInput =mEdit_Input_Text_joinmember.getText().toString();
-                if (mInput.length() == 1) {
+                if (!isValidPassword(mEdit_Input_Text_joinmember.getText().toString())) {
 
                     mEdit_Input_Text_joinmember.getBackground().setColorFilter(getResources().getColor(R.color.red),
                             PorterDuff.Mode.SRC_ATOP);
@@ -110,9 +112,10 @@ public class Step3ReeatActivity extends BaseActivity implements View.OnClickList
         switch (view.getId())
         {
             case R.id.backButton_step:
-                finish();
+                Intent back = new Intent(Step3ReeatActivity.this, Step3Activity.class);
+                back.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 overridePendingTransition(0,0); // finish()시 애니메이션 삭제
-
+                startActivity(back);
                 break;
             case R.id.next_button_step:
                 if (!isValidPassword(mEdit_Input_Text_joinmember.getText().toString())) {
@@ -123,6 +126,7 @@ public class Step3ReeatActivity extends BaseActivity implements View.OnClickList
 
 
                     startActivity(intent);
+                    finish();
                 }
                 break;
 

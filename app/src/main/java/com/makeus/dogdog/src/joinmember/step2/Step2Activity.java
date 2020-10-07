@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
+import com.makeus.dogdog.src.joinmember.step1.Step1Activity;
 import com.makeus.dogdog.src.joinmember.step2.interfaces.ShowToastStep2;
 import com.makeus.dogdog.src.joinmember.step2.models.DuplicateUserIdResponse;
 import com.makeus.dogdog.src.joinmember.step3.Step3Activity;
@@ -121,9 +122,16 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
         switch (view.getId())
         {
             case R.id.backButton_step:
-                finish();
-                overridePendingTransition(0,0); // finish()시 애니메이션 삭제
 
+
+
+                Intent intent = new Intent(Step2Activity.this, Step1Activity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+
+
+                overridePendingTransition(0,0); // finish()시 애니메이션 삭제
+                startActivity(intent);
                 break;
             case R.id.next_button_step:
 
@@ -162,6 +170,7 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
 
 
             startActivity(intent);
+            finish();
         }else{
 
             Toast.makeText(getApplicationContext(),"중복되는 아이디입니다. 다시 입력해주세요 :)",Toast.LENGTH_SHORT).show();

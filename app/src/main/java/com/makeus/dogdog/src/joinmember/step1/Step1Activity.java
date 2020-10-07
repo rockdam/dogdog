@@ -123,6 +123,7 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
 
 
                     startActivity(intent);
+                    finish();
 
 
                 }
