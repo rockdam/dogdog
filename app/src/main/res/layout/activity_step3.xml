@@ -79,7 +79,7 @@
             android:layout_marginRight="34dp"
             android:backgroundTint="@color/editTextUnderLine"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="textMultiLine|textNoSuggestions"
             android:maxLength="16"
             android:maxLines="1"
             android:text=""

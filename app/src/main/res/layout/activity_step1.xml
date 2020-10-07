@@ -85,7 +85,7 @@
             android:layout_marginRight="34dp"
             android:backgroundTint="@color/editTextUnderLine"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="textVisiblePassword|textNoSuggestions"
             android:maxLength="10"
             android:maxLines="1"
             android:text=""
@@ -185,13 +185,15 @@
         android:id="@+id/warning_image_step"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/next_button_step"
         app:layout_constraintEnd_toStartOf="@+id/warning_text_step"
         app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_frame"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/warning_off" />
 
     <TextView
@@ -199,6 +201,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/spoqahansansregular"
+        android:textSize="14sp"
         android:text=" 2자 이상 입력해주세요."
         android:textColor="@color/startwalkingGray"
         app:layout_constraintBottom_toBottomOf="@+id/warning_image_step"
