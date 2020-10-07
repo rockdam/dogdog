@@ -8,6 +8,31 @@
 
 
     <ImageView
+        android:id="@+id/warning_image_step3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/warning_text_step"
+        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_frame"
+        app:srcCompat="@drawable/warning_off" />
+
+    <TextView
+        android:id="@+id/warning_text_step3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 2자 이상 입력해주세요"
+        android:textColor="@color/startwalkingGray"
+        app:layout_constraintBottom_toBottomOf="@+id/warning_image_step"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/warning_image_step"
+        app:layout_constraintTop_toTopOf="@+id/warning_image_step" />
+
+    <ImageView
         android:id="@+id/imageView"
         android:layout_width="36dp"
         android:layout_height="36dp"
@@ -63,26 +88,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <EditText
-        android:id="@+id/edit_Input_Text_joinmember"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginLeft="34dp"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginRight="48dp"
-        android:backgroundTint="@color/editTextUnderLine"
-        android:inputType="textPersonName"
-        android:maxLines="1"
-        android:maxLength="20"
-        android:paddingBottom="15dp"
-        android:text=""
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tellUsAge_Step2Activity" />
+    <FrameLayout
+        android:id="@+id/edit_frame_step2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/backButton_step"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tellUsAge_Step2Activity">
+
+
+        <EditText
+            android:id="@+id/edit_Input_Text_joinmember"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="34dp"
+            android:layout_marginLeft="34dp"
+            android:layout_marginEnd="34dp"
+            android:layout_marginRight="34dp"
+            android:backgroundTint="@color/editTextUnderLine"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:text=""
+            android:textSize="30sp"></EditText>
+
+        <ImageView
+            android:id="@+id/edtclear_step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="34dp"
+            android:layout_marginBottom="10dp"
+            app:srcCompat="@drawable/close_big" />
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/backButton_step"
@@ -128,7 +169,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/backButton_step"
-        app:layout_constraintTop_toBottomOf="@+id/edit_Input_Text_joinmember"
+        app:layout_constraintTop_toBottomOf="@+id/edit_frame_step2"
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
@@ -189,6 +230,33 @@
         app:layout_constraintStart_toEndOf="@+id/imageView26"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/oval_6" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/textView11"
+        app:layout_constraintEnd_toStartOf="@+id/textView11"
+        app:layout_constraintHorizontal_bias="0.24"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView11"
+        app:srcCompat="@drawable/warning_off" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/spoqahansansregular"
+        android:text="아이디는 5자 이상 , 중복 불가능 입니다 :)"
+        android:textColor="@color/startwalkingGray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView13"
+        app:layout_constraintTop_toBottomOf="@+id/edit_frame_step2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

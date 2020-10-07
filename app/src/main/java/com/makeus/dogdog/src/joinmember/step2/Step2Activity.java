@@ -74,7 +74,7 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
             startActivity(intent);
         }else{
 
-            Toast.makeText(getApplicationContext(),"중복되는 아이디입니다. ",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"중복되는 아이디입니다. 다시 입력해주세요 :)",Toast.LENGTH_SHORT).show();
 
         }
     }

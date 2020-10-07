@@ -63,26 +63,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <EditText
-        android:id="@+id/edit_Input_Text_joinmember"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginLeft="34dp"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginRight="48dp"
-        android:backgroundTint="@color/editTextUnderLine"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:maxLines="1"
-        android:paddingBottom="15dp"
-        android:text="뽀삐"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tellUsAge_Step2Activity" />
+    <FrameLayout
+        android:id="@+id/edt_frame_step3reoeat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/backButton_step"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tellUsAge_Step2Activity">
+
+        <EditText
+            android:id="@+id/edit_Input_Text_joinmember"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="34dp"
+            android:layout_marginLeft="34dp"
+            android:layout_marginEnd="34dp"
+            android:layout_marginRight="34dp"
+            android:backgroundTint="@color/editTextUnderLine"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:text=""
+            android:textSize="30sp"></EditText>
+
+        <ImageView
+            android:id="@+id/edtclear_step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="34dp"
+            android:layout_marginBottom="10dp"
+            app:srcCompat="@drawable/close_big" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/backButton_step"
@@ -128,7 +143,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/backButton_step"
-        app:layout_constraintTop_toBottomOf="@+id/edit_Input_Text_joinmember"
+        app:layout_constraintTop_toBottomOf="@+id/edt_frame_step3reoeat"
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
@@ -189,6 +204,32 @@
         app:layout_constraintStart_toEndOf="@+id/imageView23"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/oval_6" />
+
+    <ImageView
+        android:id="@+id/imageView54"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/textView46"
+        app:layout_constraintHorizontal_bias="0.31"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_frame_step3reoeat"
+        app:srcCompat="@drawable/warning_off" />
+
+    <TextView
+        android:id="@+id/textView46"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6자리 이상의 영문, 숫자 조합으로 입력해주세요."
+        android:textColor="@color/startwalkingGray"
+        android:fontFamily="@font/spoqahansansregular"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView54"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView54"
+        app:layout_constraintTop_toTopOf="@+id/imageView54" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
