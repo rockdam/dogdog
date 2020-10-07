@@ -3,8 +3,10 @@ package com.makeus.dogdog.src.joinmember.step2;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,6 +20,9 @@ import com.makeus.dogdog.src.BaseActivity;
 import com.makeus.dogdog.src.joinmember.step2.interfaces.ShowToastStep2;
 import com.makeus.dogdog.src.joinmember.step2.models.DuplicateUserIdResponse;
 import com.makeus.dogdog.src.joinmember.step3.Step3Activity;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Step2Activity extends BaseActivity implements View.OnClickListener, ShowToastStep2 {
 
@@ -100,7 +105,17 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
             }
         });
     }
+    public static boolean isValidId(final String id) {
 
+        Pattern pattern;
+        Matcher matcher;
+        final String ID_PATTERN = "^[A-Za-z0-9+]{5,20}$";
+        pattern = Pattern.compile(ID_PATTERN);
+        matcher = pattern.matcher(id);
+
+        return matcher.matches();
+
+    }
     @Override
     public void onClick(View view) {
         switch (view.getId())
@@ -113,15 +128,18 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
             case R.id.next_button_step:
 
 
-                if (mInput.length() >0 && mInput.length() <5) {
+                Log.e("mInput",mInput);
+                System.out.println(mInput);
+                if (!isValidId(mInput)) {
+
+
+                    Toast.makeText(this,"아이디 형식이 맞지 않습니다. \n다시 입력해주세요 :)",Toast.LENGTH_SHORT).show();
+
+                }else{
 
 
                     mDuplicateUserIdService =new DuplicateUserIdService(this,mEdit_Input_Text_joinmember.getText().toString());
                     mDuplicateUserIdService.checkDuplicatedId();
-
-                }else{
-
-                    Toast.makeText(this,"5글자 이상 입력해주세요 :)",Toast.LENGTH_SHORT);
                 }
 
 

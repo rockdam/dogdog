@@ -19,6 +19,9 @@ import com.makeus.dogdog.src.joinmember.step2.Step2Activity;
 import com.makeus.dogdog.src.joinmember.step3repeat.Step3ReeatActivity;
 import com.makeus.dogdog.src.joinmember.step4.Step4Activity;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Step3Activity extends BaseActivity implements View.OnClickListener {
     TextView mNextButton,mBackButton;
 
@@ -44,7 +47,17 @@ public class Step3Activity extends BaseActivity implements View.OnClickListener 
         warningText=findViewById(R.id.warning_text_step3);
 
     }
+    public static boolean isValidPassword(final String Password) {
 
+        Pattern pattern;
+        Matcher matcher;
+        final String PASSWORD_PATTERN = "^[A-Za-z0-9+]{5,20}$";
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(Password);
+
+        return matcher.matches();
+
+    }
     @Override
     protected void onResume() {
         super.onResume();
