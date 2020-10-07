@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
@@ -23,41 +24,44 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Step3Activity extends BaseActivity implements View.OnClickListener {
-    TextView mNextButton,mBackButton;
+    TextView mNextButton, mBackButton;
 
 
     TextView warningText;
 
-    ImageView warningImage,edtclear_step;
+    ImageView warningImage, edtclear_step;
     EditText mEdit_Input_Text_joinmember;
     String mInput;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step3);
-        mNextButton=findViewById(R.id.next_button_step);
-        mBackButton=findViewById(R.id.backButton_step);
+        mNextButton = findViewById(R.id.next_button_step);
+        mBackButton = findViewById(R.id.backButton_step);
         mNextButton.setOnClickListener(this);
         mBackButton.setOnClickListener(this);
 
-        mEdit_Input_Text_joinmember=findViewById(R.id.edit_Input_Text_joinmember);
+        mEdit_Input_Text_joinmember = findViewById(R.id.edit_Input_Text_joinmember);
         mBackButton.setOnClickListener(this);
-        edtclear_step=findViewById(R.id.edtclear_step);
-        warningImage=findViewById(R.id.warning_image_step3);
-        warningText=findViewById(R.id.warning_text_step3);
+        edtclear_step = findViewById(R.id.edtclear_step);
+        warningImage = findViewById(R.id.warning_image_step3);
+        warningText = findViewById(R.id.warning_text_step3);
 
     }
+
     public static boolean isValidPassword(final String Password) {
 
         Pattern pattern;
         Matcher matcher;
-        final String PASSWORD_PATTERN = "^[A-Za-z0-9+]{5,20}$";
+        final String PASSWORD_PATTERN = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d$@$!%*#?&]{6,16}$";
         pattern = Pattern.compile(PASSWORD_PATTERN);
         matcher = pattern.matcher(Password);
 
         return matcher.matches();
 
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -77,7 +81,7 @@ public class Step3Activity extends BaseActivity implements View.OnClickListener 
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
 
-                mInput =mEdit_Input_Text_joinmember.getText().toString();
+                mInput = mEdit_Input_Text_joinmember.getText().toString();
                 if (mInput.length() == 1) {
 
                     mEdit_Input_Text_joinmember.getBackground().setColorFilter(getResources().getColor(R.color.red),
@@ -110,23 +114,29 @@ public class Step3Activity extends BaseActivity implements View.OnClickListener 
             }
         });
     }
+
     @Override
     public void onClick(View view) {
-        switch (view.getId())
-        {
+        switch (view.getId()) {
             case R.id.backButton_step:
                 finish();
-                overridePendingTransition(0,0); // finish()시 애니메이션 삭제
+                overridePendingTransition(0, 0); // finish()시 애니메이션 삭제
 
                 break;
             case R.id.next_button_step:
+
+
+                if (!isValidPassword(mEdit_Input_Text_joinmember.getText().toString())) {
+                    Toast.makeText(this, "패스워드 형식이 맞지 않습니다. \n다시 입력해주세요 :)", Toast.LENGTH_SHORT).show();
+                }else
+            {
                 Intent intent = new Intent(Step3Activity.this, Step3ReeatActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
 
                 startActivity(intent);
-                break;
-
+            }
+            break;
 
 
         }

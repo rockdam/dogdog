@@ -9,12 +9,16 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
 import com.makeus.dogdog.src.joinmember.step4.Step4Activity;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Step3ReeatActivity extends BaseActivity implements View.OnClickListener {
     TextView mNextButton,mBackButton;
@@ -38,7 +42,17 @@ public class Step3ReeatActivity extends BaseActivity implements View.OnClickList
         warningImage=findViewById(R.id.warning_image_step3repeat);
         warningText=findViewById(R.id.warning_text_step3repeat);
     }
+    public static boolean isValidPassword(final String Password) {
 
+        Pattern pattern;
+        Matcher matcher;
+        final String PASSWORD_PATTERN = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d$@$!%*#?&]{6,16}$";
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(Password);
+
+        return matcher.matches();
+
+    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -101,11 +115,15 @@ public class Step3ReeatActivity extends BaseActivity implements View.OnClickList
 
                 break;
             case R.id.next_button_step:
-                Intent intent = new Intent(Step3ReeatActivity.this, Step4Activity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                if (!isValidPassword(mEdit_Input_Text_joinmember.getText().toString())) {
+                    Toast.makeText(this, "패스워드 형식이 맞지 않습니다. \n다시 입력해주세요 :)", Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent intent = new Intent(Step3ReeatActivity.this, Step4Activity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
 
-                startActivity(intent);
+                    startActivity(intent);
+                }
                 break;
 
 

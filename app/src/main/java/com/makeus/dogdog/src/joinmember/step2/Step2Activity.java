@@ -130,7 +130,7 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
 
                 Log.e("mInput",mInput);
                 System.out.println(mInput);
-                if (!isValidId(mInput)) {
+                if (!isValidId(mEdit_Input_Text_joinmember.getText().toString())) {
 
 
                     Toast.makeText(this,"아이디 형식이 맞지 않습니다. \n다시 입력해주세요 :)",Toast.LENGTH_SHORT).show();
