@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
@@ -40,6 +41,7 @@ public class Step4Activity extends BaseActivity implements View.OnClickListener{
         edtclear_step=findViewById(R.id.edtclear_step);
         warningImage=findViewById(R.id.warning_image_step4);
         warningText=findViewById(R.id.warning_text_step4);
+        mInput =mEdit_Input_Text_joinmember.getText().toString();
     }
 
     @Override
@@ -104,11 +106,17 @@ public class Step4Activity extends BaseActivity implements View.OnClickListener{
 
                 break;
             case R.id.next_button_step:
-                Intent intent = new Intent(Step4Activity.this, Step5Activity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                if(mInput.length()<2)
+                {
+
+                    Toast.makeText(this,"2글자 이상 입력해주세요 :)",Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent intent = new Intent(Step4Activity.this, Step5Activity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
 
-                startActivity(intent);
+                    startActivity(intent);
+                }
                 break;
 
 
