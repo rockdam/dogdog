@@ -43,6 +43,8 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
         Typeface typeface = ResourcesCompat.getFont(this, R.font.spoqahansansregular);
         warningText.setTypeface(typeface);
         edtclear_step=findViewById(R.id.edtclear_step);
+
+
         //  mJoinMessage.setTypeface(typeface);
         //깃 연동 기념
         //슬랙 연동 기념
@@ -114,7 +116,7 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
                 if(mInput.length()<2)
                 {
 
-                    Toast.makeText(this,"2글자 이상 입력해주세요 :)",Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,"2글자 이상 입력해주세요 :)",Toast.LENGTH_SHORT).show();
                 }else{
                     Intent intent = new Intent(Step1Activity.this, Step2Activity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);

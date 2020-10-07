@@ -7,30 +7,9 @@
     tools:context=".src.joinmember.step1.Step1Activity">
 
 
-    <ImageView
-        android:id="@+id/warning_image_step3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/warning_text_step"
-        app:layout_constraintHorizontal_bias="0.14"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_frame"
-        app:srcCompat="@drawable/warning_off" />
 
-    <TextView
-        android:id="@+id/warning_text_step3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=" 2자 이상 입력해주세요"
-        android:textColor="@color/startwalkingGray"
-        app:layout_constraintBottom_toBottomOf="@+id/warning_image_step"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/warning_image_step"
-        app:layout_constraintTop_toTopOf="@+id/warning_image_step" />
+
+
 
     <ImageView
         android:id="@+id/imageView"
@@ -108,7 +87,8 @@
             android:layout_marginRight="34dp"
             android:backgroundTint="@color/editTextUnderLine"
             android:ems="10"
-            android:inputType="textMultiLine|textNoSuggestions"            android:maxLength="20"
+            android:maxLength="20"
+            android:inputType="textVisiblePassword|textNoSuggestions"
             android:maxLines="1"
             android:text=""
             android:textSize="30sp"></EditText>
@@ -231,30 +211,30 @@
         app:srcCompat="@drawable/oval_6" />
 
     <ImageView
-        android:id="@+id/imageView13"
+        android:id="@+id/warning_image_step2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
 
-        app:layout_constraintBottom_toBottomOf="@+id/textView11"
-        app:layout_constraintEnd_toStartOf="@+id/textView11"
+        app:layout_constraintBottom_toBottomOf="@+id/warning_text_step2"
+        app:layout_constraintEnd_toStartOf="@+id/warning_text_step2"
         app:layout_constraintHorizontal_bias="0.24"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView11"
+        app:layout_constraintTop_toTopOf="@+id/warning_text_step2"
         app:srcCompat="@drawable/warning_off" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/warning_text_step2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/spoqahansansregular"
         android:text="아이디는 5자 이상 , 중복 불가능 입니다 :)"
         android:textColor="@color/startwalkingGray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView13"
+        app:layout_constraintStart_toEndOf="@+id/warning_image_step2"
         app:layout_constraintTop_toBottomOf="@+id/edit_frame_step2" />
 
 

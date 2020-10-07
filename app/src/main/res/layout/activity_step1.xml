@@ -90,7 +90,9 @@
             android:maxLines="1"
             android:text=""
             android:textSize="30sp"></EditText>
-
+<!--  android:inputType="textVisiblePassword|textNoSuggestions"
+이걸 써야 입력시 underline이 나오지 않는다.
+-->
         <ImageView
             android:id="@+id/edtclear_step"
             android:layout_width="wrap_content"

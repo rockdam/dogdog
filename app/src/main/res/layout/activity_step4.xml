@@ -82,7 +82,8 @@
             android:layout_marginRight="34dp"
             android:backgroundTint="@color/editTextUnderLine"
             android:ems="10"
-            android:inputType="textMultiLine|textNoSuggestions"            android:maxLength="10"
+            android:inputType="textVisiblePassword|textNoSuggestions"
+            android:maxLength="10"
             android:maxLines="1"
             android:text=""
             android:textSize="30sp"></EditText>
@@ -205,26 +206,26 @@
         app:srcCompat="@drawable/rectangle_13" />
 
     <TextView
-        android:id="@+id/textView47"
+        android:id="@+id/warning_text_step4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2자 이상 입력해주세요."
         android:fontFamily="@font/spoqahansansregular"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView56"
+        app:layout_constraintBottom_toBottomOf="@+id/warning_image_step4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         android:textColor="@color/startwalkingGray"
-        app:layout_constraintStart_toEndOf="@+id/imageView56"
-        app:layout_constraintTop_toTopOf="@+id/imageView56" />
+        app:layout_constraintStart_toEndOf="@+id/warning_image_step4"
+        app:layout_constraintTop_toTopOf="@+id/warning_image_step4" />
 
     <ImageView
-        android:id="@+id/imageView56"
+        android:id="@+id/warning_image_step4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="10dp"
 
-        app:layout_constraintEnd_toStartOf="@+id/textView47"
+        app:layout_constraintEnd_toStartOf="@+id/warning_text_step4"
         app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"

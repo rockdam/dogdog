@@ -79,7 +79,7 @@
             android:layout_marginRight="34dp"
             android:backgroundTint="@color/editTextUnderLine"
             android:ems="10"
-            android:inputType="textMultiLine|textNoSuggestions"
+            android:inputType="textVisiblePassword|textNoSuggestions"
             android:maxLength="16"
             android:maxLines="1"
             android:text=""
@@ -203,12 +203,12 @@
         app:srcCompat="@drawable/oval_6" />
 
     <ImageView
-        android:id="@+id/imageView53"
+        android:id="@+id/warning_image_step3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView45"
+        app:layout_constraintEnd_toStartOf="@+id/warning_text_step3"
         app:layout_constraintHorizontal_bias="0.32"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
@@ -216,17 +216,17 @@
         app:srcCompat="@drawable/warning_off" />
 
     <TextView
-        android:id="@+id/textView45"
+        android:id="@+id/warning_text_step3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/spoqahansansregular"
         android:text="6자리 이상의 영문, 숫자 조합으로 입력해주세요."
         android:textColor="@color/startwalkingGray"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView53"
+        app:layout_constraintBottom_toBottomOf="@+id/warning_image_step3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView53"
-        app:layout_constraintTop_toTopOf="@+id/imageView53" />
+        app:layout_constraintStart_toEndOf="@+id/warning_image_step3"
+        app:layout_constraintTop_toTopOf="@+id/warning_image_step3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
