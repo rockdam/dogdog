@@ -83,7 +83,7 @@
                     android:layout_marginEnd="34dp"
                     android:layout_marginRight="34dp"
                     android:fontFamily="@font/spoqahansansregular"
-                    android:hint="예: 2015-05-05"
+                    android:hint="예: 20150505"
                     android:backgroundTint="@color/editTextUnderLine"
                     android:ems="10"
                     android:inputType="textVisiblePassword|textNoSuggestions"

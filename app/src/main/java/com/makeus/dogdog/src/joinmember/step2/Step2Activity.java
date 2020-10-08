@@ -112,7 +112,7 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
 
         Pattern pattern;
         Matcher matcher;
-        final String ID_PATTERN = "^[A-Za-z0-9+]{5,20}$";
+        final String ID_PATTERN = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";
         pattern = Pattern.compile(ID_PATTERN);
         matcher = pattern.matcher(id);
 
@@ -160,6 +160,8 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
 
     }
 
+
+    // 서버 연결 안될 때 호출하는 함수 혹은 토스트 띄워야함 .
     @Override
     public void checkDuplicatId(DuplicateUserIdResponse duplicateUserIdResponse) {
 

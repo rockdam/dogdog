@@ -29,7 +29,16 @@
             ></activity>
         <activity android:name=".src.joinmember.step6.Step6Activity"
             android:windowSoftInputMode="adjustPan"
-            />
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+
+
+        </activity>
         <activity android:name=".src.joinmember.step5.Step5Activity"
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".src.joinmember.step4.Step4Activity"
@@ -39,11 +48,7 @@
             android:windowSoftInputMode="adjustResize"
             />
         <activity android:name=".src.joinmember.JoinActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
 
         <activity android:name=".src.HomeDogDog.startWalking.startWalking" />

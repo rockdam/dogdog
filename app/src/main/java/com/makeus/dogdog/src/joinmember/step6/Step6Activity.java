@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.makeus.dogdog.R;
@@ -17,9 +18,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Step6Activity extends BaseActivity implements View.OnClickListener {
-    TextView mJoinMessage, mNextButton,mBackButton;
+    TextView mJoinMessage, mNextButton,mBackButton,dog_breeds_step6;
     EditText mEdit_Input_Text_joinmember;
     String mKg;
+    SearchBreedsDialog mSearchBreedsDialog;
+    FrameLayout mEditFrame;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,27 +32,10 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener 
         mNextButton.setOnClickListener(this);
         mBackButton.setOnClickListener(this);
 
+        dog_breeds_step6=findViewById(R.id.dog_breeds_step6);
 
         mEdit_Input_Text_joinmember=findViewById(R.id.edit_Input_Text_joinmember);
-
-    }
-
-    public static boolean isValidKg(final String Password) {
-
-        Pattern pattern;
-        Matcher matcher;
-
-        final String KG_PATTERN = "^(0|[1-9]\\d*)(\\.\\d+)?$";
-        pattern = Pattern.compile(KG_PATTERN);
-        matcher = pattern.matcher(Password);
-
-        return matcher.matches();
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+        mSearchBreedsDialog=new SearchBreedsDialog(this);
 
         mEdit_Input_Text_joinmember.addTextChangedListener(new TextWatcher() {
             @Override
@@ -69,15 +55,51 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener 
                 if(isValidKg(editable.toString()))
                 {
 
-                    mKg+="kg";
+                    mKg+=" kg";
 
                     mEdit_Input_Text_joinmember.setText(mKg);
-                    mEdit_Input_Text_joinmember.setSelection(mEdit_Input_Text_joinmember.getText().length()-2);
+                    mEdit_Input_Text_joinmember.setSelection(mEdit_Input_Text_joinmember.getText().length()-3);
                 }
 
 
             }
         });
+
+        dog_breeds_step6.setOnClickListener(view -> {
+
+            mSearchBreedsDialog=new SearchBreedsDialog(this);
+            mSearchBreedsDialog.setDialogListener(
+                    (breed, breedIdx) -> dog_breeds_step6.setText(breed));
+
+            mSearchBreedsDialog.show();
+
+
+        });
+
+
+    }
+
+    public static boolean isValidKg(final String Password) {
+
+        Pattern pattern;
+        Matcher matcher;
+
+        final String KG_PATTERN = "^(0|[1-9]\\d*)(\\.\\d+)?$";
+        pattern = Pattern.compile(KG_PATTERN);
+        matcher = pattern.matcher(Password);
+
+        return matcher.matches();
+
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+
+
 //        https://stackoverflow.com/questions/2811031/decimal-or-numeric-values-in-regular-expression-validation 출처
     }
 

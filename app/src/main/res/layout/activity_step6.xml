@@ -82,19 +82,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <EditText
-        android:id="@+id/dog_breeds_step3"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/dog_breeds_step6"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="47dp"
-        android:backgroundTint="@color/editTextUnderLine"
-        android:ems="10"
-        android:inputType="textMultiLine|textNoSuggestions"
-        android:maxLines="1"
+
+
+        android:text="dfd"
         android:paddingBottom="15dp"
         android:fontFamily="@font/spoqahansansregular"
         android:textSize="24dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -196,7 +196,7 @@
         android:text="몸무게"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dog_breeds_step3" />
+        app:layout_constraintTop_toBottomOf="@+id/dog_breeds_step6" />
 
     <TextView
         android:id="@+id/textView3"
