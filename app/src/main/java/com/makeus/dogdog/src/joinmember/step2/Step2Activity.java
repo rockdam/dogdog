@@ -36,7 +36,7 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
 
     ImageView warningImage,edtclear_step;
     EditText mEdit_Input_Text_joinmember;
-    String mInput;
+    String mNickname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +51,11 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
         warningImage=findViewById(R.id.warning_image_step2);
         warningText=findViewById(R.id.warning_text_step2);
 
+
+        Intent intent = getIntent();
+        if(intent.hasExtra("nickname")) {
+            mNickname=intent.getExtras().getString("nickname");
+        }
            }
 
 
@@ -131,6 +136,7 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
 
+                intent.putExtra("nickname",mNickname);
 
                 overridePendingTransition(0,0); // finish()시 애니메이션 삭제
                 startActivity(intent);

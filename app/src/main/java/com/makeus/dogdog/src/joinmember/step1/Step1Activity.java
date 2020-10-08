@@ -44,15 +44,16 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
         warningText.setTypeface(typeface);
         edtclear_step=findViewById(R.id.edtclear_step);
 
-
+        mNextTxt.setOnClickListener(this);
         //  mJoinMessage.setTypeface(typeface);
         //깃 연동 기념
         //슬랙 연동 기념
-        mNickName =mEdit_Input_Text_joinmember.getText().toString();
 
+        Intent intent = getIntent();
+        if(intent.hasExtra("nickname")) {
+            mEdit_Input_Text_joinmember.setText(intent.getExtras().getString("nickname"));
+        }
 
-
-        mNextTxt.setOnClickListener(this);
 
 
     }
@@ -116,7 +117,7 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
         switch (view.getId()) {
 
             case R.id.next_button_step:
-                if(mNickName.length()<2)
+                if(mEdit_Input_Text_joinmember.getText().toString().length()<2)
                 {
 
                     Toast.makeText(this,"2글자 이상 입력해주세요 :)",Toast.LENGTH_SHORT).show();
@@ -124,6 +125,7 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
                     Intent intent = new Intent(Step1Activity.this, Step2Activity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
+                    intent.putExtra("nickname",mNickName);
 
 
                     startActivity(intent);
