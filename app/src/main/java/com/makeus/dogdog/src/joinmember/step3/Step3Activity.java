@@ -32,7 +32,7 @@ public class Step3Activity extends BaseActivity implements View.OnClickListener 
 
     ImageView warningImage, edtclear_step;
     EditText mEdit_Input_Text_joinmember;
-    String mInput;
+    String mNickname, mEmail,mPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +48,19 @@ public class Step3Activity extends BaseActivity implements View.OnClickListener 
         edtclear_step = findViewById(R.id.edtclear_step);
         warningImage = findViewById(R.id.warning_image_step3);
         warningText = findViewById(R.id.warning_text_step3);
+        Intent emailcheckIntent = getIntent();
+
+            Intent nickNameIntent = getIntent();
+            if (nickNameIntent.hasExtra("nickname")) {
+                mNickname = nickNameIntent.getExtras().getString("nickname");
+            }
+        if (emailcheckIntent.hasExtra("email")) {
+            mEmail = emailcheckIntent.getExtras().getString("email");
+            if (nickNameIntent.hasExtra("password")) {
+                mPassword = nickNameIntent.getExtras().getString("password");
+            }
+        }
+
 
     }
 
@@ -106,6 +119,7 @@ public class Step3Activity extends BaseActivity implements View.OnClickListener 
 
             @Override
             public void afterTextChanged(Editable editable) {
+                mPassword=editable.toString();
 //                mEdit_Input_Text_joinmember.getBackground().setColorFilter(getResources().getColor(R.color.editTextUnderLine),
 //                        PorterDuff.Mode.SRC_ATOP);
 //                warningText.setTextColor(ContextCompat.getColor(getBaseContext(),
@@ -124,6 +138,8 @@ public class Step3Activity extends BaseActivity implements View.OnClickListener 
 
                 back.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 overridePendingTransition(0, 0); // finish()시 애니메이션 삭제
+                back.putExtra("nickname", mNickname);
+                back.putExtra("email", mEmail);
                 startActivity(back);
                 finish();
                 break;

@@ -27,36 +27,39 @@ import java.util.regex.Pattern;
 
 public class Step2Activity extends BaseActivity implements View.OnClickListener, ShowToastStep2 {
 
-    TextView mNextButton,mBackButton;
+    TextView mNextButton, mBackButton;
     DuplicateUserIdService mDuplicateUserIdService;
-
 
 
     TextView warningText;
 
-    ImageView warningImage,edtclear_step;
+    ImageView warningImage, edtclear_step;
     EditText mEdit_Input_Text_joinmember;
-    String mNickname;
+    String mNickname, mEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step2);
-        mNextButton=findViewById(R.id.next_button_step);
-        mBackButton=findViewById(R.id.backButton_step);
+        mNextButton = findViewById(R.id.next_button_step);
+        mBackButton = findViewById(R.id.backButton_step);
         mNextButton.setOnClickListener(this);
-        mEdit_Input_Text_joinmember=findViewById(R.id.edit_Input_Text_joinmember);
+        mEdit_Input_Text_joinmember = findViewById(R.id.edit_Input_Text_joinmember);
         mBackButton.setOnClickListener(this);
-        edtclear_step=findViewById(R.id.edtclear_step);
-        warningImage=findViewById(R.id.warning_image_step2);
-        warningText=findViewById(R.id.warning_text_step2);
+        edtclear_step = findViewById(R.id.edtclear_step);
+        warningImage = findViewById(R.id.warning_image_step2);
+        warningText = findViewById(R.id.warning_text_step2);
 
-
-        Intent intent = getIntent();
-        if(intent.hasExtra("nickname")) {
-            mNickname=intent.getExtras().getString("nickname");
+        Intent emailcheckIntent = getIntent();
+        if (emailcheckIntent.hasExtra("email")) {
+            mEmail = emailcheckIntent.getExtras().getString("nickname");
+            Intent nickNameIntent = getIntent();
+            if (nickNameIntent.hasExtra("nickname")) {
+                mNickname = nickNameIntent.getExtras().getString("nickname");
+            }
         }
-           }
+
+    }
 
 
     @Override
@@ -99,11 +102,11 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
                 }
 
 
-
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
+                mEmail = editable.toString();
 //                mEdit_Input_Text_joinmember.getBackground().setColorFilter(getResources().getColor(R.color.editTextUnderLine),
 //                        PorterDuff.Mode.SRC_ATOP);
 //                warningText.setTextColor(ContextCompat.getColor(getBaseContext(),
@@ -113,6 +116,7 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
             }
         });
     }
+
     public static boolean isValidId(final String id) {
 
         Pattern pattern;
@@ -124,21 +128,20 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
         return matcher.matches();
 
     }
+
     @Override
     public void onClick(View view) {
-        switch (view.getId())
-        {
+        switch (view.getId()) {
             case R.id.backButton_step:
-
 
 
                 Intent intent = new Intent(Step2Activity.this, Step1Activity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
 
-                intent.putExtra("nickname",mNickname);
+                intent.putExtra("nickname", mNickname);
 
-                overridePendingTransition(0,0); // finish()시 애니메이션 삭제
+                overridePendingTransition(0, 0); // finish()시 애니메이션 삭제
                 startActivity(intent);
                 finish();
                 break;
@@ -148,18 +151,17 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
                 if (!isValidId(mEdit_Input_Text_joinmember.getText().toString())) {
 
 
-                    Toast.makeText(this,"아이디 형식이 맞지 않습니다. \n다시 입력해주세요 :)",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "아이디 형식이 맞지 않습니다. \n다시 입력해주세요 :)", Toast.LENGTH_SHORT).show();
 
-                }else{
+                } else {
 
 
-                    mDuplicateUserIdService =new DuplicateUserIdService(this,mEdit_Input_Text_joinmember.getText().toString());
+                    mDuplicateUserIdService = new DuplicateUserIdService(this, mEdit_Input_Text_joinmember.getText().toString());
                     mDuplicateUserIdService.checkDuplicatedId();
                 }
 
 
                 break;
-
 
 
         }
@@ -171,18 +173,18 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
     @Override
     public void checkDuplicatId(DuplicateUserIdResponse duplicateUserIdResponse) {
 
-        if(duplicateUserIdResponse.getCode()==200)
-        {
+        if (duplicateUserIdResponse.getCode() == 200) {
 
             Intent intent = new Intent(Step2Activity.this, Step3Activity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
-
+            intent.putExtra("nickname", mNickname);
+            intent.putExtra("email", mEmail);
             startActivity(intent);
             finish();
-        }else{
+        } else {
 
-            Toast.makeText(getApplicationContext(),"중복되는 아이디입니다. 다시 입력해주세요 :)",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "중복되는 아이디입니다. 다시 입력해주세요 :)", Toast.LENGTH_SHORT).show();
 
         }
     }
