@@ -75,30 +75,47 @@
         android:maxLines="1"
 
         android:hint="예: 5.2 kg"
-        android:paddingBottom="15dp"
+
         android:fontFamily="@font/spoqahansansregular"
-        android:textSize="24dp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <TextView
-        android:id="@+id/dog_breeds_step6"
+
+    <FrameLayout
+        android:id="@+id/edt_frame_step6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="47dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <TextView
+            android:id="@+id/dog_breeds_step6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="49dp"
 
 
-        android:text="dfd"
-        android:paddingBottom="15dp"
-        android:fontFamily="@font/spoqahansansregular"
-        android:textSize="24dp"
+            android:fontFamily="@font/spoqahansansregular"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            android:text="
+"
+            android:textSize="24sp"
 
+            />
+
+        <View
+            android:id="@+id/view8"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="33dp"
+            android:layout_marginEnd="50dp"
+            android:background="@color/editTextUnderLine"
+            android:layout_marginBottom="0dp"
+            android:layout_gravity="bottom"
+          />
+    </FrameLayout>
     <TextView
         android:id="@+id/backButton_step"
         android:layout_width="0dp"
@@ -196,7 +213,7 @@
         android:text="몸무게"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dog_breeds_step6" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_frame_step6" />
 
     <TextView
         android:id="@+id/textView3"
@@ -244,5 +261,6 @@
         app:layout_constraintStart_toEndOf="@+id/imageView35"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/oval_6" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

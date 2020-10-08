@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class SearchBreedsDialog extends Dialog implements View.OnClickListener, PassValueDialog {
 
 
-
+//커스텀 다이얼로그
     ListView mListview;
     ArrayList<Breeds> mArraylist;
     private SearchBreedsDialogListener customDialogListener;
