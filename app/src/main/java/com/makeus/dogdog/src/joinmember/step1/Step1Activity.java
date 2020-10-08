@@ -27,7 +27,7 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
 
     ImageView warningImage,edtclear_step;
     EditText mEdit_Input_Text_joinmember;
-    String mInput;
+    String mNickName;
 
 
     @Override
@@ -48,7 +48,10 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
         //  mJoinMessage.setTypeface(typeface);
         //깃 연동 기념
         //슬랙 연동 기념
-        mInput =mEdit_Input_Text_joinmember.getText().toString();
+        mNickName =mEdit_Input_Text_joinmember.getText().toString();
+
+
+
         mNextTxt.setOnClickListener(this);
 
 
@@ -74,8 +77,8 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
 
-                mInput =mEdit_Input_Text_joinmember.getText().toString();
-                if (mInput.length() == 1) {
+                mNickName =mEdit_Input_Text_joinmember.getText().toString();
+                if (mEdit_Input_Text_joinmember.getText().toString().length() == 1) {
 
                     mEdit_Input_Text_joinmember.getBackground().setColorFilter(getResources().getColor(R.color.red),
                             PorterDuff.Mode.SRC_ATOP);
@@ -113,13 +116,14 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
         switch (view.getId()) {
 
             case R.id.next_button_step:
-                if(mInput.length()<2)
+                if(mNickName.length()<2)
                 {
 
                     Toast.makeText(this,"2글자 이상 입력해주세요 :)",Toast.LENGTH_SHORT).show();
                 }else{
                     Intent intent = new Intent(Step1Activity.this, Step2Activity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
 
 
                     startActivity(intent);

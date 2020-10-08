@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ public class Step5Activity extends BaseActivity implements View.OnClickListener 
     TextView mTellUsAge, mBackButton;
     TextView mJoinMessage, mNextButton;
     EditText mEdit_Input_Text_joinmember;
+    ImageView edtclear_step;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -39,11 +41,11 @@ public class Step5Activity extends BaseActivity implements View.OnClickListener 
         mNextButton=findViewById(R.id.next_button_step);
         mNextButton.setOnClickListener(this);
         mEdit_Input_Text_joinmember=findViewById(R.id.edit_Input_Text_joinmember);
-
+        edtclear_step=findViewById(R.id.edtclear_step);
 
 
     }
-
+// 유효한 날짜인지 체크
     public  boolean  validationDate(String  checkDate){
 
         try{
@@ -61,7 +63,11 @@ public class Step5Activity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void onResume() {
         super.onResume();
+        edtclear_step.setOnClickListener(view -> {
 
+            mEdit_Input_Text_joinmember.setText("");
+
+        });
         mEdit_Input_Text_joinmember.addTextChangedListener(new TextWatcher() {
 
             private int _beforeLenght = 0;

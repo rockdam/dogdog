@@ -83,7 +83,8 @@
             android:maxLength="16"
             android:maxLines="1"
             android:text=""
-            android:textSize="30sp"></EditText>
+            android:fontFamily="@font/spoqahansansregular"
+            android:textSize="24sp"></EditText>
 
         <ImageView
             android:id="@+id/edtclear_step"

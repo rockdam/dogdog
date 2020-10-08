@@ -88,10 +88,11 @@
             android:backgroundTint="@color/editTextUnderLine"
             android:ems="10"
             android:maxLength="20"
+            android:fontFamily="@font/spoqahansansregular"
             android:inputType="textVisiblePassword|textNoSuggestions"
             android:maxLines="1"
             android:text=""
-            android:textSize="30sp"></EditText>
+            android:textSize="24sp"></EditText>
 
         <ImageView
             android:id="@+id/edtclear_step"

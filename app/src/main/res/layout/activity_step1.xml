@@ -57,7 +57,7 @@
         android:layout_marginRight="53dp"
         android:lineSpacingExtra="0dp"
 
-        android:text="만나서 반가워요!\n반려견의 이름이 궁금해요."
+        android:text="만나서 반가워요!\n당신의 이름이 궁금해요."
         android:textColor="@color/black"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,8 +88,9 @@
             android:inputType="textVisiblePassword|textNoSuggestions"
             android:maxLength="10"
             android:maxLines="1"
+            android:fontFamily="@font/spoqahansansregular"
             android:text=""
-            android:textSize="30sp"></EditText>
+            android:textSize="24sp"></EditText>
 <!--  android:inputType="textVisiblePassword|textNoSuggestions"
 이걸 써야 입력시 underline이 나오지 않는다.
 -->
