@@ -28,10 +28,10 @@
             android:windowSoftInputMode="adjustResize"
             ></activity>
         <activity android:name=".src.joinmember.step6.Step6Activity"
-            android:windowSoftInputMode="adjustResize"
+            android:windowSoftInputMode="adjustPan"
             />
         <activity android:name=".src.joinmember.step5.Step5Activity"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".src.joinmember.step4.Step4Activity"
             android:windowSoftInputMode="adjustResize"
             />

@@ -31,6 +31,7 @@ public class Step7Activity extends BaseActivity implements View.OnClickListener 
 
 
                 startActivity(intent);
+                finish();
                 break;
 
         }

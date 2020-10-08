@@ -228,7 +228,6 @@
         android:id="@+id/warning_text_step2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:fontFamily="@font/spoqahansansregular"
         android:text="아이디는 5자 이상 , 중복 불가능 입니다 :)"
         android:textColor="@color/startwalkingGray"

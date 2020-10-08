@@ -39,6 +39,7 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener 
 
                 overridePendingTransition(0,0); // finish()시 애니메이션 삭제
                 startActivity(back);
+                finish();
                 break;
             case R.id.next_button_step:
                 Intent intent = new Intent(Step6Activity.this, Step7Activity.class);

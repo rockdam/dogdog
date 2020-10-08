@@ -75,7 +75,16 @@ public class Step3ReeatActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
 
-                if (!isValidPassword(mEdit_Input_Text_joinmember.getText().toString())) {
+                if (mEdit_Input_Text_joinmember.getText().toString().equals("") || isValidPassword(mEdit_Input_Text_joinmember.getText().toString())) {
+
+                    mEdit_Input_Text_joinmember.getBackground().setColorFilter(getResources().getColor(R.color.startwalkingGray),
+                            PorterDuff.Mode.SRC_ATOP);
+                    warningText.setTextColor(ContextCompat.getColor(getBaseContext(),
+                            R.color.startwalkingGray));
+                    warningImage.setImageResource(R.drawable.warning_off);
+
+                } else {
+
 
                     mEdit_Input_Text_joinmember.getBackground().setColorFilter(getResources().getColor(R.color.red),
                             PorterDuff.Mode.SRC_ATOP);
@@ -84,16 +93,8 @@ public class Step3ReeatActivity extends BaseActivity implements View.OnClickList
                             R.color.warningRed));
                     warningImage.setImageResource(R.drawable.warning_on);
 //                    https://stackoverflow.com/questions/28303112/changing-tint-color-of-android-edittext-programmatically
-
-                } else {
-                    mEdit_Input_Text_joinmember.getBackground().setColorFilter(getResources().getColor(R.color.startwalkingGray),
-                            PorterDuff.Mode.SRC_ATOP);
-                    warningText.setTextColor(ContextCompat.getColor(getBaseContext(),
-                            R.color.startwalkingGray));
-                    warningImage.setImageResource(R.drawable.warning_off);
-
-
                 }
+
             }
 
             @Override
@@ -116,6 +117,7 @@ public class Step3ReeatActivity extends BaseActivity implements View.OnClickList
                 back.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 overridePendingTransition(0,0); // finish()시 애니메이션 삭제
                 startActivity(back);
+                finish();
                 break;
             case R.id.next_button_step:
                 if (!isValidPassword(mEdit_Input_Text_joinmember.getText().toString())) {

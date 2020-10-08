@@ -2,9 +2,14 @@ package com.makeus.dogdog.src.joinmember.step5;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
@@ -12,9 +17,13 @@ import com.makeus.dogdog.src.joinmember.step3.Step3Activity;
 import com.makeus.dogdog.src.joinmember.step4.Step4Activity;
 import com.makeus.dogdog.src.joinmember.step6.Step6Activity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 public class Step5Activity extends BaseActivity implements View.OnClickListener {
     TextView mTellUsAge, mBackButton;
     TextView mJoinMessage, mNextButton;
+    EditText mEdit_Input_Text_joinmember;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -29,6 +38,92 @@ public class Step5Activity extends BaseActivity implements View.OnClickListener 
         mBackButton.setOnClickListener(this);
         mNextButton=findViewById(R.id.next_button_step);
         mNextButton.setOnClickListener(this);
+        mEdit_Input_Text_joinmember=findViewById(R.id.edit_Input_Text_joinmember);
+
+
+
+    }
+
+    public  boolean  validationDate(String  checkDate){
+
+        try{
+            SimpleDateFormat dateFormat = new  SimpleDateFormat("yyyy-MM-dd");
+
+            dateFormat.setLenient(false);
+            dateFormat.parse(checkDate);
+            return  true;
+
+        }catch (ParseException e){
+            return  false;
+        }
+
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mEdit_Input_Text_joinmember.addTextChangedListener(new TextWatcher() {
+
+            private int _beforeLenght = 0;
+            private int _afterLenght = 0;
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                _beforeLenght = s.length();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() <= 0) {
+                    Log.d("addTextChangedListener", "onTextChanged: Intput text is wrong (Type : Length)");
+                    return;
+                }
+
+                char inputChar = s.charAt(s.length() - 1);
+                if (inputChar != '-' && (inputChar < '0' || inputChar > '9')) {
+                    mEdit_Input_Text_joinmember.getText().delete(s.length() - 1, s.length());
+                    Log.d("addTextChangedListener", "onTextChanged: Intput text is wrong (Type : Number)");
+                    return;
+                }
+
+                _afterLenght = s.length();
+
+                // 삭제 중
+                if (_beforeLenght > _afterLenght) {
+                    // 삭제 중에 마지막에 -는 자동으로 지우기
+                    if (s.toString().endsWith("-")) {
+                        mEdit_Input_Text_joinmember.setText(s.toString().substring(0, s.length() - 1));
+                    }
+                }
+                // 입력 중
+                else if (_beforeLenght < _afterLenght) {
+                    if (_afterLenght == 5 && s.toString().indexOf("-") < 0) {
+                        mEdit_Input_Text_joinmember.setText(s.toString().subSequence(0, 4) + "-" + s.toString().substring(4, s.length()));
+                    } else if (_afterLenght == 7) {
+                        mEdit_Input_Text_joinmember.setText(s.toString().subSequence(0, 7) + "-" + s.toString().substring(7, s.length()));
+                    }
+                }
+                mEdit_Input_Text_joinmember.setSelection(mEdit_Input_Text_joinmember.length());
+//
+//                if(s.length() == 19) {
+//                    btnInput.setBackground(
+//                            ContextCompat.getDrawable(getContext(), R.drawable.btn_active));
+//                } else {
+//                    btnInput.setBackground(
+//                            ContextCompat.getDrawable(getContext(), R.drawable.btn_inactive));
+//                }
+//                글자가 19개 일 때 버튼이 활성화 되는 코드
+//
+//                출처: https://devvkkid.tistory.com/111 [개발자입니까?]
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // 생략
+            }
+        });
+
+
     }
 
     @Override
@@ -42,14 +137,21 @@ public class Step5Activity extends BaseActivity implements View.OnClickListener 
 
                 overridePendingTransition(0,0); // finish()시 애니메이션 삭제
                 startActivity(back);
+                finish();
                 break;
             case R.id.next_button_step:
-                Intent intent = new Intent(Step5Activity.this, Step6Activity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+                if(validationDate(mEdit_Input_Text_joinmember.getText().toString())) {
+                    Intent intent = new Intent(Step5Activity.this, Step6Activity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
 
-                startActivity(intent);
-                finish();
+                    startActivity(intent);
+                    finish();
+                }else{
+                    Toast.makeText(this,"유효한 날짜 형식이 아닙니다.",Toast.LENGTH_SHORT).show();
+
+                }
                 break;
         }
     }
