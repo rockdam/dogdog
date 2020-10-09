@@ -15,36 +15,45 @@ import androidx.core.content.ContextCompat;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
-import com.makeus.dogdog.src.joinmember.step1.Step1Activity;
-import com.makeus.dogdog.src.joinmember.step2.Step2Activity;
 import com.makeus.dogdog.src.joinmember.step3.Step3Activity;
 import com.makeus.dogdog.src.joinmember.step4.Step4Activity;
+import com.makeus.dogdog.src.joinmember.step6.models.UserInfo;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Step3ReeatActivity extends BaseActivity implements View.OnClickListener {
-    TextView mNextButton,mBackButton;
+public class Step3RepeatActivity extends BaseActivity implements View.OnClickListener {
+    TextView mNextButton, mBackButton;
     TextView warningText;
 
-    ImageView warningImage,edtclear_step;
+    ImageView warningImage, edtclear_step;
     EditText mEdit_Input_Text_joinmember;
-    String mInput;
+    UserInfo mUserInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step3_repeat);
-        mNextButton=findViewById(R.id.next_button_step);
-        mBackButton=findViewById(R.id.backButton_step);
+        mNextButton = findViewById(R.id.next_button_step);
+        mBackButton = findViewById(R.id.backButton_step);
         mNextButton.setOnClickListener(this);
         mBackButton.setOnClickListener(this);
-
-        mEdit_Input_Text_joinmember=findViewById(R.id.edit_Input_Text_joinmember);
+        mUserInfo = new UserInfo();
+        mEdit_Input_Text_joinmember = findViewById(R.id.edit_Input_Text_joinmember);
         mBackButton.setOnClickListener(this);
-        edtclear_step=findViewById(R.id.edtclear_step);
-        warningImage=findViewById(R.id.warning_image_step3repeat);
-        warningText=findViewById(R.id.warning_text_step3repeat);
+        edtclear_step = findViewById(R.id.edtclear_step);
+        warningImage = findViewById(R.id.warning_image_step3repeat);
+        warningText = findViewById(R.id.warning_text_step3repeat);
+        Intent intent = getIntent();
+        if (intent.hasExtra("userInfo")) {
+
+            mUserInfo = (UserInfo) intent.getSerializableExtra("userInfo");
+
+
+        }
+
     }
+
     public static boolean isValidPassword(final String Password) {
 
         Pattern pattern;
@@ -56,6 +65,7 @@ public class Step3ReeatActivity extends BaseActivity implements View.OnClickList
         return matcher.matches();
 
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -99,39 +109,42 @@ public class Step3ReeatActivity extends BaseActivity implements View.OnClickList
 
             @Override
             public void afterTextChanged(Editable editable) {
-//                mEdit_Input_Text_joinmember.getBackground().setColorFilter(getResources().getColor(R.color.editTextUnderLine),
-//                        PorterDuff.Mode.SRC_ATOP);
-//                warningText.setTextColor(ContextCompat.getColor(getBaseContext(),
-//                        R.color.startwalkingGray));
-//                warningImage.setImageResource(R.drawable.warning_off);
+
 
             }
         });
     }
+
     @Override
     public void onClick(View view) {
-        switch (view.getId())
-        {
+        switch (view.getId()) {
             case R.id.backButton_step:
-                Intent back = new Intent(Step3ReeatActivity.this, Step3Activity.class);
+                Intent back = new Intent(Step3RepeatActivity.this, Step3Activity.class);
                 back.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                overridePendingTransition(0,0); // finish()시 애니메이션 삭제
+                overridePendingTransition(0, 0); // finish()시 애니메이션 삭제
+                back.putExtra("userInfo", mUserInfo);
                 startActivity(back);
                 finish();
                 break;
             case R.id.next_button_step:
+
                 if (!isValidPassword(mEdit_Input_Text_joinmember.getText().toString())) {
-                    Toast.makeText(this, "패스워드 형식이 맞지 않습니다. \n다시 입력해주세요 :)", Toast.LENGTH_SHORT).show();
-                }else {
-                    Intent intent = new Intent(Step3ReeatActivity.this, Step4Activity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    Toast.makeText(this, "비밀번호 형식이 맞지 않습니다. \n다시 입력해주세요 :)", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    if (mEdit_Input_Text_joinmember.getText().toString().equals(mUserInfo.getPassword())) {
+                        Intent intent = new Intent(Step3RepeatActivity.this, Step4Activity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
 
-                    startActivity(intent);
-                    finish();
+                        startActivity(intent);
+                        finish();
+                    } else {
+
+                        Toast.makeText(this, "비밀번호가 일치하지 않습니다. \n다시 입력해주세요 :)", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 break;
-
 
 
         }

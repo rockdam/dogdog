@@ -21,6 +21,7 @@ import com.makeus.dogdog.src.joinmember.step1.Step1Activity;
 import com.makeus.dogdog.src.joinmember.step2.interfaces.ShowToastStep2;
 import com.makeus.dogdog.src.joinmember.step2.models.DuplicateUserIdResponse;
 import com.makeus.dogdog.src.joinmember.step3.Step3Activity;
+import com.makeus.dogdog.src.joinmember.step6.models.UserInfo;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,7 +37,7 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
     ImageView warningImage, edtclear_step;
     EditText mEdit_Input_Text_joinmember;
     String mNickname, mEmail;
-
+    UserInfo mUserInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,19 +45,21 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
         mNextButton = findViewById(R.id.next_button_step);
         mBackButton = findViewById(R.id.backButton_step);
         mNextButton.setOnClickListener(this);
+        mUserInfo=new UserInfo();
         mEdit_Input_Text_joinmember = findViewById(R.id.edit_Input_Text_joinmember);
         mBackButton.setOnClickListener(this);
         edtclear_step = findViewById(R.id.edtclear_step);
         warningImage = findViewById(R.id.warning_image_step2);
         warningText = findViewById(R.id.warning_text_step2);
 
-        Intent emailcheckIntent = getIntent();
-        if (emailcheckIntent.hasExtra("email")) {
-            mEmail = emailcheckIntent.getExtras().getString("nickname");
-            Intent nickNameIntent = getIntent();
-            if (nickNameIntent.hasExtra("nickname")) {
-                mNickname = nickNameIntent.getExtras().getString("nickname");
-            }
+
+        Intent intent = getIntent();
+        if(intent.hasExtra("userInfo")) {
+
+            mUserInfo =(UserInfo)intent.getSerializableExtra("userInfo");
+
+            if(mUserInfo.getEmail()!=null)
+            mEdit_Input_Text_joinmember.setText(mUserInfo.getEmail());
         }
 
     }
@@ -138,9 +141,15 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
                 Intent intent = new Intent(Step2Activity.this, Step1Activity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
+                if(mEdit_Input_Text_joinmember.getText().toString()==null) {
+                    mUserInfo.setEmail("");
+                }else{
 
-                intent.putExtra("nickname", mNickname);
+                    mUserInfo.setEmail(mEdit_Input_Text_joinmember.getText().toString());
+                }
 
+                mUserInfo.setEmail(mEmail);
+                intent.putExtra("userInfo", mUserInfo);
                 overridePendingTransition(0, 0); // finish()시 애니메이션 삭제
                 startActivity(intent);
                 finish();
@@ -178,8 +187,14 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
             Intent intent = new Intent(Step2Activity.this, Step3Activity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
-            intent.putExtra("nickname", mNickname);
-            intent.putExtra("email", mEmail);
+            if(mEdit_Input_Text_joinmember.getText().toString()==null) {
+                mUserInfo.setEmail("");
+            }else{
+
+                mUserInfo.setEmail(mEdit_Input_Text_joinmember.getText().toString());
+            }
+            intent.putExtra("userInfo", mUserInfo);
+
             startActivity(intent);
             finish();
         } else {

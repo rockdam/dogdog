@@ -1,6 +1,5 @@
 package com.makeus.dogdog.src.joinmember.step3;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
@@ -16,10 +15,9 @@ import android.widget.Toast;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
-import com.makeus.dogdog.src.joinmember.step1.Step1Activity;
 import com.makeus.dogdog.src.joinmember.step2.Step2Activity;
-import com.makeus.dogdog.src.joinmember.step3repeat.Step3ReeatActivity;
-import com.makeus.dogdog.src.joinmember.step4.Step4Activity;
+import com.makeus.dogdog.src.joinmember.step3repeat.Step3RepeatActivity;
+import com.makeus.dogdog.src.joinmember.step6.models.UserInfo;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,7 +30,8 @@ public class Step3Activity extends BaseActivity implements View.OnClickListener 
 
     ImageView warningImage, edtclear_step;
     EditText mEdit_Input_Text_joinmember;
-    String mNickname, mEmail,mPassword;
+    String mPassword;
+    UserInfo mUserInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,23 +41,20 @@ public class Step3Activity extends BaseActivity implements View.OnClickListener 
         mBackButton = findViewById(R.id.backButton_step);
         mNextButton.setOnClickListener(this);
         mBackButton.setOnClickListener(this);
-
+        mUserInfo=new UserInfo();
         mEdit_Input_Text_joinmember = findViewById(R.id.edit_Input_Text_joinmember);
         mBackButton.setOnClickListener(this);
         edtclear_step = findViewById(R.id.edtclear_step);
         warningImage = findViewById(R.id.warning_image_step3);
         warningText = findViewById(R.id.warning_text_step3);
-        Intent emailcheckIntent = getIntent();
 
-            Intent nickNameIntent = getIntent();
-            if (nickNameIntent.hasExtra("nickname")) {
-                mNickname = nickNameIntent.getExtras().getString("nickname");
-            }
-        if (emailcheckIntent.hasExtra("email")) {
-            mEmail = emailcheckIntent.getExtras().getString("email");
-            if (nickNameIntent.hasExtra("password")) {
-                mPassword = nickNameIntent.getExtras().getString("password");
-            }
+
+        Intent intent = getIntent();
+        if (intent.hasExtra("userInfo")) {
+
+            mUserInfo = (UserInfo) intent.getSerializableExtra("userInfo");
+
+//            mEdit_Input_Text_joinmember.setText(mUserInfo.getPassword());
         }
 
 
@@ -119,7 +115,7 @@ public class Step3Activity extends BaseActivity implements View.OnClickListener 
 
             @Override
             public void afterTextChanged(Editable editable) {
-                mPassword=editable.toString();
+                mPassword = editable.toString();
 //                mEdit_Input_Text_joinmember.getBackground().setColorFilter(getResources().getColor(R.color.editTextUnderLine),
 //                        PorterDuff.Mode.SRC_ATOP);
 //                warningText.setTextColor(ContextCompat.getColor(getBaseContext(),
@@ -138,8 +134,8 @@ public class Step3Activity extends BaseActivity implements View.OnClickListener 
 
                 back.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 overridePendingTransition(0, 0); // finish()시 애니메이션 삭제
-                back.putExtra("nickname", mNickname);
-                back.putExtra("email", mEmail);
+
+                back.putExtra("userInfo", mUserInfo);
                 startActivity(back);
                 finish();
                 break;
@@ -148,16 +144,22 @@ public class Step3Activity extends BaseActivity implements View.OnClickListener 
 
                 if (!isValidPassword(mEdit_Input_Text_joinmember.getText().toString())) {
                     Toast.makeText(this, "패스워드 형식이 맞지 않습니다. \n다시 입력해주세요 :)", Toast.LENGTH_SHORT).show();
-                }else
-            {
-                Intent intent = new Intent(Step3Activity.this, Step3ReeatActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                } else {
+                    Intent intent = new Intent(Step3Activity.this, Step3RepeatActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    if(mEdit_Input_Text_joinmember.getText().toString()==null) {
+                        mUserInfo.setPassword("");
+                    }else{
 
+                        mUserInfo.setPassword(mEdit_Input_Text_joinmember.getText().toString());
+                    }
 
-                startActivity(intent);
-                finish();
-            }
-            break;
+                    intent.putExtra("userInfo", mUserInfo);
+
+                    startActivity(intent);
+                    finish();
+                }
+                break;
 
 
         }

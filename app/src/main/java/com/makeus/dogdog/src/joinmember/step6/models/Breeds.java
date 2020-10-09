@@ -1,4 +1,4 @@
-package com.makeus.dogdog.src.joinmember.step6;
+package com.makeus.dogdog.src.joinmember.step6.models;
 
 public class Breeds {
     String breed;

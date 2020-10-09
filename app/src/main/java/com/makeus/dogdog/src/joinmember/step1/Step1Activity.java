@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,6 +21,7 @@ import androidx.core.content.res.ResourcesCompat;
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
 import com.makeus.dogdog.src.joinmember.step2.Step2Activity;
+import com.makeus.dogdog.src.joinmember.step6.models.UserInfo;
 
 public class Step1Activity extends BaseActivity implements View.OnClickListener {
 
@@ -29,7 +32,7 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
     EditText mEdit_Input_Text_joinmember;
     String mNickName;
 
-
+    UserInfo mUserInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,16 +46,25 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
         Typeface typeface = ResourcesCompat.getFont(this, R.font.spoqahansansregular);
         warningText.setTypeface(typeface);
         edtclear_step=findViewById(R.id.edtclear_step);
-
+        mUserInfo=new UserInfo();
         mNextTxt.setOnClickListener(this);
         //  mJoinMessage.setTypeface(typeface);
         //깃 연동 기념
         //슬랙 연동 기념
 
         Intent intent = getIntent();
-        if(intent.hasExtra("nickname")) {
-            mEdit_Input_Text_joinmember.setText(intent.getExtras().getString("nickname"));
-        }
+        if(intent.hasExtra("userInfo")) {
+
+            mUserInfo =(UserInfo)intent.getSerializableExtra("userInfo");
+
+
+
+
+            if(mUserInfo.getNickName()!=null) {
+                mEdit_Input_Text_joinmember.setText(mUserInfo.getNickName());
+                Log.e("뭔데", mUserInfo.getNickName());
+            }
+            }
 
 
 
@@ -72,7 +84,7 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
         mEdit_Input_Text_joinmember.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
-
+                mNickName =mEdit_Input_Text_joinmember.getText().toString();
             }
 
             @Override
@@ -125,7 +137,16 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
                     Intent intent = new Intent(Step1Activity.this, Step2Activity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
-                    intent.putExtra("nickname",mNickName);
+                    //Edittext 비었을 때 읽으면 null
+                    if(mEdit_Input_Text_joinmember.getText().toString()==null) {
+                        mUserInfo.setNickName("");
+                    }else{
+
+                        mUserInfo.setNickName(mEdit_Input_Text_joinmember.getText().toString());
+                    }
+//                   이게 이렇게 짤 수 밖에 없네 . 변화가 안 일어 난 상태에서 변수 보내면 null
+
+                    intent.putExtra("userInfo", mUserInfo);
 
 
                     startActivity(intent);
