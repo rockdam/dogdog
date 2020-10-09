@@ -12,30 +12,39 @@ import android.widget.TextView;
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
 import com.makeus.dogdog.src.joinmember.step5.Step5Activity;
+import com.makeus.dogdog.src.joinmember.step6.models.DogInfo;
+import com.makeus.dogdog.src.joinmember.step6.models.UserInfo;
 import com.makeus.dogdog.src.joinmember.step7.Step7Activity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Step6Activity extends BaseActivity implements View.OnClickListener {
-    TextView mJoinMessage, mNextButton,mBackButton,dog_breeds_step6;
+    TextView mJoinMessage, mNextButton, mBackButton, dog_breeds_step6;
     EditText mEdit_Input_Text_joinmember;
     String mKg;
     SearchBreedsDialog mSearchBreedsDialog;
     FrameLayout mEditFrame;
+    DogInfo mDogInfo;
+    int mBreedsIdx;
+    UserInfo mUserInfo;
+    float mWeight = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step6);
-        mNextButton=findViewById(R.id.next_button_step);
-        mBackButton=findViewById(R.id.backButton_step);
+        mNextButton = findViewById(R.id.next_button_step);
+        mBackButton = findViewById(R.id.backButton_step);
         mNextButton.setOnClickListener(this);
         mBackButton.setOnClickListener(this);
 
-        dog_breeds_step6=findViewById(R.id.dog_breeds_step6);
+        mUserInfo = new UserInfo();
+        mDogInfo = new DogInfo();
+        dog_breeds_step6 = findViewById(R.id.dog_breeds_step6);
 
-        mEdit_Input_Text_joinmember=findViewById(R.id.edit_Input_Text_joinmember);
-        mSearchBreedsDialog=new SearchBreedsDialog(this);
+        mEdit_Input_Text_joinmember = findViewById(R.id.edit_Input_Text_joinmember);
+        mSearchBreedsDialog = new SearchBreedsDialog(this);
 
         mEdit_Input_Text_joinmember.addTextChangedListener(new TextWatcher() {
             @Override
@@ -45,20 +54,21 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener 
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                mKg =mEdit_Input_Text_joinmember.getText().toString();
+                mKg = mEdit_Input_Text_joinmember.getText().toString();
 
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
 
-                if(isValidKg(editable.toString()))
-                {
-
-                    mKg+=" kg";
+                if (isValidKg(editable.toString())) {
+                    mWeight = Float.parseFloat(mKg);
+                    mKg += " kg";
 
                     mEdit_Input_Text_joinmember.setText(mKg);
-                    mEdit_Input_Text_joinmember.setSelection(mEdit_Input_Text_joinmember.getText().length()-3);
+                    mEdit_Input_Text_joinmember.setSelection(mEdit_Input_Text_joinmember.getText().length() - 3);
+
+
                 }
 
 
@@ -67,15 +77,31 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener 
 
         dog_breeds_step6.setOnClickListener(view -> {
 
-            mSearchBreedsDialog=new SearchBreedsDialog(this);
-            mSearchBreedsDialog.setDialogListener(
-                    (breed, breedIdx) -> dog_breeds_step6.setText(breed));
+            mSearchBreedsDialog = new SearchBreedsDialog(this);
+            mSearchBreedsDialog.setDialogListener((breed, breedIdx) -> {
+                dog_breeds_step6.setText(breed);
+                mBreedsIdx=breedIdx;
+            }
+//
+
+
+            );
 
             mSearchBreedsDialog.show();
 
 
         });
+        Intent intent = getIntent();
+        if (intent.hasExtra("userInfo")) {
 
+            mUserInfo = (UserInfo) intent.getSerializableExtra("userInfo");
+
+        }
+        if (intent.hasExtra("dogInfo")) {
+
+            mDogInfo = (DogInfo) intent.getSerializableExtra("dogInfo");
+
+        }
 
     }
 
@@ -98,34 +124,40 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener 
         super.onResume();
 
 
-
-
 //        https://stackoverflow.com/questions/2811031/decimal-or-numeric-values-in-regular-expression-validation 출처
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId())
-        {
+        switch (view.getId()) {
             case R.id.backButton_step:
                 Intent back = new Intent(Step6Activity.this, Step5Activity.class);
                 back.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
+                back.putExtra("dogInfo", mDogInfo);
+                back.putExtra("userInfo", mUserInfo);
 
-
-                overridePendingTransition(0,0); // finish()시 애니메이션 삭제
+                overridePendingTransition(0, 0); // finish()시 애니메이션 삭제
                 startActivity(back);
                 finish();
                 break;
             case R.id.next_button_step:
                 Intent intent = new Intent(Step6Activity.this, Step7Activity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                if (mEdit_Input_Text_joinmember.getText().toString() == null) {
+                    mDogInfo.setWeight(0);
+                } else {
 
+                    mDogInfo.setWeight(mWeight);
+                }
+                mDogInfo.setBreedIdx(mBreedsIdx);
+                intent.putExtra("dogInfo", mDogInfo);
+
+                intent.putExtra("userInfo", mUserInfo);
 
                 startActivity(intent);
                 finish();
                 break;
-
 
 
         }

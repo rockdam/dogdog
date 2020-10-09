@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +19,8 @@ import com.makeus.dogdog.src.BaseActivity;
 import com.makeus.dogdog.src.joinmember.step3.Step3Activity;
 import com.makeus.dogdog.src.joinmember.step4.Step4Activity;
 import com.makeus.dogdog.src.joinmember.step6.Step6Activity;
+import com.makeus.dogdog.src.joinmember.step6.models.DogInfo;
+import com.makeus.dogdog.src.joinmember.step6.models.UserInfo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,6 +30,11 @@ public class Step5Activity extends BaseActivity implements View.OnClickListener 
     TextView mJoinMessage, mNextButton;
     EditText mEdit_Input_Text_joinmember;
     ImageView edtclear_step;
+    DogInfo mDogInfo;
+    UserInfo mUserInfo;
+    RadioGroup mRgGender;
+    RadioButton mMale,mFemale;
+    String mGender;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -35,14 +44,64 @@ public class Step5Activity extends BaseActivity implements View.OnClickListener 
         setContentView(R.layout.activity_step5);
         mTellUsAge = findViewById(R.id.tellUsAge_Step2Activity);
         mTellUsAge.setText(Html.fromHtml("<b>" + "반려견의 성별과 나이" + "</b>" + "를" + "<br>" + "</br>" + "알려주세요."));
-
+        mUserInfo=new UserInfo();
+        mDogInfo =new DogInfo();
         mBackButton = findViewById(R.id.backButton_step);
         mBackButton.setOnClickListener(this);
         mNextButton=findViewById(R.id.next_button_step);
         mNextButton.setOnClickListener(this);
         mEdit_Input_Text_joinmember=findViewById(R.id.edit_Input_Text_joinmember);
         edtclear_step=findViewById(R.id.edtclear_step);
+        mRgGender=findViewById(R.id.rgGender);
+        mMale=findViewById(R.id.male_step5);
+        mFemale=findViewById(R.id.female_step5);
 
+
+
+        Intent intent = getIntent();
+        if (intent.hasExtra("userInfo") ) {
+
+            mUserInfo = (UserInfo) intent.getSerializableExtra("userInfo");
+
+        }
+        if(intent.hasExtra("dogInfo"))
+        {
+
+            mDogInfo  =(DogInfo)intent.getSerializableExtra("dogInfo");
+            if(mDogInfo.getBirth()!=null)
+                mEdit_Input_Text_joinmember.setText(mDogInfo.getBirth());
+
+            if(mDogInfo.getGender()!=null) {
+
+               mGender= mDogInfo.getGender();
+                if (mDogInfo.getGender().equals("male")) {
+                    mMale.setChecked(true);
+
+                } else {
+
+                    mFemale.setChecked(true);
+                }
+            }
+        }
+
+
+        mRgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+
+                if(i == R.id.male_step5)
+                {
+                    mGender="male";
+
+
+                }
+                if(i == R.id.female_step5)
+                {
+                    mGender="female";
+
+                }
+            }
+        });
 
     }
 // 유효한 날짜인지 체크
@@ -139,8 +198,8 @@ public class Step5Activity extends BaseActivity implements View.OnClickListener 
                 Intent back = new Intent(Step5Activity.this, Step4Activity.class);
                 back.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
-
-
+                back.putExtra("dogInfo", mDogInfo);
+                back.putExtra("userInfo", mUserInfo);
                 overridePendingTransition(0,0); // finish()시 애니메이션 삭제
                 startActivity(back);
                 finish();
@@ -150,8 +209,22 @@ public class Step5Activity extends BaseActivity implements View.OnClickListener 
                 if(validationDate(mEdit_Input_Text_joinmember.getText().toString())) {
                     Intent intent = new Intent(Step5Activity.this, Step6Activity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    if(mEdit_Input_Text_joinmember.getText().toString()==null) {
+                        mDogInfo.setBirth("");
+                    }else{
 
+                        mDogInfo.setBirth(mEdit_Input_Text_joinmember.getText().toString());
+                    }
+                    if(mGender.equals("male"))
+                    {
+                        mDogInfo.setGender("male");
+                    }else{
 
+                        mDogInfo.setGender("female");
+                    }
+                    intent.putExtra("dogInfo",mDogInfo);
+
+                    intent.putExtra("userInfo", mUserInfo);
                     startActivity(intent);
                     finish();
                 }else{

@@ -8,6 +8,7 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,6 +21,8 @@ import com.makeus.dogdog.src.joinmember.step1.Step1Activity;
 import com.makeus.dogdog.src.joinmember.step2.Step2Activity;
 import com.makeus.dogdog.src.joinmember.step3.Step3Activity;
 import com.makeus.dogdog.src.joinmember.step5.Step5Activity;
+import com.makeus.dogdog.src.joinmember.step6.models.DogInfo;
+import com.makeus.dogdog.src.joinmember.step6.models.UserInfo;
 
 public class Step4Activity extends BaseActivity implements View.OnClickListener{
     TextView mNextButton,mBackButton;
@@ -28,6 +31,8 @@ public class Step4Activity extends BaseActivity implements View.OnClickListener{
     ImageView warningImage,edtclear_step;
     EditText mEdit_Input_Text_joinmember;
     String mInput;
+    DogInfo mDogInfo;
+    UserInfo mUserInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +42,27 @@ public class Step4Activity extends BaseActivity implements View.OnClickListener{
         mNextButton.setOnClickListener(this);
         mBackButton.setOnClickListener(this);
 
+        mDogInfo=new DogInfo();
+        mUserInfo=new UserInfo();
         mEdit_Input_Text_joinmember=findViewById(R.id.edit_Input_Text_joinmember);
         mBackButton.setOnClickListener(this);
         edtclear_step=findViewById(R.id.edtclear_step);
         warningImage=findViewById(R.id.warning_image_step4);
         warningText=findViewById(R.id.warning_text_step4);
-        mInput =mEdit_Input_Text_joinmember.getText().toString();
+
+        Intent intent = getIntent();
+        if (intent.hasExtra("userInfo") ) {
+
+            mUserInfo = (UserInfo) intent.getSerializableExtra("userInfo");
+
+        }
+        if(intent.hasExtra("dogInfo"))
+        {
+
+            mDogInfo  =(DogInfo)intent.getSerializableExtra("dogInfo");
+            if(mDogInfo.getName()!=null)
+                mEdit_Input_Text_joinmember.setText(mDogInfo.getName());
+        }
     }
 
     @Override
@@ -107,21 +127,31 @@ public class Step4Activity extends BaseActivity implements View.OnClickListener{
                 back.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
 
+                back.putExtra("userInfo", mUserInfo);
 
+                Log.e("뭐여",mUserInfo.getPassword());
                 overridePendingTransition(0,0); // finish()시 애니메이션 삭제
                 startActivity(back);
                 finish();
                 break;
             case R.id.next_button_step:
-                if(mInput.length()<2)
+                if(mEdit_Input_Text_joinmember.getText()!=null && mEdit_Input_Text_joinmember.getText().toString().length()<2)
                 {
 
                     Toast.makeText(this,"2글자 이상 입력해주세요 :)",Toast.LENGTH_SHORT).show();
                 }else {
+
+                    if(mEdit_Input_Text_joinmember.getText().toString()==null) {
+                        mDogInfo.setName("");
+                    }else{
+
+                        mDogInfo.setName(mEdit_Input_Text_joinmember.getText().toString());
+                    }
                     Intent intent = new Intent(Step4Activity.this, Step5Activity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    intent.putExtra("dogInfo",mDogInfo);
 
-
+                    intent.putExtra("userInfo", mUserInfo);
                     startActivity(intent);
                     finish();
                 }

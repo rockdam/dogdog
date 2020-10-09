@@ -54,7 +54,7 @@ public class Step3Activity extends BaseActivity implements View.OnClickListener 
 
             mUserInfo = (UserInfo) intent.getSerializableExtra("userInfo");
 
-//            mEdit_Input_Text_joinmember.setText(mUserInfo.getPassword());
+            mEdit_Input_Text_joinmember.setText(mUserInfo.getPassword());
         }
 
 

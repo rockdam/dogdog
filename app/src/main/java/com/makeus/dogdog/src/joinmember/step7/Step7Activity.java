@@ -11,15 +11,33 @@ import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
 import com.makeus.dogdog.src.HomeDogDog.HomeActivity;
 import com.makeus.dogdog.src.joinmember.step6.Step6Activity;
+import com.makeus.dogdog.src.joinmember.step6.models.DogInfo;
+import com.makeus.dogdog.src.joinmember.step6.models.UserInfo;
 
 public class Step7Activity extends BaseActivity implements View.OnClickListener {
     TextView mJoinMessage, mNextButton,mBackButton;
+    UserInfo mUserInfo;
+    DogInfo mDogInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step7);
         mNextButton=findViewById(R.id.mainButton_step);
         mNextButton.setOnClickListener(this);
+        mUserInfo=new UserInfo();
+        mDogInfo=new DogInfo();
+        Intent intent = getIntent();
+        if (intent.hasExtra("userInfo")) {
+
+            mUserInfo = (UserInfo) intent.getSerializableExtra("userInfo");
+
+        }
+        if (intent.hasExtra("dogInfo")) {
+
+            mDogInfo = (DogInfo) intent.getSerializableExtra("dogInfo");
+
+        }
     }
 
     @Override

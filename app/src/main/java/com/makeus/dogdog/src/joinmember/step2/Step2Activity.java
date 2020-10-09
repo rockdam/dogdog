@@ -148,7 +148,7 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
                     mUserInfo.setEmail(mEdit_Input_Text_joinmember.getText().toString());
                 }
 
-                mUserInfo.setEmail(mEmail);
+                mUserInfo.setEmail(mEdit_Input_Text_joinmember.getText().toString());
                 intent.putExtra("userInfo", mUserInfo);
                 overridePendingTransition(0, 0); // finish()시 애니메이션 삭제
                 startActivity(intent);

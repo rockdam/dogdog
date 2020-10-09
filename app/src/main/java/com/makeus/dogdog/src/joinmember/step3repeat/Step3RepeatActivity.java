@@ -135,7 +135,7 @@ public class Step3RepeatActivity extends BaseActivity implements View.OnClickLis
                     if (mEdit_Input_Text_joinmember.getText().toString().equals(mUserInfo.getPassword())) {
                         Intent intent = new Intent(Step3RepeatActivity.this, Step4Activity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-
+                        intent.putExtra("userInfo", mUserInfo);
 
                         startActivity(intent);
                         finish();
