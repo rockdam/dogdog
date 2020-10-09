@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -82,7 +84,7 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
 
-                if (mEdit_Input_Text_joinmember.getText().toString().equals("") || isValidId(mEdit_Input_Text_joinmember.getText().toString())) {
+                if (mEdit_Input_Text_joinmember.getText().toString().equals("") || isValidEmail(mEdit_Input_Text_joinmember.getText().toString())) {
 
                     mEdit_Input_Text_joinmember.getBackground().setColorFilter(getResources().getColor(R.color.startwalkingGray),
                             PorterDuff.Mode.SRC_ATOP);
@@ -117,18 +119,12 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
             }
         });
     }
-
-    public static boolean isValidId(final String id) {
-
-        Pattern pattern;
-        Matcher matcher;
-        final String ID_PATTERN = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";
-        pattern = Pattern.compile(ID_PATTERN);
-        matcher = pattern.matcher(id);
-
-        return matcher.matches();
-
+//    https://stackoverflow.com/questions/12947620/email-address-validation-in-android-on-edittext
+//    이메일 체크는 이걸로하면됌
+    public static boolean isValidEmail(CharSequence target) {
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
+
 
     @Override
     public void onClick(View view) {
@@ -155,10 +151,10 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
             case R.id.next_button_step:
 
 
-                if (!isValidId(mEdit_Input_Text_joinmember.getText().toString())) {
+                if (!isValidEmail(mEdit_Input_Text_joinmember.getText().toString())) {
 
 
-                    Toast.makeText(this, "아이디 형식이 맞지 않습니다. \n다시 입력해주세요 :)", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "이메일 형식이 맞지 않습니다. \n다시 입력해주세요 :)", Toast.LENGTH_SHORT).show();
 
                 } else {
 
