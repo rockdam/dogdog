@@ -1,6 +1,5 @@
 package com.makeus.dogdog.src.joinmember.step4;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
@@ -17,12 +16,10 @@ import android.widget.Toast;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
-import com.makeus.dogdog.src.joinmember.step1.Step1Activity;
-import com.makeus.dogdog.src.joinmember.step2.Step2Activity;
 import com.makeus.dogdog.src.joinmember.step3.Step3Activity;
 import com.makeus.dogdog.src.joinmember.step5.Step5Activity;
-import com.makeus.dogdog.src.joinmember.step6.models.DogInfo;
-import com.makeus.dogdog.src.joinmember.step6.models.UserInfo;
+import com.makeus.dogdog.src.joinmember.step6.models.dogInfo;
+import com.makeus.dogdog.src.joinmember.step6.models.userInfo;
 
 public class Step4Activity extends BaseActivity implements View.OnClickListener{
     TextView mNextButton,mBackButton;
@@ -31,8 +28,8 @@ public class Step4Activity extends BaseActivity implements View.OnClickListener{
     ImageView warningImage,edtclear_step;
     EditText mEdit_Input_Text_joinmember;
     String mInput;
-    DogInfo mDogInfo;
-    UserInfo mUserInfo;
+    dogInfo mDogInfo;
+    userInfo mUserInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +39,8 @@ public class Step4Activity extends BaseActivity implements View.OnClickListener{
         mNextButton.setOnClickListener(this);
         mBackButton.setOnClickListener(this);
 
-        mDogInfo=new DogInfo();
-        mUserInfo=new UserInfo();
+        mDogInfo=new dogInfo();
+        mUserInfo=new userInfo();
         mEdit_Input_Text_joinmember=findViewById(R.id.edit_Input_Text_joinmember);
         mBackButton.setOnClickListener(this);
         edtclear_step=findViewById(R.id.edtclear_step);
@@ -53,13 +50,13 @@ public class Step4Activity extends BaseActivity implements View.OnClickListener{
         Intent intent = getIntent();
         if (intent.hasExtra("userInfo") ) {
 
-            mUserInfo = (UserInfo) intent.getSerializableExtra("userInfo");
+            mUserInfo = (userInfo) intent.getSerializableExtra("userInfo");
 
         }
         if(intent.hasExtra("dogInfo"))
         {
 
-            mDogInfo  =(DogInfo)intent.getSerializableExtra("dogInfo");
+            mDogInfo  =(dogInfo)intent.getSerializableExtra("dogInfo");
             if(mDogInfo.getName()!=null)
                 mEdit_Input_Text_joinmember.setText(mDogInfo.getName());
         }

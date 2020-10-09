@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
@@ -21,7 +20,7 @@ import androidx.core.content.res.ResourcesCompat;
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
 import com.makeus.dogdog.src.joinmember.step2.Step2Activity;
-import com.makeus.dogdog.src.joinmember.step6.models.UserInfo;
+import com.makeus.dogdog.src.joinmember.step6.models.userInfo;
 
 public class Step1Activity extends BaseActivity implements View.OnClickListener {
 
@@ -32,7 +31,7 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
     EditText mEdit_Input_Text_joinmember;
     String mNickName;
 
-    UserInfo mUserInfo;
+    userInfo mUserInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +45,7 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
         Typeface typeface = ResourcesCompat.getFont(this, R.font.spoqahansansregular);
         warningText.setTypeface(typeface);
         edtclear_step=findViewById(R.id.edtclear_step);
-        mUserInfo=new UserInfo();
+        mUserInfo=new userInfo();
         mNextTxt.setOnClickListener(this);
         //  mJoinMessage.setTypeface(typeface);
         //깃 연동 기념
@@ -55,7 +54,7 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
         Intent intent = getIntent();
         if(intent.hasExtra("userInfo")) {
 
-            mUserInfo =(UserInfo)intent.getSerializableExtra("userInfo");
+            mUserInfo =(userInfo)intent.getSerializableExtra("userInfo");
 
 
 

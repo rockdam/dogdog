@@ -3,10 +3,8 @@ package com.makeus.dogdog.src.joinmember.step2;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,7 +19,7 @@ import com.makeus.dogdog.src.joinmember.step1.Step1Activity;
 import com.makeus.dogdog.src.joinmember.step2.interfaces.ShowToastStep2;
 import com.makeus.dogdog.src.joinmember.step2.models.DuplicateUserIdResponse;
 import com.makeus.dogdog.src.joinmember.step3.Step3Activity;
-import com.makeus.dogdog.src.joinmember.step6.models.UserInfo;
+import com.makeus.dogdog.src.joinmember.step6.models.userInfo;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -37,7 +35,7 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
     ImageView warningImage, edtclear_step;
     EditText mEdit_Input_Text_joinmember;
     String mNickname, mEmail;
-    UserInfo mUserInfo;
+    userInfo mUserInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +43,7 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
         mNextButton = findViewById(R.id.next_button_step);
         mBackButton = findViewById(R.id.backButton_step);
         mNextButton.setOnClickListener(this);
-        mUserInfo=new UserInfo();
+        mUserInfo=new userInfo();
         mEdit_Input_Text_joinmember = findViewById(R.id.edit_Input_Text_joinmember);
         mBackButton.setOnClickListener(this);
         edtclear_step = findViewById(R.id.edtclear_step);
@@ -56,7 +54,7 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
         Intent intent = getIntent();
         if(intent.hasExtra("userInfo")) {
 
-            mUserInfo =(UserInfo)intent.getSerializableExtra("userInfo");
+            mUserInfo =(userInfo)intent.getSerializableExtra("userInfo");
 
             if(mUserInfo.getEmail()!=null)
             mEdit_Input_Text_joinmember.setText(mUserInfo.getEmail());

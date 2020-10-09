@@ -12,23 +12,26 @@ import android.widget.TextView;
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
 import com.makeus.dogdog.src.joinmember.step5.Step5Activity;
-import com.makeus.dogdog.src.joinmember.step6.models.DogInfo;
-import com.makeus.dogdog.src.joinmember.step6.models.UserInfo;
+import com.makeus.dogdog.src.joinmember.step6.interfaces.MoveAcitivity7Interface;
+import com.makeus.dogdog.src.joinmember.step6.models.PostJoinMember;
+import com.makeus.dogdog.src.joinmember.step6.models.dogInfo;
+import com.makeus.dogdog.src.joinmember.step6.models.userInfo;
 import com.makeus.dogdog.src.joinmember.step7.Step7Activity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Step6Activity extends BaseActivity implements View.OnClickListener {
+public class Step6Activity extends BaseActivity implements View.OnClickListener, MoveAcitivity7Interface {
     TextView mJoinMessage, mNextButton, mBackButton, dog_breeds_step6;
     EditText mEdit_Input_Text_joinmember;
     String mKg;
     SearchBreedsDialog mSearchBreedsDialog;
-    FrameLayout mEditFrame;
-    DogInfo mDogInfo;
+    dogInfo mDogInfo;
     int mBreedsIdx;
-    UserInfo mUserInfo;
+    userInfo mUserInfo;
     float mWeight = 0;
+    Step6Service mStep6Service;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +42,8 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener 
         mNextButton.setOnClickListener(this);
         mBackButton.setOnClickListener(this);
 
-        mUserInfo = new UserInfo();
-        mDogInfo = new DogInfo();
+        mUserInfo = new userInfo();
+        mDogInfo = new dogInfo();
         dog_breeds_step6 = findViewById(R.id.dog_breeds_step6);
 
         mEdit_Input_Text_joinmember = findViewById(R.id.edit_Input_Text_joinmember);
@@ -79,9 +82,9 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener 
 
             mSearchBreedsDialog = new SearchBreedsDialog(this);
             mSearchBreedsDialog.setDialogListener((breed, breedIdx) -> {
-                dog_breeds_step6.setText(breed);
-                mBreedsIdx=breedIdx;
-            }
+                        dog_breeds_step6.setText(breed);
+                        mBreedsIdx = breedIdx;
+                    }
 //
 
 
@@ -94,12 +97,12 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener 
         Intent intent = getIntent();
         if (intent.hasExtra("userInfo")) {
 
-            mUserInfo = (UserInfo) intent.getSerializableExtra("userInfo");
+            mUserInfo = (userInfo) intent.getSerializableExtra("userInfo");
 
         }
         if (intent.hasExtra("dogInfo")) {
 
-            mDogInfo = (DogInfo) intent.getSerializableExtra("dogInfo");
+            mDogInfo = (dogInfo) intent.getSerializableExtra("dogInfo");
 
         }
 
@@ -142,8 +145,7 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener 
                 finish();
                 break;
             case R.id.next_button_step:
-                Intent intent = new Intent(Step6Activity.this, Step7Activity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
                 if (mEdit_Input_Text_joinmember.getText().toString() == null) {
                     mDogInfo.setWeight(0);
                 } else {
@@ -151,15 +153,29 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener 
                     mDogInfo.setWeight(mWeight);
                 }
                 mDogInfo.setBreedIdx(mBreedsIdx);
-                intent.putExtra("dogInfo", mDogInfo);
+//                intent.putExtra("dogInfo", mDogInfo);
+//
+//                intent.putExtra("userInfo", mUserInfo);
+                PostJoinMember postJoinMember = new PostJoinMember();
 
-                intent.putExtra("userInfo", mUserInfo);
-
-                startActivity(intent);
-                finish();
+                postJoinMember.setDogInfo(mDogInfo);
+                postJoinMember.setUserInfo(mUserInfo);
+                mStep6Service = new Step6Service(this);
+                mStep6Service.postJoinMember(postJoinMember);
+//                startActivity(intent);
+//                finish();
                 break;
 
 
         }
+    }
+
+    @Override
+    public void move() {
+
+        Intent intent = new Intent(Step6Activity.this, Step7Activity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
+        finish();
     }
 }

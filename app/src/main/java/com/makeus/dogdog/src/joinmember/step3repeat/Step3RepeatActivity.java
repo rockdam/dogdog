@@ -17,7 +17,7 @@ import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
 import com.makeus.dogdog.src.joinmember.step3.Step3Activity;
 import com.makeus.dogdog.src.joinmember.step4.Step4Activity;
-import com.makeus.dogdog.src.joinmember.step6.models.UserInfo;
+import com.makeus.dogdog.src.joinmember.step6.models.userInfo;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,7 +28,7 @@ public class Step3RepeatActivity extends BaseActivity implements View.OnClickLis
 
     ImageView warningImage, edtclear_step;
     EditText mEdit_Input_Text_joinmember;
-    UserInfo mUserInfo;
+    userInfo mUserInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class Step3RepeatActivity extends BaseActivity implements View.OnClickLis
         mBackButton = findViewById(R.id.backButton_step);
         mNextButton.setOnClickListener(this);
         mBackButton.setOnClickListener(this);
-        mUserInfo = new UserInfo();
+        mUserInfo = new userInfo();
         mEdit_Input_Text_joinmember = findViewById(R.id.edit_Input_Text_joinmember);
         mBackButton.setOnClickListener(this);
         edtclear_step = findViewById(R.id.edtclear_step);
@@ -47,7 +47,7 @@ public class Step3RepeatActivity extends BaseActivity implements View.OnClickLis
         Intent intent = getIntent();
         if (intent.hasExtra("userInfo")) {
 
-            mUserInfo = (UserInfo) intent.getSerializableExtra("userInfo");
+            mUserInfo = (userInfo) intent.getSerializableExtra("userInfo");
 
 
         }

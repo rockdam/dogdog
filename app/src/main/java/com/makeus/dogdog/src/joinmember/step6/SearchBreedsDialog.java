@@ -29,7 +29,7 @@ public class SearchBreedsDialog extends Dialog implements View.OnClickListener, 
     ArrayList<Breeds> mArraylist;
     private SearchBreedsDialogListener customDialogListener;
 
-    SearchBreedsService mSearchBreedsService;
+    Step6Service mStep6Service;
 
     ArrayAdapter<Breeds> mAdapter;
     public SearchBreedsDialog(@NonNull Context context) {
@@ -102,8 +102,8 @@ public class SearchBreedsDialog extends Dialog implements View.OnClickListener, 
         setContentView(R.layout.searchbreeds_dialog);
         mArraylist=new ArrayList<>();
         mListview=findViewById(R.id.listview_breeds_customdialog);
-        mSearchBreedsService=new SearchBreedsService(this); //서비스 등록
-        mSearchBreedsService.searchBreeds();
+        mStep6Service =new Step6Service(this); //서비스 등록
+        mStep6Service.searchBreeds();
     }
 
     @Override

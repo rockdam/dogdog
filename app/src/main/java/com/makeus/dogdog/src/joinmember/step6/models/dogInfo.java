@@ -2,7 +2,7 @@ package com.makeus.dogdog.src.joinmember.step6.models;
 
 import java.io.Serializable;
 
-public class DogInfo implements Serializable {
+public class dogInfo implements Serializable {
     String name;
     String gender;
     String birth ;

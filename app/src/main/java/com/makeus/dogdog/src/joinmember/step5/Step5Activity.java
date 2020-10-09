@@ -16,11 +16,10 @@ import android.widget.Toast;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
-import com.makeus.dogdog.src.joinmember.step3.Step3Activity;
 import com.makeus.dogdog.src.joinmember.step4.Step4Activity;
 import com.makeus.dogdog.src.joinmember.step6.Step6Activity;
-import com.makeus.dogdog.src.joinmember.step6.models.DogInfo;
-import com.makeus.dogdog.src.joinmember.step6.models.UserInfo;
+import com.makeus.dogdog.src.joinmember.step6.models.dogInfo;
+import com.makeus.dogdog.src.joinmember.step6.models.userInfo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,8 +29,8 @@ public class Step5Activity extends BaseActivity implements View.OnClickListener 
     TextView mJoinMessage, mNextButton;
     EditText mEdit_Input_Text_joinmember;
     ImageView edtclear_step;
-    DogInfo mDogInfo;
-    UserInfo mUserInfo;
+    dogInfo mDogInfo;
+    userInfo mUserInfo;
     RadioGroup mRgGender;
     RadioButton mMale,mFemale;
     String mGender;
@@ -44,8 +43,8 @@ public class Step5Activity extends BaseActivity implements View.OnClickListener 
         setContentView(R.layout.activity_step5);
         mTellUsAge = findViewById(R.id.tellUsAge_Step2Activity);
         mTellUsAge.setText(Html.fromHtml("<b>" + "반려견의 성별과 나이" + "</b>" + "를" + "<br>" + "</br>" + "알려주세요."));
-        mUserInfo=new UserInfo();
-        mDogInfo =new DogInfo();
+        mUserInfo=new userInfo();
+        mDogInfo =new dogInfo();
         mBackButton = findViewById(R.id.backButton_step);
         mBackButton.setOnClickListener(this);
         mNextButton=findViewById(R.id.next_button_step);
@@ -61,13 +60,13 @@ public class Step5Activity extends BaseActivity implements View.OnClickListener 
         Intent intent = getIntent();
         if (intent.hasExtra("userInfo") ) {
 
-            mUserInfo = (UserInfo) intent.getSerializableExtra("userInfo");
+            mUserInfo = (userInfo) intent.getSerializableExtra("userInfo");
 
         }
         if(intent.hasExtra("dogInfo"))
         {
 
-            mDogInfo  =(DogInfo)intent.getSerializableExtra("dogInfo");
+            mDogInfo  =(dogInfo)intent.getSerializableExtra("dogInfo");
             if(mDogInfo.getBirth()!=null)
                 mEdit_Input_Text_joinmember.setText(mDogInfo.getBirth());
 
