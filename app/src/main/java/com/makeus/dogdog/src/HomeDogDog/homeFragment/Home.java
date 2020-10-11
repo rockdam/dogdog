@@ -12,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.makeus.dogdog.R;
+import com.makeus.dogdog.src.HomeDogDog.HomeActivity;
 import com.makeus.dogdog.src.HomeDogDog.startWalking.startWalking;
 
 /**
@@ -70,6 +72,8 @@ public class Home extends Fragment implements View.OnClickListener {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@android:color/holo_blue_bright" />
+
+    <item>
+        <bitmap android:src="@drawable/splash"
+            android:gravity="fill"
+
+            />
+    </item>
+
+</layer-list>
+<!--    http://dudmy.net/android/2017/04/09/improved-loading-screen/
+여기 링크를 참조하였습니다.
+
+-->

@@ -11,6 +11,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.makeus.dogdog.R;
@@ -30,7 +31,6 @@ public class HomeActivity extends BaseActivity {
     Mypage mMypage = new Mypage();
     Ranking mRanking = new Ranking();
     TrackingNote mTrackingNote = new TrackingNote();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +38,7 @@ public class HomeActivity extends BaseActivity {
         mBottomNavigationView = findViewById(R.id.bottom_navigation_view);
         mFragmentTransaction = mfragmentManager.beginTransaction();
         mFragmentTransaction.replace(R.id.FrameChanger, mHomeFragment).commitNowAllowingStateLoss();
+
 
         mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

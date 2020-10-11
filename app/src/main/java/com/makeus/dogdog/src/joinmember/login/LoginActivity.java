@@ -20,15 +20,24 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mAutoLoginService=new AutoLoginService(this);
-        mAutoLoginService.checkAutoLogin();
         setContentView(R.layout.activity_join);
 
         mJoinmemberButton=findViewById(R.id.joinmember_acitivity_join);
 
         mJoinmemberButton.setOnClickListener(this);
+
+        AutoLogin();
     }
 
+    void AutoLogin()
+    {
+
+
+        mAutoLoginService=new AutoLoginService(this);
+        mAutoLoginService.checkAutoLogin();
+
+
+    }
     @Override
     public void onClick(View view) {
 
@@ -55,5 +64,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
         startActivity(intent);
+        finish();
     }
 }
