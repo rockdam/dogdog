@@ -3,6 +3,7 @@ package com.makeus.dogdog.src.HomeDogDog.homeFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,6 +17,10 @@ import android.widget.Toast;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.HomeDogDog.HomeActivity;
+import com.makeus.dogdog.src.HomeDogDog.homeFragment.interfaces.HomeRefreshView;
+import com.makeus.dogdog.src.HomeDogDog.homeFragment.models.DogInfo;
+import com.makeus.dogdog.src.HomeDogDog.homeFragment.models.HomeRefreshResponse;
+import com.makeus.dogdog.src.HomeDogDog.homeFragment.models.Result;
 import com.makeus.dogdog.src.HomeDogDog.startWalking.startWalking;
 
 /**
@@ -23,8 +28,11 @@ import com.makeus.dogdog.src.HomeDogDog.startWalking.startWalking;
  * Use the {@link Home#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Home extends Fragment implements View.OnClickListener {
+public class Home extends Fragment implements View.OnClickListener, HomeRefreshView {
 
+
+
+    TextView mWelcomeMessage,mDogNickName,mDogInfo;
 
     //text라는 key에 저장된 값이 있는지 확인. 아무값도 들어있지 않으면 ""를 반환
     // TODO: Rename parameter arguments, choose names that match
@@ -32,6 +40,7 @@ public class Home extends Fragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    ProgressBar mProgressbar;
     int mPercent = 0;
     double mTimeTickin;
     long mTime;
@@ -39,6 +48,7 @@ public class Home extends Fragment implements View.OnClickListener {
     TextView mPercentHome;
     ProgressBar mAimProgressBar;
     SharedPreferences mPrefs;
+    HomeRefreshService mHomeRefreshService;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -71,7 +81,10 @@ public class Home extends Fragment implements View.OnClickListener {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+
         }
+
 
 
     }
@@ -85,9 +98,14 @@ public class Home extends Fragment implements View.OnClickListener {
         mAimProgressBar = v.findViewById(R.id.progressbar_home);
 
         mPercentHome = v.findViewById(R.id.percent_home);
-
+        mWelcomeMessage=v.findViewById(R.id.welcomeMessage_main);
+        mDogInfo=v.findViewById(R.id.dogInfo_home);
+        mDogNickName=v.findViewById(R.id.dogName_home);
         //저장된 값을 불러오기 위해 같은 네임파일을 찾음.
 
+        mProgressbar=v.findViewById(R.id.progressbar_home);
+        mHomeRefreshService=new HomeRefreshService(this);
+        mHomeRefreshService.refreshHomeView();
 
         TextView startWalking = v.findViewById(R.id.next_button_step);
 
@@ -150,6 +168,19 @@ public class Home extends Fragment implements View.OnClickListener {
                 break;
 
         }
+
+    }
+
+    @Override
+    public void refresh(Result result) {
+
+
+        String nickname =result.getNickName();
+        String formattedNickname =getString(R.string.welcome_message,nickname);
+        String dogInfo = result.getDogInfo().getAge()+ "/" +result.getDogInfo().getGender()+"/"+result.getDogInfo().getBreed();
+        mWelcomeMessage.setText(formattedNickname);
+        mDogNickName.setText(result.getDogInfo().getDogName());
+        mDogInfo.setText(dogInfo);
 
     }
 }

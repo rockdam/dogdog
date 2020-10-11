@@ -33,14 +33,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        app:layout_constraintTop_toBottomOf="@+id/welcomeMessage_main">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/dogImage_home"
                 android:layout_width="54sp"
                 android:layout_height="54sp"
 
@@ -48,8 +48,8 @@
                 android:layout_marginTop="26dp"
                 android:layout_marginEnd="18dp"
                 android:background="@drawable/custom_oval"
-                app:layout_constraintBottom_toBottomOf="@+id/textView7"
-                app:layout_constraintEnd_toStartOf="@+id/textView6"
+                app:layout_constraintBottom_toBottomOf="@+id/dogInfo_home"
+                app:layout_constraintEnd_toStartOf="@+id/dogName_home"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.93"></ImageView>
@@ -74,22 +74,22 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+                app:layout_constraintTop_toBottomOf="@+id/dogImage_home" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/dogName_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:fontFamily="@font/spoqahansansbold"
                 android:text="뽀삐"
                 android:textSize="19sp"
-                app:layout_constraintBottom_toTopOf="@+id/textView7"
-                app:layout_constraintStart_toEndOf="@+id/imageView6"
-                app:layout_constraintTop_toTopOf="@+id/imageView6" />
+                app:layout_constraintBottom_toTopOf="@+id/dogInfo_home"
+                app:layout_constraintStart_toEndOf="@+id/dogImage_home"
+                app:layout_constraintTop_toTopOf="@+id/dogImage_home" />
 
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/dogInfo_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
@@ -98,13 +98,13 @@
                 android:text="3살 / 여아 / 말티즈"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/next_button_step"
-                app:layout_constraintStart_toEndOf="@+id/imageView6" />
+                app:layout_constraintStart_toEndOf="@+id/dogImage_home" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/welcomeMessage_main"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -152,8 +152,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="44dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/spoqahansansbold"
                 android:text="목표"
                 android:textSize="20sp"
@@ -203,10 +202,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/view2" />
 
 
-
-
-
-
             <ProgressBar
                 android:id="@+id/progressbar_home"
                 style="@android:style/Widget.ProgressBar.Horizontal"
@@ -230,13 +225,11 @@
                 android:id="@+id/imageView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="44dp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textView8"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView8"
                 app:srcCompat="@drawable/arrow_small" />
 
             <TextView
@@ -274,7 +267,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintBottom_toTopOf="@+id/welcomeMessage_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_noti_new" />
