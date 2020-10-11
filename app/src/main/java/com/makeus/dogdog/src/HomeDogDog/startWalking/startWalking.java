@@ -8,7 +8,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
@@ -40,20 +39,24 @@ import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.tasks.Task;
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
+import com.makeus.dogdog.src.HomeDogDog.startWalking.interfaces.StartWalkingView;
+import com.makeus.dogdog.src.HomeDogDog.startWalking.models.Result;
+import com.makeus.dogdog.src.HomeDogDog.startWalking.models.StopWalkingBody;
 
 import java.util.Locale;
 
-public class startWalking extends BaseActivity implements View.OnClickListener {
+public class startWalking extends BaseActivity implements View.OnClickListener , StartWalkingView {
 
     DonutView mDonutView;
-    Chronometer mWalkingTime;
-    TextView mWalkingDistance;
+    Chronometer mWalkingTimeCronometer;
+    int mWalkingTime;
+    TextView mWalkingDistanceTextView;
+    int mWalkingDistance;
     ImageView mStartWalking, mStopButton, mStartCamera;
     private double mTimetickin ;
     private int mPercent;
     private boolean mRunning;
     private long timeWhenStopped = 0;
-    private long mStartTime;
     long time;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     LocationManager mLocationManager;
@@ -63,6 +66,10 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
     FusedLocationProviderClient mFusedLocationClient;
     LocationRequest locationRequest;
 
+    int sendTime;
+    StopWalkingBody mStopWalkingBody;
+    StartWalkingService mStartWalkingService,mStopWalkingService;
+    int mDogIdx;
 
     float distance = 0;
     Location oldLocation;
@@ -85,18 +92,21 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_walking);
         mStartWalking = findViewById(R.id.start_walking);
-        mWalkingTime = findViewById(R.id.walking_time_startwalking);
-        mWalkingDistance = findViewById(R.id.walking_distance_startwalking);
+        mWalkingTimeCronometer = findViewById(R.id.walking_time_startwalking);
+        mWalkingDistanceTextView = findViewById(R.id.walking_distance_startwalking);
         mDonutView = findViewById(R.id.donut);
         mStopButton = findViewById(R.id.stopbutton_startwalking);
         mStartCamera = findViewById(R.id.cameraApp_startWalking);
-        if (getIntent().getStringExtra("timeTicking") != null) {
-            mTimetickin = Double.parseDouble(getIntent().getStringExtra("timeTicking"));
-        }
-        mPercent = getIntent().getIntExtra("percent", 0);
-        mStartTime = getIntent().getLongExtra("time", 0);
+
+        mDogIdx =getIntent().getIntExtra("dogIdx",1);
+//        if (getIntent().getStringExtra("timeTicking") != null) {
+//            mTimetickin = Double.parseDouble(getIntent().getStringExtra("timeTicking"));
+//        }
+//        mPercent = getIntent().getIntExtra("percent", 0);
+//        mStartTime = getIntent().getLongExtra("time", 0);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
+        mDogIdx =getIntent().getIntExtra("dogIdx",0);
         locationRequest = LocationRequest.create();
         locationRequest.setInterval(10000);
         locationRequest.setFastestInterval(6000);
@@ -106,8 +116,6 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
         mStartCamera.setOnClickListener(this);
 
 
-        mWalkingTime.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
-        mWalkingTime.setText(calculate(mStartTime));
 
         mStartWalking.setOnClickListener(this);
         mStopButton.setOnClickListener(this);
@@ -118,6 +126,9 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onStart() {
         super.onStart();
+        mStartWalkingService =new StartWalkingService(this, mDogIdx);
+        mStartWalkingService.refreshStartWalkingView();
+
 
     }
 
@@ -198,7 +209,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
     protected void onResume() {
         super.onResume();
 
-        mDonutView.setValue(mTimetickin, mPercent);
+//        mDonutView.setValue(mTimetickin, mPercent);
 
 //        apiClient.connect();//connect ->onConnected() or OnConnectedFail()
 
@@ -206,28 +217,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
 
 
 //        출처: https://ghj1001020.tistory.com/14 [혁준 블로그]
-        mWalkingTime.setOnChronometerTickListener(chronometer -> {
 
-
-            time = mStartTime + SystemClock.elapsedRealtime() - chronometer.getBase();
-
-            chronometer.setText(calculate(time));
-
-            //1000
-
-            int h = (int) (time / 3600000);
-//            int m = (int) (time - h * 3600000) / 60000;
-            int s = (int) (time - h * 3600000) / 1000;
-
-
-            mTimetickin = ((double) s / (18));
-            mPercent = s / 18;
-            mDonutView.setValue(mTimetickin, mPercent);
-            System.out.println("mTimetickin" + mTimetickin);
-            System.out.println("Time체크" + s);
-
-
-        });
 
 
 //        provider=LocationManager.GPS_PROVIDER;
@@ -272,16 +262,16 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
 
                 if (!mRunning) { //시작
 
-                    mWalkingTime.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
-                    mWalkingTime.start();
+                    mWalkingTimeCronometer.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
+                    mWalkingTimeCronometer.start();
                     mStartWalking.setImageResource(R.drawable.pause_pause);
                     mRunning = true;
                     startLocationUpdate();
 
                 } else { //일시 중지
 
-                    timeWhenStopped = mWalkingTime.getBase() - SystemClock.elapsedRealtime();
-                    mWalkingTime.stop();
+                    timeWhenStopped = mWalkingTimeCronometer.getBase() - SystemClock.elapsedRealtime();
+                    mWalkingTimeCronometer.stop();
                     mStartWalking.setImageResource(R.drawable.start);
                     mRunning = false;
                     stopLocationUpdates();
@@ -298,17 +288,13 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
                     Toast.makeText(getApplicationContext(), "일시 중지를 눌러주세요 :)", Toast.LENGTH_SHORT).show();
 
                 } else {
-
-                    SharedPreferences prefs = getSharedPreferences("startwalking", MODE_PRIVATE);
-
-                    SharedPreferences.Editor editor = prefs.edit();
-
-                    editor.putString("timetickin", String.valueOf(mTimetickin));
-                    editor.putInt("percent", mPercent);
-                    editor.putLong("time", time);
-
-                    editor.apply();
-                    finish();
+                    mStopWalkingBody=new StopWalkingBody();
+                    mStopWalkingBody.setDogIdx(mDogIdx);
+                    mStopWalkingBody.setWalkingDistance(0);
+                    //이거 나중에 고쳐야됌
+                    mStopWalkingBody.setWalkingTime(sendTime);
+                    mStopWalkingService=new StartWalkingService(this,mStopWalkingBody);
+                    mStopWalkingService.terminatedStartWalking();
 
                 }
 
@@ -359,7 +345,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
 
                 Toast.makeText(getBaseContext(), ""+ distance, Toast.LENGTH_SHORT).show();
                 String output = dist + "km";
-                mWalkingDistance.setText(output);
+                mWalkingDistanceTextView.setText(output);
                 Log.e("거리 ", "" + distance); //반환 m
 
             }
@@ -376,6 +362,50 @@ public class startWalking extends BaseActivity implements View.OnClickListener {
 ////        Target api 23 이상인 경우 .. ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION 위험해서 이런 설정을 해야한다.
         }
     };
+
+    @Override
+    public void refresh(Result result) {
+        mPercent=result.getPercent();
+        mWalkingDistance =result.getDistance();
+        mWalkingTime=result.getWalkingTime();
+        mTimetickin=(double)mWalkingTime/(double)18;
+        mWalkingTimeCronometer.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
+        mWalkingTimeCronometer.setText(calculate(mWalkingTime*1000));
+        mWalkingDistanceTextView.setText(""+mWalkingDistance);
+        mDonutView.setValue(mTimetickin, mPercent);
+        mWalkingTime *=1000;
+        mWalkingTimeCronometer.setOnChronometerTickListener(chronometer -> {
+
+
+            time = mWalkingTime + SystemClock.elapsedRealtime() - chronometer.getBase();
+
+            chronometer.setText(calculate(time));
+
+            //1000
+
+            int h = (int) (time / 3600000);
+//            int m = (int) (time - h * 3600000) / 60000;
+            int s = (int) (time - h * 3600000) / 1000;
+
+
+            mTimetickin = ((double) s / (18));
+            mPercent = s / 18;
+            mDonutView.setValue(mTimetickin, mPercent);
+            System.out.println("mTimetickin" + mTimetickin);
+            System.out.println("Time체크" + s);
+            System.out.println("Time"+time);
+
+            sendTime=s;
+
+        });
+
+    }
+
+    @Override
+    public void terminate() {
+        Log.e("성공완료","굿");
+        finish();
+    }
 
 
 // 넘어는 오는데 초기 시간 표시 , 처음 화면 바꿔야함

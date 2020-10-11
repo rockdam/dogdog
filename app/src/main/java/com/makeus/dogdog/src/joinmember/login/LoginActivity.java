@@ -11,7 +11,7 @@ import com.makeus.dogdog.src.HomeDogDog.HomeActivity;
 import com.makeus.dogdog.src.joinmember.login.interfaces.MoveHomeAcitivity;
 import com.makeus.dogdog.src.joinmember.step1.Step1Activity;
 
-public class LoginActivity extends BaseActivity implements View.OnClickListener, MoveHomeAcitivity {
+public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
 
     TextView mJoinmemberButton;
@@ -26,18 +26,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
         mJoinmemberButton.setOnClickListener(this);
 
-        AutoLogin();
-    }
-
-    void AutoLogin()
-    {
-
-
-        mAutoLoginService=new AutoLoginService(this);
-        mAutoLoginService.checkAutoLogin();
-
 
     }
+
+
     @Override
     public void onClick(View view) {
 
@@ -58,12 +50,5 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     }
 
-    @Override
-    public void move() {
-        Intent intent =new Intent(LoginActivity.this, HomeActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
-        startActivity(intent);
-        finish();
-    }
 }

@@ -13,6 +13,7 @@
         android:allowBackup="false"
         android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
+        android:screenOrientation="portrait"
 
 
         android:label="@string/app_name"
@@ -37,7 +38,7 @@
 
 
         </activity>
-        <activity android:name=".src.SplashActivity"
+        <activity android:name=".src.joinmember.login.SplashActivity"
             android:theme="@style/SplashTheme"
             >
 

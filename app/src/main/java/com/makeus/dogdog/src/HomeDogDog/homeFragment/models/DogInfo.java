@@ -30,6 +30,18 @@ public class DogInfo {
     @Expose
     private Integer acheivedGoal;
 
+    public Integer getTodayTime() {
+        return todayTime;
+    }
+
+    public void setTodayTime(Integer todayTime) {
+        this.todayTime = todayTime;
+    }
+
+    @SerializedName("todayTime")
+    @Expose
+    private Integer todayTime;
+
     public Integer getDogIdx() {
         return dogIdx;
     }

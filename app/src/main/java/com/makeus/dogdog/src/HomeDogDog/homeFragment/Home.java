@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
 
 
     TextView mWelcomeMessage,mDogNickName,mDogInfo;
+    ImageView mChangeDogs;
 
     //text라는 key에 저장된 값이 있는지 확인. 아무값도 들어있지 않으면 ""를 반환
     // TODO: Rename parameter arguments, choose names that match
@@ -43,8 +45,10 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
     ProgressBar mProgressbar;
     int mPercent = 0;
     double mTimeTickin;
-    long mTime;
 
+    int mTime;
+
+    int mDogIdx;
     TextView mPercentHome;
     ProgressBar mAimProgressBar;
     SharedPreferences mPrefs;
@@ -103,13 +107,16 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
         mDogNickName=v.findViewById(R.id.dogName_home);
         //저장된 값을 불러오기 위해 같은 네임파일을 찾음.
 
+        mChangeDogs=v.findViewById(R.id.changeDogs_home);
         mProgressbar=v.findViewById(R.id.progressbar_home);
         mHomeRefreshService=new HomeRefreshService(this);
-        mHomeRefreshService.refreshHomeView();
+
 
         TextView startWalking = v.findViewById(R.id.next_button_step);
 
+        mAimProgressBar.setMax(1000);
         startWalking.setOnClickListener(this);
+        mChangeDogs.setOnClickListener(this);
         // Inflate the layout for this fragment
         return v;
     }
@@ -117,22 +124,17 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
     @Override
     public void onStart() {
         super.onStart();
-
+        mHomeRefreshService.refreshHomeView();
 //        mPrefs.edit().clear().commit() ;
 //        얘를 자정 지나면 발동 되도록 .;
-        mPercent = mPrefs.getInt("percent", 0);
-        mTimeTickin = Double.parseDouble(mPrefs.getString("timetickin", "0"));
-
-
-        mTime = mPrefs.getLong("time", 0);
-
-        mAimProgressBar.setMax(1000);
-        System.out.println("이건 어떻게 찍히나"+(int) (mTimeTickin * (double) 10));
-        // 몇 초까지는 안 보이니깐 .. 눈 속임으로 대체 합시다 !... 몇 초까진지 확인 후 조건문 걸기!
-        mAimProgressBar.setProgress((int) (mTimeTickin * (double) 10));
+//        mPercent = mPrefs.getInt("percent", 0);
+//        mTimeTickin = Double.parseDouble(mPrefs.getString("timetickin", "0"));
+//        System.out.println("이건 어떻게 찍히나"+(int) (mTimeTickin * (double) 10));
+//        // 몇 초까지는 안 보이니깐 .. 눈 속임으로 대체 합시다 !... 몇 초까진지 확인 후 조건문 걸기!
+//        mAimProgressBar.setProgress((int) (mTimeTickin * (double) 10));
 //        https://stackoverflow.com/questions/18192454/progress-bar-pass-float-argument/2133259
 //        max값을 올려서 생각하면 됌 .
-        mPercentHome.setText(String.valueOf(mPercent));
+
 
         System.out.println("여기호출");
     }
@@ -148,24 +150,27 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
                 Intent intent = new Intent(getActivity(), startWalking.class);
 
 
-                if (mPercent != 0) {
+//                if (mPercent != 0) {
+//
+//                    intent.putExtra("percent", mPercent);
+//                }
+//                if (mTimeTickin != 0) {
+//                    intent.putExtra("timeTicking", String.valueOf(mTimeTickin));
+//
+//                }
+//                if (mTime != 0) {
+//                    intent.putExtra("time", mTime);
+//
+//                }
 
-                    intent.putExtra("percent", mPercent);
-                }
-                if (mTimeTickin != 0) {
-                    intent.putExtra("timeTicking", String.valueOf(mTimeTickin));
 
-                }
-                if (mTime != 0) {
-                    intent.putExtra("time", mTime);
-
-                }
-
+                intent.putExtra("dogIdx",mDogIdx);
 
                 startActivity(intent);
 
 
                 break;
+
 
         }
 
@@ -177,10 +182,21 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
 
         String nickname =result.getNickName();
         String formattedNickname =getString(R.string.welcome_message,nickname);
-        String dogInfo = result.getDogInfo().getAge()+ "/" +result.getDogInfo().getGender()+"/"+result.getDogInfo().getBreed();
+        String dogInfo = result.getDogInfo().getAge()+ "살 /" +result.getDogInfo().getGender()+"/"+result.getDogInfo().getBreed();
         mWelcomeMessage.setText(formattedNickname);
         mDogNickName.setText(result.getDogInfo().getDogName());
         mDogInfo.setText(dogInfo);
+
+        mTime= result.getDogInfo().getTodayTime();
+        if(mTime!=0)
+        mTimeTickin = ((double) mTime / (18));
+        else{
+            mTimeTickin=0;
+
+        }
+        mAimProgressBar.setProgress((int) (mTimeTickin * (double) 10));
+        mPercentHome.setText(String.valueOf(mPercent));
+        mDogIdx=result.getDogInfo().getDogIdx();
 
     }
 }

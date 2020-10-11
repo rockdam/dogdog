@@ -3,7 +3,7 @@ package com.makeus.dogdog.src.HomeDogDog.startWalking.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class StopWalkingResponse {
+public class StopWalkingBody {
     @SerializedName("dogIdx")
     @Expose
     private Integer dogIdx;

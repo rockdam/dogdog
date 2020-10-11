@@ -40,10 +40,15 @@ public class AutoLoginService {
                 if(response.code() ==200)
                 {
 
-                    mMoveHomeAcitivity. move();
+                    mMoveHomeAcitivity. move(response.code());
 
 
-                }// 자동로그인 안되면 로그인 해야지 .
+                }else{
+                    mMoveHomeAcitivity.move(response.code());
+
+                }
+
+                // 자동로그인 안되면 로그인 해야지 .
 
 
 
