@@ -43,7 +43,7 @@
         <activity android:name=".src.joinmember.step3.Step3Activity"
             android:windowSoftInputMode="adjustResize"
             />
-        <activity android:name=".src.joinmember.JoinActivity">
+        <activity android:name=".src.joinmember.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

@@ -153,9 +153,7 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener,
                     mDogInfo.setWeight(mWeight);
                 }
                 mDogInfo.setBreedIdx(mBreedsIdx);
-//                intent.putExtra("dogInfo", mDogInfo);
-//
-//                intent.putExtra("userInfo", mUserInfo);
+
                 PostJoinMember postJoinMember = new PostJoinMember();
 
                 postJoinMember.setDogInfo(mDogInfo);
@@ -175,6 +173,9 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener,
 
         Intent intent = new Intent(Step6Activity.this, Step7Activity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        intent.putExtra("dogInfo", mDogInfo);
+//
+        intent.putExtra("userInfo", mUserInfo);
         startActivity(intent);
         finish();
     }

@@ -1,7 +1,9 @@
 package com.makeus.dogdog.src.joinmember.step6;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.makeus.dogdog.src.ApplicationClass;
 import com.makeus.dogdog.src.joinmember.step6.interfaces.JoinMemberRetrofitInterface;
 import com.makeus.dogdog.src.joinmember.step6.interfaces.MoveAcitivity7Interface;
 import com.makeus.dogdog.src.joinmember.step6.interfaces.PassValueDialog;
@@ -15,6 +17,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.makeus.dogdog.src.ApplicationClass.getRetrofit;
+import static com.makeus.dogdog.src.ApplicationClass.sSharedPreferences;
 
 public class Step6Service {
 
@@ -89,7 +92,10 @@ public class Step6Service {
                 {
 
                   Log.e("jwt",joinMemberResponse.getJwt());
+                    SharedPreferences.Editor editor=sSharedPreferences.edit();
+                    editor.putString("X-ACCESS-TOKEN",joinMemberResponse.getJwt());
 
+                    editor.apply();
                     moveAcitivity7Interface.move();
 
                 }else{

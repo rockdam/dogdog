@@ -44,7 +44,9 @@ public class Step7Activity extends BaseActivity implements View.OnClickListener,
             case R.id.mainButton_step:
                 Intent intent = new Intent(Step7Activity.this, HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-
+                intent.putExtra("dogInfo", mDogInfo);
+//
+                intent.putExtra("userInfo", mUserInfo);
 
                 startActivity(intent);
                 finish();
