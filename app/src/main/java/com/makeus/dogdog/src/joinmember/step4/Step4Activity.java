@@ -149,6 +149,7 @@ public class Step4Activity extends BaseActivity implements View.OnClickListener{
                     intent.putExtra("dogInfo",mDogInfo);
 
                     intent.putExtra("userInfo", mUserInfo);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intent);
                     finish();
                 }

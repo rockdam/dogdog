@@ -146,7 +146,7 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
 //                   이게 이렇게 짤 수 밖에 없네 . 변화가 안 일어 난 상태에서 변수 보내면 null
 
                     intent.putExtra("userInfo", mUserInfo);
-
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
                     startActivity(intent);
                     finish();

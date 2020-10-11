@@ -175,6 +175,7 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener,
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         intent.putExtra("dogInfo", mDogInfo);
 //
+
         intent.putExtra("userInfo", mUserInfo);
         startActivity(intent);
         finish();

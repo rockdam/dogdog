@@ -155,7 +155,7 @@ public class Step3Activity extends BaseActivity implements View.OnClickListener 
                     }
 
                     intent.putExtra("userInfo", mUserInfo);
-
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intent);
                     finish();
                 }

@@ -136,7 +136,7 @@ public class Step3RepeatActivity extends BaseActivity implements View.OnClickLis
                         Intent intent = new Intent(Step3RepeatActivity.this, Step4Activity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         intent.putExtra("userInfo", mUserInfo);
-
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(intent);
                         finish();
                     } else {
