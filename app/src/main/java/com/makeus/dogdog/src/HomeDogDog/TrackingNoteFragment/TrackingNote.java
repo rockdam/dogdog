@@ -1,6 +1,7 @@
 package com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,9 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.makeus.dogdog.R;
+import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.AddTrackingNote.AddTrackingNote;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,6 +44,8 @@ public class TrackingNote extends Fragment {
     /**
      * 그리드뷰 어댑터
      */
+
+    ImageView addTrackingNote;
     private GridAdapter gridAdapter;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -106,7 +111,15 @@ public class TrackingNote extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.fragment_tracking_note, container, false);
+        addTrackingNote=v.findViewById(R.id.addNote_AddTrackingNote);
 
+        addTrackingNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(getActivity(), AddTrackingNote.class);
+                startActivity(intent);
+            }
+        });
         // Inflate the layout for this fragment
         return v;
     }

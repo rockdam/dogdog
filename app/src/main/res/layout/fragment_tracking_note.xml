@@ -7,24 +7,28 @@
     android:background="#fbfbfb"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <ImageView
+        android:id="@+id/addNote_AddTrackingNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="right|top"
+        app:srcCompat="@drawable/add" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="산책일지"
         android:fontFamily="@font/spoqahansansbold"
-        android:layout_marginTop="78dp"
+        android:layout_marginTop="0dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
         android:textColor="@color/black"
         android:textSize="26sp"
         ></TextView>
 
-    <ImageView
-        android:id="@+id/imageView54"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right|top"
-        app:srcCompat="@drawable/add" />
+
   <com.makeus.dogdog.src.collapsiblecalendarview.widget.CollapsibleCalendar
       android:id="@+id/calendar_trackingnote"
       android:layout_width="match_parent"

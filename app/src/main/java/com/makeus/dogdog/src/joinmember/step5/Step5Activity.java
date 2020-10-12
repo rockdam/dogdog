@@ -90,13 +90,13 @@ public class Step5Activity extends BaseActivity implements View.OnClickListener 
 
                 if(i == R.id.male_step5)
                 {
-                    mGender="male";
+                    mGender="남아";
 
 
                 }
                 if(i == R.id.female_step5)
                 {
-                    mGender="female";
+                    mGender="여아";
 
                 }
             }
