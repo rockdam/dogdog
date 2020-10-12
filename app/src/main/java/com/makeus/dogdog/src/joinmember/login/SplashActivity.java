@@ -33,7 +33,7 @@ public class SplashActivity  extends AppCompatActivity implements MoveHomeAcitiv
     @Override
     public void move(int code) {
         if (code == 200) {
-            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+            Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
             startActivity(intent);
