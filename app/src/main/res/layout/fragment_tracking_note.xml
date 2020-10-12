@@ -18,6 +18,13 @@
         android:textColor="@color/black"
         android:textSize="26sp"
         ></TextView>
+
+    <ImageView
+        android:id="@+id/imageView54"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|top"
+        app:srcCompat="@drawable/add" />
   <com.makeus.dogdog.src.collapsiblecalendarview.widget.CollapsibleCalendar
       android:id="@+id/calendar_trackingnote"
       android:layout_width="match_parent"
@@ -61,6 +68,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView6"></TextView>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 </LinearLayout>

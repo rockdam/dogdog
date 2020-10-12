@@ -1,5 +1,6 @@
 package com.makeus.dogdog.src.HomeDogDog.FeedFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,7 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
 import com.makeus.dogdog.R;
+import com.makeus.dogdog.src.HomeDogDog.FeedFragment.AddFeedActivity.AddFeedActivity;
+import com.makeus.dogdog.src.HomeDogDog.HomeActivity;
 
 import java.util.ArrayList;
 
@@ -23,6 +28,7 @@ public class Feed extends Fragment {
     RecyclerView mFeedRecyclerView;
     ArrayList<FeedDatalist> mFeedDataList;
     FeedAdapter mFeedAdapter;
+    ImageView addFeed;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -72,6 +78,7 @@ public class Feed extends Fragment {
         mFeedDataList =new ArrayList<>();
         View view =inflater.inflate(R.layout.fragment_feed, container, false);
 
+        addFeed=view.findViewById(R.id.addfeed_Feed);
         mFeedRecyclerView=view.findViewById(R.id.recyclerview_Feed);
 
         LinearLayoutManager linearLayoutManager =new LinearLayoutManager(getContext());
@@ -83,6 +90,19 @@ public class Feed extends Fragment {
 
         mFeedRecyclerView.setAdapter(mFeedAdapter);
 
+
+        addFeed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent=new Intent((HomeActivity)getActivity(), AddFeedActivity.class);
+                startActivity(intent);
+//                // getActivity()로 MainActivity의 replaceFragment를 불러옵니다.
+//                ((HomeActivity)getActivity()).replaceFragmentaddFeed(AddFeedFragment.newInstance());    // 새로 불러올 Fragment의 Instance를 Main으로 전달
+            }
+
+//            출처: https://mc10sw.tistory.com/16 [Make it possible]
+            });
 
         return view;
     }

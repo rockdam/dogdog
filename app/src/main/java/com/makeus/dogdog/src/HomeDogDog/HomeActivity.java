@@ -1,17 +1,12 @@
 package com.makeus.dogdog.src.HomeDogDog;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.makeus.dogdog.R;
@@ -39,6 +34,8 @@ public class HomeActivity extends BaseActivity {
         mFragmentTransaction = mfragmentManager.beginTransaction();
         mFragmentTransaction.replace(R.id.FrameChanger, mHomeFragment).commitNowAllowingStateLoss();
 
+
+//        출처: https://mc10sw.tistory.com/16 [Make it possible]
 
         mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -73,6 +70,14 @@ public class HomeActivity extends BaseActivity {
         });
 
     }
+
+    public void replaceFragmentaddFeed(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.FrameChanger, fragment).commit();      // Fragment로 사용할 MainActivity내의 layout공간을 선택합니다.
+    }
+
+//    출처: https://mc10sw.tistory.com/16 [Make it possible]
 //bottomnavigation 을 쓸 때는 스와이프를 쓰지 않는 것을 권장한다. 스와이프가 된다는 것은 둘간의 관계를 압시한다 .
 }
 

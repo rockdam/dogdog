@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name ="donut_size">220dp</dimen>
-    <dimen name ="donut_stroke_size">20dp</dimen>
+    <dimen name="donut_size">220dp</dimen>
+    <dimen name="donut_stroke_size">20dp</dimen>
     <dimen name="donut_textSize">40sp</dimen>
     <dimen name="donut_percentSize">32sp</dimen>
     <!-- title bar -->
@@ -13,4 +13,5 @@
     <dimen name="day_circle_height">36dp</dimen>
     <dimen name="day_circle_radius">120dp</dimen>
     <dimen name="day_circle_stroke_width">1dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

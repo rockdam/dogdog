@@ -12,7 +12,7 @@ import com.makeus.dogdog.src.joinmember.step6.interfaces.MoveAcitivity7Interface
 import com.makeus.dogdog.src.joinmember.step6.models.dogInfo;
 import com.makeus.dogdog.src.joinmember.step6.models.userInfo;
 
-public class Step7Activity extends BaseActivity implements View.OnClickListener, MoveAcitivity7Interface {
+public class Step7Activity extends BaseActivity implements View.OnClickListener {
     TextView mJoinMessage, mNextButton,mBackButton;
     userInfo mUserInfo;
     dogInfo mDogInfo;
@@ -44,9 +44,9 @@ public class Step7Activity extends BaseActivity implements View.OnClickListener,
             case R.id.mainButton_step:
                 Intent intent = new Intent(Step7Activity.this, HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                intent.putExtra("dogInfo", mDogInfo);
-//
-                intent.putExtra("userInfo", mUserInfo);
+//                intent.putExtra("dogInfo", mDogInfo);
+////
+//                intent.putExtra("userInfo", mUserInfo);
 
                 startActivity(intent);
                 finish();
@@ -55,8 +55,5 @@ public class Step7Activity extends BaseActivity implements View.OnClickListener,
         }
     }
 
-    @Override
-    public void move() {
 
-    }
 }
