@@ -1,5 +1,7 @@
 package com.makeus.dogdog.src.HomeDogDog.startWalking;
 
+import android.util.Log;
+
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.interfaces.HomeRefreshRetrofitInterface;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.interfaces.HomeRefreshView;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.models.HomeRefreshResponse;
@@ -54,6 +56,7 @@ public class StartWalkingService {
 
                     mStartWalkingView.refresh(mStartWalkingResponse.getResult());
 
+                    Log.e("홈에서 받는 시간",""+mStartWalkingResponse.getResult().getWalkingTime());
 
                 }// 자동로그인 안되면 로그인 해야지 .
 

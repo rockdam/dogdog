@@ -292,7 +292,8 @@ public class startWalking extends BaseActivity implements View.OnClickListener ,
                     mStopWalkingBody.setDogIdx(mDogIdx);
                     mStopWalkingBody.setWalkingDistance(0);
                     //이거 나중에 고쳐야됌
-                    mStopWalkingBody.setWalkingTime(sendTime);
+                    mStopWalkingBody.setWalkingTime(mWalkingTime+sendTime);
+                    Log.e("sendTime","보냅니다 시간"+sendTime);
                     mStopWalkingService=new StartWalkingService(this,mStopWalkingBody);
                     mStopWalkingService.terminatedStartWalking();
 
@@ -374,6 +375,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener ,
         mWalkingDistanceTextView.setText(""+mWalkingDistance);
         mDonutView.setValue(mTimetickin, mPercent);
         mWalkingTime *=1000;
+        Log.e("mWalkingTime",""+mWalkingTime);
         mWalkingTimeCronometer.setOnChronometerTickListener(chronometer -> {
 
 
@@ -397,6 +399,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener ,
 
             sendTime=s;
 
+            Log.e("sendTime",""+sendTime);
         });
 
     }
