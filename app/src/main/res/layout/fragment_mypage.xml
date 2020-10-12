@@ -195,9 +195,9 @@
             <ImageView
                 android:id="@+id/imageView9"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_marginStart="35dp"
-                android:layout_marginTop="31dp"
+                android:layout_marginTop="44dp"
                 app:layout_constraintBottom_toBottomOf="@+id/view"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
