@@ -183,6 +183,7 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
         String nickname =result.getNickName();
         String formattedNickname =getString(R.string.welcome_message,nickname);
         String dogInfo = result.getDogInfo().getAge()+ "살 /" +result.getDogInfo().getGender()+"/"+result.getDogInfo().getBreed();
+        mPercent=result.getDogInfo().getAcheivedGoal();
         mWelcomeMessage.setText(formattedNickname);
         mDogNickName.setText(result.getDogInfo().getDogName());
         mDogInfo.setText(dogInfo);

@@ -39,7 +39,7 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
         mJoinMessage = findViewById(R.id.tellUsAge_Step2Activity);
         mEdit_Input_Text_joinmember = findViewById(R.id.edit_Input_Text_joinmember);
         mNextTxt = findViewById(R.id.next_button_step);
-        mJoinMessage.setText(Html.fromHtml("<b>" + "만나서 반가워요!" + "<br>" + "반려견의 이름" + "</br>" + "</b>" + "이 궁금해요."));
+        mJoinMessage.setText(Html.fromHtml("<b>" + "만나서 반가워요!" + "<br>" + "당신의 이름" + "</br>" + "</b>" + "이 궁금해요."));
         warningText = findViewById(R.id.warning_text_step);
         warningImage = findViewById(R.id.warning_image_step);
         Typeface typeface = ResourcesCompat.getFont(this, R.font.spoqahansansregular);

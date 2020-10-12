@@ -1,6 +1,7 @@
 package com.makeus.dogdog.config;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -22,6 +23,7 @@ public class XAccessTokenInterceptor implements Interceptor {
 
         final String jwtToken = sSharedPreferences.getString(X_ACCESS_TOKEN, null);
         if (jwtToken != null) {
+            Log.e("jwt",jwtToken);
             builder.addHeader("X-ACCESS-TOKEN", jwtToken);
         }
         return chain.proceed(builder.build());

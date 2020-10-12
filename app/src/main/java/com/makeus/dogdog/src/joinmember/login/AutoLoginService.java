@@ -1,5 +1,7 @@
 package com.makeus.dogdog.src.joinmember.login;
 
+import android.util.Log;
+
 import com.makeus.dogdog.src.joinmember.login.interfaces.LoginAcitivityRetrofitInterface;
 import com.makeus.dogdog.src.joinmember.login.interfaces.MoveHomeAcitivity;
 import com.makeus.dogdog.src.joinmember.login.models.AutoLoginResponse;
@@ -41,6 +43,7 @@ public class AutoLoginService {
                 {
 
                     mMoveHomeAcitivity. move(response.code());
+
 
 
                 }else{

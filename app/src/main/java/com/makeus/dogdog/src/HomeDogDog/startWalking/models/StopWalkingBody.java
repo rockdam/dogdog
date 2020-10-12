@@ -14,6 +14,7 @@ public class StopWalkingBody {
     @Expose
     private Integer walkingDistance;
 
+
     public Integer getDogIdx() {
         return dogIdx;
     }

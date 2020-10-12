@@ -106,7 +106,7 @@
         android:layout_gravity="center"
         android:visibility="visible"
         app:eiv_animationDuration="300"
-        app:eiv_color="#000"
+        app:eiv_color="#dddddd"
         app:eiv_colorLess="#dddddd"
         app:eiv_colorMore="#dddddd"
         app:eiv_colorIntermediate="#dddddd"
