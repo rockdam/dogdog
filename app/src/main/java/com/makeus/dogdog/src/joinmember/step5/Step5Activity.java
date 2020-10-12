@@ -73,7 +73,7 @@ public class Step5Activity extends BaseActivity implements View.OnClickListener 
             if(mDogInfo.getGender()!=null) {
 
                mGender= mDogInfo.getGender();
-                if (mDogInfo.getGender().equals("남아")) {
+                if (mDogInfo.getGender().equals("male")) {
                     mMale.setChecked(true);
 
                 } else {
@@ -90,13 +90,13 @@ public class Step5Activity extends BaseActivity implements View.OnClickListener 
 
                 if(i == R.id.male_step5)
                 {
-                    mGender="남아";
+                    mGender="male";
 
 
                 }
                 if(i == R.id.female_step5)
                 {
-                    mGender="여아";
+                    mGender="female";
 
                 }
             }
@@ -214,12 +214,12 @@ public class Step5Activity extends BaseActivity implements View.OnClickListener 
 
                         mDogInfo.setBirth(mEdit_Input_Text_joinmember.getText().toString());
                     }
-                    if(mGender.equals("남아"))
+                    if(mGender.equals("male"))
                     {
-                        mDogInfo.setGender("남아");
+                        mDogInfo.setGender("male");
                     }else{
 
-                        mDogInfo.setGender("여아");
+                        mDogInfo.setGender("female");
                     }
                     intent.putExtra("dogInfo",mDogInfo);
 
