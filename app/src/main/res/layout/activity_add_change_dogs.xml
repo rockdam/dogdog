@@ -56,9 +56,9 @@
         app:layout_constraintTop_toBottomOf="@+id/close_addchangedogs" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/adddogsRecyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         app:layout_constraintBottom_toTopOf="@+id/view14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +75,7 @@
         android:background="@color/donutUnFinished"
         app:layout_constraintBottom_toTopOf="@+id/textView49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView2"></View>
+        app:layout_constraintTop_toBottomOf="@+id/adddogsRecyclerview"></View>
 
     <ImageView
         android:id="@+id/imageView55"
