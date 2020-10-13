@@ -3,7 +3,6 @@ package com.makeus.dogdog.src.HomeDogDog.homeFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,13 +13,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.makeus.dogdog.R;
-import com.makeus.dogdog.src.HomeDogDog.HomeActivity;
+import com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs.AddChangeDogs;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.interfaces.HomeRefreshView;
-import com.makeus.dogdog.src.HomeDogDog.homeFragment.models.DogInfo;
-import com.makeus.dogdog.src.HomeDogDog.homeFragment.models.HomeRefreshResponse;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.models.Result;
 import com.makeus.dogdog.src.HomeDogDog.startWalking.startWalking;
 
@@ -171,6 +167,9 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
 
                 break;
 
+            case R.id.changeDogs_home :
+                Intent changeDogs =new Intent(getActivity(), AddChangeDogs.class);
+                startActivity(changeDogs);
 
         }
 
