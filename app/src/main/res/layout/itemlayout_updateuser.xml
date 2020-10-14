@@ -35,14 +35,14 @@
         android:layout_marginStart="26dp"
         android:layout_marginTop="13dp"
         android:text="이름"
-        app:layout_constraintEnd_toStartOf="@+id/textView58"
+        app:layout_constraintEnd_toStartOf="@+id/name_userupdate_itemlayout"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView56" />
 
     <TextView
-        android:id="@+id/textView58"
+        android:id="@+id/name_userupdate_itemlayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -58,14 +58,14 @@
         android:layout_marginStart="26dp"
         android:layout_marginTop="21dp"
         android:text="생년월일"
-        app:layout_constraintEnd_toStartOf="@+id/textView60"
+        app:layout_constraintEnd_toStartOf="@+id/birthday_userupdate_itemlayout"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView57" />
 
     <TextView
-        android:id="@+id/textView60"
+        android:id="@+id/birthday_userupdate_itemlayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -75,7 +75,7 @@
         app:layout_constraintStart_toEndOf="@+id/textView59" />
 
     <TextView
-        android:id="@+id/textView61"
+        android:id="@+id/gender_userupdate_itemlayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
@@ -92,10 +92,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/textView61"
+        app:layout_constraintBottom_toBottomOf="@+id/gender_userupdate_itemlayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView61" />
+        app:layout_constraintStart_toEndOf="@+id/gender_userupdate_itemlayout" />
 
     <TextView
         android:id="@+id/textView63"
@@ -104,11 +104,11 @@
         android:layout_marginStart="26dp"
         android:layout_marginTop="21dp"
         android:text="견종"
-        app:layout_constraintEnd_toStartOf="@+id/textView65"
+        app:layout_constraintEnd_toStartOf="@+id/breeds_userupdate_itemlayout"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView61" />
+        app:layout_constraintTop_toBottomOf="@+id/gender_userupdate_itemlayout" />
 
     <TextView
         android:id="@+id/textView64"
@@ -117,14 +117,14 @@
         android:layout_marginStart="26dp"
         android:layout_marginTop="20dp"
         android:text="몸무게"
-        app:layout_constraintEnd_toStartOf="@+id/textView66"
+        app:layout_constraintEnd_toStartOf="@+id/weight_userupdate_itemlayout"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView63" />
 
     <TextView
-        android:id="@+id/textView65"
+        android:id="@+id/breeds_userupdate_itemlayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -134,7 +134,7 @@
         app:layout_constraintStart_toEndOf="@+id/textView63" />
 
     <TextView
-        android:id="@+id/textView66"
+        android:id="@+id/weight_userupdate_itemlayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"

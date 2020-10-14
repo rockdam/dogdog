@@ -56,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@+id/close_addchangedogs" />
 
     <TextView
-        android:id="@+id/textView68"
+        android:id="@+id/take_a_picture_selectedpicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
@@ -69,8 +69,9 @@
         app:layout_constraintTop_toBottomOf="@+id/view13" />
 
     <TextView
+
         android:textSize="18sp"
-        android:id="@+id/textView69"
+        android:id="@+id/seleted_gallery_selectedpicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/spoqahansansregular"
@@ -79,12 +80,12 @@
         android:layout_marginTop="36dp"
         android:text="사진 보관함에서 선택"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView68" />
+        app:layout_constraintTop_toBottomOf="@+id/take_a_picture_selectedpicture" />
 
     <TextView
         android:textSize="18sp"
         android:fontFamily="@font/spoqahansansregular"
-        android:id="@+id/textView70"
+        android:id="@+id/change_defualt_image_selectedpicture"
         android:textColor="@color/dogdogBlack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -92,7 +93,7 @@
         android:layout_marginTop="36dp"
         android:text="기본 이미지로 변경"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView69" />
+        app:layout_constraintTop_toBottomOf="@+id/seleted_gallery_selectedpicture" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,7 @@
     tools:context=".src.HomeDogDog.homeFragment.UpdateUserProfile.UpdateUserImage.UpdateUserImage">
 
     <ImageView
-        android:id="@+id/imageView57"
+        android:id="@+id/default_image_updateuserimage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
@@ -29,9 +29,9 @@
         android:maxLength="10"
         android:maxLines="1"
         android:text="뽀삐"
-        app:layout_constraintEnd_toEndOf="@+id/imageView57"
-        app:layout_constraintStart_toStartOf="@+id/imageView57"
-        app:layout_constraintTop_toBottomOf="@+id/imageView57" />
+        app:layout_constraintEnd_toEndOf="@+id/default_image_updateuserimage"
+        app:layout_constraintStart_toStartOf="@+id/default_image_updateuserimage"
+        app:layout_constraintTop_toBottomOf="@+id/default_image_updateuserimage" />
 
     <TextView
         android:id="@+id/textView67"

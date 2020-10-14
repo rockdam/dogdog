@@ -58,7 +58,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/dogImage_home"
+                android:id="@+id/default_dogImage_home"
                 android:layout_width="54sp"
                 android:layout_height="54sp"
 
@@ -81,8 +81,8 @@
                 android:text="뽀삐"
                 android:textSize="19sp"
                 app:layout_constraintBottom_toTopOf="@+id/dogInfo_home"
-                app:layout_constraintStart_toEndOf="@+id/dogImage_home"
-                app:layout_constraintTop_toTopOf="@+id/dogImage_home" />
+                app:layout_constraintStart_toEndOf="@+id/default_dogImage_home"
+                app:layout_constraintTop_toTopOf="@+id/default_dogImage_home" />
 
             <TextView
                 android:id="@+id/dogInfo_home"
@@ -94,7 +94,7 @@
                 android:text="3살 / 여아 / 말티즈"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/imageView7"
-                app:layout_constraintStart_toEndOf="@+id/dogImage_home" />
+                app:layout_constraintStart_toEndOf="@+id/default_dogImage_home" />
 
             <TextView
                 android:id="@+id/textView9"
@@ -129,7 +129,7 @@
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView9"
                 app:layout_constraintStart_toStartOf="@+id/textView9"
-                app:layout_constraintTop_toBottomOf="@+id/dogImage_home" />
+                app:layout_constraintTop_toBottomOf="@+id/default_dogImage_home" />
 
             <View
                 android:id="@+id/view2"

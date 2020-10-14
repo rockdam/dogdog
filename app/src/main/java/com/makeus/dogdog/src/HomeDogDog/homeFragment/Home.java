@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs.AddChangeDogs;
+import com.makeus.dogdog.src.HomeDogDog.homeFragment.UpdateUserProfile.UpdateUserProfile;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.interfaces.HomeRefreshView;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.models.Result;
 import com.makeus.dogdog.src.HomeDogDog.startWalking.startWalking;
@@ -42,6 +43,7 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
     int mPercent = 0;
     double mTimeTickin;
 
+    ImageView defaultDogImage;
     int mTime;
 
     int mDogIdx;
@@ -96,7 +98,7 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
         mPrefs = this.getActivity().getSharedPreferences("startwalking", Context.MODE_PRIVATE);
         View v = inflater.inflate(R.layout.fragment_home, container, false);
         mAimProgressBar = v.findViewById(R.id.progressbar_home);
-
+        defaultDogImage =v.findViewById(R.id.default_dogImage_home);
         mPercentHome = v.findViewById(R.id.percent_home);
         mWelcomeMessage=v.findViewById(R.id.welcomeMessage_main);
         mDogInfo=v.findViewById(R.id.dogInfo_home);
@@ -113,6 +115,14 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
         mAimProgressBar.setMax(1000);
         startWalking.setOnClickListener(this);
         mChangeDogs.setOnClickListener(this);
+
+        defaultDogImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(getActivity(), UpdateUserProfile.class);
+                startActivity(intent);
+            }
+        });
         // Inflate the layout for this fragment
         return v;
     }

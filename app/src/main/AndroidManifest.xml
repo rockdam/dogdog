@@ -27,7 +27,10 @@
         tools:targetApi="n">
         <activity android:name=".src.HomeDogDog.homeFragment.UpdateUserProfile.UpdateMyInformation.UpdateMyInformation"></activity>
         <activity android:name=".src.HomeDogDog.homeFragment.UpdateUserProfile.UpdateDogsInformation.UpdateDogsInformation" />
-        <activity android:name=".src.HomeDogDog.homeFragment.UpdateUserProfile.UpdateUserImage.SelectedPicture.SelectedPicture" />
+        <activity android:name=".src.HomeDogDog.homeFragment.UpdateUserProfile.UpdateUserImage.SelectedPicture.SelectedPicture"
+
+            android:theme="@style/AppFullScreenTheme"
+            />
         <activity android:name=".src.HomeDogDog.homeFragment.UpdateUserProfile.UpdateUserImage.UpdateUserImage" />
         <activity android:name=".src.HomeDogDog.homeFragment.UpdateUserProfile.UpdateUserProfile" />
         <activity android:name=".src.HomeDogDog.homeFragment.AddChangeDogs.AddDogs.AddDogs" />

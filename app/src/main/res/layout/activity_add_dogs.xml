@@ -112,7 +112,7 @@
         이걸 써야 입력시 underline이 나오지 않는다.
         -->
         <ImageView
-            android:id="@+id/name_edtclear_step"
+            android:id="@+id/name_edtclear_addDogs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|center_vertical"
@@ -159,7 +159,7 @@
         이걸 써야 입력시 underline이 나오지 않는다.
         -->
         <ImageView
-            android:id="@+id/birthday_edtclear_step"
+            android:id="@+id/birthday_edtclear_addDogs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|center_vertical"

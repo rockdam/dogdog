@@ -83,7 +83,7 @@ public class SearchBreedsDialog extends Dialog implements View.OnClickListener, 
     }
 
     //인터페이스 설정
-    interface SearchBreedsDialogListener{
+   public interface SearchBreedsDialogListener{
         void onItemClickClicked(String breed, Integer breedIdx);
 
     }

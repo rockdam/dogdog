@@ -60,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <FrameLayout
-        android:id="@+id/frameLayout"
+        android:id="@+id/frameLayout_updateuserprofile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -87,7 +87,7 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/textView47"
+        android:id="@+id/dogName_updateuser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
@@ -96,27 +96,27 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout_updateuserprofile" />
 
     <ImageView
         android:id="@+id/imageView54"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/textView47"
+        app:layout_constraintBottom_toBottomOf="@+id/dogName_updateuser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView47"
-        app:layout_constraintTop_toTopOf="@+id/textView47"
+        app:layout_constraintStart_toEndOf="@+id/dogName_updateuser"
+        app:layout_constraintTop_toTopOf="@+id/dogName_updateuser"
         app:srcCompat="@drawable/ic_grey_pencil" />
 
     <TextView
-        android:id="@+id/textView50"
+        android:id="@+id/dogInfo_updateuser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="17dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/textView47"
-        app:layout_constraintTop_toBottomOf="@+id/textView47" />
+        app:layout_constraintStart_toStartOf="@+id/dogName_updateuser"
+        app:layout_constraintTop_toBottomOf="@+id/dogName_updateuser" />
 
     <ImageView
         android:id="@+id/imageView55"
@@ -140,7 +140,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="@+id/textView52"
-        app:layout_constraintTop_toBottomOf="@+id/textView50" />
+        app:layout_constraintTop_toBottomOf="@+id/dogInfo_updateuser" />
 
     <TextView
         android:id="@+id/textView52"
@@ -150,7 +150,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="40dp"
         android:text="이름"
-        app:layout_constraintEnd_toStartOf="@+id/textView54"
+        app:layout_constraintEnd_toStartOf="@+id/userName_updateuser"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
@@ -164,14 +164,14 @@
         android:layout_marginTop="18dp"
         android:layout_marginEnd="40dp"
         android:text="아이디"
-        app:layout_constraintEnd_toStartOf="@+id/textView55"
+        app:layout_constraintEnd_toStartOf="@+id/userId_updateuser"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView52" />
 
     <TextView
-        android:id="@+id/textView54"
+        android:id="@+id/userName_updateuser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -181,26 +181,30 @@
         app:layout_constraintStart_toEndOf="@+id/textView52" />
 
     <TextView
-        android:id="@+id/textView55"
+        android:id="@+id/userId_updateuser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/textView53"
         app:layout_constraintStart_toEndOf="@+id/textView53"
-        app:layout_constraintStart_toStartOf="@+id/textView54" />
+        app:layout_constraintStart_toStartOf="@+id/userName_updateuser" />
 
     <View
         android:id="@+id/view15"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginTop="30dp"
         android:background="#eeeeee"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="486dp"></View>
+        app:layout_constraintBottom_toTopOf="@+id/recyclerview_updateuserProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView53"></View>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_updateuserProfile"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/view15"
         tools:itemCount="3"
         tools:layout_editor_absoluteX="0dp"
