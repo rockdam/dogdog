@@ -25,10 +25,11 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".src.HomeDogDog.homeFragment.AddChangeDogs.AddDogs.AddDogs"></activity>
+        <activity android:name=".src.HomeDogDog.homeFragment.UpdateUserProfile.UpdateUserProfile"></activity>
+        <activity android:name=".src.HomeDogDog.homeFragment.AddChangeDogs.AddDogs.AddDogs" />
         <activity
             android:name=".src.HomeDogDog.homeFragment.AddChangeDogs.AddChangeDogs"
-            android:theme="@style/AppFullScreenTheme"></activity>
+            android:theme="@style/AppFullScreenTheme" />
         <activity android:name=".src.HomeDogDog.TrackingNoteFragment.AddTrackingNote.AddTrackingNote" />
         <activity android:name=".src.HomeDogDog.FeedFragment.AddFeedActivity.AddFeedActivity" />
         <activity android:name=".src.joinmember.step7.Step7Activity" />
