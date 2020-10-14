@@ -7,6 +7,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.makeus.dogdog.R;
@@ -31,6 +32,7 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener,
     userInfo mUserInfo;
     float mWeight = 0;
     Step6Service mStep6Service;
+    ImageView edtclear_step;
 
 
     @Override
@@ -41,7 +43,7 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener,
         mBackButton = findViewById(R.id.backButton_step);
         mNextButton.setOnClickListener(this);
         mBackButton.setOnClickListener(this);
-
+        edtclear_step=findViewById(R.id.edtclear_step);
         mUserInfo = new userInfo();
         mDogInfo = new dogInfo();
         dog_breeds_step6 = findViewById(R.id.dog_breeds_step6);
@@ -77,7 +79,11 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener,
 
             }
         });
+        edtclear_step.setOnClickListener(view -> {
 
+            mEdit_Input_Text_joinmember.setText("");
+
+        });
         dog_breeds_step6.setOnClickListener(view -> {
 
             mSearchBreedsDialog = new SearchBreedsDialog(this);

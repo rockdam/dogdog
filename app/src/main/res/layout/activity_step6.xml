@@ -63,24 +63,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <EditText
-        android:id="@+id/edit_Input_Text_joinmember"
-        android:layout_width="0dp"
+    <FrameLayout
+        android:id="@+id/edt_frame_step4"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="47dp"
-        android:backgroundTint="@color/editTextUnderLine"
-        android:ems="10"
-        android:inputType="numberDecimal|textNoSuggestions"
-        android:maxLines="1"
-
-        android:hint="예: 5.2 kg"
-
-        android:fontFamily="@font/spoqahansansregular"
-        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+        <EditText
+            android:id="@+id/edit_Input_Text_joinmember"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="34dp"
+            android:layout_marginLeft="34dp"
+            android:layout_marginEnd="34dp"
+            android:layout_marginRight="34dp"
+            android:backgroundTint="@color/editTextUnderLine"
+            android:ems="10"
+            android:fontFamily="@font/spoqahansansregular"
+            android:hint="예: 5.2 kg"
+            android:inputType="textVisiblePassword|textNoSuggestions"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:text=""
+            android:textSize="24sp"></EditText>
+
+        <ImageView
+            android:id="@+id/edtclear_step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="34dp"
+            android:layout_marginBottom="10dp"
+            app:srcCompat="@drawable/close_big" />
+    </FrameLayout>
+
 
 
     <FrameLayout
@@ -115,6 +133,13 @@
             android:layout_marginBottom="0dp"
             android:layout_gravity="bottom"
           />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginEnd="50dp"
+            android:src="@drawable/ic_arrowdown_big"
+            ></ImageView>
     </FrameLayout>
     <TextView
         android:id="@+id/backButton_step"

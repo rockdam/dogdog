@@ -5,13 +5,16 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
+import com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs.AddDogs.AddDogs;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs.interfaces.AddDogsView;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs.models.Result;
 
@@ -27,6 +30,7 @@ public class AddChangeDogs extends BaseActivity implements AddDogsView {
     AdddogsAdapter adddogsAdapter;
     ImageView close;
     AdddogsService adddogsService;
+    ImageView addDosPlusButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,7 @@ public class AddChangeDogs extends BaseActivity implements AddDogsView {
         close.setOnClickListener(view ->
                 finish()
         );
+        addDosPlusButton=findViewById(R.id.addDosPlusButton);
 
         recyclerView = findViewById(R.id.adddogsRecyclerview);
         LinearLayoutManager linearLayoutManager =new LinearLayoutManager(getBaseContext());
@@ -49,7 +54,15 @@ public class AddChangeDogs extends BaseActivity implements AddDogsView {
         adddogsService.refreshHomeView();
 
 
+        addDosPlusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+
+                Intent intent=new Intent(AddChangeDogs.this, AddDogs.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

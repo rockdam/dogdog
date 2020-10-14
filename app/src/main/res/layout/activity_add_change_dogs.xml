@@ -78,7 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/adddogsRecyclerview"></View>
 
     <ImageView
-        android:id="@+id/imageView55"
+        android:id="@+id/addDosPlusButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
@@ -99,6 +99,6 @@
         android:textColor="#333333"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView55"
+        app:layout_constraintStart_toEndOf="@+id/addDosPlusButton"
         app:layout_constraintTop_toBottomOf="@+id/view14" />
 </androidx.constraintlayout.widget.ConstraintLayout>

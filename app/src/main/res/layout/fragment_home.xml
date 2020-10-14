@@ -48,6 +48,7 @@
                 android:layout_marginTop="26dp"
                 android:layout_marginEnd="18dp"
                 android:background="@drawable/custom_oval"
+                android:src="@drawable/default_profile_image"
                 app:layout_constraintBottom_toBottomOf="@+id/dogInfo_home"
                 app:layout_constraintEnd_toStartOf="@+id/dogName_home"
                 app:layout_constraintStart_toStartOf="parent"
