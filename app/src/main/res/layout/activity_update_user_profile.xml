@@ -186,9 +186,8 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/textView53"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView53" />
+        app:layout_constraintStart_toEndOf="@+id/textView53"
+        app:layout_constraintStart_toStartOf="@+id/textView54" />
 
     <View
         android:id="@+id/view15"
@@ -202,10 +201,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        tools:itemCount="3"
-        tools:listitem="@layout/itemlayout_updateuser"
         app:layout_constraintTop_toBottomOf="@+id/view15"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:itemCount="3"
+        tools:layout_editor_absoluteX="0dp"
+        tools:listitem="@layout/itemlayout_updateuser" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
