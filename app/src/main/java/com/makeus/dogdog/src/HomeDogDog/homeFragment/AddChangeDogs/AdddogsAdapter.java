@@ -15,9 +15,10 @@ import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs.models.Result;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //https://developside.tistory.com/88
-public class AdddogsAdapter  extends RecyclerView.Adapter<AdddogsAdapter.ItemviewHolder> {
+public class AdddogsAdapter  extends RecyclerView.Adapter<AdddogsAdapter.ItemViewHolder> {
 
     Context mContext;
     ArrayList<Result> adddogsData;
@@ -31,38 +32,41 @@ public class AdddogsAdapter  extends RecyclerView.Adapter<AdddogsAdapter.Itemvie
 
     @NonNull
     @Override
-    public ItemviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view=inflater.inflate(R.layout.item_layout_add_change,parent,false);
-        return new ItemviewHolder(view);
+        return new ItemViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemviewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         holder.onBind(adddogsData.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return adddogsData.size();
     }
 
-    void addItem(ArrayList<Result> adddogsData)
+    void updateItem(List<Result> result)
     {
-        this.adddogsData=adddogsData;
+
+        adddogsData.clear();
+        adddogsData.addAll(result);
 
     }
-    public class ItemviewHolder extends RecyclerView.ViewHolder{
+    public class ItemViewHolder extends RecyclerView.ViewHolder{
 
 
         ImageView isCheckedImage;
+        ImageView profileImage;
         TextView dogName;
         String isDisplayed;
 
-        public ItemviewHolder(@NonNull View itemView) {
+        public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
             dogName=itemView.findViewById(R.id.addchangeName_itemlayout);
             isCheckedImage=itemView.findViewById(R.id.isCheck_itemlayout);
-
+            profileImage=itemView.findViewById(R.id.profileImage);
         }
 
         void onBind(Result adddogsData){

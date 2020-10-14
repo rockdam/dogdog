@@ -6,9 +6,14 @@ import com.google.gson.annotations.SerializedName;
 public class Result {
 
 
+    public Result(Integer dogIdx, String imgUrl, String name, String isDisplayed) {
+        this.dogIdx = dogIdx;
+        this.imgUrl = imgUrl;
+        this.name = name;
+        this.isDisplayed = isDisplayed;
+    }
 
-
-        @SerializedName("dogIdx")
+    @SerializedName("dogIdx")
         @Expose
         private Integer dogIdx;
         @SerializedName("imgUrl")

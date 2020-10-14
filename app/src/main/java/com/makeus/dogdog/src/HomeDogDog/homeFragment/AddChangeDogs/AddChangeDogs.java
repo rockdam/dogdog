@@ -2,6 +2,7 @@ package com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -38,14 +39,17 @@ public class AddChangeDogs extends BaseActivity implements AddDogsView {
         );
 
         recyclerView = findViewById(R.id.adddogsRecyclerview);
+        LinearLayoutManager linearLayoutManager =new LinearLayoutManager(getBaseContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
         adddogsData = new ArrayList<>();
         adddogsAdapter = new AdddogsAdapter(getBaseContext(), adddogsData);
+        recyclerView.setAdapter(adddogsAdapter);
+
         adddogsService = new AdddogsService(this);
         adddogsService.refreshHomeView();
 
 
 
-        recyclerView.setAdapter(adddogsAdapter);
 
     }
 
@@ -64,13 +68,13 @@ public class AddChangeDogs extends BaseActivity implements AddDogsView {
     public void refresh(List<Result> result) {
 
 
-        adddogsData.addAll(result);
-        adddogsAdapter.addItem(adddogsData);
-
+        adddogsAdapter.updateItem(result);
+//
+        adddogsAdapter.notifyDataSetChanged();
 
 //        recyclerView.invalidate();
 
-        recyclerView.notifyDataSetChanged();
+//        recyclerView.notifyDataSetChanged();
 
 
 

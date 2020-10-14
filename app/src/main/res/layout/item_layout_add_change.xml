@@ -13,25 +13,25 @@
         android:layout_marginEnd="34dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_dog_checked" />
+        android:src="@drawable/ic_dog_checked" />
 
     <ImageView
-        android:id="@+id/imageView56"
+        android:id="@+id/profileImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/custom_oval" />
+        android:src="@drawable/custom_oval" />
 
     <TextView
         android:id="@+id/addchangeName_itemlayout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="29dp"
         android:text="뽀삐"
-        app:layout_constraintStart_toEndOf="@+id/imageView56"
+        app:layout_constraintStart_toEndOf="@+id/profileImage"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
