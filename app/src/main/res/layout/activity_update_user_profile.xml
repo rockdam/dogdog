@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".src.HomeDogDog.TrackingNoteFragment.AddTrackingNote.AddTrackingNote">
 
-    <TextView
-        android:id="@+id/textView51"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/imageView55"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="@+id/textView52"
-        tools:layout_editor_absoluteY="366dp" />
 
     <TextView
         android:id="@+id/textView6"
@@ -141,13 +130,26 @@
         app:srcCompat="@drawable/ic_next_black_small" />
 
     <TextView
+        android:id="@+id/textView51"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="66dp"
+        android:layout_marginEnd="10dp"
+        android:text="내정보"
+        app:layout_constraintEnd_toStartOf="@+id/imageView55"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@+id/textView52"
+        app:layout_constraintTop_toBottomOf="@+id/textView50" />
+
+    <TextView
         android:id="@+id/textView52"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="40dp"
-        android:text="TextView"
+        android:text="이름"
         app:layout_constraintEnd_toStartOf="@+id/textView54"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -161,7 +163,7 @@
         android:layout_marginStart="26dp"
         android:layout_marginTop="18dp"
         android:layout_marginEnd="40dp"
-        android:text="TextView"
+        android:text="아이디"
         app:layout_constraintEnd_toStartOf="@+id/textView55"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -200,6 +202,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
+        tools:itemCount="3"
+        tools:listitem="@layout/itemlayout_updateuser"
         app:layout_constraintTop_toBottomOf="@+id/view15"
         tools:layout_editor_absoluteX="0dp" />
 

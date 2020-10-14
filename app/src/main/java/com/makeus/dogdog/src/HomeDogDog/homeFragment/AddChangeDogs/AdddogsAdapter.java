@@ -1,6 +1,7 @@
 package com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.makeus.dogdog.R;
@@ -61,6 +63,7 @@ public class AdddogsAdapter  extends RecyclerView.Adapter<AdddogsAdapter.ItemVie
         ImageView profileImage;
         TextView dogName;
         String isDisplayed;
+        Typeface typeface = ResourcesCompat.getFont(mContext, R.font.spoqahansansbold);
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,7 +79,7 @@ public class AdddogsAdapter  extends RecyclerView.Adapter<AdddogsAdapter.ItemVie
             isDisplayed=adddogsData.getIsDisplayed();
             if(isDisplayed.equals("Y"))
             {
-
+                dogName.setTypeface(typeface);
                 isCheckedImage.setVisibility(View.VISIBLE);
             }else{
 

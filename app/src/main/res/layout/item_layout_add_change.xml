@@ -11,9 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="34dp"
+        android:src="@drawable/ic_dog_checked"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_dog_checked" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/profileImage"
@@ -21,17 +21,23 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/default_profile_image"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/custom_oval" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/addchangeName_itemlayout"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/spoqahansansregular"
+        android:textColor="#333333"
         android:text="뽀삐"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/profileImage"
         app:layout_constraintStart_toEndOf="@+id/profileImage"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/profileImage" />
 </androidx.constraintlayout.widget.ConstraintLayout>
