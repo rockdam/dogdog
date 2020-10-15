@@ -213,7 +213,12 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
 
         }
         mAimProgressBar.setProgress((int) (mTimeTickin * (double) 10));
-        mPercentHome.setText(String.valueOf(mPercent));
+        if(mPercent==-1) {
+            mPercentHome.setText(String.valueOf(0));
+        }else{
+            mPercentHome.setText(String.valueOf(mPercent));
+
+        }
         mDogIdx=result.getDogInfo().getDogIdx();
 
     }

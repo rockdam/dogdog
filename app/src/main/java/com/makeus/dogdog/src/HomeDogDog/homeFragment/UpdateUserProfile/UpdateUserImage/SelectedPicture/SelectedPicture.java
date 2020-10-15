@@ -10,6 +10,7 @@ import com.makeus.dogdog.R;
 
 public class SelectedPicture extends AppCompatActivity {
 
+    private static final int REQUEST_CODE = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

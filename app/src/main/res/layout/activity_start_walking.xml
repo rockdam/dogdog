@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/spoqahansansregular"
 
-        android:text="0.0km"
+        android:text="0.00km"
         android:textSize="20sp"
         custom:layout_constraintEnd_toEndOf="@+id/textView27"
         custom:layout_constraintStart_toStartOf="@+id/textView27"
