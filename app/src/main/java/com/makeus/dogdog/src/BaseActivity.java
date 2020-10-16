@@ -2,6 +2,7 @@ package com.makeus.dogdog.src;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -30,6 +31,8 @@ public class BaseActivity extends AppCompatActivity { // 얘가 근본이 되서
 //            getWindow().setStatusBarColor(Color.BLACK);
 //        }
 //        //이거 말고도 초기 실행될 때 상단바 색 바꿔야함
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
 

@@ -77,10 +77,10 @@ public abstract class UICalendar extends LinearLayout {
 
     private Day mSelectedItem = null;
 
-    private int mButtonLeftDrawableTintColor = Color.BLACK;
-    private int mButtonRightDrawableTintColor = Color.BLACK;
+    private int mButtonLeftDrawableTintColor =getResources().getColor(R.color.donutUnFinished);
+    private int mButtonRightDrawableTintColor = getResources().getColor(R.color.donutUnFinished);
 
-    private int mExpandIconColor = Color.BLACK;
+    private int mExpandIconColor = getResources().getColor(R.color.donutUnFinished);
 
     public UICalendar(Context context) {
         this(context, null);

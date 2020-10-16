@@ -66,6 +66,9 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
     FusedLocationProviderClient mFusedLocationClient;
     LocationRequest locationRequest;
 
+    boolean isPause=true;
+    boolean checkGps=true;
+
     int sendTime;
     StopWalkingBody mStopWalkingBody;
     StartWalkingService mStartWalkingService, mStopWalkingService;
@@ -98,6 +101,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
         mStopButton = findViewById(R.id.stopbutton_startwalking);
         mStartCamera = findViewById(R.id.cameraApp_startWalking);
 
+        mStopWalkingBody = new StopWalkingBody();
         mDogIdx = getIntent().getIntExtra("dogIdx", 1);
 //        if (getIntent().getStringExtra("timeTicking") != null) {
 //            mTimetickin = Double.parseDouble(getIntent().getStringExtra("timeTicking"));
@@ -106,7 +110,6 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
 //        mStartTime = getIntent().getLongExtra("time", 0);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        mDogIdx = getIntent().getIntExtra("dogIdx", 0);
         locationRequest = LocationRequest.create();
         locationRequest.setInterval(10000);
         locationRequest.setFastestInterval(6000);
@@ -118,6 +121,32 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
 
         mStartWalking.setOnClickListener(this);
         mStopButton.setOnClickListener(this);
+        mWalkingTimeCronometer.setOnChronometerTickListener(chronometer -> {
+
+
+            time = mWalkingTime + SystemClock.elapsedRealtime() - chronometer.getBase();
+
+            chronometer.setText(calculate(time));
+
+            //1000
+
+            int h = (int) (time / 3600000);
+//            int m = (int) (time - h * 3600000) / 60000;
+            int s = (int) (time - h * 3600000) / 1000;
+
+
+            mTimetickin = ((double) s / (18));
+//            mPercent = s / 18;
+            Log.e("percent", "" + mPercent);
+            mDonutView.setValue(mTimetickin, mPercent);
+            System.out.println("mTimetickin" + mTimetickin);
+            System.out.println("Time체크" + s);
+            System.out.println("Time" + time);
+
+            sendTime = s;
+
+            Log.e("sendTime", "" + sendTime);
+        });
 
 
     }
@@ -134,9 +163,17 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
     @Override
     public void onStop() {
         super.onStop();
+        isPause=true;
+        sendStopWalkingTime();
         stopLocationUpdates();
+
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        isPause=false;
+    }
 
     // 얘는 inner로 나중에 정리
     private void checkSettingsAndStartLocationUpdates() {
@@ -179,8 +216,14 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
 
     private void stopLocationUpdates() {
 
-        mFusedLocationClient.removeLocationUpdates(locationCallback);
-    }
+        if(checkGps) {
+            mFusedLocationClient.removeLocationUpdates(locationCallback);
+        checkGps=false;
+        }else{
+
+            checkGps=true;
+        }
+        }
 
     private void askLocationPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -264,6 +307,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
                     mWalkingTimeCronometer.start();
                     mStartWalking.setImageResource(R.drawable.pause_pause);
                     mRunning = true;
+
                     startLocationUpdate();
 
                 } else { //일시 중지
@@ -272,6 +316,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
                     mWalkingTimeCronometer.stop();
                     mStartWalking.setImageResource(R.drawable.start);
                     mRunning = false;
+
                     stopLocationUpdates();
 
 
@@ -286,15 +331,8 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
                     Toast.makeText(getApplicationContext(), "일시 중지를 눌러주세요 :)", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    mStopWalkingBody = new StopWalkingBody();
-                    mStopWalkingBody.setDogIdx(mDogIdx);
-                    mStopWalkingBody.setWalkingDistance(mWalkingDistance);
-                    //이거 나중에 고쳐야됌
-                    mStopWalkingBody.setWalkingTime(sendTime);
-
-                    Log.e("sendTime", "보냅니다 시간" + sendTime);
-                    mStopWalkingService = new StartWalkingService(this, mStopWalkingBody);
-                    mStopWalkingService.terminatedStartWalking();
+                    isPause=false;
+                    sendStopWalkingTime();
 
                 }
 
@@ -307,7 +345,22 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
 
         }
     }
+void sendStopWalkingTime(){
 
+    mStopWalkingBody.setDogIdx(mDogIdx);
+    mStopWalkingBody.setWalkingDistance(mWalkingDistance);
+    //이거 나중에 고쳐야됌
+    mStopWalkingBody.setWalkingTime(sendTime);
+
+    Log.e("sendTime", "보냅니다 시간" + sendTime);
+    mStopWalkingService = new StartWalkingService(this, mStopWalkingBody);
+    mStopWalkingService.terminatedStartWalking();
+    }
+    void sendPauseWalkingTime(){
+
+
+    }
+    // 그렇니깐 pause일 때는 상관 x
     @Override
     public void onBackPressed() {
 //        super.onBackPressed();
@@ -317,6 +370,8 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
             Toast.makeText(getApplicationContext(), "일시 중지를 눌러주세요 :)", Toast.LENGTH_SHORT).show();
 
         } else {
+
+            sendStopWalkingTime();
             finish();
         }
     }
@@ -373,48 +428,34 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
         mPercent = result.getPercent();
         mWalkingDistance = result.getDistance();
         mWalkingTime = result.getWalkingTime();
-        mTimetickin = (double) mWalkingTime / (double) 18;
+        Log.e("mWalkingTime", "" + mWalkingTime);
+
+
+        Log.e("mTimetickin", "" + mTimetickin);
+
         mWalkingTimeCronometer.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
         mWalkingTimeCronometer.setText(calculate(mWalkingTime * 1000));
+        // mWalkingTimeCronometer 이 위에서 한번 호출 되는것으로 추정
+        mTimetickin = ((double) mWalkingTime / (18));
+        mDonutView.setValue(mTimetickin, mPercent);//시점이 위에 있으면 안되네
         if (mWalkingTime == 0) {
             mWalkingDistanceTextView.setText("0.00" + "km");
         }
-        mDonutView.setValue(mTimetickin, mPercent);
+        Log.e("mTimetickin", "" + mTimetickin);
+
         mWalkingTime *= 1000;
-        Log.e("mWalkingTime", "" + mWalkingTime);
-        mWalkingTimeCronometer.setOnChronometerTickListener(chronometer -> {
-
-
-            time = mWalkingTime + SystemClock.elapsedRealtime() - chronometer.getBase();
-
-            chronometer.setText(calculate(time));
-
-            //1000
-
-            int h = (int) (time / 3600000);
-//            int m = (int) (time - h * 3600000) / 60000;
-            int s = (int) (time - h * 3600000) / 1000;
-
-
-            mTimetickin = ((double) s / (18));
-            mPercent = s / 18;
-            Log.e("percent", "" + mPercent);
-            mDonutView.setValue(mTimetickin, mPercent);
-            System.out.println("mTimetickin" + mTimetickin);
-            System.out.println("Time체크" + s);
-            System.out.println("Time" + time);
-
-            sendTime = s;
-
-            Log.e("sendTime", "" + sendTime);
-        });
+        Log.e("mPercent", "" + mPercent);
 
     }
 
     @Override
     public void terminate() {
         Log.e("성공완료", "굿");
-        finish();
+        if(!isPause) {
+            finish();
+        }
+
+
     }
 
 
