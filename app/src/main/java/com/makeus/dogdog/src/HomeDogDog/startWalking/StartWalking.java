@@ -11,6 +11,7 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.os.SystemClock;
@@ -45,7 +46,7 @@ import com.makeus.dogdog.src.HomeDogDog.startWalking.models.StopWalkingBody;
 
 import java.util.Locale;
 
-public class startWalking extends BaseActivity implements View.OnClickListener, StartWalkingView {
+public class StartWalking extends BaseActivity implements View.OnClickListener, StartWalkingView {
 
     DonutView mDonutView;
     Chronometer mWalkingTimeCronometer;
@@ -66,9 +67,9 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
     FusedLocationProviderClient mFusedLocationClient;
     LocationRequest locationRequest;
 
-    boolean isPause=true;
-    boolean checkGps=true;
-
+    boolean isPause = true;
+    boolean checkGps = true;
+    Intent Serviceintent;
     int sendTime;
     StopWalkingBody mStopWalkingBody;
     StartWalkingService mStartWalkingService, mStopWalkingService;
@@ -100,7 +101,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
         mDonutView = findViewById(R.id.donut);
         mStopButton = findViewById(R.id.stopbutton_startwalking);
         mStartCamera = findViewById(R.id.cameraApp_startWalking);
-
+        Serviceintent = new Intent(StartWalking.this, ForegroundWalkingService.class);
         mStopWalkingBody = new StopWalkingBody();
         mDogIdx = getIntent().getIntExtra("dogIdx", 1);
 //        if (getIntent().getStringExtra("timeTicking") != null) {
@@ -117,7 +118,8 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
 
 
         mStartCamera.setOnClickListener(this);
-
+        mStartWalkingService = new StartWalkingService(this, mDogIdx);
+        mStartWalkingService.refreshStartWalkingView();
 
         mStartWalking.setOnClickListener(this);
         mStopButton.setOnClickListener(this);
@@ -154,8 +156,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
     @Override
     protected void onStart() {
         super.onStart();
-        mStartWalkingService = new StartWalkingService(this, mDogIdx);
-        mStartWalkingService.refreshStartWalkingView();
+
 
 
     }
@@ -163,16 +164,16 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
     @Override
     public void onStop() {
         super.onStop();
-        isPause=true;
-        sendStopWalkingTime();
-        stopLocationUpdates();
+        isPause = true;
+//        sendStopWalkingTime();
+//        stopLocationUpdates();
 
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        isPause=false;
+        isPause = false;
     }
 
     // 얘는 inner로 나중에 정리
@@ -192,7 +193,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
             if (e instanceof ResolvableApiException) {
                 ResolvableApiException apiException = (ResolvableApiException) e;
                 try {
-                    apiException.startResolutionForResult(startWalking.this, 1001);
+                    apiException.startResolutionForResult(StartWalking.this, 1001);
                 } catch (IntentSender.SendIntentException ex) {
                     ex.printStackTrace();
                 }
@@ -216,14 +217,14 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
 
     private void stopLocationUpdates() {
 
-        if(checkGps) {
+        if (checkGps) {
             mFusedLocationClient.removeLocationUpdates(locationCallback);
-        checkGps=false;
-        }else{
+            checkGps = false;
+        } else {
 
-            checkGps=true;
+            checkGps = true;
         }
-        }
+    }
 
     private void askLocationPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -292,6 +293,16 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
         }
     }
 
+    public void onStartForegroundService() {
+
+        Serviceintent.setAction("startForeground");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { //오레오 버전 이상에서는 ..
+            startForegroundService(Serviceintent);
+        } else {
+            startService(Serviceintent);
+        }
+    }
+
     @Override
     public void onClick(View view) {
 
@@ -303,6 +314,7 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
 
                 if (!mRunning) { //시작
 
+                    onStartForegroundService();
                     mWalkingTimeCronometer.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
                     mWalkingTimeCronometer.start();
                     mStartWalking.setImageResource(R.drawable.pause_pause);
@@ -331,7 +343,8 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
                     Toast.makeText(getApplicationContext(), "일시 중지를 눌러주세요 :)", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    isPause=false;
+                    stopService(Serviceintent);
+                    isPause = false;
                     sendStopWalkingTime();
 
                 }
@@ -345,21 +358,19 @@ public class startWalking extends BaseActivity implements View.OnClickListener, 
 
         }
     }
-void sendStopWalkingTime(){
 
-    mStopWalkingBody.setDogIdx(mDogIdx);
-    mStopWalkingBody.setWalkingDistance(mWalkingDistance);
-    //이거 나중에 고쳐야됌
-    mStopWalkingBody.setWalkingTime(sendTime);
+    void sendStopWalkingTime() {
 
-    Log.e("sendTime", "보냅니다 시간" + sendTime);
-    mStopWalkingService = new StartWalkingService(this, mStopWalkingBody);
-    mStopWalkingService.terminatedStartWalking();
+        mStopWalkingBody.setDogIdx(mDogIdx);
+        mStopWalkingBody.setWalkingDistance(mWalkingDistance);
+        //이거 나중에 고쳐야됌
+        mStopWalkingBody.setWalkingTime(sendTime);
+
+        Log.e("sendTime", "보냅니다 시간" + sendTime);
+        mStopWalkingService = new StartWalkingService(this, mStopWalkingBody);
+        mStopWalkingService.terminatedStartWalking();
     }
-    void sendPauseWalkingTime(){
 
-
-    }
     // 그렇니깐 pause일 때는 상관 x
     @Override
     public void onBackPressed() {
@@ -395,7 +406,7 @@ void sendStopWalkingTime(){
                 distance += oldLocation.distanceTo(locationResult.getLastLocation());
                 //위의 코드가 원래는 지구 반지름 들어간 .. 뭐 공식있는거 그거였다고 한다..
                 oldLocation = locationResult.getLastLocation();
-                double calculateddistance=Math.floor(distance / 1000);
+                double calculateddistance = Math.floor(distance / 1000);
                 String dist = String.format(Locale.getDefault(), "%.2f", (distance / 1000));
                 Log.e("산책 거리 ", "" + dist); //반환 m
 
@@ -451,7 +462,7 @@ void sendStopWalkingTime(){
     @Override
     public void terminate() {
         Log.e("성공완료", "굿");
-        if(!isPause) {
+        if (!isPause) {
             finish();
         }
 

@@ -19,7 +19,7 @@ import com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs.AddChangeDogs
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.UpdateUserProfile.UpdateUserProfile;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.interfaces.HomeRefreshView;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.models.Result;
-import com.makeus.dogdog.src.HomeDogDog.startWalking.startWalking;
+import com.makeus.dogdog.src.HomeDogDog.startWalking.StartWalking;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -153,7 +153,7 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
 
 
             case R.id.next_button_step:
-                Intent intent = new Intent(getActivity(), startWalking.class);
+                Intent intent = new Intent(getActivity(), StartWalking.class);
 
 
 //                if (mPercent != 0) {

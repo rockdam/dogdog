@@ -65,7 +65,7 @@
             android:name=".src.joinmember.step3.Step3Activity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".src.joinmember.login.LoginActivity" />
-        <activity android:name=".src.HomeDogDog.startWalking.startWalking" />
+        <activity android:name=".src.HomeDogDog.startWalking.StartWalking" />
         <activity android:name=".src.HomeDogDog.HomeActivity" />
         <activity
             android:name=".src.joinmember.step2.Step2Activity"
