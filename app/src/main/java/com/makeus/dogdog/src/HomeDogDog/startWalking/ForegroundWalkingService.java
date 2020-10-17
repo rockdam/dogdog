@@ -40,8 +40,8 @@ public class ForegroundWalkingService extends Service {
         startForeground(1, builder.build());
     }
 
-
-    public int onStartCommand(Intent intent, int flags, int startId) {          // 시작 커맨드 클릭시 포그라운드 서비스 실행
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
         if ("startForeground".equals(intent.getAction())) {
             startForegroundService();
         } else if (mThread == null) {

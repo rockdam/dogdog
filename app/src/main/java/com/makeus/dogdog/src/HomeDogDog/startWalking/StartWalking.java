@@ -101,7 +101,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
         mDonutView = findViewById(R.id.donut);
         mStopButton = findViewById(R.id.stopbutton_startwalking);
         mStartCamera = findViewById(R.id.cameraApp_startWalking);
-        Serviceintent = new Intent(StartWalking.this, ForegroundWalkingService.class);
+
         mStopWalkingBody = new StopWalkingBody();
         mDogIdx = getIntent().getIntExtra("dogIdx", 1);
 //        if (getIntent().getStringExtra("timeTicking") != null) {
@@ -116,7 +116,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
         locationRequest.setFastestInterval(6000);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
-
+        onStartForegroundService();
         mStartCamera.setOnClickListener(this);
         mStartWalkingService = new StartWalkingService(this, mDogIdx);
         mStartWalkingService.refreshStartWalkingView();
@@ -294,7 +294,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
     }
 
     public void onStartForegroundService() {
-
+        Serviceintent = new Intent(StartWalking.this, ForegroundWalkingService.class);
         Serviceintent.setAction("startForeground");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { //오레오 버전 이상에서는 ..
             startForegroundService(Serviceintent);
@@ -314,7 +314,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
 
                 if (!mRunning) { //시작
 
-                    onStartForegroundService();
+
                     mWalkingTimeCronometer.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
                     mWalkingTimeCronometer.start();
                     mStartWalking.setImageResource(R.drawable.pause_pause);
