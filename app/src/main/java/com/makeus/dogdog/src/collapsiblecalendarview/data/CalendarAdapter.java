@@ -63,6 +63,10 @@ public class CalendarAdapter {
     public void addEvent(Event event) {
         mEventList.add(event);
     }
+    public void notifyWritedday( ArrayList<Integer> mDaylist)
+    {
+
+    }
 
     public void refresh() {
         // clear data
@@ -81,6 +85,8 @@ public class CalendarAdapter {
         // generate day list
         int offset = 0 - (firstDayOfWeek - mFirstDayOfWeek) + 1;
         int length = (int) Math.ceil((float) (lastDayOfMonth - offset + 1) / 7) * 7;
+
+
         for (int i = offset; i < length + offset; i++) {
             int numYear;
             int numMonth;
@@ -126,6 +132,10 @@ public class CalendarAdapter {
             txtDay.setTypeface(typeface);
             txtDay.setTextSize(16);
             //여기가 달력 날짜 글씨 크기 조정 .
+//            if(day.getDay() ==1)
+//            {
+//                txtDay.setAlpha(0.2f);
+//            }
             if (day.getMonth() != mCal.get(Calendar.MONTH)) { //이번달이 아니면
                 txtDay.setAlpha(0.2f);
             }

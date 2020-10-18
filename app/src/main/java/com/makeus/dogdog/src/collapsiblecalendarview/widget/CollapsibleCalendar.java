@@ -28,14 +28,18 @@ import com.makeus.dogdog.src.collapsiblecalendarview.data.Event;
 import com.makeus.dogdog.src.collapsiblecalendarview.view.ExpandIconView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class CollapsibleCalendar extends UICalendar {
 
     private CalendarAdapter mAdapter;
     private CalendarListener mListener;
 
+    private ArrayList<Integer> mDays;
     private boolean expanded = false;
 
     private int mInitHeight = 0;
@@ -196,10 +200,10 @@ public class CollapsibleCalendar extends UICalendar {
             TableLayout.LayoutParams tableRowParams = new TableLayout.LayoutParams(
                     TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT
             );
-            int leftMargin = 0;
-            int topMargin = 0; //이래야 위에서 떨어진 이쁜 위치가 된다 .
-            int rightMargin = 0;
-            int bottomMargin = 0;
+//            int leftMargin = 10;
+//            int topMargin = 10; //이래야 위에서 떨어진 이쁜 위치가 된다 .
+//            int rightMargin = 10;
+//            int bottomMargin = 10;
 
             // set day of week
             int[] dayOfWeekIds = {
@@ -216,8 +220,6 @@ public class CollapsibleCalendar extends UICalendar {
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));
 
-//            tableRowParams.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
-//            rowCurrent.setLayoutParams(tableRowParams);
 //            https://stackoverflow.com/questions/4577644/programmatically-set-margin-for-tablerow
 //            여기를 참조하였습니다.
 
@@ -240,7 +242,7 @@ public class CollapsibleCalendar extends UICalendar {
 //                        0,
 //                        ViewGroup.LayoutParams.WRAP_CONTENT,
 //                        1));
-                layoutParams.setMargins(0,0,0,10);
+                layoutParams.setMargins(0,0,0,16);
                 view.setLayoutParams(layoutParams);
                 rowCurrent.addView(view);
             }
@@ -257,17 +259,20 @@ public class CollapsibleCalendar extends UICalendar {
 //                            ViewGroup.LayoutParams.MATCH_PARENT,
 //                            ViewGroup.LayoutParams.WRAP_CONTENT
 //                    ));
+//                    rowCurrent.setLayoutParams(tableRowParams);
+//                    tableRowParams.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
                     rowCurrent.setLayoutParams(tableRowParams);
 
                     mTableBody.addView(rowCurrent);
                 }
+
+
                 final View view = mAdapter.getView(position);
                 view.setLayoutParams(new TableRow.LayoutParams(
                         0,
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         1));
                 //요기에 글씨만 키우면 되는건데...
-
 
                 view.setOnClickListener(new OnClickListener() {
                     @Override
@@ -425,7 +430,10 @@ public class CollapsibleCalendar extends UICalendar {
     }
 
     public boolean isToady(Day day) {
-        Calendar todayCal = Calendar.getInstance();
+        Calendar todayCal = new GregorianCalendar(TimeZone.getTimeZone("GMT+9"));
+        //시간 보정
+//한국 시간은 GMT+9이다.
+//        https://stackoverflow.com/questions/44647598/calendar-getcalendar-day-of-month-returning-wrong-day
         return day != null
                 && day.getYear() == todayCal.get(Calendar.YEAR)
                 && day.getMonth() == todayCal.get(Calendar.MONTH)

@@ -16,6 +16,9 @@ import android.widget.TextView;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.AddTrackingNote.AddTrackingNote;
+import com.makeus.dogdog.src.collapsiblecalendarview.data.CalendarAdapter;
+import com.makeus.dogdog.src.collapsiblecalendarview.data.Event;
+import com.makeus.dogdog.src.collapsiblecalendarview.widget.CollapsibleCalendar;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,6 +36,8 @@ public class TrackingNote extends Fragment {
 
     GridView mCalendar;
 
+    CollapsibleCalendar collapsibleCalendar;
+    CalendarAdapter calendarAdapter;
     /**
      * 일 저장 할 리스트
      */
@@ -46,7 +51,6 @@ public class TrackingNote extends Fragment {
      */
 
     ImageView addTrackingNote;
-    private GridAdapter gridAdapter;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -91,21 +95,11 @@ public class TrackingNote extends Fragment {
 
 
 
-    /**
-     * 해당 월에 표시할 일 수 구함
-     *
-     * @param month
-     */
-    private void setCalendarDate(int month) {
-        mCal.set(Calendar.MONTH, month - 1);
-
-        for (int i = 0; i < mCal.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
-            dayList.add("" + (i + 1));
-        }
 
 
 
-    }
+
+
     //https://heum-story.tistory.com/6 커스텀뷰 만드는중
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -120,76 +114,12 @@ public class TrackingNote extends Fragment {
                 startActivity(intent);
             }
         });
+        collapsibleCalendar=v.findViewById(R.id.calendar_trackingnote);
+        collapsibleCalendar.addEventTag(2020,9,10);
+        //월은 9가 10월
         // Inflate the layout for this fragment
         return v;
     }
 
-    /**
-     * 그리드뷰 어댑터
-     *
-     */
-    private class GridAdapter extends BaseAdapter {
 
-        private final List<String> list;
-
-        private final LayoutInflater inflater;
-
-        /**
-         * 생성자
-         *
-         * @param context
-         * @param list
-         */
-        public GridAdapter(Context context, List<String> list) {
-            this.list = list;
-            this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
-
-        @Override
-        public int getCount() {
-            return list.size();
-        }
-
-        @Override
-        public String getItem(int position) {
-            return list.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            ViewHolder holder = null;
-
-            if (convertView == null) {
-                convertView = inflater.inflate(R.layout.item_calendarview, parent, false);
-                holder = new ViewHolder();
-
-                holder.tvItemGridView = (TextView)convertView.findViewById(R.id.tv_item_gridview);
-
-                convertView.setTag(holder);
-            } else {
-                holder = (ViewHolder)convertView.getTag();
-            }
-            holder.tvItemGridView.setText("" + getItem(position));
-
-            //해당 날짜 텍스트 컬러,배경 변경
-            mCal = Calendar.getInstance();
-            //오늘 day 가져옴
-            Integer today = mCal.get(Calendar.DAY_OF_MONTH);
-            String sToday = String.valueOf(today);
-            if (sToday.equals(getItem(position))) { //오늘 day 텍스트 컬러 변경
-                holder.tvItemGridView.setTextColor(getResources().getColor(R.color.colorDogDogBlue));
-            }
-            return convertView;
-        }
-    }
-
-    private class ViewHolder {
-        TextView tvItemGridView;
-    }
 }
