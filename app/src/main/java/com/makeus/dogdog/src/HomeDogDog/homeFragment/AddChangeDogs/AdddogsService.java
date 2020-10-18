@@ -2,6 +2,7 @@ package com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs;
 
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs.interfaces.AddDogsRetrofitInterface;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs.interfaces.AddDogsView;
+import com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs.interfaces.SelectDogRetrofitInterface;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs.models.AddDogsResponse;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.interfaces.HomeRefreshRetrofitInterface;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.interfaces.HomeRefreshView;
@@ -42,6 +43,43 @@ public class AdddogsService {
                 {
 
                     addDogsView.refresh(addDogsResponse.getResult());
+
+
+                }// 자동로그인 안되면 로그인 해야지 .
+
+
+
+
+            }
+
+
+
+            @Override
+            public void onFailure(Call<AddDogsResponse> call, Throwable t) {
+
+            }
+
+        });
+
+
+    }
+
+    public void updateHomeView(int dogIdx) {
+
+        final SelectDogRetrofitInterface selectDogRetrofitInterface = getRetrofit().create(SelectDogRetrofitInterface.class);
+
+
+        selectDogRetrofitInterface.refreshInfo(dogIdx).enqueue(new Callback<AddDogsResponse>() {
+
+
+            @Override
+            public void onResponse(Call<AddDogsResponse> call, Response<AddDogsResponse> response) {
+
+                addDogsResponse=response.body();
+                if(response.code() ==200)
+                {
+
+                    addDogsView.moveHomeFragemnt();
 
 
                 }// 자동로그인 안되면 로그인 해야지 .

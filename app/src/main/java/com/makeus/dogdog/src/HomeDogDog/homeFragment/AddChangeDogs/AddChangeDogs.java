@@ -30,6 +30,7 @@ public class AddChangeDogs extends BaseActivity implements AddDogsView {
     AdddogsService adddogsService;
     ImageView addDosPlusButton;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +73,17 @@ public class AddChangeDogs extends BaseActivity implements AddDogsView {
 
         adddogsService = new AdddogsService(this);
         adddogsService.refreshHomeView();
+
+
+        adddogsAdapter.setOnItemClickListener(new AdddogsAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position,int dogIdx) {
+
+                adddogsService.updateHomeView(dogIdx);
+
+
+            }
+        });
     }
 
     private void setWindow() {
@@ -101,6 +113,12 @@ public class AddChangeDogs extends BaseActivity implements AddDogsView {
 
 
 
+    }
+
+    @Override
+    public void moveHomeFragemnt() {
+        adddogsAdapter.notifyDataSetChanged();
+        finish();
     }
 
 //    private void init() {

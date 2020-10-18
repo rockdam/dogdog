@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -123,14 +124,33 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
                 startActivity(intent);
             }
         });
+
         // Inflate the layout for this fragment
         return v;
     }
 
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        Log.e("여기 되나요?","제발요");
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mHomeRefreshService.refreshHomeView();
+
+    }
+
+    // 프래그먼트 생명주기 좀 봐라 여기로 안돌아온다 .
     @Override
     public void onStart() {
         super.onStart();
-        mHomeRefreshService.refreshHomeView();
+        Log.e("여기 되나요?ㅇ","제발요");
+
 //        mPrefs.edit().clear().commit() ;
 //        얘를 자정 지나면 발동 되도록 .;
 //        mPercent = mPrefs.getInt("percent", 0);

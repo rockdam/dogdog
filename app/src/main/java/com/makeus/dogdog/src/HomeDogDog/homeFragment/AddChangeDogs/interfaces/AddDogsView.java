@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface AddDogsView {
     void refresh(List<Result> result);
+    void moveHomeFragemnt();
 }
