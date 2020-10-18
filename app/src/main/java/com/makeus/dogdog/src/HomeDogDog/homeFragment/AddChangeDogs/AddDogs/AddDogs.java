@@ -1,8 +1,5 @@
 package com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs.AddDogs;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
@@ -26,7 +23,7 @@ import java.text.SimpleDateFormat;
 public class AddDogs extends BaseActivity {
 
     EditText nameEdt, birthdayEdt, weightEdt;
-    TextView breedsDogs;
+    TextView breedsDogs,nextButtonAddDogs;
     RadioButton mMale, mFemale, mYes, mNo;
     RadioGroup mRgGender,mIsDefaultCheck;
     ImageView nameClearEdt,birthdayClearEdt,weightClearEdt;
@@ -105,6 +102,13 @@ public class AddDogs extends BaseActivity {
 
             mSearchBreedsDialog.show();
 
+
+            findViewById(R.id.next_button_addDogs).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
 
         });
     }

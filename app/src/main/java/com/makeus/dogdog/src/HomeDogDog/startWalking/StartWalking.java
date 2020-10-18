@@ -40,6 +40,7 @@ import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.tasks.Task;
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
+import com.makeus.dogdog.src.HomeDogDog.HomeActivity;
 import com.makeus.dogdog.src.HomeDogDog.startWalking.interfaces.StartWalkingView;
 import com.makeus.dogdog.src.HomeDogDog.startWalking.models.Result;
 import com.makeus.dogdog.src.HomeDogDog.startWalking.models.StopWalkingBody;
@@ -353,7 +354,6 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
 
                 } else {
                     stopService(Serviceintent);
-                    isPause = false;
                     sendStopWalkingTime();
 
                 }
@@ -473,6 +473,10 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
     public void terminate() {
         Log.e("성공완료", "굿");
 
+
+
+        Intent intent =new Intent(StartWalking.this, HomeActivity.class);
+        startActivity(intent );
             finish();
 
 

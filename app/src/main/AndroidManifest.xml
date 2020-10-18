@@ -14,7 +14,7 @@
 
     <application
         android:name=".src.ApplicationClass"
-        android:launchMode="singleInstance"
+
 
         android:allowBackup="false"
         android:fullBackupContent="false"
