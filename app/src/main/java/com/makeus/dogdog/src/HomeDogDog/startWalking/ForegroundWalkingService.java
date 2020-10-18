@@ -26,6 +26,11 @@ public class ForegroundWalkingService extends Service {
         builder.setContentText("강아지 산책 중입니다 :)");
 
         Intent notificationIntent = new Intent(this, StartWalking.class);
+
+        notificationIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        notificationIntent.setAction(Intent.ACTION_MAIN);
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 //        https://stackoverflow.com/questions/17980245/service-and-chronometer-synchronization 싱크 맞추기
         builder.setContentIntent(pendingIntent);
