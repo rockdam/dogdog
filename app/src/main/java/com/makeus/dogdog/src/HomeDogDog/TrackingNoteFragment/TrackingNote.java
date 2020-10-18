@@ -13,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.AddTrackingNote.AddTrackingNote;
@@ -115,6 +116,36 @@ public class TrackingNote extends Fragment {
             }
         });
         collapsibleCalendar=v.findViewById(R.id.calendar_trackingnote);
+        collapsibleCalendar.setCalendarListener(new CollapsibleCalendar.CalendarListener() {
+            @Override
+            public void onDaySelect() {
+
+
+//                Toast.makeText(getContext(),""+collapsibleCalendar.getSelectedItemPosition(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),""+collapsibleCalendar.getSelectedDay().getDay(),Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onItemClick(View v) {
+
+
+            }
+
+            @Override
+            public void onDataUpdate() {
+
+            }
+
+            @Override
+            public void onMonthChange() {
+                Toast.makeText(getContext(),"monthChange",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onWeekChange(int position) {
+
+            }
+        });
         collapsibleCalendar.addEventTag(2020,9,10);
         //월은 9가 10월
         // Inflate the layout for this fragment

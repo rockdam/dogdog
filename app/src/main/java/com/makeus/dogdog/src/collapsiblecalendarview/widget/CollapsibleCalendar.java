@@ -242,7 +242,7 @@ public class CollapsibleCalendar extends UICalendar {
 //                        0,
 //                        ViewGroup.LayoutParams.WRAP_CONTENT,
 //                        1));
-                layoutParams.setMargins(0,0,0,16);
+                layoutParams.setMargins(0,0,0,24);
                 view.setLayoutParams(layoutParams);
                 rowCurrent.addView(view);
             }
