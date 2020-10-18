@@ -76,7 +76,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
     StartWalkingService mStartWalkingService, mStopWalkingService;
     int mDogIdx;
 
-    float distance = 0;
+    float Initialdistance = 0;
     Location oldLocation;
 
 
@@ -412,21 +412,22 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
             } else {
 
 
-                distance += oldLocation.distanceTo(locationResult.getLastLocation());
+                Initialdistance += oldLocation.distanceTo(locationResult.getLastLocation());
                 //위의 코드가 원래는 지구 반지름 들어간 .. 뭐 공식있는거 그거였다고 한다..
                 oldLocation = locationResult.getLastLocation();
-                double calculateddistance = Math.floor(distance / 1000);
-                String dist = String.format(Locale.getDefault(), "%.2f", (distance / 1000));
+                double calculateddistance = Math.floor(Initialdistance / 1000);
+                String dist = String.format(Locale.getDefault(), "%.2f", (Initialdistance / 1000));
+                String output = dist + "km";
                 Log.e("산책 거리 ", "" + dist); //반환 m
 
 
-                Toast.makeText(getBaseContext(), "" + distance, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "" + Initialdistance, Toast.LENGTH_SHORT).show();
 
 
-                String output = dist + "km";
+
                 mWalkingDistanceTextView.setText(output);
-
-                Log.e("거리 ", "" + distance); //반환 m
+                mWalkingDistance=(int) Initialdistance;
+                Log.e("거리 ", "" + Initialdistance); //반환 m
 
             }
             //내가 짠코드 .. 새로 재생되면 늘어나게 .
@@ -448,8 +449,11 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
         mPercent = result.getPercent();
         mWalkingDistance = result.getDistance();
         mWalkingTime = result.getWalkingTime();
+        Initialdistance=mWalkingDistance;
         Log.e("mWalkingTime", "" + mWalkingTime);
-
+        double calculateddistance = Math.floor(Initialdistance / 1000);
+        String dist = String.format(Locale.getDefault(), "%.2f", (Initialdistance / 1000));
+        String output = dist + "km";
 
         Log.e("mTimetickin", "" + mTimetickin);
 
@@ -460,6 +464,9 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
         mDonutView.setValue(mTimetickin, mPercent);//시점이 위에 있으면 안되네
         if (mWalkingTime == 0) {
             mWalkingDistanceTextView.setText("0.00" + "km");
+        }else {
+
+            mWalkingDistanceTextView.setText(output);
         }
         Log.e("mTimetickin", "" + mTimetickin);
 
