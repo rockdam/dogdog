@@ -21,7 +21,7 @@ public class ForegroundWalkingService extends Service {
     int mCount =0 ;
     private void startForegroundService() {                       // 포그라운드 서비스 실행
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "default");
-        builder.setSmallIcon(R.drawable.default_profile_image);
+        builder.setSmallIcon(R.drawable.ic_dogdog_status);
         builder.setContentTitle("독독 ");
         builder.setContentText("강아지 산책 중입니다 :)");
 

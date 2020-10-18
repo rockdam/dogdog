@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
@@ -151,21 +152,22 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener,
                 finish();
                 break;
             case R.id.next_button_step:
-
                 if (mEdit_Input_Text_joinmember.getText().toString() == null) {
-                    mDogInfo.setWeight(0);
+                    Toast.makeText(getBaseContext(),"몸무게를 입력해주세요",Toast.LENGTH_LONG);
                 } else {
 
                     mDogInfo.setWeight(mWeight);
+                    mDogInfo.setBreedIdx(mBreedsIdx);
+
+                    PostJoinMember postJoinMember = new PostJoinMember();
+
+                    postJoinMember.setDogInfo(mDogInfo);
+                    postJoinMember.setUserInfo(mUserInfo);
+                    mStep6Service = new Step6Service(this);
+                    mStep6Service.postJoinMember(postJoinMember);
                 }
-                mDogInfo.setBreedIdx(mBreedsIdx);
 
-                PostJoinMember postJoinMember = new PostJoinMember();
 
-                postJoinMember.setDogInfo(mDogInfo);
-                postJoinMember.setUserInfo(mUserInfo);
-                mStep6Service = new Step6Service(this);
-                mStep6Service.postJoinMember(postJoinMember);
 //                startActivity(intent);
 //                finish();
                 break;

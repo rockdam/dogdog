@@ -319,7 +319,7 @@ https://stackoverflow.com/questions/19163628/adding-custom-radio-buttons-in-andr
         android:layout_marginTop="24dp"
         android:textColor="#bbbbbb"
         android:textSize="16sp"
-        android:text="기본 프로필로 설정정"
+        android:text="기본 프로필로 설정"
 
        ></TextView>
 
@@ -362,24 +362,7 @@ https://stackoverflow.com/questions/19163628/adding-custom-radio-buttons-in-andr
 https://stackoverflow.com/questions/19163628/adding-custom-radio-buttons-in-android-->
     </RadioGroup>
 
-        <TextView
-            android:id="@+id/next_button_addDogs"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
 
-
-            android:layout_marginStart="25dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginRight="25dp"
-            android:background="@drawable/shape_full"
-            android:gravity="center|center_vertical"
-            android:fontFamily="@font/spoqahansansbold"
-            android:text="등록"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-        />
 
 
     </LinearLayout>
