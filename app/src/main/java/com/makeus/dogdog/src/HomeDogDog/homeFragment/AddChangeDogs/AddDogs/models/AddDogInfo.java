@@ -16,7 +16,7 @@ public class AddDogInfo {
     private String birth;
     @SerializedName("weight")
     @Expose
-    private String weight;
+    private Float weight;
     @SerializedName("breedIdx")
     @Expose
     private Integer breedIdx;
@@ -51,11 +51,11 @@ public class AddDogInfo {
         this.birth = birth;
     }
 
-    public String getWeight() {
+    public Float getWeight() {
         return weight;
     }
 
-    public void setWeight(String weight) {
+    public void setWeight(Float weight) {
         this.weight = weight;
     }
 

@@ -160,7 +160,6 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
         super.onStart();
 
 
-
     }
 
     @Override
@@ -302,8 +301,8 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
             startService(Serviceintent);
         }
     }
-    public void onStopForegroundService()
-    {
+
+    public void onStopForegroundService() {
         Serviceintent.setAction("stopForeground");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { //오레오 버전 이상에서는 ..
             startForegroundService(Serviceintent);
@@ -474,11 +473,9 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
         Log.e("성공완료", "굿");
 
 
-
-        Intent intent =new Intent(StartWalking.this, HomeActivity.class);
-        startActivity(intent );
-            finish();
-
+        Intent intent = new Intent(StartWalking.this, HomeActivity.class);
+        startActivity(intent);
+        finish();
 
 
     }

@@ -48,8 +48,7 @@ public class AddChangeDogs extends BaseActivity implements AddDogsView {
         adddogsAdapter = new AdddogsAdapter(getBaseContext(), adddogsData);
         recyclerView.setAdapter(adddogsAdapter);
 
-        adddogsService = new AdddogsService(this);
-        adddogsService.refreshHomeView();
+
 
 
         addDosPlusButton.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +61,15 @@ public class AddChangeDogs extends BaseActivity implements AddDogsView {
             }
         });
 
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        adddogsService = new AdddogsService(this);
+        adddogsService.refreshHomeView();
     }
 
     private void setWindow() {

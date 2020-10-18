@@ -13,13 +13,13 @@ import retrofit2.Response;
 
 import static com.makeus.dogdog.src.ApplicationClass.getRetrofit;
 
-public class AddDogsService {
+public class DogsService {
 
 
     UpdateDogView updateDogView;
     DogsUpdateResponse dogsUpdateResponse;
     AddDogsRetrofitInterface addDogsRetrofitInterfacee;
-    public AddDogsService(UpdateDogView updateDogView) {
+    public DogsService(UpdateDogView updateDogView) {
         this.updateDogView = updateDogView;
     }
 

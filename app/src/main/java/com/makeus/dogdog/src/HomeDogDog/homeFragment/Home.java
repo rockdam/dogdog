@@ -179,6 +179,7 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
 
             case R.id.changeDogs_home :
                 Intent changeDogs =new Intent(getActivity(), AddChangeDogs.class);
+                changeDogs.putExtra("dogIdx",mDogIdx);
                 startActivity(changeDogs);
 
         }

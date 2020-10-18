@@ -11,27 +11,38 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
+import com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs.AddDogs.interfaces.UpdateDogView;
+import com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs.AddDogs.models.AddDogInfo;
+import com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs.AdddogsService;
 import com.makeus.dogdog.src.joinmember.step6.SearchBreedsDialog;
 import com.makeus.dogdog.src.joinmember.step6.Step6Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class AddDogs extends BaseActivity {
+public class AddDogs extends BaseActivity implements UpdateDogView {
 
     EditText nameEdt, birthdayEdt, weightEdt;
     TextView breedsDogs,nextButtonAddDogs;
     RadioButton mMale, mFemale, mYes, mNo;
     RadioGroup mRgGender,mIsDefaultCheck;
     ImageView nameClearEdt,birthdayClearEdt,weightClearEdt;
-    String mDogName,mBirthday,mWeight,mGender,mBreeds;
+    String mDogName,mBirthday,mGender,mBreeds;
+    float mWeight;
     String mSettingDefaultProfile;
+
+    int mDogIdx;
     int mBreedsIdx;
     SearchBreedsDialog mSearchBreedsDialog;
-    Step6Service mStep6Service;
+    DogsService mAddDogsService;
+    String mKg;
+    AddDogInfo addDogsInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,24 +60,25 @@ public class AddDogs extends BaseActivity {
         nameClearEdt=findViewById(R.id.name_edtclear_addDogs);
         birthdayClearEdt=findViewById(R.id.birthday_edtclear_addDogs);
         weightClearEdt=findViewById(R.id.weight_edtclear_addDogs);
-
+        mAddDogsService=new DogsService(this);
+        mDogIdx = getIntent().getIntExtra("dogIdx", 1);
         nameEdtSet();
         birthDaySet();
-
-
+        setWeightEdt();
+        addDogsInfo=new AddDogInfo();
         mIsDefaultCheck.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
 
                 if(i == R.id.yes_addDogs)
                 {
-                    mGender="male";
+                    mSettingDefaultProfile="Y";
 
 
                 }
                 if(i == R.id.no_addDogs)
                 {
-                    mGender="female";
+                    mSettingDefaultProfile="N";
 
                 }
             }
@@ -107,12 +119,41 @@ public class AddDogs extends BaseActivity {
                 @Override
                 public void onClick(View view) {
 
+
+                    if(nameEdt.getText()!=null && nameEdt.getText().toString().length()<2)
+                    {
+
+                        Toast.makeText(getBaseContext(),"2글자 이상 입력해주세요 :)",Toast.LENGTH_SHORT).show();
+                    }else if(!validationDate(birthdayEdt.getText().toString())){
+                        Toast.makeText(getBaseContext(),"유효한 날짜 형식이 아닙니다.",Toast.LENGTH_SHORT).show();
+
+                    }else{
+
+                        addDogsInfo.setName(nameEdt.getText().toString());
+                        addDogsInfo.setBirth(birthdayEdt.getText().toString());
+                        addDogsInfo.setGender(mGender);
+                        addDogsInfo.setWeight(mWeight);
+                        addDogsInfo.setBreedIdx(mBreedsIdx);
+                        addDogsInfo.setIsDisplayed(mSettingDefaultProfile);
+                        mAddDogsService.addDogService(addDogsInfo);
+                    }
                 }
             });
 
         });
     }
+    public static boolean isValidKg(final String Password) {
 
+        Pattern pattern;
+        Matcher matcher;
+
+        final String KG_PATTERN = "^(0|[1-9]\\d*)(\\.\\d+)?$";
+        pattern = Pattern.compile(KG_PATTERN);
+        matcher = pattern.matcher(Password);
+
+        return matcher.matches();
+
+    }
     // 유효한 날짜인지 체크
     public  boolean  validationDate(String  checkDate){
 
@@ -246,5 +287,51 @@ public class AddDogs extends BaseActivity {
         });
 
 
+    }
+    void setWeightEdt()
+    {
+
+        weightClearEdt.setOnClickListener(view -> {
+
+            weightEdt.setText("");
+
+        });
+        weightEdt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mKg = weightEdt.getText().toString();
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                if (isValidKg(editable.toString())) {
+                    mWeight = Float.parseFloat(mKg);
+                    mKg += " kg";
+
+                    weightEdt.setText(mKg);
+                    weightEdt.setSelection(weightEdt.getText().length() - 3);
+
+
+                }
+
+
+            }
+        });
+
+    }
+
+    @Override
+    public void refresh(boolean isSuccess) {
+        if(isSuccess)
+        {
+            finish();
+        }
     }
 }
