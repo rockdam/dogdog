@@ -101,7 +101,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
         mDonutView = findViewById(R.id.donut);
         mStopButton = findViewById(R.id.stopbutton_startwalking);
         mStartCamera = findViewById(R.id.cameraApp_startWalking);
-
+        Serviceintent = new Intent(StartWalking.this, ForegroundWalkingService.class);
         mStopWalkingBody = new StopWalkingBody();
         mDogIdx = getIntent().getIntExtra("dogIdx", 1);
 //        if (getIntent().getStringExtra("timeTicking") != null) {
@@ -125,6 +125,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
         mStopButton.setOnClickListener(this);
         mWalkingTimeCronometer.setOnChronometerTickListener(chronometer -> {
 
+            int percent;
 
             time = mWalkingTime + SystemClock.elapsedRealtime() - chronometer.getBase();
 
@@ -138,9 +139,9 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
 
 
             mTimetickin = ((double) s / (18));
-//            mPercent = s / 18;
+            percent = s / 18;
             Log.e("percent", "" + mPercent);
-            mDonutView.setValue(mTimetickin, mPercent);
+            mDonutView.setValue(mTimetickin, percent);
             System.out.println("mTimetickin" + mTimetickin);
             System.out.println("Time체크" + s);
             System.out.println("Time" + time);
@@ -164,7 +165,6 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
     @Override
     public void onStop() {
         super.onStop();
-        isPause = true;
 //        sendStopWalkingTime();
 //        stopLocationUpdates();
 
@@ -173,7 +173,6 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
     @Override
     protected void onRestart() {
         super.onRestart();
-        isPause = false;
     }
 
     // 얘는 inner로 나중에 정리
@@ -294,13 +293,23 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
     }
 
     public void onStartForegroundService() {
-        Serviceintent = new Intent(StartWalking.this, ForegroundWalkingService.class);
+
         Serviceintent.setAction("startForeground");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { //오레오 버전 이상에서는 ..
             startForegroundService(Serviceintent);
         } else {
             startService(Serviceintent);
         }
+    }
+    public void onStopForegroundService()
+    {
+        Serviceintent.setAction("stopForeground");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { //오레오 버전 이상에서는 ..
+            startForegroundService(Serviceintent);
+        } else {
+            startService(Serviceintent);
+        }
+
     }
 
     @Override
@@ -383,6 +392,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
         } else {
 
             sendStopWalkingTime();
+            onStopForegroundService();
             finish();
         }
     }
@@ -462,9 +472,9 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
     @Override
     public void terminate() {
         Log.e("성공완료", "굿");
-        if (!isPause) {
+
             finish();
-        }
+
 
 
     }
