@@ -46,6 +46,8 @@ public class AddChangeDogs extends BaseActivity implements AddDogsView {
         recyclerView.setLayoutManager(linearLayoutManager);
         adddogsData = new ArrayList<>();
         adddogsAdapter = new AdddogsAdapter(getBaseContext(), adddogsData);
+
+
         recyclerView.setAdapter(adddogsAdapter);
 
 

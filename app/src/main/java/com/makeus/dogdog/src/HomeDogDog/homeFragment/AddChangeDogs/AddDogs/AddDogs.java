@@ -155,8 +155,10 @@ public class AddDogs extends BaseActivity implements UpdateDogView {
             returnValue = true;
         } else {
 
+            String checkdf=check.substring(0, idx);
 
-            if (isValidKg(String.valueOf(mWeight))) {
+
+            if (isValidKg(check.substring(0, idx))) {
                 mWeight = Float.parseFloat(check.substring(0, idx));
                 returnValue=false;
             }else{
@@ -339,10 +341,10 @@ public class AddDogs extends BaseActivity implements UpdateDogView {
 
                 if (isValidKg(editable.toString())) {
 //                    mWeight = Float.parseFloat(mKg);
-                    mKg += " kg";
+                    mKg += "kg";
 
                     weightEdt.setText(mKg);
-                    weightEdt.setSelection(weightEdt.getText().length() - 3);
+                    weightEdt.setSelection(weightEdt.getText().length() - 2);
 
 
                 }
