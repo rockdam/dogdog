@@ -64,6 +64,8 @@ public class AdddogsAdapter  extends RecyclerView.Adapter<AdddogsAdapter.ItemVie
         TextView dogName;
         String isDisplayed;
         Typeface typeface = ResourcesCompat.getFont(mContext, R.font.spoqahansansbold);
+        Typeface typefaceRegular = ResourcesCompat.getFont(mContext, R.font.spoqahansansregular);
+
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -82,6 +84,7 @@ public class AdddogsAdapter  extends RecyclerView.Adapter<AdddogsAdapter.ItemVie
                 dogName.setTypeface(typeface);
                 isCheckedImage.setVisibility(View.VISIBLE);
             }else{
+                dogName.setTypeface(typefaceRegular);
 
                 isCheckedImage.setVisibility(View.INVISIBLE);
             }
