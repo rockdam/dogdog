@@ -17,28 +17,35 @@ import android.widget.Toast;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.AddTrackingNote.AddTrackingNote;
+import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.interfaces.TrackingNoteView;
+import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models.Day;
+import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models.WalkingMonthResult;
 import com.makeus.dogdog.src.collapsiblecalendarview.data.CalendarAdapter;
 import com.makeus.dogdog.src.collapsiblecalendarview.data.Event;
 import com.makeus.dogdog.src.collapsiblecalendarview.widget.CollapsibleCalendar;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link TrackingNote#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TrackingNote extends Fragment {
+public class TrackingNote extends Fragment implements TrackingNoteView {
 
     GridView mCalendar;
 
     CollapsibleCalendar collapsibleCalendar;
     CalendarAdapter calendarAdapter;
+    TrackingNoteService mTrackingNoteService;
     /**
      * 일 저장 할 리스트
      */
@@ -116,6 +123,35 @@ public class TrackingNote extends Fragment {
             }
         });
         collapsibleCalendar=v.findViewById(R.id.calendar_trackingnote);
+
+        Calendar todayCal = new GregorianCalendar(TimeZone.getTimeZone("GMT+9"));
+        Day day;
+        day =new Day(todayCal.get(Calendar.YEAR),todayCal.get(Calendar.MONTH), todayCal.get(Calendar.DAY_OF_MONTH));
+        String month;
+
+        int checkMonth=todayCal.get(Calendar.MONTH);
+        if(checkMonth<9)
+        {
+            month="0"+String.valueOf(todayCal.get(Calendar.MONTH)+1);
+        }else{
+
+            month= String.valueOf(todayCal.get(Calendar.MONTH)+1);
+
+
+        }
+        String date =todayCal.get(Calendar.YEAR)+"-"+month;
+
+        mTrackingNoteService=new TrackingNoteService(this,date);
+
+        mTrackingNoteService.refreshUpdateWalkingMonth();
+        //월은 9가 10월
+        // Inflate the layout for this fragment
+        return v;
+    }
+
+
+    @Override
+    public void updateMonth(WalkingMonthResult walkingMonthResult) {
         collapsibleCalendar.setCalendarListener(new CollapsibleCalendar.CalendarListener() {
             @Override
             public void onDaySelect() {
@@ -133,7 +169,7 @@ public class TrackingNote extends Fragment {
 
             @Override
             public void onDataUpdate() {
-
+                collapsibleCalendar.addEventTag(2020,9,10);
             }
 
             @Override
@@ -146,11 +182,5 @@ public class TrackingNote extends Fragment {
 
             }
         });
-        collapsibleCalendar.addEventTag(2020,9,10);
-        //월은 9가 10월
-        // Inflate the layout for this fragment
-        return v;
     }
-
-
 }
