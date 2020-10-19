@@ -215,15 +215,16 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
     @Override
     public void updateMonth(WalkingMonthResult walkingMonthResult) {
 
-        for(int i=0;i<walkingMonthResult.getDays().size();i++)
-        {
 
-          Log.e("날짜 확인",""+ walkingMonthResult.getDays().get(i));
-            collapsibleCalendar.addEventTag(mYear,mMonth,walkingMonthResult.getDays().get(i));
+        if(walkingMonthResult!=null) {
+            for (int i = 0; i < walkingMonthResult.getDays().size(); i++) {
+
+                Log.e("날짜 확인", "" + walkingMonthResult.getDays().get(i));
+                collapsibleCalendar.addEventTag(mYear, mMonth, walkingMonthResult.getDays().get(i));
+
+            }
 
         }
-
-
 
     }
 }
