@@ -19,6 +19,7 @@ import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.AddTrackingNote.AddTrackingNote;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.interfaces.TrackingNoteView;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models.Day;
+import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models.WalkingMonthResponse;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models.WalkingMonthResult;
 import com.makeus.dogdog.src.collapsiblecalendarview.data.CalendarAdapter;
 import com.makeus.dogdog.src.collapsiblecalendarview.data.Event;
@@ -146,12 +147,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
         mTrackingNoteService.refreshUpdateWalkingMonth();
         //월은 9가 10월
         // Inflate the layout for this fragment
-        return v;
-    }
 
-
-    @Override
-    public void updateMonth(WalkingMonthResult walkingMonthResult) {
         collapsibleCalendar.setCalendarListener(new CollapsibleCalendar.CalendarListener() {
             @Override
             public void onDaySelect() {
@@ -162,19 +158,20 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
             }
 
             @Override
-            public void onItemClick(View v) {
+            public void onItemClick(View v) { //여기서는 클릭하면 화면 .
 
 
             }
 
             @Override
             public void onDataUpdate() {
-                collapsibleCalendar.addEventTag(2020,9,10);
+
             }
 
             @Override
-            public void onMonthChange() {
-                Toast.makeText(getContext(),"monthChange",Toast.LENGTH_SHORT).show();
+            public void onMonthChange(int month) { //이거 눌를 때 마다 호출 하고 에드 event for문
+                Toast.makeText(getContext(),"monthChange"+month,Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
@@ -182,5 +179,15 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
             }
         });
+        return v;
+    }
+
+
+    @Override
+    public void updateMonth(WalkingMonthResult walkingMonthResult) {
+
+        collapsibleCalendar.addEventTag(2020,9,10);
+
+
     }
 }

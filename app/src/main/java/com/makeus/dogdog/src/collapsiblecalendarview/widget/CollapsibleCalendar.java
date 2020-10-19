@@ -229,7 +229,6 @@ public class CollapsibleCalendar extends UICalendar {
                 TextView txtDayOfWeek = (TextView) view.findViewById(R.id.txt_day_of_week);
 
 
-
                 txtDayOfWeek.setTextSize(14);
 
                 txtDayOfWeek.setText(dayOfWeekIds[(i + getFirstDayOfWeek()) % 7]);
@@ -242,7 +241,7 @@ public class CollapsibleCalendar extends UICalendar {
 //                        0,
 //                        ViewGroup.LayoutParams.WRAP_CONTENT,
 //                        1));
-                layoutParams.setMargins(0,0,0,24);
+                layoutParams.setMargins(0, 0, 0, 24);
                 view.setLayoutParams(layoutParams);
                 rowCurrent.addView(view);
             }
@@ -323,7 +322,7 @@ public class CollapsibleCalendar extends UICalendar {
                 mCurrentWeekIndex = -1;
             }
             if (mListener != null) {
-                mListener.onMonthChange();
+                mListener.onMonthChange(newMonth);
             }
             reload();
         }
@@ -351,29 +350,37 @@ public class CollapsibleCalendar extends UICalendar {
     }
 
     public void prevMonth() {
+        int month;
         Calendar cal = mAdapter.getCalendar();
         if (cal.get(Calendar.MONTH) == cal.getActualMinimum(Calendar.MONTH)) {
             cal.set((cal.get(Calendar.YEAR) - 1), cal.getActualMaximum(Calendar.MONTH), 1);
+            month = cal.get(Calendar.MONTH)+1 ;
         } else {
             cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) - 1);
+            month = cal.get(Calendar.MONTH)+1 ;
         }
         reload();
         if (mListener != null) {
-            mListener.onMonthChange();
+            mListener.onMonthChange(month);
         }
     }
 
     public void nextMonth() {
+        int month;
         Calendar cal = mAdapter.getCalendar();
         if (cal.get(Calendar.MONTH) == cal.getActualMaximum(Calendar.MONTH)) {
             cal.set((cal.get(Calendar.YEAR) + 1), cal.getActualMinimum(Calendar.MONTH), 1);
+            month = cal.get(Calendar.MONTH) + 1;
         } else {
             cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) + 1);
+            month=cal.get(Calendar.MONTH) + 1;
+        }
+
+        if (mListener != null) {
+            mListener.onMonthChange(month);
         }
         reload();
-        if (mListener != null) {
-            mListener.onMonthChange();
-        }
+
     }
 
     public void prevWeek() {
@@ -630,7 +637,7 @@ public class CollapsibleCalendar extends UICalendar {
         void onDataUpdate();
 
         // triggered when the month are changed.
-        void onMonthChange();
+        void onMonthChange(int month);
 
         // triggered when the week position are changed.
         void onWeekChange(int position);
