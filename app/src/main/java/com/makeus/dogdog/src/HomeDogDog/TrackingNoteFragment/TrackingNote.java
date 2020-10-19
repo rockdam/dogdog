@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
     CollapsibleCalendar collapsibleCalendar;
     CalendarAdapter calendarAdapter;
     TrackingNoteService mTrackingNoteService;
+    int mYear,mMonth,mDay;
     /**
      * 일 저장 할 리스트
      */
@@ -125,25 +127,9 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
         });
         collapsibleCalendar=v.findViewById(R.id.calendar_trackingnote);
 
-        Calendar todayCal = new GregorianCalendar(TimeZone.getTimeZone("GMT+9"));
-        Day day;
-        day =new Day(todayCal.get(Calendar.YEAR),todayCal.get(Calendar.MONTH), todayCal.get(Calendar.DAY_OF_MONTH));
-        String month;
-
-        int checkMonth=todayCal.get(Calendar.MONTH);
-        if(checkMonth<9)
-        {
-            month="0"+String.valueOf(todayCal.get(Calendar.MONTH)+1);
-        }else{
-
-            month= String.valueOf(todayCal.get(Calendar.MONTH)+1);
 
 
-        }
-        String date =todayCal.get(Calendar.YEAR)+"-"+month;
-
-        mTrackingNoteService=new TrackingNoteService(this,date);
-
+        mTrackingNoteService=new TrackingNoteService(this,initialQueryStringDate());
         mTrackingNoteService.refreshUpdateWalkingMonth();
         //월은 9가 10월
         // Inflate the layout for this fragment
@@ -169,9 +155,12 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
             }
 
             @Override
-            public void onMonthChange(int month) { //이거 눌를 때 마다 호출 하고 에드 event for문
-                Toast.makeText(getContext(),"monthChange"+month,Toast.LENGTH_SHORT).show();
-
+            public void onMonthChange(int year ,int month) { //이거 눌를 때 마다 호출 하고 에드 event for문
+                Toast.makeText(getContext(),"년도"+year+"monthChange"+month,Toast.LENGTH_SHORT).show();
+                mYear=year;
+                mMonth=month;
+                mTrackingNoteService=new TrackingNoteService(TrackingNote.this,createQueryStringDate(mYear,mMonth));
+                mTrackingNoteService.refreshUpdateWalkingMonth();
             }
 
             @Override
@@ -182,11 +171,58 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
         return v;
     }
 
+    String initialQueryStringDate(){
+        Calendar todayCal = new GregorianCalendar(TimeZone.getTimeZone("GMT+9"));
+        String month;
+
+        int checkMonth=todayCal.get(Calendar.MONTH);
+        if(checkMonth<9)
+        {
+            month="0"+String.valueOf(todayCal.get(Calendar.MONTH)+1);
+        }else{
+
+            month= String.valueOf(todayCal.get(Calendar.MONTH)+1);
+
+
+        }
+        String date =todayCal.get(Calendar.YEAR)+"-"+month;
+
+        mYear=todayCal.get(Calendar.YEAR);
+        mMonth=todayCal.get(Calendar.MONTH)+1;
+        return date;
+
+    }
+    String createQueryStringDate(int year,int month){
+        Calendar todayCal = new GregorianCalendar(TimeZone.getTimeZone("GMT+9"));
+        String Stringmonth;
+
+        int checkMonth=month;
+        if(checkMonth<9)
+        {
+            Stringmonth="0"+String.valueOf(month);
+        }else{
+
+            Stringmonth= String.valueOf(month);
+
+
+        }
+        String date =year+"-"+Stringmonth;
+
+
+        return date;
+    }
 
     @Override
     public void updateMonth(WalkingMonthResult walkingMonthResult) {
 
-        collapsibleCalendar.addEventTag(2020,9,10);
+        for(int i=0;i<walkingMonthResult.getDays().size();i++)
+        {
+
+          Log.e("날짜 확인",""+ walkingMonthResult.getDays().get(i));
+            collapsibleCalendar.addEventTag(mYear,mMonth,walkingMonthResult.getDays().get(i));
+
+        }
+
 
 
     }

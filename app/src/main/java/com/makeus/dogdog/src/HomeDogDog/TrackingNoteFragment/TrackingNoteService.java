@@ -10,7 +10,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.makeus.dogdog.src.ApplicationClass.X_ACCESS_TOKEN;
 import static com.makeus.dogdog.src.ApplicationClass.getRetrofit;
+import static com.makeus.dogdog.src.ApplicationClass.sSharedPreferences;
 
 public class TrackingNoteService {
 
@@ -18,10 +20,12 @@ public class TrackingNoteService {
     TrackingNoteRetrofitInterface trackingNoteRetrofitInterface;
     WalkingMonthResponse walkingMonthResponse;
     String date;
+    int dogIdx;
 
     public TrackingNoteService(TrackingNoteView trackingNoteView, String date) {
         this.trackingNoteView = trackingNoteView;
         this.date = date;
+        dogIdx=sSharedPreferences.getInt("dogIdx", 0);
     }
 
 
@@ -32,7 +36,7 @@ public class TrackingNoteService {
         final  TrackingNoteRetrofitInterface trackingNoteRetrofitInterface = getRetrofit().create(TrackingNoteRetrofitInterface.class);
 
 
-        trackingNoteRetrofitInterface.walkingMonth(date).enqueue(new Callback<WalkingMonthResponse>() {
+        trackingNoteRetrofitInterface.walkingMonth(date,dogIdx).enqueue(new Callback<WalkingMonthResponse>() {
 
 
             @Override

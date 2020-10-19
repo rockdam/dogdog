@@ -322,7 +322,7 @@ public class CollapsibleCalendar extends UICalendar {
                 mCurrentWeekIndex = -1;
             }
             if (mListener != null) {
-                mListener.onMonthChange(newMonth);
+                mListener.onMonthChange(newYear,newMonth);
             }
             reload();
         }
@@ -344,40 +344,49 @@ public class CollapsibleCalendar extends UICalendar {
     }
 
     public void addEventTag(int numYear, int numMonth, int numDay) {
-        mAdapter.addEvent(new Event(numYear, numMonth, numDay));
-
+        mAdapter.addEvent(new Event(numYear, numMonth-1, numDay));
+//-1을 해야 정상 표시
         reload();
     }
 
     public void prevMonth() {
-        int month;
+        int month,year;
         Calendar cal = mAdapter.getCalendar();
         if (cal.get(Calendar.MONTH) == cal.getActualMinimum(Calendar.MONTH)) {
             cal.set((cal.get(Calendar.YEAR) - 1), cal.getActualMaximum(Calendar.MONTH), 1);
             month = cal.get(Calendar.MONTH)+1 ;
-        } else {
+
+            year= (cal.get(Calendar.YEAR) );
+        }
+        else {
             cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) - 1);
+
             month = cal.get(Calendar.MONTH)+1 ;
+            year= (cal.get(Calendar.YEAR));
+
         }
         reload();
         if (mListener != null) {
-            mListener.onMonthChange(month);
+            mListener.onMonthChange(year,month);
         }
     }
 
     public void nextMonth() {
-        int month;
+        int month,year;
         Calendar cal = mAdapter.getCalendar();
         if (cal.get(Calendar.MONTH) == cal.getActualMaximum(Calendar.MONTH)) {
             cal.set((cal.get(Calendar.YEAR) + 1), cal.getActualMinimum(Calendar.MONTH), 1);
             month = cal.get(Calendar.MONTH) + 1;
+            year= (cal.get(Calendar.YEAR));
+
         } else {
             cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) + 1);
             month=cal.get(Calendar.MONTH) + 1;
+            year= (cal.get(Calendar.YEAR));
         }
 
         if (mListener != null) {
-            mListener.onMonthChange(month);
+            mListener.onMonthChange(year,month);
         }
         reload();
 
@@ -637,7 +646,7 @@ public class CollapsibleCalendar extends UICalendar {
         void onDataUpdate();
 
         // triggered when the month are changed.
-        void onMonthChange(int month);
+        void onMonthChange(int year ,int month);
 
         // triggered when the week position are changed.
         void onWeekChange(int position);

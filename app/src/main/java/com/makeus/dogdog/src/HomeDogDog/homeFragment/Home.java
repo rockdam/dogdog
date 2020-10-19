@@ -22,6 +22,8 @@ import com.makeus.dogdog.src.HomeDogDog.homeFragment.interfaces.HomeRefreshView;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.models.Result;
 import com.makeus.dogdog.src.HomeDogDog.startWalking.StartWalking;
 
+import static com.makeus.dogdog.src.ApplicationClass.sSharedPreferences;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Home#newInstance} factory method to
@@ -194,7 +196,6 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
 
                 startActivity(intent);
 
-
                 break;
 
             case R.id.changeDogs_home :
@@ -241,6 +242,10 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
 
         }
         mDogIdx=result.getDogInfo().getDogIdx();
+        SharedPreferences.Editor editor=sSharedPreferences.edit();
+        editor.putInt("dogIdx",mDogIdx);
+
+        editor.apply();
 
     }
 }

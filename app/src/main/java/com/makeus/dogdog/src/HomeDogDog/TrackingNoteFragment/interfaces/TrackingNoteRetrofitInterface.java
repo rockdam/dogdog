@@ -13,5 +13,5 @@ public interface TrackingNoteRetrofitInterface {
 
     @GET("/walking-month")
     @Headers("Content-Type: application/json")
-    Call<WalkingMonthResponse> walkingMonth(@Query("date") String date);
+    Call<WalkingMonthResponse> walkingMonth(@Query("date") String date,@Query("dogIdx")int dogIdx);
 }
