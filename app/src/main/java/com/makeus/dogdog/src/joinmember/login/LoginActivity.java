@@ -43,6 +43,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
                 startActivity(intent);
+                //이건 좀 생각해보자 .;
                 break;
 
 

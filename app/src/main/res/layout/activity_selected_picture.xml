@@ -63,6 +63,7 @@
         android:layout_marginTop="36dp"
         android:textSize="18sp"
         android:textColor="@color/dogdogBlack"
+        android:background="@drawable/custom_ripple_effect"
         android:text="사진 촬영"
         android:fontFamily="@font/spoqahansansregular"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,6 +79,7 @@
         android:layout_marginStart="57dp"
         android:textColor="@color/dogdogBlack"
         android:layout_marginTop="36dp"
+        android:background="@drawable/custom_ripple_effect"
         android:text="사진 보관함에서 선택"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/take_a_picture_selectedpicture" />
@@ -90,6 +92,7 @@
         android:layout_marginTop="36dp"
         android:layout_marginBottom="36dp"
         android:fontFamily="@font/spoqahansansregular"
+        android:background="@drawable/custom_ripple_effect"
         android:text="기본 이미지로 변경"
         android:textColor="@color/dogdogBlack"
         android:textSize="18sp"

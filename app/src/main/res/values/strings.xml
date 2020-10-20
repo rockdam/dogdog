@@ -25,4 +25,8 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_addchangedogs">Addchangedogs</string>
     <string name="title_activity_update_user_profile">UpdateUserProfile</string>
+
+    <string name="crop_image_activity_title">편집</string>
+    <string name="crop_image_menu_rotate_right">Rotate</string>
+    <string name="crop_image_menu_crop">자르기</string>
 </resources>

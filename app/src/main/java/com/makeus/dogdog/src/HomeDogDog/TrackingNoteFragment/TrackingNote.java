@@ -193,11 +193,11 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
     }
     String createQueryStringDate(int year,int month){
-        Calendar todayCal = new GregorianCalendar(TimeZone.getTimeZone("GMT+9"));
+
         String Stringmonth;
 
         int checkMonth=month;
-        if(checkMonth<9)
+        if(checkMonth<=9)
         {
             Stringmonth="0"+String.valueOf(month);
         }else{

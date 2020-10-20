@@ -17,8 +17,7 @@ import android.widget.TextView;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs.AddChangeDogs;
-import com.makeus.dogdog.src.HomeDogDog.homeFragment.UpdateUserProfile.SelectedPicture.SelectedPicture;
-import com.makeus.dogdog.src.HomeDogDog.homeFragment.UpdateUserProfile.UpdateUserProfile;
+import com.makeus.dogdog.src.HomeDogDog.homeFragment.SelectedPicture.SelectedPicture;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.interfaces.HomeRefreshView;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.models.Result;
 import com.makeus.dogdog.src.HomeDogDog.startWalking.StartWalking;
@@ -226,6 +225,7 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
         }
         mPercent=result.getDogInfo().getAcheivedGoal();
         mWelcomeMessage.setText(formattedNickname);
+
         mDogNickName.setText(result.getDogInfo().getDogName());
         mDogInfo.setText(dogInfo);
 
