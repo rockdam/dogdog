@@ -140,7 +140,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
         collapsibleCalendar.setCalendarListener(new CollapsibleCalendar.CalendarListener() {
             @Override
-            public void onDaySelect() { //일별 조회 api
+            public void onDaySelect(int month,int day) { //일별 조회 api
 
 
                 mDay=collapsibleCalendar.getSelectedDay().getDay();
@@ -150,6 +150,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 //                Toast.makeText(getContext(),""+collapsibleCalendar.getSelectedItemPosition(),Toast.LENGTH_SHORT).show();
                 Toast.makeText(getContext(), "" + collapsibleCalendar.getSelectedDay().getDay(), Toast.LENGTH_SHORT).show();
 
+                Log.e("달 날짜 체크", "달 "+month+"날짜"+day);
             }
 
             @Override

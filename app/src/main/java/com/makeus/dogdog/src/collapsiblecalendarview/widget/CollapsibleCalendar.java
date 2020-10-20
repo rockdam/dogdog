@@ -616,7 +616,7 @@ public class CollapsibleCalendar extends UICalendar {
         redraw();
 
         if (mListener != null) {
-            mListener.onDaySelect();
+            mListener.onDaySelect(day.getMonth()+1,day.getDay());
         }
     }
 
@@ -637,7 +637,7 @@ public class CollapsibleCalendar extends UICalendar {
     public interface CalendarListener {
 
         // triggered when a day is selected programmatically or clicked by user.
-        void onDaySelect();
+        void onDaySelect(int month ,int day);
 
         // triggered only when the views of day on calendar are clicked by user.
         void onItemClick(View v);

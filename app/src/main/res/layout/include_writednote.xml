@@ -120,7 +120,7 @@
         app:layout_constraintTop_toTopOf="@+id/time_include"></View>
 
     <TextView
-        android:id="@+id/textView61"
+        android:id="@+id/addNote_include"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"

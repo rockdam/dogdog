@@ -3,6 +3,7 @@ package com.makeus.dogdog.src.collapsiblecalendarview.data;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -138,6 +139,11 @@ public class CalendarAdapter {
 //            }
             if (day.getMonth() != mCal.get(Calendar.MONTH)) { //이번달이 아니면
                 txtDay.setAlpha(0.2f);
+
+
+
+
+
             }
 
 
