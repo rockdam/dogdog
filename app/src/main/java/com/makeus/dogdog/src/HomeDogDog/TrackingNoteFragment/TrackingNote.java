@@ -140,17 +140,26 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
         collapsibleCalendar.setCalendarListener(new CollapsibleCalendar.CalendarListener() {
             @Override
-            public void onDaySelect(int month,int day) { //일별 조회 api
+            public void onDaySelect(int year ,int month,int day) { //일별 조회 api
 
 
-                mDay=collapsibleCalendar.getSelectedDay().getDay();
-                mTrackingNoteService = new TrackingNoteService(TrackingNote.this, createQueryStringDayDate(mYear, mMonth,mDay));
-                mTrackingNoteService.refreshUpdateWalkingDay();
+
+
+
+                    mTrackingNoteService = new TrackingNoteService(TrackingNote.this, createQueryStringDayDate(year, month,day));
+                    mTrackingNoteService.refreshUpdateWalkingDay();
+
+
+                //여기서 달 바뀐거 체크
+                mYear=year;
+                mDay=day;
+                mMonth=month;
+
 
 //                Toast.makeText(getContext(),""+collapsibleCalendar.getSelectedItemPosition(),Toast.LENGTH_SHORT).show();
-                Toast.makeText(getContext(), "" + collapsibleCalendar.getSelectedDay().getDay(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "달 "+month+"날짜"+day, Toast.LENGTH_SHORT).show();
 
-                Log.e("달 날짜 체크", "달 "+month+"날짜"+day);
+//                Log.e("달 날짜 체크", );
             }
 
             @Override
@@ -172,11 +181,12 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
             @Override
             public void onMonthChange(int year, int month) { //이거 눌를 때 마다 호출 하고 에드 event for문
-                Toast.makeText(getContext(), "년도" + year + "monthChange" + month, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "년도" + year + "monthChange" + month, Toast.LENGTH_SHORT).show();
+
+                mTrackingNoteService = new TrackingNoteService(TrackingNote.this, createQueryStringMonthDate(year, month));
+                mTrackingNoteService.refreshUpdateWalkingMonth();
                 mYear = year;
                 mMonth = month;
-                mTrackingNoteService = new TrackingNoteService(TrackingNote.this, createQueryStringMonthDate(mYear, mMonth));
-                mTrackingNoteService.refreshUpdateWalkingMonth();
             }
 
             @Override

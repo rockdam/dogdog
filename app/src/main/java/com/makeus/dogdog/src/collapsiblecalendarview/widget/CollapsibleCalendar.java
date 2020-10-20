@@ -322,7 +322,8 @@ public class CollapsibleCalendar extends UICalendar {
                 mCurrentWeekIndex = -1;
             }
             if (mListener != null) {
-                mListener.onMonthChange(newYear,newMonth);
+                mListener.onMonthChange(newYear,newMonth+1);
+                //새로운 달
             }
             reload();
         }
@@ -616,7 +617,7 @@ public class CollapsibleCalendar extends UICalendar {
         redraw();
 
         if (mListener != null) {
-            mListener.onDaySelect(day.getMonth()+1,day.getDay());
+            mListener.onDaySelect(day.getYear(),day.getMonth()+1,day.getDay());
         }
     }
 
@@ -637,7 +638,7 @@ public class CollapsibleCalendar extends UICalendar {
     public interface CalendarListener {
 
         // triggered when a day is selected programmatically or clicked by user.
-        void onDaySelect(int month ,int day);
+        void onDaySelect(int year,int month ,int day);
 
         // triggered only when the views of day on calendar are clicked by user.
         void onItemClick(View v);
