@@ -1,6 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/writedNote_include"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:src="@drawable/more_small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView11" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="38dp"
+        android:fontFamily="@font/spoqahansansbold"
+        android:textSize="18sp"
+        android:text="오늘날짜"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/distance_include"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="산책거리"
+        android:textSize="16sp"
+        android:textColor="#b2b2b2"
+        app:layout_constraintEnd_toStartOf="@+id/view18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <View
+
+        android:id="@+id/view18"
+        android:layout_width="1dp"
+        android:layout_height="40dp"
+        android:background="#eeeeee"
+        app:layout_constraintBottom_toBottomOf="@+id/textView55"
+        app:layout_constraintEnd_toStartOf="@+id/textView58"
+        app:layout_constraintStart_toEndOf="@+id/textView55"
+        app:layout_constraintTop_toTopOf="@+id/distance_include"></View>
+
+    <TextView
+        android:id="@+id/time_include"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="산책시간"
+        android:textSize="16sp"
+        android:textColor="#b2b2b2"
+        app:layout_constraintEnd_toStartOf="@+id/view19"
+        app:layout_constraintStart_toEndOf="@+id/view18"
+        app:layout_constraintTop_toTopOf="@+id/distance_include" />
+
+    <TextView
+        android:id="@+id/textView54"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="달성률"
+        android:textSize="16sp"
+        android:textColor="#b2b2b2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view19"
+        app:layout_constraintTop_toTopOf="@+id/time_include" />
+
+    <TextView
+        android:id="@+id/textView55"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="0.0 km"
+        android:textSize="18sp"
+        android:fontFamily="@font/spoqahansansregular"
+        app:layout_constraintEnd_toStartOf="@+id/view18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/distance_include" />
+
+    <TextView
+        android:id="@+id/textView58"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:20:16"
+        android:fontFamily="@font/spoqahansansregular"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/view19"
+        app:layout_constraintStart_toEndOf="@+id/view18"
+        app:layout_constraintTop_toTopOf="@+id/textView55" />
+
+    <TextView
+        android:id="@+id/textView60"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/spoqahansansregular"
+        android:text="0 %"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view19"
+        app:layout_constraintTop_toTopOf="@+id/textView58" />
+
+    <View
+        android:id="@+id/view19"
+        android:layout_width="1dp"
+        android:layout_height="40dp"
+        android:background="#eeeeee"
+        app:layout_constraintBottom_toBottomOf="@+id/textView58"
+        app:layout_constraintEnd_toStartOf="@+id/textView54"
+        app:layout_constraintStart_toEndOf="@+id/textView58"
+        app:layout_constraintTop_toTopOf="@+id/time_include"></View>
+
+    <TextView
+        android:id="@+id/textView61"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="68dp"
+        android:text="기록 남기기"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView58" />
 </androidx.constraintlayout.widget.ConstraintLayout>
