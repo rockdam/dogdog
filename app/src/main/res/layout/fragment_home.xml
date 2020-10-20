@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.theartofdev.edmodo.cropper.CropImageView
+            <ImageView
                 xmlns:custom="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/default_dogImage_home"
                 android:layout_width="54sp"

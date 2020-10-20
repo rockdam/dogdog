@@ -23,6 +23,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
+import com.makeus.dogdog.src.HomeDogDog.homeFragment.SelectedPicture.interfaces.SelectedPictureView;
+import com.makeus.dogdog.src.HomeDogDog.homeFragment.SelectedPicture.models.SelectedPictureResponse;
+import com.makeus.dogdog.src.HomeDogDog.homeFragment.SelectedPicture.models.SendImagData;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -31,19 +34,25 @@ import java.util.Date;
 
 import static com.theartofdev.edmodo.cropper.CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE;
 
-public class SelectedPicture extends BaseActivity {
+public class SelectedPicture extends BaseActivity implements SelectedPictureView {
 
     TextView seletedGallery;
 
     private Uri filePath;
     private static final int REQUEST_CODE = 0;
+    SelectedPictureService selectedPictureService;
+    SendImagData sendImagData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selected_picture);
         seletedGallery=findViewById(R.id.seleted_gallery_selectedpicture);
 
+
+        sendImagData=new SendImagData();
         setWindow();
+
+
 
         seletedGallery.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,6 +139,16 @@ public class SelectedPicture extends BaseActivity {
                                     Log.e("Url",downloadPhotoUrl);
                                     progressDialog.dismiss(); //업로드 진행 Dialog 상자 닫기
 
+                                    sendImagData.setImgUrl(downloadPhotoUrl);
+
+                                    selectedPictureService=new SelectedPictureService(SelectedPicture.this,sendImagData);
+                                    selectedPictureService.refreshHomeView();
+//                                    Intent resultIntent = new Intent();
+//                                    resultIntent.putExtra("Url",downloadPhotoUrl);
+//                                    setResult(RESULT_OK,resultIntent);
+//                                    이 코드가 사실상 혼자만들어도 db 서버랑하면 아무의미가 없어 .; 진짜 잠깐 받을 때나 쓰는코드
+
+
                                 }
                             });
 
@@ -164,5 +183,18 @@ public class SelectedPicture extends BaseActivity {
         }
     }
 
+    @Override
+    public void refresh(SelectedPictureResponse result) {
+        if(result.getIsSuccess())
+        {
+            finish();
+
+        }else{
+
+            Toast.makeText(this,"서버와의 연결이 실패하였습니다",Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
 }
 
