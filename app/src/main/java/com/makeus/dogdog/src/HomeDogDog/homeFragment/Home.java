@@ -272,8 +272,10 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
         if(result.getDogInfo().getDogImg()!=null) {
             Glide.with(this)
                     .load(result.getDogInfo().getDogImg())
+                    .circleCrop()
                     .override(54, 54) // ex) override(600, 200)
                     .into(defaultDogImage);
+//            https://stackoverflow.com/questions/25278821/how-to-round-an-image-with-glide-library
             mDogIdx = result.getDogInfo().getDogIdx();
         }
         SharedPreferences.Editor editor=sSharedPreferences.edit();
