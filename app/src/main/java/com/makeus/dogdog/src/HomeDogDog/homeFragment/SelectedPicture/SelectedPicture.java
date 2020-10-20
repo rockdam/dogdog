@@ -36,23 +36,34 @@ import static com.theartofdev.edmodo.cropper.CropImage.CROP_IMAGE_ACTIVITY_REQUE
 
 public class SelectedPicture extends BaseActivity implements SelectedPictureView {
 
-    TextView seletedGallery;
+    TextView seletedGallery,changeDefualtImage;
 
     private Uri filePath;
     private static final int REQUEST_CODE = 0;
     SelectedPictureService selectedPictureService;
     SendImagData sendImagData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selected_picture);
         seletedGallery=findViewById(R.id.seleted_gallery_selectedpicture);
 
+        changeDefualtImage=findViewById(R.id.change_defualt_image_selectedpicture);
 
         sendImagData=new SendImagData();
         setWindow();
 
 
+        changeDefualtImage.setOnClickListener(view -> {
+
+            String defaultUrl="https://firebasestorage.googleapis.com/v0/b/dogdog-1d2f8.appspot.com/o/default_profile_image.png?alt=media&token=9052b50b-dd25-46b1-ba22-f1581a1231f5";
+            sendImagData.setImgUrl(defaultUrl);
+            selectedPictureService=new SelectedPictureService(SelectedPicture.this,sendImagData);
+            selectedPictureService.refreshHomeView();
+
+
+        });
 
         seletedGallery.setOnClickListener(new View.OnClickListener() {
             @Override
