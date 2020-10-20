@@ -74,7 +74,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view11" />
 
     <ImageView
-        android:id="@+id/imageView13"
+        android:id="@+id/searchGellary_trackingNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
@@ -82,10 +82,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView53" />
+        app:layout_constraintStart_toEndOf="@+id/takeaPicture_addTrackingNote" />
 
     <ImageView
-        android:id="@+id/imageView53"
+        android:id="@+id/takeaPicture_addTrackingNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -93,7 +93,7 @@
         android:layout_marginBottom="24dp"
         android:src="@drawable/ic_camera"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView13"
+        app:layout_constraintEnd_toStartOf="@+id/searchGellary_trackingNote"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent" />
@@ -124,6 +124,6 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView13"
+        app:layout_constraintBottom_toTopOf="@+id/searchGellary_trackingNote"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

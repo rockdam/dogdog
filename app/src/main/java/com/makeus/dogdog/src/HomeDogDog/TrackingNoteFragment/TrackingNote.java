@@ -311,7 +311,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
             constraintLayoutIncludeLayout.setVisibility(View.VISIBLE);
             blankNoteContraintlayout.setVisibility(View.INVISIBLE);
-            mCompleteMission.setText(walkingdayResult.getPercent() + "%");
+            mCompleteMission.setText(walkingdayResult.getPercent());
             mCompleteDistance.setText("" + walkingdayResult.getWalkingDistance());
             mCompleteTime.setText("" + walkingdayResult.getWalkingTime());
             mToday.setText(walkingdayResult.getDate());

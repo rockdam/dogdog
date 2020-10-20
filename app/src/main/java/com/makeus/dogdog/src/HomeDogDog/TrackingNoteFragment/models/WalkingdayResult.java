@@ -9,13 +9,13 @@ public class WalkingdayResult {
     private String date;
     @SerializedName("walkingDistance")
     @Expose
-    private Integer walkingDistance;
+    private String walkingDistance;
     @SerializedName("walkingTime")
     @Expose
-    private Integer walkingTime;
+    private String walkingTime;
     @SerializedName("percent")
     @Expose
-    private Integer percent;
+    private String percent;
 
     public String getDate() {
         return date;
@@ -25,27 +25,27 @@ public class WalkingdayResult {
         this.date = date;
     }
 
-    public Integer getWalkingDistance() {
+    public String getWalkingDistance() {
         return walkingDistance;
     }
 
-    public void setWalkingDistance(Integer walkingDistance) {
+    public void setWalkingDistance(String walkingDistance) {
         this.walkingDistance = walkingDistance;
     }
 
-    public Integer getWalkingTime() {
+    public String getWalkingTime() {
         return walkingTime;
     }
 
-    public void setWalkingTime(Integer walkingTime) {
+    public void setWalkingTime(String walkingTime) {
         this.walkingTime = walkingTime;
     }
 
-    public Integer getPercent() {
+    public String getPercent() {
         return percent;
     }
 
-    public void setPercent(Integer percent) {
+    public void setPercent(String percent) {
         this.percent = percent;
     }
 }
