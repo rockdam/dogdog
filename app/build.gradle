@@ -57,5 +57,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation project(':richwysiwygeditor')
 
 }
+//https://stackoverflow.com/questions/25477052/imported-module-in-android-studio-cant-find-imported-class/29182490
+//모듈 임포트 후 그래들 주입 지렸다 ..
