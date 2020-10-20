@@ -1,16 +1,15 @@
 package com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,21 +18,14 @@ import android.widget.Toast;
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.AddTrackingNote.AddTrackingNote;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.interfaces.TrackingNoteView;
-import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models.Day;
-import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models.WalkingMonthResponse;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models.WalkingMonthResult;
+import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models.WalkingdayResult;
 import com.makeus.dogdog.src.collapsiblecalendarview.data.CalendarAdapter;
-import com.makeus.dogdog.src.collapsiblecalendarview.data.Event;
 import com.makeus.dogdog.src.collapsiblecalendarview.widget.CollapsibleCalendar;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.Locale;
 import java.util.TimeZone;
 
 /**
@@ -43,12 +35,14 @@ import java.util.TimeZone;
  */
 public class TrackingNote extends Fragment implements TrackingNoteView {
 
-    GridView mCalendar;
 
+    ConstraintLayout constraintLayoutIncludeLayout,blankNoteContraintlayout;
+    boolean showContraintlayout;
     CollapsibleCalendar collapsibleCalendar;
     CalendarAdapter calendarAdapter;
     TrackingNoteService mTrackingNoteService;
-    int mYear,mMonth,mDay;
+    TextView mCompleteTime,mCompleteDistance,mCompleteMission,mToday;
+    int mYear, mMonth, mDay;
     /**
      * 일 저장 할 리스트
      */
@@ -105,31 +99,41 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
     }
 
 
-
-
-
-
-
-
     //https://heum-story.tistory.com/6 커스텀뷰 만드는중
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v =inflater.inflate(R.layout.fragment_tracking_note, container, false);
-        addTrackingNote=v.findViewById(R.id.addNote_AddTrackingNote);
+        View v = inflater.inflate(R.layout.fragment_tracking_note, container, false);
+        addTrackingNote = v.findViewById(R.id.addNote_AddTrackingNote);
+        showContraintlayout = true;
 
+        blankNoteContraintlayout=v.findViewById(R.id.blanknote_TrackingNote);
+
+
+        showContraintlayout = false;
         addTrackingNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(getActivity(), AddTrackingNote.class);
+                Intent intent = new Intent(getActivity(), AddTrackingNote.class);
                 startActivity(intent);
             }
         });
-        collapsibleCalendar=v.findViewById(R.id.calendar_trackingnote);
+        collapsibleCalendar = v.findViewById(R.id.calendar_trackingnote);
 
 
 
-        mTrackingNoteService=new TrackingNoteService(this,initialQueryStringDate());
+
+
+        constraintLayoutIncludeLayout = v.findViewById(R.id.writenote_include);
+        constraintLayoutIncludeLayout.setVisibility(View.GONE);
+        mCompleteTime=constraintLayoutIncludeLayout.findViewById(R.id.completetime_include);
+        mCompleteDistance=constraintLayoutIncludeLayout.findViewById(R.id.completedistance_include);
+        mCompleteMission=constraintLayoutIncludeLayout.findViewById(R.id.completeMission_include);
+        mToday=constraintLayoutIncludeLayout.findViewById(R.id.today_include);
+        //Include 레이아웃 사용하는 법 .
+
+
+        mTrackingNoteService = new TrackingNoteService(this, initialQueryStringDate());
         mTrackingNoteService.refreshUpdateWalkingMonth();
         //월은 9가 10월
         // Inflate the layout for this fragment
@@ -140,7 +144,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
 
 //                Toast.makeText(getContext(),""+collapsibleCalendar.getSelectedItemPosition(),Toast.LENGTH_SHORT).show();
-                Toast.makeText(getContext(),""+collapsibleCalendar.getSelectedDay().getDay(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "" + collapsibleCalendar.getSelectedDay().getDay(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -155,11 +159,11 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
             }
 
             @Override
-            public void onMonthChange(int year ,int month) { //이거 눌를 때 마다 호출 하고 에드 event for문
-                Toast.makeText(getContext(),"년도"+year+"monthChange"+month,Toast.LENGTH_SHORT).show();
-                mYear=year;
-                mMonth=month;
-                mTrackingNoteService=new TrackingNoteService(TrackingNote.this,createQueryStringDate(mYear,mMonth));
+            public void onMonthChange(int year, int month) { //이거 눌를 때 마다 호출 하고 에드 event for문
+                Toast.makeText(getContext(), "년도" + year + "monthChange" + month, Toast.LENGTH_SHORT).show();
+                mYear = year;
+                mMonth = month;
+                mTrackingNoteService = new TrackingNoteService(TrackingNote.this, createQueryStringMonthDate(mYear, mMonth));
                 mTrackingNoteService.refreshUpdateWalkingMonth();
             }
 
@@ -171,60 +175,127 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
         return v;
     }
 
-    String initialQueryStringDate(){
+    String initialQueryStringDate() {
         Calendar todayCal = new GregorianCalendar(TimeZone.getTimeZone("GMT+9"));
         String month;
 
-        int checkMonth=todayCal.get(Calendar.MONTH);
-        if(checkMonth<9)
-        {
-            month="0"+String.valueOf(todayCal.get(Calendar.MONTH)+1);
-        }else{
+        int checkMonth = todayCal.get(Calendar.MONTH);
+        if (checkMonth < 9) {
+            month = "0" + String.valueOf(todayCal.get(Calendar.MONTH) + 1);
+        } else {
 
-            month= String.valueOf(todayCal.get(Calendar.MONTH)+1);
+            month = String.valueOf(todayCal.get(Calendar.MONTH) + 1);
 
 
         }
-        String date =todayCal.get(Calendar.YEAR)+"-"+month;
+        String date = todayCal.get(Calendar.YEAR) + "-" + month;
 
-        mYear=todayCal.get(Calendar.YEAR);
-        mMonth=todayCal.get(Calendar.MONTH)+1;
+        mYear = todayCal.get(Calendar.YEAR);
+        mMonth = todayCal.get(Calendar.MONTH) + 1;
+        mDay = todayCal.get(Calendar.DAY_OF_MONTH);
         return date;
 
     }
-    String createQueryStringDate(int year,int month){
+
+    String createQueryStringMonthDate(int year, int month) {
 
         String Stringmonth;
 
-        int checkMonth=month;
-        if(checkMonth<=9)
-        {
-            Stringmonth="0"+String.valueOf(month);
-        }else{
+        int checkMonth = month;
+        if (checkMonth <= 9) {
+            Stringmonth = "0" + String.valueOf(month);
+        } else {
 
-            Stringmonth= String.valueOf(month);
+            Stringmonth = String.valueOf(month);
 
 
         }
-        String date =year+"-"+Stringmonth;
+        String date = year + "-" + Stringmonth;
+
+
+        return date;
+    }
+    String createQueryStringDayDate(int year, int month,int day) {
+
+        String Stringmonth;
+
+        String Stringday;
+        int checkMonth = month;
+        if (checkMonth <= 9) {
+            Stringmonth = "0" + String.valueOf(month);
+        } else {
+
+            Stringmonth = String.valueOf(month);
+
+
+        }
+
+        int checkDay =day;
+        if(checkDay <=9)
+        {
+            Stringday = "0" + String.valueOf(day);
+        }else{
+
+
+            Stringday = String.valueOf(day);
+
+        }
+        String date = year + "-" + Stringmonth+"-"+Stringday ;
 
 
         return date;
     }
 
-    @Override
+      @Override
     public void updateMonth(WalkingMonthResult walkingMonthResult) {
 
 
-        if(walkingMonthResult!=null) {
+//        if(showContraintlayout)
+//        {
+//            constraintLayoutIncludeLayout.setVisibility(View.GONE);
+//            showContraintlayout=false;
+//        }else{
+//
+//            constraintLayoutIncludeLayout.setVisibility(View.VISIBLE);
+//            showContraintlayout=true;
+//        }
+        if (walkingMonthResult != null) {
             for (int i = 0; i < walkingMonthResult.getDays().size(); i++) {
 
                 Log.e("날짜 확인", "" + walkingMonthResult.getDays().get(i));
+
+                if (mDay == walkingMonthResult.getDays().get(i)) {//오늘 날짜는?
+                    constraintLayoutIncludeLayout.setVisibility(View.VISIBLE);
+                    showContraintlayout = true; // 오늘이면 보여야지 ./ 여기서 오늘 날짜 Api를 엮어야 되네 ;?
+                    blankNoteContraintlayout.setVisibility(View.INVISIBLE);
+                  String date=  createQueryStringDayDate(mYear,mMonth,walkingMonthResult.getDays().get(i));
+                    mTrackingNoteService = new TrackingNoteService(TrackingNote.this,date);
+                    mTrackingNoteService.refreshUpdateWalkingDay();//날짜 엮기
+
+
+                }
                 collapsibleCalendar.addEventTag(mYear, mMonth, walkingMonthResult.getDays().get(i));
+
 
             }
 
         }
+    }
+
+    @Override
+    public void initialTackingNot(WalkingMonthResult walkingMonthResult) {
+
+    }
+
+    @Override
+    public void updateDay(WalkingdayResult walkingdayResult) {
+
+
+        mCompleteMission.setText(walkingdayResult.getPercent()+"%");
+        mCompleteDistance.setText(""+walkingdayResult.getWalkingDistance());
+        mCompleteTime.setText(""+walkingdayResult.getWalkingTime());
+        mToday.setText(walkingdayResult.getDate());
+
 
     }
 }

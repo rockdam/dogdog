@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/writedNote_include"
+    android:id="@+id/writedNoteContraint_include"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,10 +13,10 @@
         android:layout_marginEnd="32dp"
         android:src="@drawable/more_small"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView11" />
+        app:layout_constraintTop_toTopOf="@+id/today_include" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/today_include"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="38dp"
@@ -37,7 +37,7 @@
         android:textColor="#b2b2b2"
         app:layout_constraintEnd_toStartOf="@+id/view18"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/today_include" />
 
     <View
 
@@ -45,9 +45,9 @@
         android:layout_width="1dp"
         android:layout_height="40dp"
         android:background="#eeeeee"
-        app:layout_constraintBottom_toBottomOf="@+id/textView55"
-        app:layout_constraintEnd_toStartOf="@+id/textView58"
-        app:layout_constraintStart_toEndOf="@+id/textView55"
+        app:layout_constraintBottom_toBottomOf="@+id/completedistance_include"
+        app:layout_constraintEnd_toStartOf="@+id/completetime_include"
+        app:layout_constraintStart_toEndOf="@+id/completedistance_include"
         app:layout_constraintTop_toTopOf="@+id/distance_include"></View>
 
     <TextView
@@ -73,11 +73,12 @@
         app:layout_constraintTop_toTopOf="@+id/time_include" />
 
     <TextView
-        android:id="@+id/textView55"
+        android:id="@+id/completedistance_include"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="0.0 km"
+        android:textColor="@color/black"
         android:textSize="18sp"
         android:fontFamily="@font/spoqahansansregular"
         app:layout_constraintEnd_toStartOf="@+id/view18"
@@ -85,35 +86,37 @@
         app:layout_constraintTop_toBottomOf="@+id/distance_include" />
 
     <TextView
-        android:id="@+id/textView58"
+        android:id="@+id/completetime_include"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="00:20:16"
+        android:text="00:00:00"
+        android:textColor="@color/black"
         android:fontFamily="@font/spoqahansansregular"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/view19"
         app:layout_constraintStart_toEndOf="@+id/view18"
-        app:layout_constraintTop_toTopOf="@+id/textView55" />
+        app:layout_constraintTop_toTopOf="@+id/completedistance_include" />
 
     <TextView
-        android:id="@+id/textView60"
+        android:id="@+id/completeMission_include"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/spoqahansansregular"
         android:text="0 %"
+        android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/view19"
-        app:layout_constraintTop_toTopOf="@+id/textView58" />
+        app:layout_constraintTop_toTopOf="@+id/completetime_include" />
 
     <View
         android:id="@+id/view19"
         android:layout_width="1dp"
         android:layout_height="40dp"
         android:background="#eeeeee"
-        app:layout_constraintBottom_toBottomOf="@+id/textView58"
+        app:layout_constraintBottom_toBottomOf="@+id/completetime_include"
         app:layout_constraintEnd_toStartOf="@+id/textView54"
-        app:layout_constraintStart_toEndOf="@+id/textView58"
+        app:layout_constraintStart_toEndOf="@+id/completetime_include"
         app:layout_constraintTop_toTopOf="@+id/time_include"></View>
 
     <TextView
@@ -124,5 +127,5 @@
         android:layout_marginTop="68dp"
         android:text="기록 남기기"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView58" />
+        app:layout_constraintTop_toBottomOf="@+id/completetime_include" />
 </androidx.constraintlayout.widget.ConstraintLayout>

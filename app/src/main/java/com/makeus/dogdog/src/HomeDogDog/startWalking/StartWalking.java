@@ -438,7 +438,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
                 Log.e("산책 거리 ", "" + dist); //반환 m
 
 
-                Toast.makeText(getBaseContext(), "" + Initialdistance, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getBaseContext(), "" + Initialdistance, Toast.LENGTH_SHORT).show();
 
 
 
