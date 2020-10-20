@@ -62,6 +62,8 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
             selectedPictureService=new SelectedPictureService(SelectedPicture.this,sendImagData);
             selectedPictureService.refreshHomeView();
 
+            System.out.println("g");
+
 
         });
 
