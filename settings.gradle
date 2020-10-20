@@ -1,2 +1,4 @@
+include ':sample'
+include ':richwysiwygeditor'
 include ':app'
 rootProject.name = "dogdog"
