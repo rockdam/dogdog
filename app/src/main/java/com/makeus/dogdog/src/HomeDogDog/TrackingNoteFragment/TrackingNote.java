@@ -143,8 +143,13 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
             public void onDaySelect() { //일별 조회 api
 
 
+                mDay=collapsibleCalendar.getSelectedDay().getDay();
+                mTrackingNoteService = new TrackingNoteService(TrackingNote.this, createQueryStringDayDate(mYear, mMonth,mDay));
+                mTrackingNoteService.refreshUpdateWalkingDay();
+
 //                Toast.makeText(getContext(),""+collapsibleCalendar.getSelectedItemPosition(),Toast.LENGTH_SHORT).show();
                 Toast.makeText(getContext(), "" + collapsibleCalendar.getSelectedDay().getDay(), Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
@@ -157,6 +162,12 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
             public void onDataUpdate() {
 
             }
+
+
+
+            //나중에 어댑터 이용해서 받도록 코드 고치기 .
+//            collapsibleCalendar.getSelectedDay().getYear()
+
 
             @Override
             public void onMonthChange(int year, int month) { //이거 눌를 때 마다 호출 하고 에드 event for문
@@ -291,11 +302,19 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
     public void updateDay(WalkingdayResult walkingdayResult) {
 
 
-        mCompleteMission.setText(walkingdayResult.getPercent()+"%");
-        mCompleteDistance.setText(""+walkingdayResult.getWalkingDistance());
-        mCompleteTime.setText(""+walkingdayResult.getWalkingTime());
-        mToday.setText(walkingdayResult.getDate());
+        if(walkingdayResult!=null) {
 
+            constraintLayoutIncludeLayout.setVisibility(View.VISIBLE);
+            blankNoteContraintlayout.setVisibility(View.INVISIBLE);
+            mCompleteMission.setText(walkingdayResult.getPercent() + "%");
+            mCompleteDistance.setText("" + walkingdayResult.getWalkingDistance());
+            mCompleteTime.setText("" + walkingdayResult.getWalkingTime());
+            mToday.setText(walkingdayResult.getDate());
+
+        }else{
+            constraintLayoutIncludeLayout.setVisibility(View.INVISIBLE);
+            blankNoteContraintlayout.setVisibility(View.VISIBLE);
+        }//값이 없으면 없다고 나와야지
 
     }
 }
