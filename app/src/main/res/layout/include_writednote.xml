@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/writedNoteContraint_include"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -76,11 +77,11 @@
         android:id="@+id/completedistance_include"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/spoqahansansregular"
         android:text="0.0 km"
         android:textColor="@color/black"
         android:textSize="18sp"
-        android:fontFamily="@font/spoqahansansregular"
         app:layout_constraintEnd_toStartOf="@+id/view18"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/distance_include" />
@@ -121,11 +122,21 @@
 
     <TextView
         android:id="@+id/addNote_include"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="68dp"
-        android:text="기록 남기기"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/dotted_border"
+        android:fontFamily="@font/spoqahansansbold"
+        android:gravity="center"
+        android:paddingLeft="100dp"
+        android:paddingTop="32dp"
+        android:paddingRight="100dp"
+        android:paddingBottom="32dp"
+        android:text="+기록 남기기"
+        android:textColor="#cccccc"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/completetime_include" />
 </androidx.constraintlayout.widget.ConstraintLayout>

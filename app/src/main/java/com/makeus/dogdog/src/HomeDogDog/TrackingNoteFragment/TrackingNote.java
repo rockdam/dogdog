@@ -41,7 +41,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
     CollapsibleCalendar collapsibleCalendar;
     CalendarAdapter calendarAdapter;
     TrackingNoteService mTrackingNoteService;
-    TextView mCompleteTime,mCompleteDistance,mCompleteMission,mToday;
+    TextView mCompleteTime,mCompleteDistance,mCompleteMission,mToday,mAddNote;
     int mYear, mMonth, mDay;
     /**
      * 일 저장 할 리스트
@@ -104,20 +104,13 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_tracking_note, container, false);
-        addTrackingNote = v.findViewById(R.id.addNote_AddTrackingNote);
         showContraintlayout = true;
 
         blankNoteContraintlayout=v.findViewById(R.id.blanknote_TrackingNote);
 
 
         showContraintlayout = false;
-        addTrackingNote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), AddTrackingNote.class);
-                startActivity(intent);
-            }
-        });
+
         collapsibleCalendar = v.findViewById(R.id.calendar_trackingnote);
 
 
@@ -130,6 +123,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
         mCompleteDistance=constraintLayoutIncludeLayout.findViewById(R.id.completedistance_include);
         mCompleteMission=constraintLayoutIncludeLayout.findViewById(R.id.completeMission_include);
         mToday=constraintLayoutIncludeLayout.findViewById(R.id.today_include);
+        mAddNote=constraintLayoutIncludeLayout.findViewById(R.id.addNote_include);
         //Include 레이아웃 사용하는 법 .
 
 
@@ -322,9 +316,24 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
             mCompleteTime.setText("" + walkingdayResult.getWalkingTime());
             mToday.setText(walkingdayResult.getDate());
 
+            mAddNote.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent =new Intent(getActivity(),AddTrackingNote.class);
+                    startActivity(intent);
+                }
+            });
+
         }else{
             constraintLayoutIncludeLayout.setVisibility(View.INVISIBLE);
             blankNoteContraintlayout.setVisibility(View.VISIBLE);
+//            mAddNote.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//
+//                }
+//            });
         }//값이 없으면 없다고 나와야지
 
     }
