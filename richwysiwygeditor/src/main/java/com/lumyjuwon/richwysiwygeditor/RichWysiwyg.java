@@ -81,6 +81,8 @@ public class RichWysiwyg extends LinearLayout {
                         showBgColorPopupWindow(view);
                     else if(button.getId() == R.id.write_textAlign)
                         showAlignPopupWindow(view);
+                    else if(button.getId()==R.id.write_textSize)
+                        showSizePopupWindow(view);
                     clearPopupButton();
                     button.switchCheckedState();
                 }
@@ -213,6 +215,8 @@ public class RichWysiwyg extends LinearLayout {
         PopupButtonListener popupButtonListener = new PopupButtonListener();
         DecorationButtonListener decorationButtonListener = new DecorationButtonListener();
 
+
+        textSizeButton.setOnClickListener(popupButtonListener);
         // Text Color 버튼
         textColorButton = findViewById(R.id.write_textColor);
         textColorButton.setOnClickListener(popupButtonListener);
@@ -280,32 +284,49 @@ public class RichWysiwyg extends LinearLayout {
         mPopupWindow.setAnimationStyle(1); // 생성 애니메이션 -1, 생성 애니메이션 사용 안 함 0
         mPopupWindow.showAsDropDown(view, 0, +15);
 
-        ImageButton textAlignLeftButton = popupView.findViewById(R.id.text_alignLeft);
-        textAlignLeftButton.setOnClickListener(new OnClickListener(){
+        ImageButton size1 = popupView.findViewById(R.id.text_size1);
+        size1.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View view){
                 closePopupWindow();
-                content.setAlignLeft();
+                content.setFontSize(1);
             }
         });
 
-        ImageButton textAlignCenterButton = popupView.findViewById(R.id.text_alignCenter);
-        textAlignCenterButton.setOnClickListener(new OnClickListener(){
+        ImageButton size2 = popupView.findViewById(R.id.text_size2);
+        size2.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View view){
                 closePopupWindow();
-                content.setAlignCenter();
+                content.setFontSize(2);
             }
         });
 
-        ImageButton textAlignRightButton = popupView.findViewById(R.id.text_alignRight);
-        textAlignRightButton.setOnClickListener(new OnClickListener(){
+        ImageButton size3 = popupView.findViewById(R.id.text_size3);
+        size3.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View view){
                 closePopupWindow();
-                content.setAlignRight();
+                content.setFontSize(3);
             }
         });
+        ImageButton size4 = popupView.findViewById(R.id.text_size4);
+        size3.setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View view){
+                closePopupWindow();
+                content.setFontSize(4);
+            }
+        });
+        ImageButton size5 = popupView.findViewById(R.id.text_size5);
+        size3.setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View view){
+                closePopupWindow();
+                content.setFontSize(5);
+            }
+        });
+
     }
 
     // 글 색상 설정 Window

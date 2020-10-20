@@ -8,124 +8,14 @@
 
 
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="34dp"
-        android:fontFamily="@font/spoqahansansbold"
-        android:text="취소"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/textView7"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="기록 남기기"
-        android:textSize="20sp"
-        android:textColor="#333333"
-        android:fontFamily="@font/spoqahansansbold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView6"
-        app:layout_constraintEnd_toStartOf="@+id/complete_button_addDogs"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView6" />
-
-    <TextView
-        android:id="@+id/complete_button_addDogs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:fontFamily="@font/spoqahansansbold"
-        android:text="등록"
-        android:textColor="@color/colorDogDogBlue"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView7" />
-
-    <TextView
-        android:id="@+id/textView45"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/spoqahansanslight"
-        android:text="제목을 입력해주세요."
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/view11"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view9" />
-
-    <TextView
-        android:id="@+id/textView46"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/spoqahansanslight"
-        android:text="내용을 입력해주세요"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view11" />
-
-    <ImageView
-        android:id="@+id/searchGellary_trackingNote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:src="@drawable/ic_album"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/takeaPicture_addTrackingNote" />
-
-    <ImageView
-        android:id="@+id/takeaPicture_addTrackingNote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="24dp"
-        android:src="@drawable/ic_camera"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/searchGellary_trackingNote"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <View
-        android:id="@+id/view9"
+    <com.lumyjuwon.richwysiwygeditor.RichWysiwyg
+        android:id="@+id/richwysiwygeditor"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#e4e4e4"
-        android:layout_marginTop="26dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        android:layout_height="match_parent" />
 
-    <View
-        android:id="@+id/view11"
-        android:background="#e4e4e4"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="43dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView45" />
-
-    <View
-        android:id="@+id/view12"
-        android:background="#e4e4e4"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/searchGellary_trackingNote"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--https://stackoverflow.com/questions/57251887/android-motionlayout-android-resource-linking-failed
+contraintlayout 버전 올리기
+-->

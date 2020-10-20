@@ -23,44 +23,6 @@ public class AddTrackingNote extends BaseActivity {
         searchGellary=findViewById(R.id.searchGellary_trackingNote);
 
 
-        searchGellary.setOnTouchListener(new View.OnTouchListener() {
-            //
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
-                    //Button Pressed
-                }
-                if(event.getAction() == MotionEvent.ACTION_UP){
-                    //finger was lifted 여기에 이미지 바꾸면 됌 .
-                    searchGellary.setImageResource(R.drawable.ic_album_hover);
-                }
-                return false;
-            }
-        });
-
-
-        takeaPicture.setOnHoverListener(new View.OnHoverListener() {
-            @Override
-            public boolean onHover(View view, MotionEvent motionEvent) {
-
-
-
-                return false;
-            }
-        });
-        takeaPicture.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
-                    //Button Pressed
-                }
-                if(event.getAction() == MotionEvent.ACTION_UP){
-                    //finger was lifted 여기에 이미지 바꾸면 됌 .
-                    takeaPicture.setColorFilter(R.color.Black);
-                }
-                return false;
-            }
-        });
     }
 }
 //button.setOnTouchListener(new OnTouchListener() {
