@@ -1,9 +1,11 @@
 package com.makeus.dogdog.src.HomeDogDog.homeFragment.SelectedPicture;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -36,25 +38,30 @@ import static com.theartofdev.edmodo.cropper.CropImage.CROP_IMAGE_ACTIVITY_REQUE
 
 public class SelectedPicture extends BaseActivity implements SelectedPictureView {
 
-    TextView seletedGallery,changeDefualtImage;
+    TextView seletedGallery,changeDefualtImage,takeaPicture;
 
     private Uri filePath;
     private static final int REQUEST_CODE = 0;
     SelectedPictureService selectedPictureService;
     SendImagData sendImagData;
-
+    static final int REQUEST_IMAGE_CAPTURE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selected_picture);
         seletedGallery=findViewById(R.id.seleted_gallery_selectedpicture);
-
+        takeaPicture=findViewById(R.id.take_a_picture_selectedpicture);
         changeDefualtImage=findViewById(R.id.change_defualt_image_selectedpicture);
 
         sendImagData=new SendImagData();
         setWindow();
 
 
+        takeaPicture.setOnClickListener(view -> {
+
+            dispatchTakePictureIntent();
+
+        });
         changeDefualtImage.setOnClickListener(view -> {
 
             String defaultUrl="https://firebasestorage.googleapis.com/v0/b/dogdog-1d2f8.appspot.com/o/default_profile_image.png?alt=media&token=9052b50b-dd25-46b1-ba22-f1581a1231f5";
@@ -80,6 +87,14 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
             }
         });
     }
+
+    @SuppressLint("QueryPermissionsNeeded")
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }// 사진 어플 실행
     private void setWindow() {
         getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.WRAP_CONTENT);
