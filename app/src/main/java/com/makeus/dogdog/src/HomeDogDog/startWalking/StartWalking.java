@@ -76,6 +76,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
     StartWalkingService mStartWalkingService, mStopWalkingService;
     int mDogIdx;
 
+    ImageView backButton;
     float Initialdistance = 0;
     Location oldLocation;
 
@@ -111,7 +112,23 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
 //        mPercent = getIntent().getIntExtra("percent", 0);
 //        mStartTime = getIntent().getLongExtra("time", 0);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        backButton=findViewById(R.id.backButton_startwalking);
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mRunning) {
+
+                    Toast.makeText(getApplicationContext(), "일시 중지를 눌러주세요 :)", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    sendStopWalkingTime();
+                    onStopForegroundService();
+                    finish();
+                }
+            }
+        });
         locationRequest = LocationRequest.create();
         locationRequest.setInterval(10000);
         locationRequest.setFastestInterval(6000);

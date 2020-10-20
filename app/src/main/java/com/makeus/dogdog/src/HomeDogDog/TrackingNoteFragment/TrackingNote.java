@@ -136,7 +136,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
         collapsibleCalendar.setCalendarListener(new CollapsibleCalendar.CalendarListener() {
             @Override
-            public void onDaySelect() {
+            public void onDaySelect() { //일별 조회 api
 
 
 //                Toast.makeText(getContext(),""+collapsibleCalendar.getSelectedItemPosition(),Toast.LENGTH_SHORT).show();

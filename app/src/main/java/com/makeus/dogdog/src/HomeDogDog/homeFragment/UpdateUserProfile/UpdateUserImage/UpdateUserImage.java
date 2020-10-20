@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.makeus.dogdog.R;
-import com.makeus.dogdog.src.HomeDogDog.homeFragment.UpdateUserProfile.UpdateUserImage.SelectedPicture.SelectedPicture;
 
 public class UpdateUserImage extends AppCompatActivity {
 
@@ -23,8 +22,6 @@ public class UpdateUserImage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent=new Intent(UpdateUserImage.this, SelectedPicture.class);
-                startActivity(intent);
 
             }
         });

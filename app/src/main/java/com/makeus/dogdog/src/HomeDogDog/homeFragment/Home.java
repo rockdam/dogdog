@@ -17,10 +17,12 @@ import android.widget.TextView;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs.AddChangeDogs;
+import com.makeus.dogdog.src.HomeDogDog.homeFragment.UpdateUserProfile.SelectedPicture.SelectedPicture;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.UpdateUserProfile.UpdateUserProfile;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.interfaces.HomeRefreshView;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.models.Result;
 import com.makeus.dogdog.src.HomeDogDog.startWalking.StartWalking;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import static com.makeus.dogdog.src.ApplicationClass.sSharedPreferences;
 
@@ -46,7 +48,7 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
     int mPercent = 0;
     double mTimeTickin;
 
-    ImageView defaultDogImage;
+    CropImageView defaultDogImage;
     int mTime;
 
     int mDogIdx;
@@ -122,7 +124,7 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
         defaultDogImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(getActivity(), UpdateUserProfile.class);
+                Intent intent =new Intent(getActivity(), SelectedPicture.class);
                 startActivity(intent);
             }
         });
