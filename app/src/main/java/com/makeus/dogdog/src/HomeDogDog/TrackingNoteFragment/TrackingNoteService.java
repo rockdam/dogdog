@@ -2,9 +2,12 @@ package com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment;
 
 import android.util.Log;
 
+import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.AddTrackingNote.models.WalkinghistoryResponse;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.interfaces.DayWalkingInfoRetrofitInterface;
+import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.interfaces.GetWalkingHistoryRetrofitInterface;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.interfaces.TrackingNoteRetrofitInterface;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.interfaces.TrackingNoteView;
+import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models.GetWalkinghistoryResponse;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models.WalkingMonthResponse;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models.WalkingdayResponse;
 
@@ -22,6 +25,7 @@ public class TrackingNoteService {
     TrackingNoteRetrofitInterface trackingNoteRetrofitInterface;
     WalkingMonthResponse walkingMonthResponse;
     WalkingdayResponse walkingdayResponse;
+    GetWalkinghistoryResponse getWalkinghistoryResponse;
     String date;
     int dogIdx;
 
@@ -94,6 +98,40 @@ public class TrackingNoteService {
 
             @Override
             public void onFailure(Call<WalkingdayResponse> call, Throwable t) {
+
+                Log.e("뭐가","문제여");
+            }
+
+        });
+
+
+    }
+
+    public void initializeWalkingDay() {
+
+        final GetWalkingHistoryRetrofitInterface getWalkingHistoryRetrofitInterface = getRetrofit().create(GetWalkingHistoryRetrofitInterface.class);
+
+
+        getWalkingHistoryRetrofitInterface.walkingDay(date,dogIdx).enqueue(new Callback<GetWalkinghistoryResponse>() {
+
+
+            @Override
+            public void onResponse(Call<GetWalkinghistoryResponse> call, Response<GetWalkinghistoryResponse> response) {
+
+                getWalkinghistoryResponse = response.body();
+                if (response.code() == 200) {
+
+                    trackingNoteView.initialTackingNot(getWalkinghistoryResponse.getResult());
+
+
+                }// 자동로그인 안되면 로그인 해야지 .
+
+
+            }
+
+
+            @Override
+            public void onFailure(Call<GetWalkinghistoryResponse> call, Throwable t) {
 
                 Log.e("뭐가","문제여");
             }

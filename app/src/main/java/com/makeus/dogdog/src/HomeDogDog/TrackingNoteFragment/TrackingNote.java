@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -19,6 +20,8 @@ import android.widget.Toast;
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.AddTrackingNote.AddTrackingNote;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.interfaces.TrackingNoteView;
+import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models.DayHistory;
+import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models.GetWalkinghistoryResponse;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models.WalkingMonthResult;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models.WalkingdayResult;
 import com.makeus.dogdog.src.collapsiblecalendarview.data.CalendarAdapter;
@@ -39,12 +42,14 @@ import static com.makeus.dogdog.src.ApplicationClass.sSharedPreferences;
 public class TrackingNote extends Fragment implements TrackingNoteView {
 
 
-    ConstraintLayout constraintLayoutIncludeLayout,blankNoteContraintlayout;
+    ConstraintLayout constraintLayoutIncludeLayout, blankNoteContraintlayout;
+    NestedScrollView nestedScrollView;
     boolean showContraintlayout;
     CollapsibleCalendar collapsibleCalendar;
     CalendarAdapter calendarAdapter;
-    TrackingNoteService mTrackingNoteService;
-    TextView mCompleteTime,mCompleteDistance,mCompleteMission,mToday,mAddNote;
+    TrackingNoteService mTrackingNoteService, mHistoryService;
+
+    TextView mCompleteTime, mCompleteDistance, mCompleteMission, mToday, mAddNote;
     WebView mWebView;
     int mYear, mMonth, mDay;
     /**
@@ -110,7 +115,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
         View v = inflater.inflate(R.layout.fragment_tracking_note, container, false);
         showContraintlayout = true;
 
-        blankNoteContraintlayout=v.findViewById(R.id.blanknote_TrackingNote);
+        blankNoteContraintlayout = v.findViewById(R.id.blanknote_TrackingNote);
 
 
         showContraintlayout = false;
@@ -118,59 +123,44 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
         collapsibleCalendar = v.findViewById(R.id.calendar_trackingnote);
 
 
-
-
-
         constraintLayoutIncludeLayout = v.findViewById(R.id.writenote_include);
         constraintLayoutIncludeLayout.setVisibility(View.GONE);
-        mCompleteTime=constraintLayoutIncludeLayout.findViewById(R.id.completetime_include);
-        mCompleteDistance=constraintLayoutIncludeLayout.findViewById(R.id.completedistance_include);
-        mCompleteMission=constraintLayoutIncludeLayout.findViewById(R.id.completeMission_include);
-        mToday=constraintLayoutIncludeLayout.findViewById(R.id.today_include);
-        mAddNote=constraintLayoutIncludeLayout.findViewById(R.id.addNote_include);
-        mWebView=constraintLayoutIncludeLayout.findViewById(R.id.historyWebView_include);
+        mCompleteTime = constraintLayoutIncludeLayout.findViewById(R.id.completetime_include);
+        mCompleteDistance = constraintLayoutIncludeLayout.findViewById(R.id.completedistance_include);
+        mCompleteMission = constraintLayoutIncludeLayout.findViewById(R.id.completeMission_include);
+        mToday = constraintLayoutIncludeLayout.findViewById(R.id.today_include);
+        mAddNote = constraintLayoutIncludeLayout.findViewById(R.id.addNote_include);
+        mWebView = constraintLayoutIncludeLayout.findViewById(R.id.historyWebView_include);
         //Include 레이아웃 사용하는 법 .
-        String yourData=sSharedPreferences.getString("html2","");
-        sSharedPreferences.edit().clear();
-        if(yourData.equals("")) {
-            mWebView.setVisibility(View.INVISIBLE);
-            mAddNote.setVisibility(View.VISIBLE);
+        mWebView.setVisibility(View.INVISIBLE);
+        mAddNote.setVisibility(View.VISIBLE);
 
-        }else{
-
-            Log.e("ㅇㄹㅇ",""+yourData);
-            mWebView.getSettings().setJavaScriptEnabled(true);
-            mWebView.loadDataWithBaseURL(null, yourData, "text/html", "utf-8", null);
-            mWebView.setVisibility(View.VISIBLE);
-            mAddNote.setVisibility(View.INVISIBLE);
-
-        }
         mTrackingNoteService = new TrackingNoteService(this, initialQueryStringDate());
         mTrackingNoteService.refreshUpdateWalkingMonth();
         //월은 9가 10월
         // Inflate the layout for this fragment
+        mHistoryService = new TrackingNoteService(this, createQueryStringDayDate(mYear, mMonth, mDay));
+        mHistoryService.initializeWalkingDay();
 
 
         collapsibleCalendar.setCalendarListener(new CollapsibleCalendar.CalendarListener() {
             @Override
-            public void onDaySelect(int year ,int month,int day) { //일별 조회 api
+            public void onDaySelect(int year, int month, int day) { //일별 조회 api
 
 
-
-
-
-                    mTrackingNoteService = new TrackingNoteService(TrackingNote.this, createQueryStringDayDate(year, month,day));
-                    mTrackingNoteService.refreshUpdateWalkingDay();
-
+                mTrackingNoteService = new TrackingNoteService(TrackingNote.this, createQueryStringDayDate(year, month, day));
+                mTrackingNoteService.refreshUpdateWalkingDay();
+                mHistoryService = new TrackingNoteService(TrackingNote.this, createQueryStringDayDate(year, month, day));
+                mHistoryService.initializeWalkingDay();
 
                 //여기서 달 바뀐거 체크
-                mYear=year;
-                mDay=day;
-                mMonth=month;
+                mYear = year;
+                mDay = day;
+                mMonth = month;
 
 
 //                Toast.makeText(getContext(),""+collapsibleCalendar.getSelectedItemPosition(),Toast.LENGTH_SHORT).show();
-                Toast.makeText(getContext(), "달 "+month+"날짜"+day, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "달 " + month + "날짜" + day, Toast.LENGTH_SHORT).show();
 
 //                Log.e("달 날짜 체크", );
             }
@@ -185,7 +175,6 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
             public void onDataUpdate() {
 
             }
-
 
 
             //나중에 어댑터 이용해서 받도록 코드 고치기 .
@@ -250,7 +239,8 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
         return date;
     }
-    String createQueryStringDayDate(int year, int month,int day) {
+
+    String createQueryStringDayDate(int year, int month, int day) {
 
         String Stringmonth;
 
@@ -265,23 +255,22 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
         }
 
-        int checkDay =day;
-        if(checkDay <=9)
-        {
+        int checkDay = day;
+        if (checkDay <= 9) {
             Stringday = "0" + String.valueOf(day);
-        }else{
+        } else {
 
 
             Stringday = String.valueOf(day);
 
         }
-        String date = year + "-" + Stringmonth+"-"+Stringday ;
+        String date = year + "-" + Stringmonth + "-" + Stringday;
 
 
         return date;
     }
 
-      @Override
+    @Override
     public void updateMonth(WalkingMonthResult walkingMonthResult) {
 
 
@@ -303,8 +292,8 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
                     constraintLayoutIncludeLayout.setVisibility(View.VISIBLE);
                     showContraintlayout = true; // 오늘이면 보여야지 ./ 여기서 오늘 날짜 Api를 엮어야 되네 ;?
                     blankNoteContraintlayout.setVisibility(View.INVISIBLE);
-                  String date=  createQueryStringDayDate(mYear,mMonth,walkingMonthResult.getDays().get(i));
-                    mTrackingNoteService = new TrackingNoteService(TrackingNote.this,date);
+                    String date = createQueryStringDayDate(mYear, mMonth, walkingMonthResult.getDays().get(i));
+                    mTrackingNoteService = new TrackingNoteService(TrackingNote.this, date);
                     mTrackingNoteService.refreshUpdateWalkingDay();//날짜 엮기
 
 
@@ -318,15 +307,32 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
     }
 
     @Override
-    public void initialTackingNot(WalkingMonthResult walkingMonthResult) {
+    public void initialTackingNot(DayHistory dayHistory) {
 
+        if (dayHistory != null) {
+
+
+            Log.e("ㅇㄹㅇ", "" + dayHistory.getContent());
+            mWebView.getSettings().setJavaScriptEnabled(true);
+            mWebView.loadDataWithBaseURL(null, dayHistory.getContent(), "text/html", "utf-8", null);
+            mWebView.setVisibility(View.VISIBLE);
+            mAddNote.setVisibility(View.INVISIBLE);
+
+
+        }else{
+
+            mWebView.setVisibility(View.INVISIBLE);
+            mAddNote.setVisibility(View.VISIBLE);
+
+        }
     }
+
 
     @Override
     public void updateDay(WalkingdayResult walkingdayResult) {
 
 
-        if(walkingdayResult!=null) {
+        if (walkingdayResult != null) {
 
             constraintLayoutIncludeLayout.setVisibility(View.VISIBLE);
             blankNoteContraintlayout.setVisibility(View.INVISIBLE);
@@ -339,16 +345,16 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
                 @Override
                 public void onClick(View view) {
 
-                    Intent intent =new Intent(getActivity(),AddTrackingNote.class);
+                    Intent intent = new Intent(getActivity(), AddTrackingNote.class);
 
-                    String check =createQueryStringDayDate(mYear, mMonth,mDay);
-                    Log.e("check",""+check);
-                    intent.putExtra("date",check);
+                    String check = createQueryStringDayDate(mYear, mMonth, mDay);
+                    Log.e("check", "" + check);
+                    intent.putExtra("date", check);
                     startActivity(intent);
                 }
             });
 
-        }else{
+        } else {
             constraintLayoutIncludeLayout.setVisibility(View.INVISIBLE);
             blankNoteContraintlayout.setVisibility(View.VISIBLE);
 //            mAddNote.setOnClickListener(new View.OnClickListener() {
