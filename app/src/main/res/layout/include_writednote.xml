@@ -120,9 +120,16 @@
         app:layout_constraintStart_toEndOf="@+id/completetime_include"
         app:layout_constraintTop_toTopOf="@+id/time_include"></View>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/completetime_include"
+        >
     <TextView
         android:id="@+id/addNote_include"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
@@ -136,7 +143,14 @@
         android:paddingBottom="32dp"
         android:text="+기록 남기기"
         android:textColor="#cccccc"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/completetime_include" />
+    />
+        <WebView
+            android:id="@+id/historyWebView_include"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="WebViewLayout">
+
+
+        </WebView>
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

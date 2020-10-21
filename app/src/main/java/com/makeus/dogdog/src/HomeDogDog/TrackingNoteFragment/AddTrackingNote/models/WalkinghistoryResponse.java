@@ -1,13 +1,10 @@
-package com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models;
+package com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.AddTrackingNote.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class WalkingMonthResponse {
+public class WalkinghistoryResponse {
 
-    @SerializedName("result")
-    @Expose
-    private WalkingMonthResult result;
     @SerializedName("isSuccess")
     @Expose
     private Boolean isSuccess;
@@ -17,14 +14,6 @@ public class WalkingMonthResponse {
     @SerializedName("message")
     @Expose
     private String message;
-
-    public WalkingMonthResult getResult() {
-        return result;
-    }
-
-    public void setResult(WalkingMonthResult result) {
-        this.result = result;
-    }
 
     public Boolean getIsSuccess() {
         return isSuccess;

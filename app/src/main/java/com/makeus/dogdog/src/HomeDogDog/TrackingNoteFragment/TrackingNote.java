@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +29,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
+import static com.makeus.dogdog.src.ApplicationClass.sSharedPreferences;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link TrackingNote#newInstance} factory method to
@@ -42,6 +45,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
     CalendarAdapter calendarAdapter;
     TrackingNoteService mTrackingNoteService;
     TextView mCompleteTime,mCompleteDistance,mCompleteMission,mToday,mAddNote;
+    WebView mWebView;
     int mYear, mMonth, mDay;
     /**
      * 일 저장 할 리스트
@@ -124,13 +128,28 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
         mCompleteMission=constraintLayoutIncludeLayout.findViewById(R.id.completeMission_include);
         mToday=constraintLayoutIncludeLayout.findViewById(R.id.today_include);
         mAddNote=constraintLayoutIncludeLayout.findViewById(R.id.addNote_include);
+        mWebView=constraintLayoutIncludeLayout.findViewById(R.id.historyWebView_include);
         //Include 레이아웃 사용하는 법 .
+        String yourData=sSharedPreferences.getString("html2","");
+        sSharedPreferences.edit().clear();
+        if(yourData.equals("")) {
+            mWebView.setVisibility(View.INVISIBLE);
+            mAddNote.setVisibility(View.VISIBLE);
 
+        }else{
 
+            Log.e("ㅇㄹㅇ",""+yourData);
+            mWebView.getSettings().setJavaScriptEnabled(true);
+            mWebView.loadDataWithBaseURL(null, yourData, "text/html", "utf-8", null);
+            mWebView.setVisibility(View.VISIBLE);
+            mAddNote.setVisibility(View.INVISIBLE);
+
+        }
         mTrackingNoteService = new TrackingNoteService(this, initialQueryStringDate());
         mTrackingNoteService.refreshUpdateWalkingMonth();
         //월은 9가 10월
         // Inflate the layout for this fragment
+
 
         collapsibleCalendar.setCalendarListener(new CollapsibleCalendar.CalendarListener() {
             @Override
@@ -321,6 +340,10 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
                 public void onClick(View view) {
 
                     Intent intent =new Intent(getActivity(),AddTrackingNote.class);
+
+                    String check =createQueryStringDayDate(mYear, mMonth,mDay);
+                    Log.e("check",""+check);
+                    intent.putExtra("date",check);
                     startActivity(intent);
                 }
             });
