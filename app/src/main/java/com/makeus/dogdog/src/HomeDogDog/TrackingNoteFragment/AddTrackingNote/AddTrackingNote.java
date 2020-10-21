@@ -51,6 +51,8 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
     private Uri filePath;
     String downloadPhotoUrl;
     DayHistory dayHistory;
+    String mGetHtml;
+
     AddTrackingNoteService addTrackingNoteService;
     int limitPictureUpload=0; // 근데 이거 할려면 지워지면 알아차려야되는데 ;
     @Override
@@ -59,8 +61,21 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
         setContentView(R.layout.activity_add_tracking_note);
         String why= getIntent().getStringExtra("date");
 
+
+
         wysiwyg = findViewById(R.id.richwysiwygeditor);
 
+        if(getIntent().getStringExtra("html")!=null)
+        {
+            mGetHtml=getIntent().getStringExtra("html");
+
+            wysiwyg.getContent().getSettings().setJavaScriptEnabled(true);
+            wysiwyg.getContent().loadDataWithBaseURL(null, mGetHtml, "text/html", "utf-8", null);
+        }
+
+
+
+        //Editor 상속 받은 놈 요기 있네 .
         wysiwyg.getContent()
                 .setEditorFontSize(24)
 

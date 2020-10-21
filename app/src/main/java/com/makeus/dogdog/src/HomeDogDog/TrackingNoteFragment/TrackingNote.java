@@ -43,12 +43,11 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
 
     ConstraintLayout constraintLayoutIncludeLayout, blankNoteContraintlayout;
-    NestedScrollView nestedScrollView;
     boolean showContraintlayout;
     CollapsibleCalendar collapsibleCalendar;
-    CalendarAdapter calendarAdapter;
     TrackingNoteService mTrackingNoteService, mHistoryService;
 
+    ImageView updateTrackingNote;
     TextView mCompleteTime, mCompleteDistance, mCompleteMission, mToday, mAddNote;
     WebView mWebView;
     int mYear, mMonth, mDay;
@@ -64,7 +63,6 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
      * 그리드뷰 어댑터
      */
 
-    ImageView addTrackingNote;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -131,7 +129,9 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
         mToday = constraintLayoutIncludeLayout.findViewById(R.id.today_include);
         mAddNote = constraintLayoutIncludeLayout.findViewById(R.id.addNote_include);
         mWebView = constraintLayoutIncludeLayout.findViewById(R.id.historyWebView_include);
+        updateTrackingNote=constraintLayoutIncludeLayout.findViewById(R.id.updateTrackingNote_include);
         //Include 레이아웃 사용하는 법 .
+        updateTrackingNote.setVisibility(View.INVISIBLE);
         mWebView.setVisibility(View.INVISIBLE);
         mAddNote.setVisibility(View.VISIBLE);
 
@@ -317,13 +317,22 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
             mWebView.loadDataWithBaseURL(null, dayHistory.getContent(), "text/html", "utf-8", null);
             mWebView.setVisibility(View.VISIBLE);
             mAddNote.setVisibility(View.INVISIBLE);
+            updateTrackingNote.setVisibility(View.VISIBLE);
+            updateTrackingNote.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent =new Intent(getActivity(), AddTrackingNote.class);
 
+                    intent.putExtra("html",dayHistory.getContent());
+                    startActivity(intent);
+                }
+            });
 
         }else{
 
             mWebView.setVisibility(View.INVISIBLE);
             mAddNote.setVisibility(View.VISIBLE);
-
+            updateTrackingNote.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -333,6 +342,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
 
         if (walkingdayResult != null) {
+
 
             constraintLayoutIncludeLayout.setVisibility(View.VISIBLE);
             blankNoteContraintlayout.setVisibility(View.INVISIBLE);

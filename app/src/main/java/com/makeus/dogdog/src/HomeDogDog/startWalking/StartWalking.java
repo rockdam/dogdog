@@ -105,6 +105,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
         mStartCamera = findViewById(R.id.cameraApp_startWalking);
         Serviceintent = new Intent(StartWalking.this, ForegroundWalkingService.class);
         mStopWalkingBody = new StopWalkingBody();
+
         mDogIdx = getIntent().getIntExtra("dogIdx", 1);
 //        if (getIntent().getStringExtra("timeTicking") != null) {
 //            mTimetickin = Double.parseDouble(getIntent().getStringExtra("timeTicking"));
