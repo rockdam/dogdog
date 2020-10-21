@@ -288,9 +288,9 @@ public class RichWysiwyg extends LinearLayout {
         size1.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View view){
-
-                content.setEditorFontSize(1);
                 closePopupWindow();
+                content.setEditorFontSize(16);
+
             }
         });
 
@@ -298,9 +298,9 @@ public class RichWysiwyg extends LinearLayout {
         size2.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View view){
-
-                content.setEditorFontSize(12);
                 closePopupWindow();
+                content.setEditorFontSize(20);
+
             }
         });
 
@@ -308,27 +308,27 @@ public class RichWysiwyg extends LinearLayout {
         size3.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View view){
-
-                content.setEditorFontSize(16);
                 closePopupWindow();
+                content.setEditorFontSize(24);
+
             }
         });
         ImageButton size4 = popupView.findViewById(R.id.text_size4);
         size4.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View view){
-
-                content.setEditorFontSize(20);
                 closePopupWindow();
+                content.setEditorFontSize(28);
+
             }
         });
         ImageButton size5 = popupView.findViewById(R.id.text_size5);
         size5.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View view){
-
-                content.setEditorFontSize(24);
                 closePopupWindow();
+                content.setEditorFontSize(32);
+
             }
         });
 
