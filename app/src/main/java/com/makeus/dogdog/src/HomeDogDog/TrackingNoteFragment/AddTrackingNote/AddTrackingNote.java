@@ -65,13 +65,7 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
 
         wysiwyg = findViewById(R.id.richwysiwygeditor);
 
-        if(getIntent().getStringExtra("html")!=null)
-        {
-            mGetHtml=getIntent().getStringExtra("html");
 
-            wysiwyg.getContent().getSettings().setJavaScriptEnabled(true);
-            wysiwyg.getContent().loadDataWithBaseURL(null, mGetHtml, "text/html", "utf-8", null);
-        }
 
 
 
@@ -80,7 +74,23 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
                 .setEditorFontSize(24)
 
                 .setEditorPadding(4, 0, 4, 0);
+        if(getIntent().getStringExtra("html")!=null)
+        {
+            mGetHtml=getIntent().getStringExtra("html");
 
+
+//            wysiwyg.getContent().loadDataWithBaseURL(null, mGetHtml, "text/html", "utf-8", null);
+
+
+            wysiwyg.getContent().getSettings().setJavaScriptEnabled(true);
+
+            wysiwyg.getContent().setHtml(mGetHtml);
+            //이걸 써야 된다. 그럼 가져와서 수정할 수 있어!
+
+//            wysiwyg.getContent().getSettings().setAllowContentAccess(true);
+
+
+        }
         wysiwyg.getHeadlineEditText().setHint("제목을 입력해주세요");
 
         wysiwyg.getCancelButton().setText("취소");
@@ -119,10 +129,7 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
                 dayHistory.setDogIdx(sSharedPreferences.getInt("dogIdx",1));
                 dayHistory.setContent( wysiwyg.getContent().getHtml());
 
-                SharedPreferences.Editor editor=sSharedPreferences.edit();
-                editor.putString("html2",wysiwyg.getContent().getHtml());
 
-                editor.apply();
 
                 addTrackingNoteService=new AddTrackingNoteService(AddTrackingNote.this);
                 addTrackingNoteService.createWalkingNoteHistory(dayHistory);
@@ -133,6 +140,8 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
 
 
 
+
+    //이미지 Picker로 알 수 있을지도..?이미지가 지워지는지 아닌지
     @Override
     protected void onActivityResult(int requestCode, final int resultCode, Intent data) {
         if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
@@ -173,6 +182,7 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
 
         }
     }
+
 
 
     //upload the file

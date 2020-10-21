@@ -75,7 +75,6 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".src.joinmember.login.LoginActivity" />
         <activity android:name=".src.HomeDogDog.startWalking.StartWalking"
-            android:theme="@style/StartWalkingActivity"
             android:label="singleTask"
             android:launchMode="singleTask"
             android:taskAffinity=""

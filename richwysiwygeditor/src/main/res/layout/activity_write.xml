@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/write_coordinatorLayout"
     android:layout_width="match_parent"
-
     android:layout_height="match_parent">
 
 
@@ -75,6 +74,7 @@
             android:background="@drawable/bottom_border_white"
             android:hint="제목을 입력해주세요."
             android:inputType="textVisiblePassword"
+            android:textCursorDrawable="@drawable/edit_cursor"
             android:paddingStart="12dp"
             android:paddingTop="8dp"
             android:paddingEnd="0dp"
@@ -226,6 +226,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="0dp"
+
 
             android:layout_weight="1"
             android:autoLink="web|email"
