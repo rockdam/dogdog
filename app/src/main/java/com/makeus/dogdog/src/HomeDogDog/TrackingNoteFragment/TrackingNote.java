@@ -393,7 +393,8 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
                     Intent intent = new Intent(getActivity(), AddTrackingNote.class);
 
                     intent.putExtra("date", createQueryStringDayDate(mYear, mMonth, mDay));
-                    startActivity(intent);
+
+                    startActivityForResult(intent,0);
                 }
             });
 
