@@ -16,7 +16,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="72dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/bottom_border_white">
 
             <Button
@@ -41,10 +41,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="34dp"
-                android:text="기록 남기기"
+                android:layout_marginBottom="30dp"
                 android:fontFamily="@font/spoqahansansregular"
+                android:text="기록 남기기"
                 android:textColor="#333333"
                 android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/write_confirmButton"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/write_cancelButton"
@@ -176,6 +178,7 @@
             android:id="@+id/write_content"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+
             android:layout_weight="1"
             android:autoLink="web|email"
             android:background="@color/white"
@@ -216,20 +219,20 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0" />
 
-                <ImageButton
-                    android:id="@+id/write_videoInsert"
-                    android:layout_width="@dimen/toolbar_icon_width_size"
-                    android:layout_height="@dimen/toolbar_icon_height_size"
-                    android:background="?attr/selectableItemBackground"
-                    android:contentDescription="@string/videoUpload"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/outline_slideshow_black_48"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.135"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
+<!--                <ImageButton-->
+<!--                    android:id="@+id/write_videoInsert"-->
+<!--                    android:layout_width="@dimen/toolbar_icon_width_size"-->
+<!--                    android:layout_height="@dimen/toolbar_icon_height_size"-->
+<!--                    android:background="?attr/selectableItemBackground"-->
+<!--                    android:contentDescription="@string/videoUpload"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    android:src="@drawable/outline_slideshow_black_48"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.135"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintVertical_bias="1.0" />-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

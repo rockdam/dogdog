@@ -12,10 +12,11 @@
     <com.lumyjuwon.richwysiwygeditor.RichWysiwyg
         android:id="@+id/richwysiwygeditor"
         android:layout_width="match_parent"
+
         android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 <!--https://stackoverflow.com/questions/57251887/android-motionlayout-android-resource-linking-failed
-contraintlayout 버전 올리기
+contraintlayout 버전 올리기 그리고 샘플 연결하지말고 자동완성에 안뜨더라도 쓸 수 있다 . 가져와서
 -->

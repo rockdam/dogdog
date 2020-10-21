@@ -262,15 +262,15 @@ public class RichWysiwyg extends LinearLayout {
             }
         });
 
-        // Video Insert 버튼
-        ImageButton videoInsertButton = findViewById(R.id.write_videoInsert);
-        videoInsertButton.setOnClickListener(new OnClickListener(){
-            @Override public void onClick(View v) {
-                closePopupWindow();
-                clearPopupButton();
-                Youtube.showYoutubeDialog(layoutInflater, content, v);
-            }
-        });
+//        // Video Insert 버튼
+//        ImageButton videoInsertButton = findViewById(R.id.write_videoInsert);
+//        videoInsertButton.setOnClickListener(new OnClickListener(){
+//            @Override public void onClick(View v) {
+//                closePopupWindow();
+//                clearPopupButton();
+//                Youtube.showYoutubeDialog(layoutInflater, content, v);
+//            }
+//        });
 
         popupButtons = new ArrayList<>(Arrays.asList(textColorButton, textBgColorButton, textAlignButton));
 
@@ -288,8 +288,9 @@ public class RichWysiwyg extends LinearLayout {
         size1.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View view){
+
+                content.setEditorFontSize(1);
                 closePopupWindow();
-                content.setFontSize(1);
             }
         });
 
@@ -297,8 +298,9 @@ public class RichWysiwyg extends LinearLayout {
         size2.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View view){
+
+                content.setEditorFontSize(12);
                 closePopupWindow();
-                content.setFontSize(2);
             }
         });
 
@@ -306,24 +308,27 @@ public class RichWysiwyg extends LinearLayout {
         size3.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View view){
+
+                content.setEditorFontSize(16);
                 closePopupWindow();
-                content.setFontSize(3);
             }
         });
         ImageButton size4 = popupView.findViewById(R.id.text_size4);
-        size3.setOnClickListener(new OnClickListener(){
+        size4.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View view){
+
+                content.setEditorFontSize(20);
                 closePopupWindow();
-                content.setFontSize(4);
             }
         });
         ImageButton size5 = popupView.findViewById(R.id.text_size5);
-        size3.setOnClickListener(new OnClickListener(){
+        size5.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View view){
+
+                content.setEditorFontSize(24);
                 closePopupWindow();
-                content.setFontSize(5);
             }
         });
 
