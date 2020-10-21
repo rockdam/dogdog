@@ -52,7 +52,7 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
     DayHistory dayHistory;
     String mGetHtml;
 
-    boolean isUpdate = false; // 얘로 수정을 해야되는건지 생성을 해야되는건지 파악 .
+    boolean isUpdate; // 얘로 수정을 해야되는건지 생성을 해야되는건지 파악 .
     AddTrackingNoteService addTrackingNoteService;
     int limitPictureUpload = 0; // 근데 이거 할려면 지워지면 알아차려야되는데 ;
 
@@ -60,12 +60,12 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_tracking_note);
-        String why = getIntent().getStringExtra("date");
+        String date = getIntent().getStringExtra("date");
 
 
         wysiwyg = findViewById(R.id.richwysiwygeditor);
 
-
+        isUpdate=false;
         //Editor 상속 받은 놈 요기 있네 .
         wysiwyg.getContent()
                 .setEditorFontSize(24)
@@ -130,17 +130,24 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
 
                 Log.e("html", wysiwyg.getContent().getHtml());
                 dayHistory = new DayHistory();
-                dayHistory.setDate(why);
+                dayHistory.setDate(date);
                 Log.e("내 아이디는 ", "" + sSharedPreferences.getInt("dogIdx", 1));
                 dayHistory.setDogIdx(sSharedPreferences.getInt("dogIdx", 1));
                 dayHistory.setContent(wysiwyg.getContent().getHtml());
 
+                Intent intent = new Intent(); //날짜 되돌려 주기 . 그 날짜로 갱신하기 위해서
 
                 if(!isUpdate) {
                     addTrackingNoteService = new AddTrackingNoteService(AddTrackingNote.this);
                     addTrackingNoteService.createWalkingNoteHistory(dayHistory);
+                    intent.putExtra("date", date);
+                    setResult(RESULT_OK, intent);
                 }else{
 
+                    addTrackingNoteService = new AddTrackingNoteService(AddTrackingNote.this);
+                    addTrackingNoteService.updateWalkingNoteHistory(dayHistory);
+                    intent.putExtra("date", date);
+                    setResult(RESULT_OK, intent);
 
                 }
             }

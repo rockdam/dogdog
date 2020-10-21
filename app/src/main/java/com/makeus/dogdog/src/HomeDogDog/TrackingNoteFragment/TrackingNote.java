@@ -3,6 +3,7 @@ package com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
@@ -32,6 +33,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
+import static android.app.Activity.RESULT_OK;
 import static com.makeus.dogdog.src.ApplicationClass.sSharedPreferences;
 
 /**
@@ -51,6 +53,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
     TextView mCompleteTime, mCompleteDistance, mCompleteMission, mToday, mAddNote;
     WebView mWebView;
     int mYear, mMonth, mDay;
+    boolean isFirst;;
     /**
      * 일 저장 할 리스트
      */
@@ -112,7 +115,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_tracking_note, container, false);
         showContraintlayout = true;
-
+        isFirst=true;
         blankNoteContraintlayout = v.findViewById(R.id.blanknote_TrackingNote);
 
 
@@ -129,18 +132,24 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
         mToday = constraintLayoutIncludeLayout.findViewById(R.id.today_include);
         mAddNote = constraintLayoutIncludeLayout.findViewById(R.id.addNote_include);
         mWebView = constraintLayoutIncludeLayout.findViewById(R.id.historyWebView_include);
-        updateTrackingNote=constraintLayoutIncludeLayout.findViewById(R.id.updateTrackingNote_include);
+        updateTrackingNote = constraintLayoutIncludeLayout.findViewById(R.id.updateTrackingNote_include);
         //Include 레이아웃 사용하는 법 .
         updateTrackingNote.setVisibility(View.INVISIBLE);
         mWebView.setVisibility(View.INVISIBLE);
         mAddNote.setVisibility(View.VISIBLE);
 
-        mTrackingNoteService = new TrackingNoteService(this, initialQueryStringDate());
-        mTrackingNoteService.refreshUpdateWalkingMonth();
-        //월은 9가 10월
-        // Inflate the layout for this fragment
-        mHistoryService = new TrackingNoteService(this, createQueryStringDayDate(mYear, mMonth, mDay));
-        mHistoryService.initializeWalkingDay();
+        if(isFirst) {
+            mTrackingNoteService = new TrackingNoteService(this, initialQueryStringDate());
+            mTrackingNoteService.refreshUpdateWalkingMonth(); // 월에 일정 있으면 점 표시 .
+
+            mTrackingNoteService = new TrackingNoteService(TrackingNote.this, createQueryStringDayDate(mYear, mMonth, mDay));
+            mTrackingNoteService.refreshUpdateWalkingDay();
+
+            //월은 9가 10월
+        isFirst=false; // 처음 말고 실행되면 안돼 .
+        }
+
+
 
 
         collapsibleCalendar.setCalendarListener(new CollapsibleCalendar.CalendarListener() {
@@ -152,6 +161,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
                 mTrackingNoteService.refreshUpdateWalkingDay();
                 mHistoryService = new TrackingNoteService(TrackingNote.this, createQueryStringDayDate(year, month, day));
                 mHistoryService.initializeWalkingDay();
+                // 얜 히스토리
 
                 //여기서 달 바뀐거 체크
                 mYear = year;
@@ -198,7 +208,28 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
         });
         return v;
     }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+
+                case 0:
+                    String date =data.getStringExtra("date");
+                    mTrackingNoteService = new TrackingNoteService(TrackingNote.this, date);
+                    mTrackingNoteService.refreshUpdateWalkingDay();
+                    mHistoryService = new TrackingNoteService(this, date);
+                    mHistoryService.initializeWalkingDay();
+
+
+
+                    break;
+            }
+
+        }
+
+    }
     String initialQueryStringDate() {
         Calendar todayCal = new GregorianCalendar(TimeZone.getTimeZone("GMT+9"));
         String month;
@@ -321,14 +352,18 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
             updateTrackingNote.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent =new Intent(getActivity(), AddTrackingNote.class);
+                    Intent intent = new Intent(getActivity(), AddTrackingNote.class);
 
-                    intent.putExtra("html",dayHistory.getContent());
-                    startActivity(intent);
+                    intent.putExtra("date", createQueryStringDayDate(mYear, mMonth, mDay));
+                    intent.putExtra("html", dayHistory.getContent());
+
+
+
+                    startActivityForResult(intent,0);
                 }
             });
 
-        }else{
+        } else {
 
             mWebView.setVisibility(View.INVISIBLE);
             mAddNote.setVisibility(View.VISIBLE);
@@ -357,9 +392,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
                     Intent intent = new Intent(getActivity(), AddTrackingNote.class);
 
-                    String check = createQueryStringDayDate(mYear, mMonth, mDay);
-                    Log.e("check", "" + check);
-                    intent.putExtra("date", check);
+                    intent.putExtra("date", createQueryStringDayDate(mYear, mMonth, mDay));
                     startActivity(intent);
                 }
             });

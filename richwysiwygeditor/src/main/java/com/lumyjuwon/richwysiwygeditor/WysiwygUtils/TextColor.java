@@ -26,6 +26,7 @@ public class TextColor {
         if(matcher.find()) {
             color_name = matcher.group(1);
             switch (color_name) {
+
                 case "black":
                     return R.color.black;
                 case "maroon":

@@ -11,7 +11,7 @@
         android:layout_height="30dp"
         android:layout_gravity="bottom"
         android:layout_weight="1"
-        android:background="@color/transparent"
+        android:background="@color/white"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/outline_format_size_black_48" />
 
@@ -21,7 +21,7 @@
         android:layout_height="40dp"
         android:layout_gravity="bottom"
         android:layout_weight="1"
-        android:background="@color/transparent"
+        android:background="@color/white"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/outline_format_size_black_48" />
 
@@ -31,7 +31,7 @@
         android:layout_height="55dp"
         android:layout_gravity="bottom"
         android:layout_weight="1"
-        android:background="@color/transparent"
+        android:background="@color/white"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/outline_format_size_black_48" />
 
@@ -41,7 +41,7 @@
         android:layout_height="70dp"
         android:layout_gravity="bottom"
         android:layout_weight="1"
-        android:background="@color/transparent"
+        android:background="@color/white"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/outline_format_size_black_48" />
 
@@ -51,7 +51,7 @@
         android:layout_height="85dp"
         android:layout_gravity="bottom"
         android:layout_weight="1"
-        android:background="@color/transparent"
+        android:background="@color/white"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/outline_format_size_black_48" />
 </LinearLayout>
