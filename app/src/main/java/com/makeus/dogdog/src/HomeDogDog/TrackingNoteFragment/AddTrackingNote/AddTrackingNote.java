@@ -43,7 +43,6 @@ import static com.makeus.dogdog.src.ApplicationClass.sSharedPreferences;
 import static com.theartofdev.edmodo.cropper.CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE;
 
 
-
 // 지워진 이미지 확인 하는 법 체크 해놨다가 보낼 때 갯수랑 비교하면 될 듯?
 public class AddTrackingNote extends BaseActivity implements FinishCallback {
 
@@ -53,20 +52,18 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
     DayHistory dayHistory;
     String mGetHtml;
 
+    boolean isUpdate = false; // 얘로 수정을 해야되는건지 생성을 해야되는건지 파악 .
     AddTrackingNoteService addTrackingNoteService;
-    int limitPictureUpload=0; // 근데 이거 할려면 지워지면 알아차려야되는데 ;
+    int limitPictureUpload = 0; // 근데 이거 할려면 지워지면 알아차려야되는데 ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_tracking_note);
-        String why= getIntent().getStringExtra("date");
-
+        String why = getIntent().getStringExtra("date");
 
 
         wysiwyg = findViewById(R.id.richwysiwygeditor);
-
-
-
 
 
         //Editor 상속 받은 놈 요기 있네 .
@@ -74,9 +71,8 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
                 .setEditorFontSize(24)
 
                 .setEditorPadding(4, 0, 4, 0);
-        if(getIntent().getStringExtra("html")!=null)
-        {
-            mGetHtml=getIntent().getStringExtra("html");
+        if (getIntent().getStringExtra("html") != null) {
+            mGetHtml = getIntent().getStringExtra("html");
 
 
 //            wysiwyg.getContent().loadDataWithBaseURL(null, mGetHtml, "text/html", "utf-8", null);
@@ -85,17 +81,27 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
             wysiwyg.getContent().getSettings().setJavaScriptEnabled(true);
 
             wysiwyg.getContent().setHtml(mGetHtml);
+            isUpdate= true;
             //이걸 써야 된다. 그럼 가져와서 수정할 수 있어!
+//            set, get 함수 + 디버깅 잘 하면 오픈 소스 고칠 수 있음 .
 
 //            wysiwyg.getContent().getSettings().setAllowContentAccess(true);
+            wysiwyg.getHeadlineEditText().setHint("제목을 입력해주세요");
+
+            wysiwyg.getCancelButton().setText("취소");
+
+            wysiwyg.getConfirmButton().setText("수정");
+
+        }else{
+            wysiwyg.getHeadlineEditText().setHint("제목을 입력해주세요");
+
+            wysiwyg.getCancelButton().setText("취소");
+
+            wysiwyg.getConfirmButton().setText("등록");
 
 
         }
-        wysiwyg.getHeadlineEditText().setHint("제목을 입력해주세요");
 
-        wysiwyg.getCancelButton().setText("취소");
-
-        wysiwyg.getConfirmButton().setText("등록");
 //        wysiwyg.getConfirmButton().setOnClickListener(new Button.OnClickListener(){
 //            @Override
 //            public void onClick(View v){
@@ -122,26 +128,28 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
             @Override
             public void onClick(View view) {
 
-               Log.e("html",wysiwyg.getContent().getHtml());
-                dayHistory=new DayHistory();
+                Log.e("html", wysiwyg.getContent().getHtml());
+                dayHistory = new DayHistory();
                 dayHistory.setDate(why);
-                Log.e("내 아이디는 ",""+sSharedPreferences.getInt("dogIdx",1));
-                dayHistory.setDogIdx(sSharedPreferences.getInt("dogIdx",1));
-                dayHistory.setContent( wysiwyg.getContent().getHtml());
+                Log.e("내 아이디는 ", "" + sSharedPreferences.getInt("dogIdx", 1));
+                dayHistory.setDogIdx(sSharedPreferences.getInt("dogIdx", 1));
+                dayHistory.setContent(wysiwyg.getContent().getHtml());
 
 
+                if(!isUpdate) {
+                    addTrackingNoteService = new AddTrackingNoteService(AddTrackingNote.this);
+                    addTrackingNoteService.createWalkingNoteHistory(dayHistory);
+                }else{
 
-                addTrackingNoteService=new AddTrackingNoteService(AddTrackingNote.this);
-                addTrackingNoteService.createWalkingNoteHistory(dayHistory);
+
+                }
             }
         });
 
     }
 
 
-
-
-    //이미지 Picker로 알 수 있을지도..?이미지가 지워지는지 아닌지
+    //이미지 Picker로 알 수 있을지도..?이미지가 지워지는지 아닌지 첫번째 이미지를 파악해야 썸네일을 만들 수 있다.
     @Override
     protected void onActivityResult(int requestCode, final int resultCode, Intent data) {
         if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
@@ -154,7 +162,7 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
             if (resultCode == RESULT_OK) {
 //                Uri resultUri = result.getUri();
 
-                filePath=result.getUri();
+                filePath = result.getUri();
                 uploadFile();
 //                finish();
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
@@ -184,7 +192,6 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
     }
 
 
-
     //upload the file
     private void uploadFile() {
         //업로드할 파일이 있으면 수행
@@ -209,15 +216,8 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
 
 
-
-
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-
-
-
-
 
 
                             storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -225,8 +225,8 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
                                 public void onSuccess(Uri uri) {
 
 
-                                    downloadPhotoUrl=uri.toString();
-                                    Log.e("Url",downloadPhotoUrl);
+                                    downloadPhotoUrl = uri.toString();
+                                    Log.e("Url", downloadPhotoUrl);
                                     progressDialog.dismiss(); //업로드 진행 Dialog 상자 닫기
                                     wysiwyg.getContent().insertImage(downloadPhotoUrl, "alt"); // 파이어베이스에서 받은 URL 보여주기
 //                                    sendImagData.setImgUrl(downloadPhotoUrl);
@@ -241,11 +241,6 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
 
                                 }
                             });
-
-
-
-
-
 
 
                         }
@@ -263,7 +258,7 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             @SuppressWarnings("VisibleForTests") //이걸 넣어 줘야 아랫줄에 에러가 사라진다. 넌 누구냐?
-                                    double progress = (100 * taskSnapshot.getBytesTransferred()) /  taskSnapshot.getTotalByteCount();
+                                    double progress = (100 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
                             //dialog에 진행률을 퍼센트로 출력해 준다
                             progressDialog.setMessage("Uploaded " + ((int) progress) + "% ...");
                         }
