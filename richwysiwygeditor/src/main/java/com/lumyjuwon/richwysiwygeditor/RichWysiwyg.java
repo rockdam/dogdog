@@ -289,7 +289,7 @@ public class RichWysiwyg extends LinearLayout {
             @Override
             public void onClick(View view){
                 closePopupWindow();
-                content.setEditorFontSize(16);
+                content.setEditorFontSize(20);
 
             }
         });
@@ -299,7 +299,7 @@ public class RichWysiwyg extends LinearLayout {
             @Override
             public void onClick(View view){
                 closePopupWindow();
-                content.setEditorFontSize(20);
+                content.setEditorFontSize(24);
 
             }
         });
@@ -309,7 +309,7 @@ public class RichWysiwyg extends LinearLayout {
             @Override
             public void onClick(View view){
                 closePopupWindow();
-                content.setEditorFontSize(24);
+                content.setEditorFontSize(28);
 
             }
         });
@@ -318,7 +318,7 @@ public class RichWysiwyg extends LinearLayout {
             @Override
             public void onClick(View view){
                 closePopupWindow();
-                content.setEditorFontSize(28);
+                content.setEditorFontSize(32);
 
             }
         });
@@ -327,7 +327,7 @@ public class RichWysiwyg extends LinearLayout {
             @Override
             public void onClick(View view){
                 closePopupWindow();
-                content.setEditorFontSize(32);
+                content.setEditorFontSize(36);
 
             }
         });

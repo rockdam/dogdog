@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bottom_border_white"
             android:hint="제목을 입력해주세요."
-            android:inputType="textPersonName"
+            android:inputType="textVisiblePassword"
             android:paddingStart="12dp"
             android:paddingTop="8dp"
             android:paddingEnd="0dp"
@@ -84,19 +84,25 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_border_white"
+            >
 
             <ImageButton
                 android:id="@+id/write_imageInsert"
                 android:layout_width="@dimen/toolbar_icon_width_size"
                 android:layout_height="@dimen/toolbar_icon_height_size"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="?attr/selectableItemBackground"
                 android:contentDescription="@string/ImageUpload"
                 android:scaleType="fitCenter"
                 android:src="@drawable/outline_image_black_48"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/write_textSize"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.lumyjuwon.richwysiwygeditor.WriteCustomButton
                 android:id="@+id/write_textSize"
@@ -106,10 +112,11 @@
                 android:contentDescription="@string/textSize"
                 android:scaleType="fitCenter"
                 android:src="@drawable/outline_format_size_black_48"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/write_textColor"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/write_imageInsert"
-                tools:layout_editor_absoluteY="0dp" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.lumyjuwon.richwysiwygeditor.WriteCustomButton
                 android:id="@+id/write_textColor"
@@ -119,6 +126,7 @@
                 android:contentDescription="@string/textColor"
                 android:scaleType="fitCenter"
                 android:src="@drawable/baseline_format_color_text_black_48"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/write_textBgColor"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/write_textSize"
@@ -133,6 +141,7 @@
                 android:contentDescription="@string/textColor"
                 android:scaleType="fitCenter"
                 android:src="@drawable/baseline_format_color_fill_black_48"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/write_textBold"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/write_textColor"
@@ -146,6 +155,7 @@
                 android:contentDescription="@string/textBold"
                 android:scaleType="fitCenter"
                 android:src="@drawable/outline_format_bold_black_48"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/write_textItalic"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/write_textBgColor"
@@ -159,6 +169,7 @@
                 android:contentDescription="@string/textItalic"
                 android:scaleType="fitCenter"
                 android:src="@drawable/outline_format_italic_black_48"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/write_textUnderLine"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/write_textBold"
@@ -173,6 +184,7 @@
                 android:contentDescription="@string/textAlign"
                 android:scaleType="fitCenter"
                 android:src="@drawable/baseline_format_underlined_black_48"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/write_textStrike"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/write_textItalic"
@@ -186,6 +198,7 @@
                 android:contentDescription="@string/textStrike"
                 android:scaleType="fitCenter"
                 android:src="@drawable/outline_format_strikethrough_black_48"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/write_textAlign"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/write_textUnderLine"
@@ -199,6 +212,7 @@
                 android:contentDescription="@string/textAlign"
                 android:scaleType="fitCenter"
                 android:src="@drawable/outline_format_align_left_black_48"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/write_textStrike"

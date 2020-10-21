@@ -25,14 +25,14 @@ public class MainActivity extends AppCompatActivity {
         wysiwyg = findViewById(R.id.richwysiwygeditor);
 
         wysiwyg.getContent()
-                .setEditorFontSize(18)
+                .setEditorFontSize(24)
                 .setEditorPadding(4, 0, 4, 0);
 
         wysiwyg.getHeadlineEditText().setHint("제목을 입력해주세요");
 
-        wysiwyg.getCancelButton().setText("Cancel");
+        wysiwyg.getCancelButton().setText("취소");
 
-        wysiwyg.getConfirmButton().setText("Write");
+        wysiwyg.getConfirmButton().setText("등록");
         wysiwyg.getConfirmButton().setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v){
