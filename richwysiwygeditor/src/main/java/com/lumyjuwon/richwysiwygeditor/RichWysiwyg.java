@@ -43,6 +43,7 @@ public class RichWysiwyg extends LinearLayout {
     private WriteCustomButton textUnderlineButton;
     private WriteCustomButton textStrikeButton;
     private WriteCustomButton textAlignButton;
+    private WriteCustomButton textSizeButton;
     private ArrayList<WriteCustomButton> popupButtons;
     private ArrayList<WriteCustomButton> Buttons;
     private LayoutInflater layoutInflater;
@@ -289,8 +290,11 @@ public class RichWysiwyg extends LinearLayout {
             @Override
             public void onClick(View view){
                 closePopupWindow();
-                content.setEditorFontSize(20);
 
+                Keyboard.showKeyboard(view);
+//                content.setEditorFontSize(20);
+                content.setFontSize(20);
+                content.set
             }
         });
 
@@ -299,8 +303,8 @@ public class RichWysiwyg extends LinearLayout {
             @Override
             public void onClick(View view){
                 closePopupWindow();
-                content.setEditorFontSize(24);
-
+                Keyboard.showKeyboard(view);
+                content.setFontSize(24);
             }
         });
 
@@ -309,8 +313,8 @@ public class RichWysiwyg extends LinearLayout {
             @Override
             public void onClick(View view){
                 closePopupWindow();
-                content.setEditorFontSize(28);
-
+                Keyboard.showKeyboard(view);
+                content.setFontSize(28);
             }
         });
         ImageButton size4 = popupView.findViewById(R.id.text_size4);
@@ -318,8 +322,8 @@ public class RichWysiwyg extends LinearLayout {
             @Override
             public void onClick(View view){
                 closePopupWindow();
-                content.setEditorFontSize(32);
-
+                Keyboard.showKeyboard(view);
+                content.setFontSize(32);
             }
         });
         ImageButton size5 = popupView.findViewById(R.id.text_size5);
@@ -327,8 +331,8 @@ public class RichWysiwyg extends LinearLayout {
             @Override
             public void onClick(View view){
                 closePopupWindow();
-                content.setEditorFontSize(36);
-
+                Keyboard.showKeyboard(view);
+                content.setFontSize(36);
             }
         });
 

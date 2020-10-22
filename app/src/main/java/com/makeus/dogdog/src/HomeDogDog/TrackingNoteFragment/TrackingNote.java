@@ -173,7 +173,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
 
 //                Toast.makeText(getContext(),""+collapsibleCalendar.getSelectedItemPosition(),Toast.LENGTH_SHORT).show();
-                Toast.makeText(getContext(), "달 " + month + "날짜" + day, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "달 " + month + "날짜" + day, Toast.LENGTH_SHORT).show();
 
 //                Log.e("달 날짜 체크", );
             }
@@ -347,9 +347,11 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
 
             Log.e("ㅇㄹㅇ", "" + dayHistory.getContent());
-            mWebView.getSettings().setJavaScriptEnabled(true);
+//            mWebView.getSettings().setJavaScriptEnabled(true);
+//            mWebView.getSettings().setDefaultFontSize(24);
             mWebView.loadDataWithBaseURL(null, dayHistory.getContent(), "text/html", "utf-8", null);
             mWebView.setVisibility(View.VISIBLE);
+
             mAddNote.setVisibility(View.INVISIBLE);
             updateTrackingNote.setVisibility(View.VISIBLE);
             updateTrackingNote.setOnClickListener(new View.OnClickListener() {
