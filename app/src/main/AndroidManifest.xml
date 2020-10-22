@@ -46,7 +46,14 @@
             android:theme="@style/AppFullScreenTheme" />
         <activity android:name=".src.HomeDogDog.TrackingNoteFragment.AddTrackingNote.AddTrackingNote" />
         <activity android:name=".src.HomeDogDog.FeedFragment.AddFeedActivity.AddFeedActivity" />
-        <activity android:name=".src.joinmember.step7.Step7Activity" />
+        <activity android:name=".src.joinmember.step7.Step7Activity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".src.joinmember.step3repeat.Step3RepeatActivity"
             android:windowSoftInputMode="adjustPan" />
@@ -71,11 +78,7 @@
             android:name=".src.joinmember.step3.Step3Activity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".src.joinmember.login.LoginActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".src.HomeDogDog.startWalking.StartWalking"
             android:label="singleTask"

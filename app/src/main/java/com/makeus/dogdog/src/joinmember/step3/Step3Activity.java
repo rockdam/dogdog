@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -33,6 +34,7 @@ public class Step3Activity extends BaseActivity implements View.OnClickListener 
     String mPassword;
     userInfo mUserInfo;
 
+    TextView tellmePassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,8 @@ public class Step3Activity extends BaseActivity implements View.OnClickListener 
         mBackButton = findViewById(R.id.backButton_step);
         mNextButton.setOnClickListener(this);
         mBackButton.setOnClickListener(this);
+        tellmePassword=findViewById(R.id.tellmePassword_Step2Activity);
+        tellmePassword.setText(Html.fromHtml(  "<b>"+ "비밀번호" + "</b>를" +"<br>" + "</br>"+ "입력해주세요."));
         mUserInfo=new userInfo();
         mEdit_Input_Text_joinmember = findViewById(R.id.edit_Input_Text_joinmember);
         mBackButton.setOnClickListener(this);

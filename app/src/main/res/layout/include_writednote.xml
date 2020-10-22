@@ -126,29 +126,29 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/completetime_include"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/completetime_include">
+<!--아 이럴 때 쓰는거였어? -->
+        <TextView
+            android:id="@+id/addNote_include"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/dotted_border"
+            android:fontFamily="@font/spoqahansansbold"
+            android:gravity="center"
+            android:paddingLeft="100dp"
+            android:paddingTop="32dp"
+            android:paddingRight="100dp"
+            android:paddingBottom="32dp"
+            android:text="+기록 남기기"
+            android:textColor="#cccccc" />
 
-    <TextView
-        android:id="@+id/addNote_include"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/dotted_border"
-        android:fontFamily="@font/spoqahansansbold"
-        android:gravity="center"
-        android:paddingLeft="100dp"
-        android:paddingTop="32dp"
-        android:paddingRight="100dp"
-        android:paddingBottom="32dp"
-        android:text="+기록 남기기"
-        android:textColor="#cccccc"
-    />
         <WebView
             android:id="@+id/historyWebView_include"
             android:layout_width="match_parent"

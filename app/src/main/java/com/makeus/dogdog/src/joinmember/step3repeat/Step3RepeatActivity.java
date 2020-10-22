@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -23,7 +24,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Step3RepeatActivity extends BaseActivity implements View.OnClickListener {
-    TextView mNextButton, mBackButton;
+    TextView mNextButton, mBackButton, tellmePassword;
     TextView warningText;
 
     ImageView warningImage, edtclear_step;
@@ -39,6 +40,8 @@ public class Step3RepeatActivity extends BaseActivity implements View.OnClickLis
         mNextButton.setOnClickListener(this);
         mBackButton.setOnClickListener(this);
         mUserInfo = new userInfo();
+        tellmePassword=findViewById(R.id.tellmePassword_Step2Activity);
+        tellmePassword.setText(Html.fromHtml(  "<b>"+ "비밀번호" + "</b>를 다시 한번" +"<br>" + "</br>"+ "입력해주세요."));
         mEdit_Input_Text_joinmember = findViewById(R.id.edit_Input_Text_joinmember);
         mBackButton.setOnClickListener(this);
         edtclear_step = findViewById(R.id.edtclear_step);

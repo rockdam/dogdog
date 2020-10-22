@@ -145,6 +145,9 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
             mTrackingNoteService = new TrackingNoteService(TrackingNote.this, createQueryStringDayDate(mYear, mMonth, mDay));
             mTrackingNoteService.refreshUpdateWalkingDay();
 
+            mHistoryService = new TrackingNoteService(TrackingNote.this, createQueryStringDayDate(mYear, mMonth, mDay));
+            mHistoryService.initializeWalkingDay();
+
             //월은 9가 10월
         isFirst=false; // 처음 말고 실행되면 안돼 .
         }

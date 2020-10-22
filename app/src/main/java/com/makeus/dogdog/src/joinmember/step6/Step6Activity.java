@@ -3,6 +3,7 @@ package com.makeus.dogdog.src.joinmember.step6;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -24,7 +25,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Step6Activity extends BaseActivity implements View.OnClickListener, MoveAcitivity7Interface {
-    TextView mJoinMessage, mNextButton, mBackButton, dog_breeds_step6;
+    TextView mJoinMessage, mNextButton, mBackButton, dog_breeds_step6,mTellUsAge;
     EditText mEdit_Input_Text_joinmember;
     String mKg;
     SearchBreedsDialog mSearchBreedsDialog;
@@ -41,6 +42,8 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step6);
         mNextButton = findViewById(R.id.next_button_step);
+        mTellUsAge = findViewById(R.id.tellmePassword_Step2Activity);
+        mTellUsAge.setText(Html.fromHtml("<b>" + "반려견의 몸무게와" + "</b>"  + "<br>" + "</br>" +"<b>"+"견종"+"</b>"+ "을 알려주세요."));
         mBackButton = findViewById(R.id.backButton_step);
         mNextButton.setOnClickListener(this);
         mBackButton.setOnClickListener(this);
@@ -69,10 +72,10 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener,
 
                 if (isValidKg(editable.toString())) {
                     mWeight = Float.parseFloat(mKg);
-                    mKg += " kg";
+                    mKg += "kg";
 
                     mEdit_Input_Text_joinmember.setText(mKg);
-                    mEdit_Input_Text_joinmember.setSelection(mEdit_Input_Text_joinmember.getText().length() - 3);
+                    mEdit_Input_Text_joinmember.setSelection(mEdit_Input_Text_joinmember.getText().length() - 2);
 
 
                 }
@@ -115,14 +118,14 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener,
 
     }
 
-    public static boolean isValidKg(final String Password) {
+    public static boolean isValidKg(final String Kg) {
 
         Pattern pattern;
         Matcher matcher;
 
         final String KG_PATTERN = "^(0|[1-9]\\d*)(\\.\\d+)?$";
         pattern = Pattern.compile(KG_PATTERN);
-        matcher = pattern.matcher(Password);
+        matcher = pattern.matcher(Kg);
 
         return matcher.matches();
 
@@ -133,17 +136,17 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener,
         String check = mEdit_Input_Text_joinmember.getText().toString();
         int idx = check.indexOf("k");
         if (idx == -1) {
-            returnValue = true;
+            returnValue = false;
         } else {
 
             String checkdf=check.substring(0, idx);
 
 
             if (isValidKg(check.substring(0, idx))) {
-                mWeight = Float.parseFloat(check.substring(0, idx));
-                returnValue=false;
-            }else{
+                mWeight = Float.parseFloat(checkdf);
                 returnValue=true;
+            }else{
+                returnValue=false;
 
             }
         }
@@ -176,7 +179,7 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener,
             case R.id.next_button_step:
                 if (mEdit_Input_Text_joinmember.getText().toString() == null) {
                     Toast.makeText(getBaseContext(),"몸무게를 입력해주세요",Toast.LENGTH_LONG);
-                }else if(checkCorrectWeightValue() || mWeight <= 0)
+                }else if(!checkCorrectWeightValue() || mWeight <= 0)
                 {
 
                     Toast.makeText(getBaseContext(),"정확한 몸무게를  입력해주세요",Toast.LENGTH_LONG);

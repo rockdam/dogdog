@@ -2,6 +2,7 @@ package com.makeus.dogdog.src.joinmember.step7;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
@@ -13,7 +14,7 @@ import com.makeus.dogdog.src.joinmember.step6.models.dogInfo;
 import com.makeus.dogdog.src.joinmember.step6.models.userInfo;
 
 public class Step7Activity extends BaseActivity implements View.OnClickListener {
-    TextView mJoinMessage, mNextButton,mBackButton;
+    TextView mJoinMessage, mNextButton,mBackButton,mTellUsAge;
     userInfo mUserInfo;
     dogInfo mDogInfo;
 
@@ -23,6 +24,9 @@ public class Step7Activity extends BaseActivity implements View.OnClickListener 
         setContentView(R.layout.activity_step7);
         mNextButton=findViewById(R.id.mainButton_step);
         mNextButton.setOnClickListener(this);
+        mTellUsAge = findViewById(R.id.tellmePassword_Step2Activity);
+        mTellUsAge.setText(Html.fromHtml( "축하해요!"  + "<br>" + "</br>"+"회원가입을 완료했어요." +"<br>" + "</br>"+ "<br>" + "</br>"+"<b>"+"이제 산책을"+"</b>"+"<br>"+"</br>"+ "<b>"+"시작해볼까요?"+"</b>"));
+
         mUserInfo=new userInfo();
         mDogInfo=new dogInfo();
         Intent intent = getIntent();

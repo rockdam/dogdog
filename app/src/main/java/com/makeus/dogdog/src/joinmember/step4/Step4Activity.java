@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +23,7 @@ import com.makeus.dogdog.src.joinmember.step6.models.dogInfo;
 import com.makeus.dogdog.src.joinmember.step6.models.userInfo;
 
 public class Step4Activity extends BaseActivity implements View.OnClickListener{
-    TextView mNextButton,mBackButton;
+    TextView mNextButton,mBackButton,tellmePassword;
     TextView warningText;
 
     ImageView warningImage,edtclear_step;
@@ -38,7 +39,8 @@ public class Step4Activity extends BaseActivity implements View.OnClickListener{
         mBackButton=findViewById(R.id.backButton_step);
         mNextButton.setOnClickListener(this);
         mBackButton.setOnClickListener(this);
-
+        tellmePassword=findViewById(R.id.tellmePassword_Step2Activity);
+        tellmePassword.setText(Html.fromHtml(  "<b>"+ "당신의 반려견의" +"</b>"+"<br>" + "</br>"+"<b>"+"이름"+"</b>"+"은 무엇인가요?"));
         mDogInfo=new dogInfo();
         mUserInfo=new userInfo();
         mEdit_Input_Text_joinmember=findViewById(R.id.edit_Input_Text_joinmember);

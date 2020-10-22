@@ -24,9 +24,6 @@ import com.makeus.dogdog.src.joinmember.step2.models.DuplicateUserIdResponse;
 import com.makeus.dogdog.src.joinmember.step3.Step3Activity;
 import com.makeus.dogdog.src.joinmember.step6.models.userInfo;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Step2Activity extends BaseActivity implements View.OnClickListener, ShowToastStep2 {
 
     TextView mNextButton, mBackButton;
@@ -48,7 +45,7 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
         mBackButton = findViewById(R.id.backButton_step);
         mNextButton.setOnClickListener(this);
         mUserInfo=new userInfo();
-        tellmeEmail=findViewById(R.id.tellmeEmail_Step2Activity);
+        tellmeEmail=findViewById(R.id.tellmePassword_Step2Activity);
         tellmeEmail.setText(Html.fromHtml( "로그인 시 사용할" + "<br>" + "</br>" +"<b>"+ "이메일" + "</b>" + "을 입력해주세요."));
         mEdit_Input_Text_joinmember = findViewById(R.id.edit_Input_Text_joinmember);
         mBackButton.setOnClickListener(this);

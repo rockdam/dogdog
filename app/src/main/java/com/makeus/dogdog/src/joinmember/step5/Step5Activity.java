@@ -41,7 +41,7 @@ public class Step5Activity extends BaseActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_step5);
-        mTellUsAge = findViewById(R.id.tellmeEmail_Step2Activity);
+        mTellUsAge = findViewById(R.id.tellmePassword_Step2Activity);
         mTellUsAge.setText(Html.fromHtml("<b>" + "반려견의 성별과 나이" + "</b>" + "를" + "<br>" + "</br>" + "알려주세요."));
         mUserInfo=new userInfo();
         mDogInfo =new dogInfo();

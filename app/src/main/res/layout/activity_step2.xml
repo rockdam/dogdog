@@ -26,23 +26,21 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/spoqahansansbold"
         android:text="STEP 2"
         android:textColor="@color/colorDogDogBlue"
-        android:textSize="25sp"
-        android:textStyle="bold"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
-        android:id="@+id/tellmeEmail_Step2Activity"
+        android:id="@+id/tellmePassword_Step2Activity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="53dp"
-        android:layout_marginRight="53dp"
         android:lineSpacingExtra="0dp"
         android:text="로그인 시 사용할 \n이메일을 입력해주세요"
         android:textColor="@color/black"
@@ -55,13 +53,13 @@
         android:id="@+id/edit_frame_step2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
-        android:layout_marginEnd="34dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toTopOf="@+id/backButton_step"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tellmeEmail_Step2Activity">
+        app:layout_constraintTop_toBottomOf="@+id/tellmePassword_Step2Activity">
 
 
         <EditText
@@ -83,7 +81,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right|center_vertical"
 
-            android:layout_marginBottom="10dp"
             app:srcCompat="@drawable/close_big" />
 
     </FrameLayout>
@@ -91,16 +88,16 @@
     <TextView
         android:id="@+id/backButton_step"
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
 
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:background="@drawable/shape"
-        android:fontFamily="@font/natosanscjkkrbold"
         android:gravity="center|center_vertical"
         android:text="이전"
+        android:textStyle="bold"
         android:textColor="@color/colorDogDogBlue"
         android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/next_button_step"
@@ -113,7 +110,7 @@
     <TextView
         android:id="@+id/next_button_step"
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
 
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
@@ -122,7 +119,7 @@
         android:layout_marginRight="24dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/shape_full"
-        android:fontFamily="@font/natosanscjkkrbold"
+        android:textStyle="bold"
 
         android:gravity="center|center_vertical"
         android:text="다음"

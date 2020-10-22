@@ -38,22 +38,22 @@
         android:layout_width="wrap_content"
         android:layout_height="34dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/spoqahansansbold"
         android:text="STEP 1"
         android:textColor="@color/colorDogDogBlue"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tellmeEmail_Step2Activity"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/tellmePassword_Step2Activity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
-        android:id="@+id/tellmeEmail_Step2Activity"
+        android:id="@+id/tellmePassword_Step2Activity"
         android:layout_width="0dp"
         android:layout_height="73dp"
         android:layout_marginStart="30dp"
 
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:lineSpacingExtra="0dp"
         android:text="만나서 반가워요!\n당신의 이름이 궁금해요."
         android:textColor="@color/black"
@@ -65,14 +65,14 @@
         android:id="@+id/edit_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
-        android:layout_marginEnd="34dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toTopOf="@+id/next_button_step"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.06"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tellmeEmail_Step2Activity">
+        app:layout_constraintTop_toBottomOf="@+id/tellmePassword_Step2Activity">
 
         <EditText
             android:id="@+id/edit_Input_Text_joinmember"
@@ -97,7 +97,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right|center_vertical"
 
-            android:layout_marginBottom="10dp"
             app:srcCompat="@drawable/close_big" />
 
 
@@ -106,7 +105,7 @@
     <TextView
         android:id="@+id/next_button_step"
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
 
         android:layout_marginStart="24dp"
 
@@ -180,7 +179,7 @@
         android:id="@+id/warning_image_step"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toTopOf="@+id/next_button_step"

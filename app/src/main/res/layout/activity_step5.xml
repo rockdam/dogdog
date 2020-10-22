@@ -12,40 +12,42 @@
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="42dp"
             android:layout_marginEnd="5dp"
             android:src="@drawable/oval_6"
             app:layout_constraintEnd_toStartOf="@+id/imageView31"
             app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView60" />
 
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="34dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="36dp"
+
             android:text="STEP 5"
             android:textColor="@color/colorDogDogBlue"
-            android:textSize="25dp"
-            android:textStyle="bold"
+            android:textSize="18sp"
+            android:fontFamily="@font/spoqahansansbold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
         <TextView
-            android:id="@+id/tellmeEmail_Step2Activity"
+            android:id="@+id/tellmePassword_Step2Activity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="12dp"
             android:lineSpacingExtra="0dp"
             android:text="반려견의 성별과 나이를 \n알려주세요."
             android:textColor="@color/black"
-            android:textSize="30dp"
+            android:textSize="26sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -55,21 +57,21 @@
             android:id="@+id/edit_frame_step6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="60dp"
             app:layout_constraintBottom_toTopOf="@+id/backButton_step"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5"
             app:layout_constraintVertical_bias="0.0">
 
-                >
 
                 <EditText
                     android:id="@+id/edit_Input_Text_joinmember"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:layout_marginStart="34dp"
-                    android:layout_marginLeft="34dp"
-                    android:layout_marginEnd="34dp"
-                    android:layout_marginRight="34dp"
+
                     android:backgroundTint="@color/editTextUnderLine"
                     android:ems="10"
                     android:fontFamily="@font/spoqahansansregular"
@@ -86,14 +88,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right|center_vertical"
-                    android:layout_marginRight="34dp"
-                    android:layout_marginBottom="10dp"
+
                     app:srcCompat="@drawable/close_big" />
         </FrameLayout>
         <TextView
             android:id="@+id/backButton_step"
             android:layout_width="0dp"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
 
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
@@ -115,7 +116,7 @@
         <TextView
             android:id="@+id/next_button_step"
             android:layout_width="0dp"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
 
             android:layout_marginStart="5dp"
             android:layout_marginEnd="24dp"
@@ -159,7 +160,7 @@
             android:id="@+id/rgGender"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="34dp"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -173,10 +174,9 @@
                     android:button="@drawable/custom_radiobutton"
                     android:checked="true"
 
-                    android:paddingRight="10dp"
 
                     android:text=" 여아"
-                    android:textSize="28dp" />
+                    android:textSize="24sp" />
 
                 <RadioButton
                     android:id="@+id/male_step5"
@@ -188,8 +188,9 @@
                     android:background="@null"
                     android:button="@drawable/custom_radiobutton"
                     android:checked="false"
+                    android:paddingRight="10dp"
                     android:text=" 남아"
-                    android:textSize="28dp" />
+                    android:textSize="24sp" />
                 <!-- 라디오 버튼 커스텀하는법
   https://stackoverflow.com/questions/19163628/adding-custom-radio-buttons-in-android-->
         </RadioGroup>
@@ -198,28 +199,28 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
+            android:layout_marginStart="34dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/spoqahansansbold"
             android:text="성별"
             android:textColor="@color/initDonutTextColor"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/rgGender"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tellmeEmail_Step2Activity" />
+            app:layout_constraintTop_toBottomOf="@+id/tellmePassword_Step2Activity" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/spoqahansansbold"
             android:text="생년월일"
             android:textColor="@color/initDonutTextColor"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -257,5 +258,17 @@
             app:layout_constraintStart_toEndOf="@+id/imageView33"
             app:layout_constraintTop_toTopOf="@+id/imageView33"
             app:srcCompat="@drawable/oval_6" />
+
+        <ImageView
+            android:id="@+id/imageView60"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_arrow" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

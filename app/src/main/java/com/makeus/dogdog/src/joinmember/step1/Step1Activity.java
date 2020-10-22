@@ -37,7 +37,7 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step1);
-        mJoinMessage = findViewById(R.id.tellmeEmail_Step2Activity);
+        mJoinMessage = findViewById(R.id.tellmePassword_Step2Activity);
         mEdit_Input_Text_joinmember = findViewById(R.id.edit_Input_Text_joinmember);
         mNextTxt = findViewById(R.id.next_button_step);
         mJoinMessage.setText(Html.fromHtml("<b>" + "만나서 반가워요!" + "<br>" + "당신의 이름" + "</br>" + "</b>" + "이 궁금해요."));
