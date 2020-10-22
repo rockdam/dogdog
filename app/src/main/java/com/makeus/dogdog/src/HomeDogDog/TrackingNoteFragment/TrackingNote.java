@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
     CollapsibleCalendar collapsibleCalendar;
     TrackingNoteService mTrackingNoteService, mHistoryService;
 
+    ScrollView scrollView;
     ImageView updateTrackingNote;
     TextView mCompleteTime, mCompleteDistance, mCompleteMission, mToday, mAddNote;
     WebView mWebView;
@@ -124,7 +126,8 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
         collapsibleCalendar = v.findViewById(R.id.calendar_trackingnote);
 
 
-        constraintLayoutIncludeLayout = v.findViewById(R.id.writenote_include);
+        scrollView=v.findViewById(R.id.writenote_include);
+        constraintLayoutIncludeLayout = scrollView.findViewById(R.id.writedNoteContraint_include);
         constraintLayoutIncludeLayout.setVisibility(View.GONE);
         mCompleteTime = constraintLayoutIncludeLayout.findViewById(R.id.completetime_include);
         mCompleteDistance = constraintLayoutIncludeLayout.findViewById(R.id.completedistance_include);
@@ -348,10 +351,13 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
             Log.e("ㅇㄹㅇ", "" + dayHistory.getContent());
 //            mWebView.getSettings().setJavaScriptEnabled(true);
-//            mWebView.getSettings().setDefaultFontSize(24);
+            mWebView.getSettings().setDefaultFontSize(24);
             mWebView.loadDataWithBaseURL(null, dayHistory.getContent(), "text/html", "utf-8", null);
             mWebView.setVisibility(View.VISIBLE);
-
+            mWebView.getSettings().setLoadWithOverviewMode(true);
+            mWebView.getSettings().setUseWideViewPort(true);
+            mWebView.getSettings().setSupportZoom(true);
+            mWebView.getSettings().setBuiltInZoomControls(true);
             mAddNote.setVisibility(View.INVISIBLE);
             updateTrackingNote.setVisibility(View.VISIBLE);
             updateTrackingNote.setOnClickListener(new View.OnClickListener() {
