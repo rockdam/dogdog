@@ -67,19 +67,19 @@
                 app:layout_constraintStart_toEndOf="@+id/textView2"
                 app:layout_constraintTop_toTopOf="@+id/textView2"></Button>
         </androidx.constraintlayout.widget.ConstraintLayout>
-        <EditText
-            android:id="@+id/write_headline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bottom_border_white"
-            android:hint="제목을 입력해주세요."
-            android:inputType="textVisiblePassword"
-            android:textCursorDrawable="@drawable/edit_cursor"
-            android:paddingStart="12dp"
-            android:paddingTop="8dp"
-            android:paddingEnd="0dp"
-            android:paddingBottom="8dp"
-            android:textSize="24sp" />
+<!--        <EditText-->
+<!--            android:id="@+id/write_headline"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@drawable/bottom_border_white"-->
+<!--            android:hint="제목을 입력해주세요."-->
+<!--            android:inputType="textVisiblePassword"-->
+<!--            android:textCursorDrawable="@drawable/edit_cursor"-->
+<!--            android:paddingStart="12dp"-->
+<!--            android:paddingTop="8dp"-->
+<!--            android:paddingEnd="0dp"-->
+<!--            android:paddingBottom="8dp"-->
+<!--            android:textSize="24sp" />-->
 
 
         <androidx.constraintlayout.widget.ConstraintLayout

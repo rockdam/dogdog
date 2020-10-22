@@ -86,14 +86,14 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
 //            set, get 함수 + 디버깅 잘 하면 오픈 소스 고칠 수 있음 .
 
 //            wysiwyg.getContent().getSettings().setAllowContentAccess(true);
-            wysiwyg.getHeadlineEditText().setHint("제목을 입력해주세요");
-
+//            wysiwyg.getHeadlineEditText().setHint("제목을 입력해주세요");
+// 제목 되살리면 하길 ;
             wysiwyg.getCancelButton().setText("취소");
 
             wysiwyg.getConfirmButton().setText("수정");
 
         }else{
-            wysiwyg.getHeadlineEditText().setHint("제목을 입력해주세요");
+//            wysiwyg.getHeadlineEditText().setHint("제목을 입력해주세요");
 
             wysiwyg.getCancelButton().setText("취소");
 

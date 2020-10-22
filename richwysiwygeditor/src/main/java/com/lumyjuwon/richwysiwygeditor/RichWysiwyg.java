@@ -125,11 +125,13 @@ public class RichWysiwyg extends LinearLayout {
     private void init(){
         inflate(getContext(), R.layout.activity_write, this);
 
+        //초기에 포커싱 잡아줘야지 ! .
         // Html WebView
-        headline = findViewById(R.id.write_headline);
+//        headline = findViewById(R.id.write_headline);
+//        얜 제목
         content = findViewById(R.id.write_content);
         content.setLayerType(View.LAYER_TYPE_HARDWARE, null); // sdk 19 이상은 ChromeWebView를 사용해서 ChromeWebView로 설정
-
+        content.focusEditor();
         // 커서 및 입력시 TEXT 상태 알려줌
         content.setOnDecorationChangeListener(new RichEditor.OnDecorationStateListener() {
             @Override
