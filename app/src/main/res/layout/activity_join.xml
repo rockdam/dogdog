@@ -49,7 +49,7 @@
         android:id="@+id/textView26"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="33dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="92dp"
         android:fontFamily="@font/gmarketsansttfbold"
         android:text="독독."

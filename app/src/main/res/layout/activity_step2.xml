@@ -9,14 +9,14 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
+        android:layout_width="8dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="5dp"
         app:layout_constraintEnd_toStartOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/oval_6" />
 
@@ -26,7 +26,6 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
         android:layout_marginTop="37dp"
         android:text="STEP 2"
         android:textColor="@color/colorDogDogBlue"
@@ -38,7 +37,7 @@
     <TextView
         android:id="@+id/tellUsAge_Step2Activity"
         android:layout_width="0dp"
-        android:layout_height="130dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="24dp"
@@ -47,7 +46,7 @@
         android:lineSpacingExtra="0dp"
         android:text="로그인 시 사용할 \n이메일을 입력해주세요"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -72,9 +71,9 @@
             android:layout_marginRight="34dp"
             android:backgroundTint="@color/editTextUnderLine"
             android:ems="10"
-            android:maxLength="20"
             android:fontFamily="@font/spoqahansansregular"
             android:inputType="textVisiblePassword|textNoSuggestions"
+            android:maxLength="20"
             android:maxLines="1"
             android:textSize="24sp"></EditText>
 
@@ -140,13 +139,13 @@
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginTop="40dp"
         android:layout_marginEnd="5dp"
         android:src="@drawable/rectangle_13"
         app:layout_constraintEnd_toStartOf="@+id/imageView25"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -163,47 +162,44 @@
         android:id="@+id/imageView25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:layout_marginEnd="5dp"
         app:layout_constraintEnd_toStartOf="@+id/imageView26"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView3"
         app:srcCompat="@drawable/oval_6" />
 
     <ImageView
         android:id="@+id/imageView26"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:layout_marginEnd="5dp"
         app:layout_constraintEnd_toStartOf="@+id/imageView27"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView25"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView25"
         app:srcCompat="@drawable/oval_6" />
 
     <ImageView
         android:id="@+id/imageView27"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:layout_marginEnd="5dp"
         app:layout_constraintEnd_toStartOf="@+id/imageView4"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView26"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView26"
         app:srcCompat="@drawable/oval_6" />
 
     <ImageView
         android:id="@+id/warning_image_step2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
 
+        android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/warning_text_step2"
         app:layout_constraintEnd_toStartOf="@+id/warning_text_step2"
-        app:layout_constraintHorizontal_bias="0.24"
+        app:layout_constraintHorizontal_bias="0.32"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/warning_text_step2"

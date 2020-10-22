@@ -12,9 +12,9 @@
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="44dp"
         android:src="@drawable/ic_arrow"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,12 +22,13 @@
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="42dp"
         android:layout_marginEnd="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toStartOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:srcCompat="@drawable/rectangle_13" />
 
@@ -35,40 +36,36 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="34dp"
         android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
         android:layout_marginTop="37dp"
         android:text="STEP 1"
         android:textColor="@color/colorDogDogBlue"
         android:textSize="25sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tellUsAge_Step2Activity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
         android:id="@+id/tellUsAge_Step2Activity"
         android:layout_width="0dp"
-        android:layout_height="130dp"
+        android:layout_height="73dp"
         android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="53dp"
-        android:layout_marginRight="53dp"
-        android:lineSpacingExtra="0dp"
 
+        android:layout_marginTop="24dp"
+        android:lineSpacingExtra="0dp"
         android:text="만나서 반가워요!\n당신의 이름이 궁금해요."
         android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="26sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <FrameLayout
         android:id="@+id/edit_frame"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toTopOf="@+id/next_button_step"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.06"
@@ -85,13 +82,13 @@
             android:layout_marginRight="34dp"
             android:backgroundTint="@color/editTextUnderLine"
             android:ems="10"
+            android:fontFamily="@font/spoqahansansregular"
             android:inputType="textVisiblePassword|textNoSuggestions"
             android:maxLength="10"
             android:maxLines="1"
-            android:fontFamily="@font/spoqahansansregular"
             android:text=""
             android:textSize="24sp"></EditText>
-<!--  android:inputType="textVisiblePassword|textNoSuggestions"
+        <!--  android:inputType="textVisiblePassword|textNoSuggestions"
 이걸 써야 입력시 underline이 나오지 않는다.
 -->
         <ImageView
@@ -112,9 +109,9 @@
         android:layout_height="80dp"
 
         android:layout_marginStart="24dp"
+
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="40dp"
-
         android:background="@drawable/shape_full"
         android:gravity="center|center_vertical"
         android:text="다음"
@@ -129,70 +126,66 @@
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginTop="112dp"
         android:layout_marginEnd="5dp"
         android:src="@drawable/oval_6"
         app:layout_constraintEnd_toStartOf="@+id/imageView4"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
         android:layout_marginEnd="5dp"
         android:src="@drawable/oval_6"
         app:layout_constraintEnd_toStartOf="@+id/imageView14"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
     <ImageView
         android:id="@+id/imageView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
         android:layout_marginEnd="5dp"
         android:src="@drawable/oval_6"
         app:layout_constraintEnd_toStartOf="@+id/imageView19"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
     <ImageView
         android:id="@+id/imageView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
         android:src="@drawable/oval_6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView19"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/imageView19" />
 
     <ImageView
         android:id="@+id/imageView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
         android:layout_marginEnd="5dp"
         android:src="@drawable/oval_6"
         app:layout_constraintEnd_toStartOf="@+id/imageView16"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView14"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/imageView14" />
 
     <ImageView
         android:id="@+id/warning_image_step"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toTopOf="@+id/next_button_step"
         app:layout_constraintEnd_toStartOf="@+id/warning_text_step"
-        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_frame"
