@@ -43,7 +43,7 @@ public class RichWysiwyg extends LinearLayout {
     private WriteCustomButton textUnderlineButton;
     private WriteCustomButton textStrikeButton;
     private WriteCustomButton textAlignButton;
-    private WriteCustomButton textSizeButton;
+    private WriteCustomButton textsizeButton;
     private ArrayList<WriteCustomButton> popupButtons;
     private ArrayList<WriteCustomButton> Buttons;
     private LayoutInflater layoutInflater;
@@ -204,20 +204,20 @@ public class RichWysiwyg extends LinearLayout {
             }
         });
 
-        // Text Size 버튼
-        ImageButton textSizeButton = findViewById(R.id.write_textSize);
-        textSizeButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view){
-                closePopupWindow();
-            }
-        });
+//        // Text Size 버튼
+//
+//        textSizeButton.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View view){
+//                closePopupWindow();
+//            }
+//        });
 
         PopupButtonListener popupButtonListener = new PopupButtonListener();
         DecorationButtonListener decorationButtonListener = new DecorationButtonListener();
 
-
-        textSizeButton.setOnClickListener(popupButtonListener);
+        textsizeButton = findViewById(R.id.write_textSize);
+        textsizeButton.setOnClickListener(popupButtonListener);
         // Text Color 버튼
         textColorButton = findViewById(R.id.write_textColor);
         textColorButton.setOnClickListener(popupButtonListener);
@@ -273,7 +273,7 @@ public class RichWysiwyg extends LinearLayout {
 //            }
 //        });
 
-        popupButtons = new ArrayList<>(Arrays.asList(textColorButton, textBgColorButton, textAlignButton));
+        popupButtons = new ArrayList<>(Arrays.asList(textColorButton, textBgColorButton, textAlignButton,textsizeButton));
 
     }
 
@@ -291,10 +291,14 @@ public class RichWysiwyg extends LinearLayout {
             public void onClick(View view){
                 closePopupWindow();
 
+//                content.focusEditor();
+//                content.setFontSize(1);
+
+                //1 단계 포커스  2 단계 그 다음 크기
+                content.clearAndFocusEditor();
+                content.setFontSize(1);
+                textsizeButton.switchCheckedState();
                 Keyboard.showKeyboard(view);
-//                content.setEditorFontSize(20);
-                content.setFontSize(20);
-                content.set
             }
         });
 
@@ -303,8 +307,15 @@ public class RichWysiwyg extends LinearLayout {
             @Override
             public void onClick(View view){
                 closePopupWindow();
+
+                content.clearAndFocusEditor();
+                content.setFontSize(2);
+                textsizeButton.switchCheckedState();
                 Keyboard.showKeyboard(view);
-                content.setFontSize(24);
+
+
+                textsizeButton.switchCheckedState();
+
             }
         });
 
@@ -313,8 +324,10 @@ public class RichWysiwyg extends LinearLayout {
             @Override
             public void onClick(View view){
                 closePopupWindow();
+                content.clearAndFocusEditor();
+                content.setFontSize(3);
+                textsizeButton.switchCheckedState();
                 Keyboard.showKeyboard(view);
-                content.setFontSize(28);
             }
         });
         ImageButton size4 = popupView.findViewById(R.id.text_size4);
@@ -322,8 +335,10 @@ public class RichWysiwyg extends LinearLayout {
             @Override
             public void onClick(View view){
                 closePopupWindow();
+                content.clearAndFocusEditor();
+                content.setFontSize(5);
+                textsizeButton.switchCheckedState();
                 Keyboard.showKeyboard(view);
-                content.setFontSize(32);
             }
         });
         ImageButton size5 = popupView.findViewById(R.id.text_size5);
@@ -331,8 +346,11 @@ public class RichWysiwyg extends LinearLayout {
             @Override
             public void onClick(View view){
                 closePopupWindow();
+                content.clearAndFocusEditor();
+                content.setFontSize(6);
+                textsizeButton.switchCheckedState();
                 Keyboard.showKeyboard(view);
-                content.setFontSize(36);
+
             }
         });
 

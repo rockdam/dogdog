@@ -68,7 +68,7 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
         isUpdate=false;
         //Editor 상속 받은 놈 요기 있네 .
         wysiwyg.getContent()
-                .setEditorFontSize(24)
+                .setEditorFontSize(12)
 
                 .setEditorPadding(4, 0, 4, 0);
         if (getIntent().getStringExtra("html") != null) {
