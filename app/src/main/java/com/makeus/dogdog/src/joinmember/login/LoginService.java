@@ -1,13 +1,13 @@
 package com.makeus.dogdog.src.joinmember.login;
 
-import android.util.Log;
+import android.widget.Toast;
 
 import com.makeus.dogdog.src.joinmember.login.interfaces.LoginAcitivityRetrofitInterface;
+import com.makeus.dogdog.src.joinmember.login.interfaces.LoginMoveHomeActivity;
 import com.makeus.dogdog.src.joinmember.login.interfaces.MoveHomeAcitivity;
 import com.makeus.dogdog.src.joinmember.login.models.AutoLoginResponse;
-import com.makeus.dogdog.src.joinmember.step2.interfaces.ShowToastStep2;
-import com.makeus.dogdog.src.joinmember.step2.interfaces.Step2RetrofitInterface;
-import com.makeus.dogdog.src.joinmember.step2.models.DuplicateUserIdResponse;
+import com.makeus.dogdog.src.joinmember.login.models.LoginBody;
+import com.makeus.dogdog.src.joinmember.login.models.LogInResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -15,39 +15,39 @@ import retrofit2.Response;
 
 import static com.makeus.dogdog.src.ApplicationClass.getRetrofit;
 
-public class AutoLoginService {
+public class LoginService {
 
 
-    MoveHomeAcitivity mMoveHomeAcitivity;
-    String mUserId;
-
-    AutoLoginResponse autoLoginResponse;
-    public AutoLoginService(MoveHomeAcitivity moveHomeAcitivity) {
-        this.mMoveHomeAcitivity = moveHomeAcitivity;
+    LoginMoveHomeActivity loginMoveHomeActivity;
+    LoginBody loginBody;
+    LogInResponse logInResponse;
+    public LoginService(LoginMoveHomeActivity loginMoveHomeActivity, LoginBody loginBody) {
+        this.loginMoveHomeActivity = loginMoveHomeActivity;
+        this.loginBody=loginBody;
     }
 
 
-    public void checkAutoLogin() {
+    public void startLogin() {
 
         final LoginAcitivityRetrofitInterface loginAcitivityRetrofitInterface = getRetrofit().create(LoginAcitivityRetrofitInterface.class);
 
 
-        loginAcitivityRetrofitInterface.checkId().enqueue(new Callback<AutoLoginResponse>() {
+        loginAcitivityRetrofitInterface.checkBody(loginBody).enqueue(new Callback<LogInResponse>() {
 
 
             @Override
-            public void onResponse(Call<AutoLoginResponse> call, Response<AutoLoginResponse> response) {
+            public void onResponse(Call<LogInResponse> call, Response<LogInResponse> response) {
 
-                autoLoginResponse=response.body();
+                logInResponse =response.body();
                 if(response.code() ==200)
                 {
 
-                    mMoveHomeAcitivity. move(response.code());
+                    loginMoveHomeActivity.move(logInResponse);
 
 
 
                 }else{
-                    mMoveHomeAcitivity.move(response.code());
+//                    mMoveHomeAcitivity.move(response.code());
 
                 }
 
@@ -59,7 +59,7 @@ public class AutoLoginService {
             }
 
             @Override
-            public void onFailure(Call<AutoLoginResponse> call, Throwable t) {
+            public void onFailure(Call<LogInResponse> call, Throwable t) {
 
             }
 

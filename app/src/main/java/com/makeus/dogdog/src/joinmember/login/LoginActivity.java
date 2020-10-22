@@ -1,6 +1,7 @@
 package com.makeus.dogdog.src.joinmember.login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
@@ -16,17 +17,26 @@ import androidx.core.content.ContextCompat;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
+import com.makeus.dogdog.src.HomeDogDog.HomeActivity;
+import com.makeus.dogdog.src.joinmember.login.interfaces.LoginMoveHomeActivity;
+import com.makeus.dogdog.src.joinmember.login.interfaces.MoveHomeAcitivity;
+import com.makeus.dogdog.src.joinmember.login.models.LogInResponse;
+import com.makeus.dogdog.src.joinmember.login.models.LoginBody;
 import com.makeus.dogdog.src.joinmember.step1.Step1Activity;
 import com.makeus.dogdog.src.joinmember.step2.DuplicateUserIdService;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LoginActivity extends BaseActivity implements View.OnClickListener{
+import static com.makeus.dogdog.src.ApplicationClass.sSharedPreferences;
+
+public class LoginActivity extends BaseActivity implements View.OnClickListener, LoginMoveHomeActivity {
 
 
     TextView mJoinmemberButton,mLogin;
     EditText mInputEmail,mInputPassword;
+    LoginBody mLoginBody;
+    LoginService loginService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +50,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         mInputEmail =findViewById(R.id.id_login);
         mInputPassword=findViewById(R.id.password_login);
 
+        mLoginBody=new LoginBody();
         mLogin.setOnClickListener(this);
 
 
@@ -96,6 +107,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
 //서비스
 
+
+                    mLoginBody.setEmail(mInputEmail.getText().toString());
+                    mLoginBody.setPassword(mInputPassword.getText().toString());
+                    loginService=new LoginService(this,mLoginBody);
+                    loginService.startLogin();
                 }
 
 
@@ -109,4 +125,25 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     }
 
 
+
+
+    @Override
+    public void move(LogInResponse logInResponse) {
+        if (logInResponse.getCode() == 200) {
+
+
+            SharedPreferences.Editor editor=sSharedPreferences.edit();
+            editor.putString("X-ACCESS-TOKEN",logInResponse.getJwt());
+
+            editor.apply();
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+            startActivity(intent);
+            finish();
+        }else{
+            Toast.makeText(this, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+
+        }
+    }
 }

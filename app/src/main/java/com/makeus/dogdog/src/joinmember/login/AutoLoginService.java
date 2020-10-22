@@ -1,13 +1,8 @@
 package com.makeus.dogdog.src.joinmember.login;
 
-import android.util.Log;
-
-import com.makeus.dogdog.src.joinmember.login.interfaces.LoginAcitivityRetrofitInterface;
+import com.makeus.dogdog.src.joinmember.login.interfaces.AutoLoginAcitivityRetrofitInterface;
 import com.makeus.dogdog.src.joinmember.login.interfaces.MoveHomeAcitivity;
 import com.makeus.dogdog.src.joinmember.login.models.AutoLoginResponse;
-import com.makeus.dogdog.src.joinmember.step2.interfaces.ShowToastStep2;
-import com.makeus.dogdog.src.joinmember.step2.interfaces.Step2RetrofitInterface;
-import com.makeus.dogdog.src.joinmember.step2.models.DuplicateUserIdResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,10 +24,10 @@ public class AutoLoginService {
 
     public void checkAutoLogin() {
 
-        final LoginAcitivityRetrofitInterface loginAcitivityRetrofitInterface = getRetrofit().create(LoginAcitivityRetrofitInterface.class);
+        final AutoLoginAcitivityRetrofitInterface autoLoginAcitivityRetrofitInterface = getRetrofit().create(AutoLoginAcitivityRetrofitInterface.class);
 
 
-        loginAcitivityRetrofitInterface.checkId().enqueue(new Callback<AutoLoginResponse>() {
+        autoLoginAcitivityRetrofitInterface.checkId().enqueue(new Callback<AutoLoginResponse>() {
 
 
             @Override

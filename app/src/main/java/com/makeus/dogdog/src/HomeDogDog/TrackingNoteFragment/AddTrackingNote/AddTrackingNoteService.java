@@ -7,16 +7,12 @@ import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.AddTrackingNote.int
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.AddTrackingNote.interfaces.WalkingHistoryRetrofitInterface;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.AddTrackingNote.models.DayHistory;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.AddTrackingNote.models.WalkinghistoryResponse;
-import com.makeus.dogdog.src.joinmember.login.interfaces.LoginAcitivityRetrofitInterface;
-import com.makeus.dogdog.src.joinmember.login.interfaces.MoveHomeAcitivity;
-import com.makeus.dogdog.src.joinmember.login.models.AutoLoginResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.makeus.dogdog.src.ApplicationClass.getRetrofit;
-import static com.makeus.dogdog.src.ApplicationClass.sSharedPreferences;
 
 public class AddTrackingNoteService {
 

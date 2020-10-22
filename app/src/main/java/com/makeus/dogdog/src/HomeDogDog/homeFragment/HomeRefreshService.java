@@ -3,9 +3,7 @@ package com.makeus.dogdog.src.HomeDogDog.homeFragment;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.interfaces.HomeRefreshRetrofitInterface;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.interfaces.HomeRefreshView;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.models.HomeRefreshResponse;
-import com.makeus.dogdog.src.joinmember.login.interfaces.LoginAcitivityRetrofitInterface;
 import com.makeus.dogdog.src.joinmember.login.interfaces.MoveHomeAcitivity;
-import com.makeus.dogdog.src.joinmember.login.models.AutoLoginResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;

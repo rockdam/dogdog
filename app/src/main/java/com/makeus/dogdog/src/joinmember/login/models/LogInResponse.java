@@ -3,7 +3,7 @@ package com.makeus.dogdog.src.joinmember.login.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class SignInResponse {
+public class LogInResponse {
 
     @SerializedName("userIdx")
     @Expose
