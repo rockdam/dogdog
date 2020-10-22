@@ -31,12 +31,12 @@
         android:textColor="@color/colorDogDogBlue"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tellUsAge_Step2Activity"
+        app:layout_constraintBottom_toTopOf="@+id/tellmeEmail_Step2Activity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
-        android:id="@+id/tellUsAge_Step2Activity"
+        android:id="@+id/tellmeEmail_Step2Activity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -58,7 +58,7 @@
         android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toTopOf="@+id/backButton_step"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tellUsAge_Step2Activity">
+        app:layout_constraintTop_toBottomOf="@+id/tellmeEmail_Step2Activity">
 
         <EditText
             android:id="@+id/edit_Input_Text_joinmember"

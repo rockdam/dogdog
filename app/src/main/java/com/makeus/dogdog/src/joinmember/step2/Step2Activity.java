@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Patterns;
@@ -37,6 +38,7 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
     ImageView warningImage, edtclear_step;
     EditText mEdit_Input_Text_joinmember;
     String mNickname, mEmail;
+    TextView tellmeEmail;
     userInfo mUserInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,8 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
         mBackButton = findViewById(R.id.backButton_step);
         mNextButton.setOnClickListener(this);
         mUserInfo=new userInfo();
+        tellmeEmail=findViewById(R.id.tellmeEmail_Step2Activity);
+        tellmeEmail.setText(Html.fromHtml( "로그인 시 사용할" + "<br>" + "</br>" +"<b>"+ "이메일" + "</b>" + "을 입력해주세요."));
         mEdit_Input_Text_joinmember = findViewById(R.id.edit_Input_Text_joinmember);
         mBackButton.setOnClickListener(this);
         edtclear_step = findViewById(R.id.edtclear_step);

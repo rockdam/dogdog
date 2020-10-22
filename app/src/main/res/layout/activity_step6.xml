@@ -35,7 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <TextView
-        android:id="@+id/tellUsAge_Step2Activity"
+        android:id="@+id/tellmeEmail_Step2Activity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -236,7 +236,7 @@
         android:layout_marginTop="10dp"
         android:text="권장 산책량을 알려드려요."
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tellUsAge_Step2Activity" />
+        app:layout_constraintTop_toBottomOf="@+id/tellmeEmail_Step2Activity" />
 
     <ImageView
         android:id="@+id/imageView32"
