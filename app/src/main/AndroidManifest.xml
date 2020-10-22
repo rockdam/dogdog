@@ -56,11 +56,7 @@
         <activity
             android:name=".src.joinmember.login.SplashActivity"
             android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--      여기 스타트-->
         </activity>
 
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
@@ -74,7 +70,13 @@
         <activity
             android:name=".src.joinmember.step3.Step3Activity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".src.joinmember.login.LoginActivity" />
+        <activity android:name=".src.joinmember.login.LoginActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".src.HomeDogDog.startWalking.StartWalking"
             android:label="singleTask"
             android:launchMode="singleTask"

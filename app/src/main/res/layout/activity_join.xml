@@ -23,7 +23,8 @@
         app:layout_constraintBottom_toTopOf="@+id/joinmember_acitivity_join"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_login" />
+        app:layout_constraintTop_toBottomOf="@+id/password_login"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
 
     <TextView
         android:id="@+id/joinmember_acitivity_join"
@@ -55,7 +56,7 @@
         android:text="독독."
         android:textColor="@color/colorDogDogBlue"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/Id_login"
+        app:layout_constraintBottom_toTopOf="@+id/id_login"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.52" />
@@ -73,18 +74,19 @@
         app:layout_constraintTop_toTopOf="@+id/textView26" />
 
     <EditText
-        android:id="@+id/Id_login"
+        android:id="@+id/id_login"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="39dp"
         android:layout_marginEnd="30dp"
-        android:background="@drawable/rounded_border_edittext"
         android:ems="10"
-
+        android:background="@drawable/rounded_border_edittext"
+        android:maxLength="20"
         android:fontFamily="@font/spoqahansansregular"
-        android:hint="  아이디"
-        android:inputType="textVisiblePassword"
+        android:inputType="textVisiblePassword|textNoSuggestions"
+        android:maxLines="1"
+        android:hint=" 이메일"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/password_login"
         app:layout_constraintEnd_toEndOf="parent"
@@ -94,65 +96,66 @@
     <EditText
 
         android:id="@+id/password_login"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/rounded_border_edittext"
         android:ems="10"
-
         android:fontFamily="@font/spoqahansansregular"
-
-        android:hint="  비밀번호"
+        android:hint=" 비밀번호"
         android:inputType="textPassword|textNoSuggestions"
+        android:maxLength="16"
+        android:maxLines="1"
+        android:text=""
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Id_login" />
+        app:layout_constraintTop_toBottomOf="@+id/id_login" />
 
     <!--    <TextView-->
-<!--        android:id="@+id/textView31"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="53dp"-->
-<!--        android:layout_marginEnd="20dp"-->
-<!--        android:fontFamily="@font/spoqahansansbold"-->
-<!--        android:text="아이디 찾기"-->
-<!--        android:textColor="#dddddd"-->
-<!--        android:textSize="18sp"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/view6"-->
-<!--        app:layout_constraintHorizontal_bias="0.52"-->
-<!--        app:layout_constraintHorizontal_chainStyle="packed"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/joinmember_acitivity_join" />-->
+    <!--        android:id="@+id/textView31"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="53dp"-->
+    <!--        android:layout_marginEnd="20dp"-->
+    <!--        android:fontFamily="@font/spoqahansansbold"-->
+    <!--        android:text="아이디 찾기"-->
+    <!--        android:textColor="#dddddd"-->
+    <!--        android:textSize="18sp"-->
+    <!--        app:layout_constraintEnd_toStartOf="@+id/view6"-->
+    <!--        app:layout_constraintHorizontal_bias="0.52"-->
+    <!--        app:layout_constraintHorizontal_chainStyle="packed"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/joinmember_acitivity_join" />-->
 
-<!--    <View-->
-<!--        android:id="@+id/view6"-->
-<!--        android:layout_width="2dp"-->
-<!--        android:layout_height="12dp"-->
-<!--        android:background="@color/BorderGray"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textView31"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textView32"-->
-<!--        app:layout_constraintHorizontal_bias="0.5"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textView31"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/textView31" />-->
+    <!--    <View-->
+    <!--        android:id="@+id/view6"-->
+    <!--        android:layout_width="2dp"-->
+    <!--        android:layout_height="12dp"-->
+    <!--        android:background="@color/BorderGray"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/textView31"-->
+    <!--        app:layout_constraintEnd_toStartOf="@+id/textView32"-->
+    <!--        app:layout_constraintHorizontal_bias="0.5"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/textView31"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/textView31" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/textView32"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="20dp"-->
-<!--        android:fontFamily="@font/spoqahansansbold"-->
-<!--        android:text="비밀번호 찾기"-->
-<!--        android:textColor="#dddddd"-->
-<!--        android:textSize="18sp"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/view6"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.5"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/view6"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/view6" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/textView32"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="20dp"-->
+    <!--        android:fontFamily="@font/spoqahansansbold"-->
+    <!--        android:text="비밀번호 찾기"-->
+    <!--        android:textColor="#dddddd"-->
+    <!--        android:textSize="18sp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/view6"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.5"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/view6"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/view6" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
