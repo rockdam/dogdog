@@ -12,7 +12,7 @@
 
 
         android:layout_marginStart="28dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="28dp"
         android:background="@drawable/shape_full"
         android:fontFamily="@font/natosanscjkkrbold"
@@ -50,28 +50,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="33dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="78dp"
+        android:layout_marginTop="92dp"
         android:fontFamily="@font/gmarketsansttfbold"
         android:text="독독."
         android:textColor="@color/colorDogDogBlue"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/id_login"
+        android:textSize="44sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.52" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView28"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:fontFamily="@font/gmarketsansttflight"
         android:text="로그인"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="42sp"
         app:layout_constraintStart_toStartOf="@+id/textView26"
-        app:layout_constraintTop_toTopOf="@+id/textView26" />
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
     <EditText
         android:id="@+id/id_login"

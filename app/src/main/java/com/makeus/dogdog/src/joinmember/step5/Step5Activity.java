@@ -205,6 +205,12 @@ public class Step5Activity extends BaseActivity implements View.OnClickListener 
                 break;
             case R.id.next_button_step:
 
+
+
+                if(mGender==null)
+                {
+                   mGender="female";
+                }
                 if(validationDate(mEdit_Input_Text_joinmember.getText().toString())) {
                     Intent intent = new Intent(Step5Activity.this, Step6Activity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
