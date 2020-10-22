@@ -244,7 +244,8 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
         String nickname =result.getNickName();
         String formattedNickname =getString(R.string.welcome_message,nickname);
         String dogInfo;
-        if(result.getDogInfo().getGender().equals("남아"))
+        //이 코드가 그동안 어떻게 돌아간거지??? 남아라고 써있었는데 분명 .
+       if(result.getDogInfo().getGender().equals("male"))
         {
             dogInfo = result.getDogInfo().getAge()+ "살 /" +"남아"+"/"+result.getDogInfo().getBreed();
 

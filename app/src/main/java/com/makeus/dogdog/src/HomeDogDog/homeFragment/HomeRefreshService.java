@@ -37,7 +37,7 @@ public class HomeRefreshService {
                 if(response.code() ==200)
                 {
 
-                    homeRefreshView.refresh(homeRefreshResponse.getResult());
+              homeRefreshView.refresh(homeRefreshResponse.getResult());
 
 
                 }// 자동로그인 안되면 로그인 해야지 .

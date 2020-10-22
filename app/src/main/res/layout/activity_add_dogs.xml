@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="34dp"
+        android:background="?selectableItemBackground"
         android:fontFamily="@font/spoqahansansbold"
         android:text="취소"
         android:textSize="16sp"
@@ -46,6 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
+        android:background="?selectableItemBackground"
         android:fontFamily="@font/spoqahansansbold"
         android:text="등록"
         android:textColor="@color/colorDogDogBlue"
@@ -70,6 +72,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
         >
     <LinearLayout
         android:layout_width="match_parent"
@@ -87,19 +90,20 @@
         ></TextView>
     <FrameLayout
         android:id="@+id/edit_name_frame"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
        >
 
         <EditText
             android:id="@+id/name_edt_addDogs"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:layout_marginStart="34dp"
-            android:layout_marginLeft="34dp"
-            android:layout_marginEnd="34dp"
-            android:layout_marginRight="34dp"
+
             android:backgroundTint="@color/editTextUnderLine"
             android:ems="10"
             android:fontFamily="@font/spoqahansansregular"
@@ -116,8 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|center_vertical"
-            android:layout_marginRight="34dp"
-            android:layout_marginBottom="10dp"
+
             android:src="@drawable/close_big" />
 
 
@@ -126,7 +129,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="24dp"
         android:textColor="#bbbbbb"
         android:textSize="16sp"
@@ -134,21 +137,21 @@
         ></TextView>
     <FrameLayout
         android:id="@+id/edit_birthday_frame"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginBottom="0dp"
         >
 
         <EditText
             android:id="@+id/birthday_edt_addDogs"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_marginStart="34dp"
-            android:layout_marginLeft="34dp"
-            android:layout_marginEnd="34dp"
-            android:layout_marginRight="34dp"
+            android:layout_height="wrap_content"
+
             android:backgroundTint="@color/editTextUnderLine"
             android:ems="10"
+            android:hint="예 : 2020-05-05"
             android:fontFamily="@font/spoqahansansregular"
             android:inputType="textVisiblePassword|textNoSuggestions"
             android:maxLength="10"
@@ -163,8 +166,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|center_vertical"
-            android:layout_marginRight="34dp"
-            android:layout_marginBottom="10dp"
+
             android:src="@drawable/close_big" />
 
 
@@ -175,7 +177,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="24dp"
         android:textColor="#bbbbbb"
         android:textSize="16sp"
@@ -185,7 +187,7 @@
         android:id="@+id/rgGender_addDogs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="5dp"
         android:orientation="horizontal"
      >
@@ -200,7 +202,7 @@
             android:paddingRight="10dp"
 
             android:text=" 여아"
-            android:textSize="28dp" />
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/male_addDogs"
@@ -213,7 +215,7 @@
             android:button="@drawable/custom_radiobutton"
             android:checked="false"
             android:text=" 남아"
-            android:textSize="28dp" />
+            android:textSize="24sp" />
         <!-- 라디오 버튼 커스텀하는법
 https://stackoverflow.com/questions/19163628/adding-custom-radio-buttons-in-android-->
     </RadioGroup>
@@ -222,7 +224,7 @@ https://stackoverflow.com/questions/19163628/adding-custom-radio-buttons-in-andr
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="24dp"
         android:textColor="#bbbbbb"
         android:textSize="16sp"
@@ -272,7 +274,7 @@ https://stackoverflow.com/questions/19163628/adding-custom-radio-buttons-in-andr
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="24dp"
         android:textColor="#bbbbbb"
         android:textSize="16sp"
@@ -343,7 +345,7 @@ https://stackoverflow.com/questions/19163628/adding-custom-radio-buttons-in-andr
             android:paddingRight="10dp"
 
             android:text=" 예"
-            android:textSize="28dp" />
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/no_addDogs"
@@ -356,7 +358,7 @@ https://stackoverflow.com/questions/19163628/adding-custom-radio-buttons-in-andr
             android:button="@drawable/custom_radiobutton"
             android:checked="false"
             android:text=" 아니요"
-            android:textSize="28dp" />
+            android:textSize="24sp" />
         <!-- 라디오 버튼 커스텀하는법
 https://stackoverflow.com/questions/19163628/adding-custom-radio-buttons-in-android-->
     </RadioGroup>

@@ -33,7 +33,6 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
         <activity android:name=".src.HomeDogDog.homeFragment.UpdateUserProfile.UpdateMyInformation.UpdateMyInformation"></activity>
-        <activity android:name=".src.HomeDogDog.homeFragment.UpdateUserProfile.UpdateDogsInformation.UpdateDogsInformation" />
         <activity android:name=".src.HomeDogDog.homeFragment.SelectedPicture.SelectedPicture"
 
             android:theme="@style/AppFullScreenTheme"
@@ -59,11 +58,7 @@
             android:name=".src.joinmember.login.SplashActivity"
             android:theme="@style/SplashTheme">
 <!--      여기 스타트-->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
 
@@ -79,7 +74,11 @@
             android:name=".src.joinmember.step3.Step3Activity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".src.joinmember.login.LoginActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".src.HomeDogDog.startWalking.StartWalking"
             android:label="singleTask"

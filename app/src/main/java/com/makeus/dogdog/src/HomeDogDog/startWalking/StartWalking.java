@@ -76,10 +76,12 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
     StartWalkingService mStartWalkingService, mStopWalkingService;
     int mDogIdx;
 
+    TextView mFinishedText; // 목표 ->percent>=100 일 때  목표를 달성했어요!
     ImageView backButton;
     float Initialdistance = 0;
     Location oldLocation;
 
+    Boolean isFirstCompletedMission; //한번만 나오게 목표를 달성했어요
 
     @SuppressLint("QueryPermissionsNeeded")
     private void dispatchTakePictureIntent() {
@@ -105,7 +107,8 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
         mStartCamera = findViewById(R.id.cameraApp_startWalking);
         Serviceintent = new Intent(StartWalking.this, ForegroundWalkingService.class);
         mStopWalkingBody = new StopWalkingBody();
-
+        isFirstCompletedMission=true;
+        mFinishedText=findViewById(R.id.finishedText_startwalking);
         mDogIdx = getIntent().getIntExtra("dogIdx", 1);
 //        if (getIntent().getStringExtra("timeTicking") != null) {
 //            mTimetickin = Double.parseDouble(getIntent().getStringExtra("timeTicking"));
@@ -166,6 +169,12 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
             System.out.println("Time" + time);
 
             sendTime = s;
+            if(mPercent>=100 && isFirstCompletedMission)
+            {
+                isFirstCompletedMission=false;
+                mFinishedText.setText("목표를 달성했어요!");
+
+            }
 
             Log.e("sendTime", "" + sendTime);
         });
@@ -490,6 +499,12 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
 
         mWalkingTime *= 1000;
         Log.e("mPercent", "" + mPercent);
+        if(mPercent>=100)
+        {
+
+            mFinishedText.setText("목표를 달성했어요!");
+
+        }
 
     }
 

@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -121,18 +124,16 @@
 
     <TextView
         android:id="@+id/welcomeMessage_main"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/natosanscjkkrbold"
         android:text="@string/welcome_message"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.34"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toStartOf="@+id/textView6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view1"
-        app:layout_constraintVertical_bias="0.45"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <androidx.cardview.widget.CardView
@@ -141,7 +142,7 @@
         android:layout_height="224dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         app:cardCornerRadius="10dp"
@@ -197,7 +198,7 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginEnd="25dp"
                 android:layout_marginRight="25dp"
-                android:background="@color/BorderGray"
+                android:background="#eaeaea"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -273,7 +274,39 @@
 
     </androidx.cardview.widget.CardView>
 
-<!--    <ImageView-->
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="님"
+        android:textSize="26sp"
+        android:fontFamily="@font/spoqahansanslight"
+        app:layout_constraintBottom_toBottomOf="@+id/welcomeMessage_main"
+        app:layout_constraintStart_toEndOf="@+id/welcomeMessage_main"
+        app:layout_constraintTop_toTopOf="@+id/welcomeMessage_main" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="산책하기 좋은날"
+        android:textSize="26sp"
+        android:fontFamily="@font/spoqahansansbold"
+        app:layout_constraintStart_toStartOf="@+id/welcomeMessage_main"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeMessage_main" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/spoqahansanslight"
+        android:textSize="26sp"
+        android:text="이에요."
+        app:layout_constraintBottom_toBottomOf="@+id/textView11"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toTopOf="@+id/textView11" />
+
+    <!--    <ImageView-->
 <!--        android:id="@+id/imageView5"-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->

@@ -351,10 +351,10 @@ public class AddDogs extends BaseActivity implements UpdateDogView {
 
                 if (isValidKg(editable.toString())) {
 //                    mWeight = Float.parseFloat(mKg);
-                    mKg += " kg";
+                    mKg += "kg";
 
                     weightEdt.setText(mKg);
-                    weightEdt.setSelection(weightEdt.getText().length() - 3);
+                    weightEdt.setSelection(weightEdt.getText().length() - 2);
 
 
                 }
