@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -54,7 +55,7 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
 
     ImageView defaultDogImage;
     int mTime;
-
+    TextView mStartWalking;
     int mDogIdx;
     TextView mPercentHome;
     ProgressBar mAimProgressBar;
@@ -118,11 +119,12 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
         mProgressbar=v.findViewById(R.id.progressbar_home);
         mHomeRefreshService=new HomeRefreshService(this);
 
+        mStartWalking = v.findViewById(R.id.next_button_step);
 
-        TextView startWalking = v.findViewById(R.id.next_button_step);
+
 
         mAimProgressBar.setMax(1000);
-        startWalking.setOnClickListener(this);
+        mStartWalking.setOnClickListener(this);
         mChangeDogs.setOnClickListener(this);
 
         defaultDogImage.setOnClickListener(new View.OnClickListener() {
@@ -150,6 +152,7 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
     public void onResume() {
         super.onResume();
         mHomeRefreshService.refreshHomeView();
+        //여기로 해야 기본 선택에서 해제되도 리프뤠시
 
     }
 
@@ -252,12 +255,20 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
         mPercent=result.getDogInfo().getAcheivedGoal();
         mWelcomeMessage.setText(formattedNickname);
 
+
+
+
         mDogNickName.setText(result.getDogInfo().getDogName());
         mDogInfo.setText(dogInfo);
 
         mTime= result.getDogInfo().getTodayTime();
-        if(mTime!=0)
-        mTimeTickin = ((double) mTime / (18));
+        if(mTime!=0) {
+            mTimeTickin = ((double) mTime / (18));
+
+            mStartWalking.setBackgroundResource(R.drawable.shape);
+            mStartWalking.setText("추가 산책하기");
+            mStartWalking.setTextColor(ContextCompat.getColor(getContext(), R.color.colorDogDogBlue));
+        }
         else{
             mTimeTickin=0;
 

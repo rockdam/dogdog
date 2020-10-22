@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/cancel_adddogs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -30,10 +30,10 @@
         android:text="정보 수정"
         android:textColor="#333333"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView6"
+        app:layout_constraintBottom_toBottomOf="@+id/cancel_adddogs"
         app:layout_constraintEnd_toStartOf="@+id/complete_button_addDogs"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView6" />
+        app:layout_constraintStart_toEndOf="@+id/cancel_adddogs" />
 
     <TextView
         android:id="@+id/complete_button_addDogs"
@@ -57,7 +57,7 @@
         android:background="#e4e4e4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/cancel_adddogs" />
 
     <FrameLayout
         android:id="@+id/frameLayout_updateuserprofile"

@@ -43,16 +43,17 @@
                 android:id="@+id/default_dogImage_home"
                 android:layout_width="54sp"
                 android:layout_height="54sp"
-                android:background="?selectableItemBackground"
 
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="26dp"
                 android:layout_marginEnd="18dp"
+                android:background="?selectableItemBackground"
                 app:layout_constraintBottom_toBottomOf="@+id/dogInfo_home"
                 app:layout_constraintEnd_toStartOf="@+id/dogName_home"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/default_profile_image"
+
                 app:layout_constraintVertical_bias="0.93"/>
 
             <TextView
@@ -123,10 +124,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
         android:text="@string/welcome_message"
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
@@ -275,16 +273,16 @@
 
     </androidx.cardview.widget.CardView>
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/welcomeMessage_main"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_noti_new" />
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView5"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/welcomeMessage_main"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:srcCompat="@drawable/ic_noti_new" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

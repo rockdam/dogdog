@@ -212,6 +212,16 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+
+
+
+
+    }
+
+    @Override
     public void refresh(SelectedPictureResponse result) {
         if(result.getIsSuccess())
         {

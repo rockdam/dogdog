@@ -43,6 +43,7 @@ public class AddDogs extends BaseActivity implements UpdateDogView {
     DogsService mAddDogsService;
     String mKg;
     AddDogInfo addDogsInfo;
+    TextView mCancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,8 @@ public class AddDogs extends BaseActivity implements UpdateDogView {
         weightEdt = findViewById(R.id.weight_addDogs);
         mMale = findViewById(R.id.male_addDogs);
         mFemale = findViewById(R.id.female_addDogs);
+        mCancel=findViewById(R.id.cancel_adddogs);
+
         mRgGender = findViewById(R.id.rgGender_addDogs);
         mYes = findViewById(R.id.yes_addDogs);
         mIsDefaultCheck = findViewById(R.id.isDefault_check_addDogs);
@@ -70,6 +73,13 @@ public class AddDogs extends BaseActivity implements UpdateDogView {
         birthDaySet();
         setWeightEdt();
         addDogsInfo = new AddDogInfo();
+
+        mCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         mIsDefaultCheck.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {

@@ -14,7 +14,7 @@
     tools:context=".src.HomeDogDog.TrackingNoteFragment.AddTrackingNote.AddTrackingNote">
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/cancel_adddogs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -36,10 +36,10 @@
         android:textSize="20sp"
         android:textColor="#333333"
         android:fontFamily="@font/spoqahansansbold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView6"
+        app:layout_constraintBottom_toBottomOf="@+id/cancel_adddogs"
         app:layout_constraintEnd_toStartOf="@+id/complete_button_addDogs"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView6" />
+        app:layout_constraintStart_toEndOf="@+id/cancel_adddogs" />
 
     <TextView
         android:id="@+id/complete_button_addDogs"
@@ -63,7 +63,7 @@
         android:layout_marginTop="26dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/cancel_adddogs" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -232,14 +232,15 @@ https://stackoverflow.com/questions/19163628/adding-custom-radio-buttons-in-andr
         android:id="@+id/edt_frame_addDogs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
     >
 
         <TextView
             android:id="@+id/dog_breeds_addDogs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="49dp"
+
 
 
             android:fontFamily="@font/spoqahansansregular"
@@ -253,9 +254,8 @@ https://stackoverflow.com/questions/19163628/adding-custom-radio-buttons-in-andr
         <View
             android:id="@+id/view8"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginStart="33dp"
-            android:layout_marginEnd="50dp"
+            android:layout_height="2dp"
+
             android:background="@color/editTextUnderLine"
             android:layout_marginBottom="0dp"
             android:layout_gravity="bottom"
@@ -264,7 +264,7 @@ https://stackoverflow.com/questions/19163628/adding-custom-radio-buttons-in-andr
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|center_vertical"
-            android:layout_marginEnd="50dp"
+
             android:src="@drawable/ic_arrowdown_big"
             ></ImageView>
     </FrameLayout>
@@ -281,18 +281,18 @@ https://stackoverflow.com/questions/19163628/adding-custom-radio-buttons-in-andr
         ></TextView>
     <FrameLayout
         android:id="@+id/edt_frame_step4"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+
         >
 
         <EditText
             android:id="@+id/weight_addDogs"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginStart="34dp"
-            android:layout_marginLeft="34dp"
-            android:layout_marginEnd="34dp"
-            android:layout_marginRight="34dp"
+
             android:backgroundTint="@color/editTextUnderLine"
             android:ems="10"
             android:fontFamily="@font/spoqahansansregular"
@@ -308,8 +308,7 @@ https://stackoverflow.com/questions/19163628/adding-custom-radio-buttons-in-andr
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|center_vertical"
-            android:layout_marginRight="34dp"
-            android:layout_marginBottom="10dp"
+
             app:srcCompat="@drawable/close_big" />
     </FrameLayout>
     <TextView
