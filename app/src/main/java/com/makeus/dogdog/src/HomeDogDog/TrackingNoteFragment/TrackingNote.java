@@ -50,7 +50,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
     CollapsibleCalendar collapsibleCalendar;
     TrackingNoteService mTrackingNoteService, mHistoryService;
 
-    ScrollView scrollView;
+    NestedScrollView scrollView;
     ImageView updateTrackingNote;
     TextView mCompleteTime, mCompleteDistance, mCompleteMission, mToday, mAddNote;
     WebView mWebView;
