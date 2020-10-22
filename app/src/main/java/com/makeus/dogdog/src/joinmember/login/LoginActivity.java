@@ -11,6 +11,9 @@ import com.makeus.dogdog.src.HomeDogDog.HomeActivity;
 import com.makeus.dogdog.src.joinmember.login.interfaces.MoveHomeAcitivity;
 import com.makeus.dogdog.src.joinmember.step1.Step1Activity;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
 
@@ -28,6 +31,17 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
 
     }
+    public static boolean isValidPassword(final String Password) {
+
+        Pattern pattern;
+        Matcher matcher;
+        final String PASSWORD_PATTERN = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d$@$!%*#?&]{6,16}$";
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(Password);
+
+        return matcher.matches();
+
+    }
 
 
     @Override
@@ -43,6 +57,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
                 startActivity(intent);
+                finish();
                 //이건 좀 생각해보자 .;
                 break;
 

@@ -19,6 +19,7 @@ import androidx.core.content.res.ResourcesCompat;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
+import com.makeus.dogdog.src.joinmember.login.LoginActivity;
 import com.makeus.dogdog.src.joinmember.step2.Step2Activity;
 import com.makeus.dogdog.src.joinmember.step6.models.userInfo;
 
@@ -157,5 +158,15 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
                 break;
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent =new Intent(Step1Activity.this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+        startActivity(intent);
+        finish();
     }
 }
