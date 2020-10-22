@@ -162,14 +162,13 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
 
             mTimetickin = ((double) s / (18));
             percent = s / 18;
-            Log.e("percent", "" + mPercent);
             mDonutView.setValue(mTimetickin, percent);
             System.out.println("mTimetickin" + mTimetickin);
             System.out.println("Time체크" + s);
             System.out.println("Time" + time);
 
             sendTime = s;
-            if(mPercent>=100 && isFirstCompletedMission)
+            if(percent>=1 && isFirstCompletedMission)
             {
                 isFirstCompletedMission=false;
                 mFinishedText.setText("목표를 달성했어요!");
