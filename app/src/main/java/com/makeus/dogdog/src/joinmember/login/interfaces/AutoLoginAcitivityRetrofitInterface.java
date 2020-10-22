@@ -10,7 +10,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Path;
 
-public interface AutoLoginAcitivityRetrofitInterface {
+public interface LoginAcitivityRetrofitInterface {
 @GET("/jwt")
 @Headers("Content-Type: application/json")
 Call<AutoLoginResponse> checkId();
