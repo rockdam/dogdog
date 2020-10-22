@@ -9,10 +9,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.provider.MediaStore;
@@ -45,6 +48,10 @@ import com.makeus.dogdog.src.HomeDogDog.startWalking.interfaces.StartWalkingView
 import com.makeus.dogdog.src.HomeDogDog.startWalking.models.Result;
 import com.makeus.dogdog.src.HomeDogDog.startWalking.models.StopWalkingBody;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.Date;
 import java.util.Locale;
 
 public class StartWalking extends BaseActivity implements View.OnClickListener, StartWalkingView {
@@ -76,6 +83,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
     StartWalkingService mStartWalkingService, mStopWalkingService;
     int mDogIdx;
 
+    ImageView mIconShare;
     TextView mFinishedText; // 목표 ->percent>=100 일 때  목표를 달성했어요!
     ImageView backButton;
     float Initialdistance = 0;
@@ -91,6 +99,50 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
         }
     }// 사진 어플 실행
 
+//    스크린샷 찍기
+
+    private void takeScreenshot() {
+        Date now = new Date();
+        android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
+
+        try {
+            // image naming and path  to include sd card  appending name you choose for file
+            String mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg";
+
+            // create bitmap screen capture
+            View v1 = getWindow().getDecorView().getRootView();
+            v1.setDrawingCacheEnabled(true);
+            Bitmap bitmap = Bitmap.createBitmap(v1.getDrawingCache());
+            v1.setDrawingCacheEnabled(false);
+
+            File imageFile = new File(mPath);
+
+            FileOutputStream outputStream = new FileOutputStream(imageFile);
+            int quality = 100;
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
+            outputStream.flush();
+            outputStream.close();
+
+            SharedSns(imageFile);
+        } catch (Throwable e) {
+            // Several error may come out with file handling or DOM
+            e.printStackTrace();
+        }
+
+
+
+    }
+    private void SharedSns(File imageFile) {
+        Intent shareIntent =new Intent(Intent.ACTION_SEND);
+        Uri uri = Uri.fromFile(imageFile);
+        shareIntent.putExtra(Intent.EXTRA_STREAM,uri);
+        shareIntent.setDataAndType(uri, "image/*");
+        startActivity(Intent.createChooser(shareIntent,"목표 달성 공유하기"));
+
+
+
+
+    }
 
     //https://stackoverflow.com/questions/42619863/how-to-calculate-distance-every-15-sec-with-using-gps-heavy-accuracy
 //거리구현은 서비스로 하는게 좋습니다..gps
@@ -108,6 +160,18 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
         Serviceintent = new Intent(StartWalking.this, ForegroundWalkingService.class);
         mStopWalkingBody = new StopWalkingBody();
         isFirstCompletedMission=true;
+        mIconShare=findViewById(R.id.share_startwalking);
+
+//https://m.blog.naver.com/PostView.nhn?blogId=hg1286&logNo=220541645364&proxyReferer=https:%2F%2Fwww.google.com%2F 참조
+        mIconShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            takeScreenshot();
+
+
+            }
+        });
+
         mFinishedText=findViewById(R.id.finishedText_startwalking);
         mDogIdx = getIntent().getIntExtra("dogIdx", 1);
 //        if (getIntent().getStringExtra("timeTicking") != null) {
@@ -121,16 +185,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mRunning) {
 
-                    Toast.makeText(getApplicationContext(), "일시 중지를 눌러주세요 :)", Toast.LENGTH_SHORT).show();
-
-                } else {
-
-                    sendStopWalkingTime();
-                    onStopForegroundService();
-                    finish();
-                }
             }
         });
         locationRequest = LocationRequest.create();
@@ -168,6 +223,8 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
             System.out.println("Time" + time);
 
             sendTime = s;
+
+            //얘를 100으로 바꾸자
             if(percent>=1 && isFirstCompletedMission)
             {
                 isFirstCompletedMission=false;

@@ -132,7 +132,7 @@
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintHorizontal_bias="0.5"
         custom:layout_constraintStart_toStartOf="parent"
-        custom:layout_constraintTop_toBottomOf="@+id/imageView18"
+        custom:layout_constraintTop_toBottomOf="@+id/share_startwalking"
         custom:layout_constraintVertical_bias="0.3" />
 
     <TextView
@@ -157,15 +157,16 @@
         custom:srcCompat="@drawable/ic_arrow" />
 
     <ImageView
-        android:id="@+id/imageView18"
+        android:id="@+id/share_startwalking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
 
+        android:background="?selectableItemBackground"
         android:layout_marginEnd="20dp"
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintTop_toTopOf="parent"
-        custom:srcCompat="@drawable/more" />
+        custom:srcCompat="@drawable/ic_share" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
