@@ -18,28 +18,29 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bottom_border_white">
 
-            <Button
+            <TextView
                 android:id="@+id/write_cancelButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="10dp"
                 android:background="?attr/selectableItemBackground"
                 android:fontFamily="@font/natosanscjkkrbold"
+                android:padding="10dp"
                 android:text="취소"
                 android:textColor="#cccccc"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView2"
                 app:layout_constraintEnd_toStartOf="@+id/textView2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView2"></Button>
+                app:layout_constraintTop_toTopOf="@+id/textView2"></TextView>
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="34dp"
+                android:layout_marginTop="44dp"
                 android:layout_marginBottom="26dp"
                 android:fontFamily="@font/spoqahansansbold"
                 android:text="기록 남기기"
@@ -51,21 +52,22 @@
                 app:layout_constraintStart_toEndOf="@+id/write_cancelButton"
                 app:layout_constraintTop_toTopOf="parent"></TextView>
 
-            <Button
+            <TextView
                 android:id="@+id/write_confirmButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="10dp"
                 android:background="?attr/selectableItemBackground"
                 android:fontFamily="@font/spoqahansansbold"
+                android:padding="10dp"
                 android:text="등록"
                 android:textColor="#4766ff"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textView2"
-                app:layout_constraintTop_toTopOf="@+id/textView2"></Button>
+                app:layout_constraintTop_toTopOf="@+id/textView2"></TextView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 <!--        <EditText-->
 <!--            android:id="@+id/write_headline"-->
