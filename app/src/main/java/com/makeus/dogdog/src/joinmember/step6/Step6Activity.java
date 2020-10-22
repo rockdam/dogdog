@@ -127,7 +127,29 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener,
         return matcher.matches();
 
     }
+    boolean checkCorrectWeightValue() {
 
+        boolean returnValue;
+        String check = mEdit_Input_Text_joinmember.getText().toString();
+        int idx = check.indexOf("k");
+        if (idx == -1) {
+            returnValue = true;
+        } else {
+
+            String checkdf=check.substring(0, idx);
+
+
+            if (isValidKg(check.substring(0, idx))) {
+                mWeight = Float.parseFloat(check.substring(0, idx));
+                returnValue=false;
+            }else{
+                returnValue=true;
+
+            }
+        }
+
+        return returnValue;
+    }
 
     @Override
     protected void onResume() {
@@ -154,7 +176,13 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener,
             case R.id.next_button_step:
                 if (mEdit_Input_Text_joinmember.getText().toString() == null) {
                     Toast.makeText(getBaseContext(),"몸무게를 입력해주세요",Toast.LENGTH_LONG);
-                } else {
+                }else if(checkCorrectWeightValue() || mWeight <= 0)
+                {
+
+                    Toast.makeText(getBaseContext(),"정확한 몸무게를  입력해주세요",Toast.LENGTH_LONG);
+                }
+
+                else {
 
                     mDogInfo.setWeight(mWeight);
                     mDogInfo.setBreedIdx(mBreedsIdx);
