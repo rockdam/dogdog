@@ -124,6 +124,14 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
 
             }
         });
+        wysiwyg.getCancelButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                finish();
+            }
+        });
         wysiwyg.getConfirmButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
