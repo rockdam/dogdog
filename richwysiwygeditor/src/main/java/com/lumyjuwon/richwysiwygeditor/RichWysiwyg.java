@@ -296,7 +296,7 @@ public class RichWysiwyg extends LinearLayout {
 
                 //1 단계 포커스  2 단계 그 다음 크기
                 content.clearAndFocusEditor();
-                content.setFontSize(1);
+                content.setFontSize(3);
                 textsizeButton.switchCheckedState();
                 Keyboard.showKeyboard(view);
             }
@@ -309,7 +309,7 @@ public class RichWysiwyg extends LinearLayout {
                 closePopupWindow();
 
                 content.clearAndFocusEditor();
-                content.setFontSize(2);
+                content.setFontSize(4);
                 textsizeButton.switchCheckedState();
                 Keyboard.showKeyboard(view);
 
@@ -325,7 +325,7 @@ public class RichWysiwyg extends LinearLayout {
             public void onClick(View view){
                 closePopupWindow();
                 content.clearAndFocusEditor();
-                content.setFontSize(3);
+                content.setFontSize(5);
                 textsizeButton.switchCheckedState();
                 Keyboard.showKeyboard(view);
             }
@@ -336,7 +336,7 @@ public class RichWysiwyg extends LinearLayout {
             public void onClick(View view){
                 closePopupWindow();
                 content.clearAndFocusEditor();
-                content.setFontSize(5);
+                content.setFontSize(6);
                 textsizeButton.switchCheckedState();
                 Keyboard.showKeyboard(view);
             }
@@ -347,7 +347,7 @@ public class RichWysiwyg extends LinearLayout {
             public void onClick(View view){
                 closePopupWindow();
                 content.clearAndFocusEditor();
-                content.setFontSize(6);
+                content.setFontSize(7);
                 textsizeButton.switchCheckedState();
                 Keyboard.showKeyboard(view);
 

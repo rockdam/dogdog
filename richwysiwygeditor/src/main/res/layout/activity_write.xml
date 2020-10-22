@@ -235,7 +235,6 @@
             android:textCursorDrawable="@drawable/edit_cursor" />
 
 
-
     </LinearLayout>
 
 

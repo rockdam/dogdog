@@ -401,9 +401,10 @@ public class RichEditor extends WebView {
   }
 
   public void setFontSize(int fontSize) {
-    if (fontSize > 7 || fontSize < 1) {
-      Log.e("RichEditor", "Font size should have a value between 1-7");
-    }
+//    if (fontSize > 7 || fontSize < 1) {
+//      Log.e("RichEditor", "Font size should have a value between 1-7");
+//    }
+//    임시로 리미트 해제함
     exec("javascript:RE.setFontSize('" + fontSize + "');");
   }
 
