@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.android.application'
-
+// Apply the Crashlytics Gradle plugin
+apply plugin: 'com.google.firebase.crashlytics'
 android {
 
     compileOptions {
@@ -59,7 +60,15 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'com.github.esafirm.android-image-picker:imagepicker:2.0.0'
     implementation project(':richwysiwygeditor')
+    implementation 'com.airbnb.android:lottie:3.0.7'
 
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:25.12.0')
+
+    // Declare the dependencies for the Crashlytics and Analytics libraries
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics'
 }
 //https://stackoverflow.com/questions/25477052/imported-module-in-android-studio-cant-find-imported-class/29182490
 //모듈 임포트 후 그래들 주입 지렸다 ..

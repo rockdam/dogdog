@@ -7,6 +7,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.makeus.dogdog.R;
@@ -33,7 +36,17 @@ public class HomeActivity extends BaseActivity {
         mBottomNavigationView = findViewById(R.id.bottom_navigation_view);
         mFragmentTransaction = mfragmentManager.beginTransaction();
         mFragmentTransaction.replace(R.id.FrameChanger, mHomeFragment).commitNowAllowingStateLoss();
+        Button crashButton = new Button(this);
+        crashButton.setText("Crash!");
+        crashButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                throw new RuntimeException("Test Crash"); // Force a crash
+            }
+        });
 
+        addContentView(crashButton, new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
 
 //        출처: https://mc10sw.tistory.com/16 [Make it possible]
 
