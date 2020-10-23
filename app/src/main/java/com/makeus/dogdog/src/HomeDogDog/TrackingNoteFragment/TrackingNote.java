@@ -139,13 +139,12 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
         mAddNote = constraintLayoutIncludeLayout.findViewById(R.id.addNote_include);
         mWebView = constraintLayoutIncludeLayout.findViewById(R.id.historyWebView_include);
         updateTrackingNote = constraintLayoutIncludeLayout.findViewById(R.id.updateTrackingNote_include);
+
         //Include 레이아웃 사용하는 법 .
         updateTrackingNote.setVisibility(View.INVISIBLE);
         mWebView.setVisibility(View.INVISIBLE);
         mAddNote.setVisibility(View.VISIBLE);
-        mWebView.getSettings().setDefaultFontSize(50);
-        mWebView.getSettings().setLoadWithOverviewMode(true);
-        mWebView.getSettings().setUseWideViewPort(true);
+
         if(isFirst) {
             mTrackingNoteService = new TrackingNoteService(this, initialQueryStringDate());
             mTrackingNoteService.refreshUpdateWalkingMonth(); // 월에 일정 있으면 점 표시 .
@@ -349,7 +348,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
     }
 
     @Override
-    public void initialTackingNot(DayHistory dayHistory) {
+    public void initialTackingNot(DayHistory dayHistory)  {
 
         if (dayHistory != null) {
 
@@ -359,6 +358,10 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
 
             mWebView.setVisibility(View.VISIBLE);
+            mWebView.getSettings().setDefaultFontSize(50);
+            mWebView.getSettings().setLoadWithOverviewMode(true);
+            mWebView.getSettings().setUseWideViewPort(true);
+
             mWebView.loadDataWithBaseURL(null, dayHistory.getContent(), "text/html", "utf-8", null);
 
 //            mWebView.getSettings().setSupportZoom(true);

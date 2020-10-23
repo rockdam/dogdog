@@ -121,7 +121,12 @@ public class TrackingNoteService {
                 getWalkinghistoryResponse = response.body();
                 if (response.code() == 200) {
 
-                    trackingNoteView.initialTackingNot(getWalkinghistoryResponse.getResult());
+
+                    try {
+                        trackingNoteView.initialTackingNot(getWalkinghistoryResponse.getResult());
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
 
                 }// 자동로그인 안되면 로그인 해야지 .

@@ -7,7 +7,7 @@ import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models.WalkingdayRe
 
 public interface TrackingNoteView {
     void updateMonth(WalkingMonthResult walkingMonthResult);
-    void initialTackingNot(DayHistory dayHistory);
+    void initialTackingNot(DayHistory dayHistory) throws InterruptedException;
     void updateDay(WalkingdayResult walkingdayResult);
 
 }

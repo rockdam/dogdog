@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<ScrollView android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/writedNoteContraint_include"
     android:background="@color/white"
     android:layout_width="match_parent"
@@ -131,8 +133,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/completetime_include">
-<!--아 이럴 때 쓰는거였어? -->
+        app:layout_constraintTop_toBottomOf="@+id/completetime_include"
+        app:layout_constraintVertical_bias="0.0">
+        <!--아 이럴 때 쓰는거였어? -->
         <TextView
             android:id="@+id/addNote_include"
             android:layout_width="match_parent"
@@ -149,15 +152,14 @@
             android:paddingBottom="32dp"
             android:text="+기록 남기기"
             android:textColor="#cccccc" />
-<!--  여기 참조      https://stackoverrun.com/ko/q/3569022-->
-
+        <!--  여기 참조      https://stackoverrun.com/ko/q/3569022-->
 
 
         <com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.TouchyWebView
             android:id="@+id/historyWebView_include"
 
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
 
 
             android:layout_weight="1"
