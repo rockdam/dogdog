@@ -34,7 +34,7 @@
         android:layout_width="0dp"
         android:layout_height="196dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="20dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
@@ -94,6 +94,7 @@
                 android:layout_marginStart="18dp"
                 android:fontFamily="@font/spoqahansansbold"
                 android:text="뽀삐"
+                android:textColor="@color/black"
                 android:textSize="19sp"
                 app:layout_constraintBottom_toTopOf="@+id/dogInfo_home"
                 app:layout_constraintStart_toEndOf="@+id/default_dogImage_home"
@@ -107,6 +108,7 @@
                 android:layout_marginBottom="23dp"
                 android:fontFamily="@font/spoqahansanslight"
                 android:text="3살 / 여아 / 말티즈"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/next_button_step"
                 app:layout_constraintStart_toEndOf="@+id/default_dogImage_home" />
@@ -136,6 +138,7 @@
         android:layout_marginTop="60dp"
         android:fontFamily="@font/spoqahansansbold"
         android:text="@string/welcome_message"
+        android:textColor="@color/black"
         android:textSize="26sp"
         app:layout_constraintEnd_toStartOf="@+id/textView6"
         app:layout_constraintStart_toStartOf="parent"
@@ -172,6 +175,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/spoqahansansbold"
                 android:text="목표"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toStartOf="@+id/imageView7"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -188,6 +192,7 @@
                 android:layout_marginBottom="20dp"
                 android:fontFamily="@font/spoqahansansregular"
                 android:text="🐶 하루 30분 산책하기"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@+id/view2"
                 app:layout_constraintStart_toStartOf="parent"
@@ -208,12 +213,13 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/explainProgressbar_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/spoqahansansregular"
                 android:text="일일 목표 산책량을 달성했어요!"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@+id/view2"
                 app:layout_constraintTop_toBottomOf="@+id/view2" />
@@ -235,7 +241,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+                app:layout_constraintTop_toBottomOf="@+id/explainProgressbar_home" />
 
 
             <ImageView
@@ -270,7 +276,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/textView12"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toEndOf="@+id/textView10"
+                app:layout_constraintStart_toEndOf="@+id/explainProgressbar_home"
                 app:layout_constraintTop_toBottomOf="@+id/view2" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -281,7 +287,8 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="님,"
+        android:text=" 님,"
+        android:textColor="@color/black"
         android:textSize="26sp"
         android:fontFamily="@font/spoqahansanslight"
         app:layout_constraintBottom_toBottomOf="@+id/welcomeMessage_main"
@@ -293,6 +300,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:textColor="@color/black"
         android:fontFamily="@font/spoqahansansbold"
         android:text="산책하기 좋은날"
         android:textSize="26sp"
@@ -308,6 +316,7 @@
         android:fontFamily="@font/spoqahansanslight"
         android:textSize="26sp"
         android:text="이에요."
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/textView11"
         app:layout_constraintStart_toEndOf="@+id/textView11"
         app:layout_constraintTop_toTopOf="@+id/textView11" />

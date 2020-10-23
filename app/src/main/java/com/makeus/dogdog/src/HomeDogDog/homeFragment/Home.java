@@ -53,6 +53,8 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
     int mPercent = 0;
     double mTimeTickin;
 
+
+    TextView explainProgressbar;
     ImageView defaultDogImage;
     int mTime;
     TextView mStartWalking;
@@ -113,6 +115,7 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
         mWelcomeMessage=v.findViewById(R.id.welcomeMessage_main);
         mDogInfo=v.findViewById(R.id.dogInfo_home);
         mDogNickName=v.findViewById(R.id.dogName_home);
+        explainProgressbar=v.findViewById(R.id.explainProgressbar_home);
         //저장된 값을 불러오기 위해 같은 네임파일을 찾음.
 
         mChangeDogs=v.findViewById(R.id.changeDogs_home);
@@ -205,6 +208,7 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
 
                 startActivity(intent);
 
+                getActivity().finish();
                 break;
 
             case R.id.changeDogs_home :
@@ -263,7 +267,7 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
         mDogInfo.setText(dogInfo);
 
         mTime= result.getDogInfo().getTodayTime();
-        if(mTime!=0) {
+        if(mTime>0) {
             mTimeTickin = ((double) mTime / (18));
 
             mStartWalking.setBackgroundResource(R.drawable.shape);
@@ -277,9 +281,14 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
         mAimProgressBar.setProgress((int) (mTimeTickin * (double) 10));
         if(mPercent==-1) {
             mPercentHome.setText(String.valueOf(0));
-        }else{
+            explainProgressbar.setText("지금 바로 산책을 시작해보세요!");
+        }else if(mPercent>0 || mPercent<100){
             mPercentHome.setText(String.valueOf(mPercent));
-
+            explainProgressbar.setText("목표 산책량까지 좀 더 힘내봐요!");
+        }else if(mPercent>=100)
+        {
+            mPercentHome.setText(String.valueOf(mPercent));
+            explainProgressbar.setText("일일 목표 산책량을 달성했어요!");
         }
 
         Log.e("dogUrl",result.getDogInfo().getDogImg());

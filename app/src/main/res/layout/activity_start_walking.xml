@@ -11,6 +11,17 @@
 
     >
 
+    <ImageView
+        android:id="@+id/completed_startwalking"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:src="@drawable/ic_completed_startwalking"
+        android:visibility="invisible"
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintTop_toTopOf="parent" />
+
     <com.makeus.dogdog.src.HomeDogDog.startWalking.DonutView
 
         android:id="@+id/donut"
@@ -31,6 +42,7 @@
         android:id="@+id/cameraApp_startWalking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
         custom:layout_constraintBottom_toBottomOf="parent"
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintHorizontal_bias="0.5"
@@ -53,6 +65,7 @@
         android:id="@+id/stopbutton_startwalking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
         custom:layout_constraintBottom_toBottomOf="@+id/start_walking"
         custom:layout_constraintEnd_toStartOf="@+id/start_walking"
         custom:layout_constraintHorizontal_bias="0.5"
@@ -89,6 +102,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/spoqahansansregular"
+        android:textColor="@color/black"
         android:textSize="20sp"
         custom:layout_constraintEnd_toEndOf="@+id/textView25"
         custom:layout_constraintStart_toStartOf="@+id/textView25"
@@ -101,6 +115,7 @@
         android:fontFamily="@font/spoqahansansregular"
 
         android:text="0.00km"
+        android:textColor="@color/black"
         android:textSize="20sp"
         custom:layout_constraintEnd_toEndOf="@+id/textView27"
         custom:layout_constraintStart_toStartOf="@+id/textView27"
@@ -127,6 +142,7 @@
         android:layout_marginBottom="5dp"
         android:fontFamily="@font/spoqahansansbold"
         android:text="목표"
+        android:textColor="@color/black"
         android:textSize="28sp"
         custom:layout_constraintBottom_toTopOf="@+id/textView30"
         custom:layout_constraintEnd_toEndOf="parent"
@@ -141,6 +157,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/spoqahansansregular"
         android:text="🐶하루 30분 산책하기"
+        android:textColor="@color/black"
         android:textSize="20sp"
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintStart_toStartOf="parent"
@@ -150,6 +167,7 @@
         android:id="@+id/backButton_startwalking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         custom:layout_constraintStart_toStartOf="parent"

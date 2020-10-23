@@ -19,6 +19,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lumyjuwon.richwysiwygeditor.RichEditor.RichEditor;
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.AddTrackingNote.AddTrackingNote;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.interfaces.TrackingNoteView;
@@ -53,7 +54,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
     NestedScrollView scrollView;
     ImageView updateTrackingNote;
     TextView mCompleteTime, mCompleteDistance, mCompleteMission, mToday, mAddNote;
-    WebView mWebView;
+    RichEditor mWebView;
     int mYear, mMonth, mDay;
     boolean isFirst;;
     /**
@@ -126,8 +127,8 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
         collapsibleCalendar = v.findViewById(R.id.calendar_trackingnote);
 
 
-        scrollView=v.findViewById(R.id.writenote_include);
-        constraintLayoutIncludeLayout = scrollView.findViewById(R.id.writedNoteContraint_include);
+
+        constraintLayoutIncludeLayout = v.findViewById(R.id.writenote_include);
         constraintLayoutIncludeLayout.setVisibility(View.GONE);
         mCompleteTime = constraintLayoutIncludeLayout.findViewById(R.id.completetime_include);
         mCompleteDistance = constraintLayoutIncludeLayout.findViewById(R.id.completedistance_include);
@@ -140,7 +141,9 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
         updateTrackingNote.setVisibility(View.INVISIBLE);
         mWebView.setVisibility(View.INVISIBLE);
         mAddNote.setVisibility(View.VISIBLE);
-
+        mWebView.getSettings().setDefaultFontSize(40);
+        mWebView.getSettings().setLoadWithOverviewMode(true);
+        mWebView.getSettings().setUseWideViewPort(true);
         if(isFirst) {
             mTrackingNoteService = new TrackingNoteService(this, initialQueryStringDate());
             mTrackingNoteService.refreshUpdateWalkingMonth(); // 월에 일정 있으면 점 표시 .
@@ -351,13 +354,13 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
             Log.e("ㅇㄹㅇ", "" + dayHistory.getContent());
 //            mWebView.getSettings().setJavaScriptEnabled(true);
-            mWebView.getSettings().setDefaultFontSize(24);
-            mWebView.loadDataWithBaseURL(null, dayHistory.getContent(), "text/html", "utf-8", null);
+
+
             mWebView.setVisibility(View.VISIBLE);
-            mWebView.getSettings().setLoadWithOverviewMode(true);
-            mWebView.getSettings().setUseWideViewPort(true);
-            mWebView.getSettings().setSupportZoom(true);
-            mWebView.getSettings().setBuiltInZoomControls(true);
+            mWebView.loadDataWithBaseURL(null, dayHistory.getContent(), "text/html", "utf-8", null);
+
+//            mWebView.getSettings().setSupportZoom(true);
+//            mWebView.getSettings().setBuiltInZoomControls(true);
             mAddNote.setVisibility(View.INVISIBLE);
             updateTrackingNote.setVisibility(View.VISIBLE);
             updateTrackingNote.setOnClickListener(new View.OnClickListener() {

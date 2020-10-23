@@ -61,7 +61,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
     int mWalkingTime;
     TextView mWalkingDistanceTextView;
     int mWalkingDistance;
-    ImageView mStartWalking, mStopButton, mStartCamera;
+    ImageView mStartWalking, mStopButton, mStartCamera,mCompltedWalking;
     private double mTimetickin;
     private int mPercent;
     private boolean mRunning;
@@ -161,7 +161,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
         mStopWalkingBody = new StopWalkingBody();
         isFirstCompletedMission=true;
         mIconShare=findViewById(R.id.share_startwalking);
-
+        mCompltedWalking=findViewById(R.id.completed_startwalking);
 //https://m.blog.naver.com/PostView.nhn?blogId=hg1286&logNo=220541645364&proxyReferer=https:%2F%2Fwww.google.com%2F 참조
         mIconShare.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,6 +185,17 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (mRunning) {
+
+                    Toast.makeText(getApplicationContext(), "일시 중지를 눌러주세요 :)", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    stopService(Serviceintent);
+                    sendStopWalkingTime();
+
+
+                }
 
             }
         });
@@ -225,8 +236,10 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
             sendTime = s;
 
             //얘를 100으로 바꾸자
-            if(percent>=1 && isFirstCompletedMission)
+            if(percent>=100 && isFirstCompletedMission)
             {
+
+                mCompltedWalking.setVisibility(View.VISIBLE);
                 isFirstCompletedMission=false;
                 mFinishedText.setText("목표를 달성했어요!");
 
@@ -438,6 +451,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
                     stopService(Serviceintent);
                     sendStopWalkingTime();
 
+
                 }
 
                 break;
@@ -557,7 +571,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
         Log.e("mPercent", "" + mPercent);
         if(mPercent>=100)
         {
-
+            mCompltedWalking.setVisibility(View.VISIBLE);
             mFinishedText.setText("목표를 달성했어요!");
 
         }
