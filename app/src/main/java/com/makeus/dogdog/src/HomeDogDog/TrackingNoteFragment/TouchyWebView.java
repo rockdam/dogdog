@@ -7,7 +7,9 @@ import android.webkit.WebView;
 
 import androidx.core.view.MotionEventCompat;
 
-public class TouchyWebView extends WebView {
+import com.lumyjuwon.richwysiwygeditor.RichEditor.RichEditor;
+
+public class TouchyWebView extends RichEditor {
 
     public TouchyWebView(Context context) {
         super(context);

@@ -141,7 +141,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
         updateTrackingNote.setVisibility(View.INVISIBLE);
         mWebView.setVisibility(View.INVISIBLE);
         mAddNote.setVisibility(View.VISIBLE);
-        mWebView.getSettings().setDefaultFontSize(40);
+        mWebView.getSettings().setDefaultFontSize(50);
         mWebView.getSettings().setLoadWithOverviewMode(true);
         mWebView.getSettings().setUseWideViewPort(true);
         if(isFirst) {
