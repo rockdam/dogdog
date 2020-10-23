@@ -51,10 +51,11 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
     CollapsibleCalendar collapsibleCalendar;
     TrackingNoteService mTrackingNoteService, mHistoryService;
 
-    NestedScrollView scrollView;
     ImageView updateTrackingNote;
+
     TextView mCompleteTime, mCompleteDistance, mCompleteMission, mToday, mAddNote;
-    RichEditor mWebView;
+    TouchyWebView mWebView;
+    ScrollView scrollView;
     int mYear, mMonth, mDay;
     boolean isFirst;;
     /**
@@ -128,7 +129,8 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
 
 
-        constraintLayoutIncludeLayout = v.findViewById(R.id.writenote_include);
+        scrollView = v.findViewById(R.id.writenote_include);
+        constraintLayoutIncludeLayout=scrollView.findViewById(R.id.writedNoteContraint_include);
         constraintLayoutIncludeLayout.setVisibility(View.GONE);
         mCompleteTime = constraintLayoutIncludeLayout.findViewById(R.id.completetime_include);
         mCompleteDistance = constraintLayoutIncludeLayout.findViewById(R.id.completedistance_include);
