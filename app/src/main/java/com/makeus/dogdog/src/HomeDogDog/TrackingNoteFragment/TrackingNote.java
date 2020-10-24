@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models.DayHistory;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models.GetWalkinghistoryResponse;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models.WalkingMonthResult;
 import com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.models.WalkingdayResult;
+import com.makeus.dogdog.src.LodingDialogFragment;
 import com.makeus.dogdog.src.collapsiblecalendarview.data.CalendarAdapter;
 import com.makeus.dogdog.src.collapsiblecalendarview.widget.CollapsibleCalendar;
 
@@ -69,7 +71,8 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
     /**
      * 그리드뷰 어댑터
      */
-
+    LodingDialogFragment lodingDialogFragment;
+    FragmentManager manager;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -127,7 +130,8 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
         collapsibleCalendar = v.findViewById(R.id.calendar_trackingnote);
 
-
+        lodingDialogFragment=LodingDialogFragment.newInstance();
+        manager=getActivity().getSupportFragmentManager() ;
 
         scrollView = v.findViewById(R.id.writenote_include);
         constraintLayoutIncludeLayout=scrollView.findViewById(R.id.writedNoteContraint_include);
@@ -146,6 +150,8 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
         mAddNote.setVisibility(View.VISIBLE);
 
         if(isFirst) {
+
+//            showDogDogLoadingDialog();
             mTrackingNoteService = new TrackingNoteService(this, initialQueryStringDate());
             mTrackingNoteService.refreshUpdateWalkingMonth(); // 월에 일정 있으면 점 표시 .
 
@@ -204,6 +210,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
             @Override
             public void onMonthChange(int year, int month) { //이거 눌를 때 마다 호출 하고 에드 event for문
 //                Toast.makeText(getContext(), "년도" + year + "monthChange" + month, Toast.LENGTH_SHORT).show();
+
 
                 mTrackingNoteService = new TrackingNoteService(TrackingNote.this, createQueryStringMonthDate(year, month));
                 mTrackingNoteService.refreshUpdateWalkingMonth();
@@ -368,6 +375,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 //            mWebView.getSettings().setBuiltInZoomControls(true);
             mAddNote.setVisibility(View.INVISIBLE);
             updateTrackingNote.setVisibility(View.VISIBLE);
+
             updateTrackingNote.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -381,7 +389,6 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
                     startActivityForResult(intent,0);
                 }
             });
-
         } else {
 
             mWebView.setVisibility(View.INVISIBLE);
@@ -427,6 +434,21 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 //                }
 //            });
         }//값이 없으면 없다고 나와야지
+
+    }
+
+    public void showDogDogLoadingDialog()
+    {
+        if(!lodingDialogFragment.isAdded())
+            lodingDialogFragment.show(manager,"loader");
+    }
+    public void hideDogDogLoadingDialog()
+    {
+        if(!lodingDialogFragment.isAdded())
+        {
+
+            lodingDialogFragment.dismissAllowingStateLoss();
+        }
 
     }
 }

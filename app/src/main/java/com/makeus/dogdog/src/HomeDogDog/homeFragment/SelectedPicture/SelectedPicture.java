@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
     private static final int REQUEST_CODE = 0;
     SelectedPictureService selectedPictureService;
     SendImagData sendImagData;
+    ImageView closeAddchangedogs;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,14 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
 
         sendImagData=new SendImagData();
         setWindow();
+        closeAddchangedogs=findViewById(R.id.close_addchangedogs);
 
+        closeAddchangedogs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         takeaPicture.setOnClickListener(view -> {
 
@@ -77,9 +86,12 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
         seletedGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
                         .setActivityTitle("사진 편집")
+
+
 
                         .setCropMenuCropButtonTitle("적용")
                         .setCropShape(CropImageView.CropShape.OVAL)
@@ -128,10 +140,11 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
         //업로드할 파일이 있으면 수행
         if (filePath != null) {
             //업로드 진행 Dialog 보이기
-            final ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setTitle("업로드중...");
-            progressDialog.show();
+//            final ProgressDialog progressDialog = new ProgressDialog(this);
+//            progressDialog.setTitle("업로드중...");
+//            progressDialog.show();
 
+            showDogDogLoadingDialog();
             //storage
             FirebaseStorage storage = FirebaseStorage.getInstance();
 
@@ -165,8 +178,9 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
 
                                     String downloadPhotoUrl=uri.toString();
                                     Log.e("Url",downloadPhotoUrl);
-                                    progressDialog.dismiss(); //업로드 진행 Dialog 상자 닫기
+//                                    progressDialog.dismiss(); //업로드 진행 Dialog 상자 닫기
 
+                                    hideDogDogLoadingDialog();
                                     sendImagData.setImgUrl(downloadPhotoUrl);
 
                                     selectedPictureService=new SelectedPictureService(SelectedPicture.this,sendImagData);
@@ -192,7 +206,8 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            progressDialog.dismiss();
+//                            progressDialog.dismiss();
+                            hideDogDogLoadingDialog();
                             Toast.makeText(getApplicationContext(), "업로드 실패!", Toast.LENGTH_SHORT).show();
                         }
                     })
@@ -203,7 +218,7 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
                             @SuppressWarnings("VisibleForTests") //이걸 넣어 줘야 아랫줄에 에러가 사라진다. 넌 누구냐?
                                     double progress = (100 * taskSnapshot.getBytesTransferred()) /  taskSnapshot.getTotalByteCount();
                             //dialog에 진행률을 퍼센트로 출력해 준다
-                            progressDialog.setMessage("Uploaded " + ((int) progress) + "% ...");
+//                            progressDialog.setMessage("Uploaded " + ((int) progress) + "% ...");
                         }
                     });
         } else {

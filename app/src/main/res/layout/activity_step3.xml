@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
         android:layout_marginEnd="5dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toStartOf="@+id/imageView15"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"

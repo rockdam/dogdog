@@ -48,23 +48,38 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/default_dogImage_home"
-                android:layout_width="54sp"
-                android:layout_height="54sp"
-
+            <FrameLayout
+                android:id="@+id/default_dogImageFrame_home"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="26dp"
                 android:layout_marginEnd="18dp"
-                android:background="?selectableItemBackground"
                 app:layout_constraintBottom_toBottomOf="@+id/dogInfo_home"
                 app:layout_constraintEnd_toStartOf="@+id/dogName_home"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.93"
+                >
+            <ImageView
+                android:id="@+id/default_dogImage_home"
+                android:layout_width="54sp"
+                android:layout_height="54sp"
+
+
+                android:background="?selectableItemBackground"
+
 
                 app:srcCompat="@drawable/default_profile_image" />
 
+           <ImageView
+               android:id="@+id/smallest_camera_home"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/smallest_camera"
+               android:layout_gravity="top|right"
+               ></ImageView>
+            </FrameLayout>
             <TextView
                 android:id="@+id/next_button_step"
                 android:layout_width="match_parent"
@@ -85,7 +100,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/default_dogImage_home" />
+                app:layout_constraintTop_toBottomOf="@+id/default_dogImageFrame_home" />
 
             <TextView
                 android:id="@+id/dogName_home"
@@ -97,8 +112,8 @@
                 android:textColor="@color/black"
                 android:textSize="19sp"
                 app:layout_constraintBottom_toTopOf="@+id/dogInfo_home"
-                app:layout_constraintStart_toEndOf="@+id/default_dogImage_home"
-                app:layout_constraintTop_toTopOf="@+id/default_dogImage_home" />
+                app:layout_constraintStart_toEndOf="@+id/default_dogImageFrame_home"
+                app:layout_constraintTop_toTopOf="@+id/default_dogImageFrame_home" />
 
             <TextView
                 android:id="@+id/dogInfo_home"
@@ -111,7 +126,7 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/next_button_step"
-                app:layout_constraintStart_toEndOf="@+id/default_dogImage_home" />
+                app:layout_constraintStart_toEndOf="@+id/default_dogImageFrame_home" />
 
             <ImageView
                 android:id="@+id/changeDogs_home"

@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
 
+    android:paddingBottom="24dp"
 
     android:layout_height="wrap_content"
     android:background="@drawable/dialog_window_background"
@@ -38,8 +39,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="19dp"
+        android:background="?selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="@+id/textView48"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView48"
@@ -49,7 +51,7 @@
         android:id="@+id/view13"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_margin="10dp"
+        android:layout_margin="16dp"
         android:layout_marginTop="9dp"
         android:background="@color/donutUnFinished"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,12 +60,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/adddogsRecyclerview"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="160dp"
 
         app:layout_constraintBottom_toTopOf="@+id/view14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view13"
+        app:layout_constraintVertical_bias="0.39999998"
         tools:itemCount="3"
         tools:listitem="@layout/item_layout_add_change" />
 
@@ -71,8 +74,7 @@
         android:id="@+id/view14"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_margin="10dp"
-        android:layout_marginBottom="16dp"
+        android:layout_margin="16dp"
         android:background="@color/donutUnFinished"
         app:layout_constraintBottom_toTopOf="@+id/textView49"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,12 +83,12 @@
 
     <ImageView
         android:id="@+id/addDosPlusButton"
-        android:layout_width="wrap_content"
-        android:background="?selectableItemBackground"
+        android:layout_width="30dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
+        android:layout_marginStart="36dp"
+        android:background="?selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="@+id/textView49"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/view14"
         app:layout_constraintTop_toTopOf="@+id/textView49"
         app:srcCompat="@drawable/add" />
 
@@ -94,9 +96,7 @@
         android:id="@+id/textView49"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="8dp"
         android:fontFamily="@font/spoqahansansregular"
         android:text="반려견 추가"
         android:textColor="#333333"
@@ -104,4 +104,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/addDosPlusButton"
         app:layout_constraintTop_toBottomOf="@+id/view14" />
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

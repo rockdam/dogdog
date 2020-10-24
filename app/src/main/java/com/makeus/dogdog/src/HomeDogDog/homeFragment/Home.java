@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.util.Log;
 import android.view.Display;
@@ -26,6 +27,7 @@ import com.makeus.dogdog.src.HomeDogDog.homeFragment.SelectedPicture.SelectedPic
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.interfaces.HomeRefreshView;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.models.Result;
 import com.makeus.dogdog.src.HomeDogDog.startWalking.StartWalking;
+import com.makeus.dogdog.src.LodingDialogFragment;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import static android.app.Activity.RESULT_OK;
@@ -39,8 +41,7 @@ import static com.makeus.dogdog.src.ApplicationClass.sSharedPreferences;
 public class Home extends Fragment implements View.OnClickListener, HomeRefreshView {
 
 
-
-    TextView mWelcomeMessage,mDogNickName,mDogInfo;
+    TextView mWelcomeMessage, mDogNickName, mDogInfo;
     ImageView mChangeDogs;
 
     //text라는 key에 저장된 값이 있는지 확인. 아무값도 들어있지 않으면 ""를 반환
@@ -48,7 +49,8 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    LodingDialogFragment lodingDialogFragment;
+    FragmentManager manager;
     ProgressBar mProgressbar;
     int mPercent = 0;
     double mTimeTickin;
@@ -63,6 +65,8 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
     ProgressBar mAimProgressBar;
     SharedPreferences mPrefs;
     HomeRefreshService mHomeRefreshService;
+    ImageView mSmallestCamera;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -96,9 +100,7 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
 
-
         }
-
 
 
     }
@@ -110,30 +112,33 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
         mPrefs = this.getActivity().getSharedPreferences("startwalking", Context.MODE_PRIVATE);
         View v = inflater.inflate(R.layout.fragment_home, container, false);
         mAimProgressBar = v.findViewById(R.id.progressbar_home);
-        defaultDogImage =v.findViewById(R.id.default_dogImage_home);
+        defaultDogImage = v.findViewById(R.id.default_dogImage_home);
+        mSmallestCamera = v.findViewById(R.id.smallest_camera_home);
         mPercentHome = v.findViewById(R.id.percent_home);
-        mWelcomeMessage=v.findViewById(R.id.welcomeMessage_main);
-        mDogInfo=v.findViewById(R.id.dogInfo_home);
-        mDogNickName=v.findViewById(R.id.dogName_home);
-        explainProgressbar=v.findViewById(R.id.explainProgressbar_home);
+        mWelcomeMessage = v.findViewById(R.id.welcomeMessage_main);
+        mDogInfo = v.findViewById(R.id.dogInfo_home);
+        mDogNickName = v.findViewById(R.id.dogName_home);
+        explainProgressbar = v.findViewById(R.id.explainProgressbar_home);
         //저장된 값을 불러오기 위해 같은 네임파일을 찾음.
+        lodingDialogFragment = LodingDialogFragment.newInstance();
+        manager = getActivity().getSupportFragmentManager();
+        mChangeDogs = v.findViewById(R.id.changeDogs_home);
+        mProgressbar = v.findViewById(R.id.progressbar_home);
 
-        mChangeDogs=v.findViewById(R.id.changeDogs_home);
-        mProgressbar=v.findViewById(R.id.progressbar_home);
-        mHomeRefreshService=new HomeRefreshService(this);
 
         mStartWalking = v.findViewById(R.id.next_button_step);
 
 
-
+// 강아지 로딩 파일 완성
         mAimProgressBar.setMax(1000);
         mStartWalking.setOnClickListener(this);
         mChangeDogs.setOnClickListener(this);
 
+
         defaultDogImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(getActivity(), SelectedPicture.class);
+                Intent intent = new Intent(getActivity(), SelectedPicture.class);
                 startActivity(intent);
             }
         });
@@ -147,13 +152,16 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
     public void onPause() {
         super.onPause();
 
-        Log.e("여기 되나요?","제발요");
+        Log.e("여기 되나요?", "제발요");
     }
 
 
     @Override
     public void onResume() {
         super.onResume();
+
+
+        mHomeRefreshService = new HomeRefreshService(this);
         mHomeRefreshService.refreshHomeView();
         //여기로 해야 기본 선택에서 해제되도 리프뤠시
 
@@ -163,7 +171,7 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
     @Override
     public void onStart() {
         super.onStart();
-        Log.e("여기 되나요?ㅇ","제발요");
+        Log.e("여기 되나요?ㅇ", "제발요");
 
 //        mPrefs.edit().clear().commit() ;
 //        얘를 자정 지나면 발동 되도록 .;
@@ -204,19 +212,19 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
 //                }
 
 
-                intent.putExtra("dogIdx",mDogIdx);
+                intent.putExtra("dogIdx", mDogIdx);
 
                 startActivity(intent);
 
                 getActivity().finish();
                 break;
 
-            case R.id.changeDogs_home :
-                Intent changeDogs =new Intent(getActivity(), AddChangeDogs.class);
+            case R.id.changeDogs_home:
+                Intent changeDogs = new Intent(getActivity(), AddChangeDogs.class);
 
-                changeDogs.putExtra("dogIdx",mDogIdx);
+                changeDogs.putExtra("dogIdx", mDogIdx);
 
-                startActivityForResult(changeDogs,0);
+                startActivityForResult(changeDogs, 0);
         }
 
     }
@@ -229,11 +237,11 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
             switch (requestCode) {
 
                 case 0:
-                    String url =data.getStringExtra("Url");
+                    String url = data.getStringExtra("Url");
 
-
+                    mHomeRefreshService.refreshHomeView();
                     // MainActivity 에서 요청할 때 보낸 요청 코드 (3000)
-                    Log.e("Url",""+ url);
+                    Log.e("Url", "" + url);
 
                     break;
             }
@@ -241,70 +249,91 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
         }
 
     }
+
     @Override
     public void refresh(Result result) {
 
 
-        String nickname =result.getNickName();
-        String formattedNickname =getString(R.string.welcome_message,nickname);
+        String nickname = result.getNickName();
+        String formattedNickname = getString(R.string.welcome_message, nickname);
         String dogInfo;
         //이 코드가 그동안 어떻게 돌아간거지??? 남아라고 써있었는데 분명 .
-       if(result.getDogInfo().getGender().equals("male"))
-        {
-            dogInfo = result.getDogInfo().getAge()+ "살 /" +"남아"+"/"+result.getDogInfo().getBreed();
+        if (result.getDogInfo().getGender().equals("male")) {
+            dogInfo = result.getDogInfo().getAge() + "살 /" + "남아" + "/" + result.getDogInfo().getBreed();
 
-        }else{
-            dogInfo = result.getDogInfo().getAge()+ "살 /" +"여아"+"/"+result.getDogInfo().getBreed();
+        } else {
+            dogInfo = result.getDogInfo().getAge() + "살 /" + "여아" + "/" + result.getDogInfo().getBreed();
 
         }
-        mPercent=result.getDogInfo().getAcheivedGoal();
+        mPercent = result.getDogInfo().getAcheivedGoal();
         mWelcomeMessage.setText(formattedNickname);
-
-
 
 
         mDogNickName.setText(result.getDogInfo().getDogName());
         mDogInfo.setText(dogInfo);
 
-        mTime= result.getDogInfo().getTodayTime();
-        if(mTime>0) {
+        mTime = result.getDogInfo().getTodayTime();
+        if (mTime > 0) {
             mTimeTickin = ((double) mTime / (18));
 
             mStartWalking.setBackgroundResource(R.drawable.shape);
             mStartWalking.setText("추가 산책하기");
             mStartWalking.setTextColor(ContextCompat.getColor(getContext(), R.color.colorDogDogBlue));
-        }
-        else{
-            mTimeTickin=0;
+        } else {
+            mTimeTickin = 0;
 
         }
         mAimProgressBar.setProgress((int) (mTimeTickin * (double) 10));
-        if(mPercent==-1) {
+        if (mPercent == -1) {
             mPercentHome.setText(String.valueOf(0));
             explainProgressbar.setText("지금 바로 산책을 시작해보세요!");
-        }else if(mPercent>0 || mPercent<100){
+        } else if (mPercent > 0 || mPercent < 100) {
             mPercentHome.setText(String.valueOf(mPercent));
             explainProgressbar.setText("목표 산책량까지 좀 더 힘내봐요!");
-        }else if(mPercent>=100)
-        {
+        } else if (mPercent >= 100) {
             mPercentHome.setText(String.valueOf(mPercent));
             explainProgressbar.setText("일일 목표 산책량을 달성했어요!");
         }
 
-        Log.e("dogUrl",result.getDogInfo().getDogImg());
-        if(result.getDogInfo().getDogImg()!=null) {
+        Log.e("dogUrl", result.getDogInfo().getDogImg());
+        if (result.getDogInfo().getDogImg() != null) {
+
+
+            if (!result.getDogInfo().getDogImg().equals("https://firebasestorage.googleapis.com/v0/b/dogdog-1d2f8.appspot.com/o/default_profile_image.png?alt=media&token=9052b50b-dd25-46b1-ba22-f1581a1231f5")) {
+
+                mSmallestCamera.setVisibility(View.INVISIBLE);
+            }else{
+                mSmallestCamera.setVisibility(View.VISIBLE);
+            }
+
+
             Glide.with(this)
                     .load(result.getDogInfo().getDogImg())
                     .circleCrop()
+
                     .override(54, 54) // ex) override(600, 200)
                     .into(defaultDogImage);
 //            https://stackoverflow.com/questions/25278821/how-to-round-an-image-with-glide-library
             mDogIdx = result.getDogInfo().getDogIdx();
         }
-        SharedPreferences.Editor editor=sSharedPreferences.edit();
-        editor.putInt("dogIdx",mDogIdx);
+        SharedPreferences.Editor editor = sSharedPreferences.edit();
+        editor.putInt("dogIdx", mDogIdx);
 
         editor.apply();
+
+
+    }
+
+    public void showDogDogLoadingDialog() {
+        if (!lodingDialogFragment.isAdded())
+            lodingDialogFragment.show(manager, "loader");
+    }
+
+    public void hideDogDogLoadingDialog() {
+        if (!lodingDialogFragment.isAdded()) {
+
+            lodingDialogFragment.dismissAllowingStateLoss();
+        }
 
     }
 }

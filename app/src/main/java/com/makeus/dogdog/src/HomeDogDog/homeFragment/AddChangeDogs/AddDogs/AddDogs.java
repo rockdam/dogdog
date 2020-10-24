@@ -55,7 +55,7 @@ public class AddDogs extends BaseActivity implements UpdateDogView {
         weightEdt = findViewById(R.id.weight_addDogs);
         mMale = findViewById(R.id.male_addDogs);
         mFemale = findViewById(R.id.female_addDogs);
-        mCancel=findViewById(R.id.cancel_adddogs);
+        mCancel = findViewById(R.id.cancel_adddogs);
 
         mRgGender = findViewById(R.id.rgGender_addDogs);
         mYes = findViewById(R.id.yes_addDogs);
@@ -119,6 +119,7 @@ public class AddDogs extends BaseActivity implements UpdateDogView {
                     addDogsInfo.setWeight(mWeight);
                     addDogsInfo.setBreedIdx(mBreedsIdx);
                     addDogsInfo.setIsDisplayed(mSettingDefaultProfile);
+                    showDogDogLoadingDialog();
                     mAddDogsService.addDogService(addDogsInfo);
                 }
             }
@@ -165,14 +166,14 @@ public class AddDogs extends BaseActivity implements UpdateDogView {
             returnValue = true;
         } else {
 
-            String checkdf=check.substring(0, idx);
+            String checkdf = check.substring(0, idx);
 
 
             if (isValidKg(check.substring(0, idx))) {
                 mWeight = Float.parseFloat(check.substring(0, idx));
-                returnValue=false;
-            }else{
-                returnValue=true;
+                returnValue = false;
+            } else {
+                returnValue = true;
 
             }
         }
@@ -369,6 +370,7 @@ public class AddDogs extends BaseActivity implements UpdateDogView {
     public void refresh(boolean isSuccess) {
         if (isSuccess) {
             finish();
+            hideDogDogLoadingDialog();
         } else {
 
             Toast.makeText(getBaseContext(), "빈 공간을 채워주세요", Toast.LENGTH_SHORT);

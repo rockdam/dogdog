@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.makeus.dogdog.R;
 
@@ -21,7 +22,8 @@ import com.makeus.dogdog.R;
 public class BaseActivity extends AppCompatActivity { // 얘가 근본이 되서 한다.
     public ProgressDialog mProgressDialog;
 
-
+    LodingDialogFragment lodingDialogFragment;
+    FragmentManager manager;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +38,26 @@ public class BaseActivity extends AppCompatActivity { // 얘가 근본이 되서
 
 
 
+        lodingDialogFragment=LodingDialogFragment.newInstance();
+        manager=this.getSupportFragmentManager() ;
+        //로딩 다이얼로그
+
 
     }
+    public void showDogDogLoadingDialog()
+    {
+        if(!lodingDialogFragment.isAdded())
+        lodingDialogFragment.show(manager,"loader");
+    }
+    public void hideDogDogLoadingDialog()
+    {
+        if(lodingDialogFragment.isAdded())
+        {
 
+            lodingDialogFragment.dismissAllowingStateLoss();
+        }
+
+    }
 
 
     public void showProgressDialog() {

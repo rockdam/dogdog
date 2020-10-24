@@ -111,6 +111,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     mLoginBody.setEmail(mInputEmail.getText().toString());
                     mLoginBody.setPassword(mInputPassword.getText().toString());
                     loginService=new LoginService(this,mLoginBody);
+                    showDogDogLoadingDialog();
                     loginService.startLogin();
                 }
 
@@ -140,7 +141,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
             startActivity(intent);
+            hideDogDogLoadingDialog();
             finish();
+
         }else{
             Toast.makeText(this, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show();
 

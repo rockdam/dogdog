@@ -213,8 +213,9 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
         if (filePath != null) {
             //업로드 진행 Dialog 보이기
             final ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setTitle("업로드중...");
-            progressDialog.show();
+            showDogDogLoadingDialog();
+//            progressDialog.setTitle("업로드중...");
+//            progressDialog.show();
 
             //storage
             FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -242,7 +243,8 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
 
                                     downloadPhotoUrl = uri.toString();
                                     Log.e("Url", downloadPhotoUrl);
-                                    progressDialog.dismiss(); //업로드 진행 Dialog 상자 닫기
+//                                    progressDialog.dismiss(); //업로드 진행 Dialog 상자 닫기
+                                    hideDogDogLoadingDialog();
                                     wysiwyg.getContent().insertImage(downloadPhotoUrl, "alt"); // 파이어베이스에서 받은 URL 보여주기
 //                                    sendImagData.setImgUrl(downloadPhotoUrl);
 //
@@ -264,7 +266,8 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            progressDialog.dismiss();
+//                            progressDialog.dismiss();
+                            hideDogDogLoadingDialog();
                             Toast.makeText(getApplicationContext(), "업로드 실패!", Toast.LENGTH_SHORT).show();
                         }
                     })
@@ -275,7 +278,7 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
                             @SuppressWarnings("VisibleForTests") //이걸 넣어 줘야 아랫줄에 에러가 사라진다. 넌 누구냐?
                                     double progress = (100 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
                             //dialog에 진행률을 퍼센트로 출력해 준다
-                            progressDialog.setMessage("Uploaded " + ((int) progress) + "% ...");
+//                            progressDialog.setMessage("Uploaded " + ((int) progress) + "% ...");
                         }
                     });
         } else {
