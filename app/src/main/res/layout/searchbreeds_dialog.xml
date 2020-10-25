@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/dialog_window_background"
     >
 
     <TextView
@@ -10,7 +11,10 @@
         android:layout_height="wrap_content"
         android:text="견종 선택"
         android:textSize="18sp"
-        android:layout_marginLeft="16sp"
+        android:gravity="center_vertical"
+        android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+        android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+        android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:fontFamily="@font/spoqahansansbold"
         ></TextView>
     <View
