@@ -8,52 +8,51 @@
 
 
     <TextView
-        android:layout_marginTop="76dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="34dp"
         android:text="랭킹"
         android:textColor="@color/black"
-        android:textStyle="bold"
         android:textSize="32dp"
-        >
+        android:textStyle="bold">
 
 
     </TextView>
-    <com.google.android.material.tabs.TabLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+<!--    <com.google.android.material.tabs.TabLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="14dp"-->
 
-        app:tabIndicatorColor="@color/colorDogDogBlue"
-        app:tabSelectedTextColor="@color/colorDogDogBlue"
-        app:tabIndicatorFullWidth="false"
-        app:tabPaddingEnd="10dp"
-        app:tabPaddingStart="10dp"
-        app:tabTextColor="@color/bottom_navigation_item_color"
-        >
+<!--        app:tabIndicatorColor="@color/colorDogDogBlue"-->
+<!--        app:tabSelectedTextColor="@color/colorDogDogBlue"-->
+<!--        app:tabIndicatorFullWidth="false"-->
+<!--        app:tabPaddingEnd="10dp"-->
+<!--        app:tabPaddingStart="10dp"-->
+<!--        app:tabTextColor="@color/bottom_navigation_item_color"-->
+<!--        >-->
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
 
 
-            android:text="진행 중인 랭킹보기" />
+<!--            android:text="진행 중인 랭킹보기" />-->
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
 
-            android:text="지난 랭킹보기" />
+<!--            android:text="지난 랭킹보기" />-->
 
-    </com.google.android.material.tabs.TabLayout>
+<!--    </com.google.android.material.tabs.TabLayout>-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView8"
+            android:id="@+id/winner_dog_img_ranking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="63dp"
@@ -71,7 +70,7 @@
             app:layout_constraintEnd_toStartOf="@+id/imageView50"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView8"
+            app:layout_constraintTop_toTopOf="@+id/winner_dog_img_ranking"
             app:srcCompat="@drawable/group_6" />
 
         <ImageView
@@ -82,7 +81,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/imageView41"
-            app:layout_constraintTop_toTopOf="@+id/imageView8"
+            app:layout_constraintTop_toTopOf="@+id/winner_dog_img_ranking"
             app:srcCompat="@drawable/leaf_right" />
 
         <ImageView
@@ -108,13 +107,13 @@
             android:text="1등"
             android:textColor="@color/donutFinished"
             android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/textView36"
+            app:layout_constraintEnd_toStartOf="@+id/winner_dog_name_ranking"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/imageView51"
             app:layout_constraintTop_toBottomOf="@+id/imageView41" />
 
         <TextView
-            android:id="@+id/textView36"
+            android:id="@+id/winner_dog_name_ranking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="34dp"
@@ -127,12 +126,12 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView50" />
 
         <TextView
-            android:id="@+id/textView37"
+            android:id="@+id/winner_dog_completed_num_ranking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:fontFamily="@font/spoqahansansregular"
-            android:text="산책횟수"
+            android:text="달성 횟수"
             android:textColor="@color/BorderGray"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/view7"
@@ -147,8 +146,8 @@
             android:fontFamily="@font/spoqahansansbold"
             android:textSize="18sp"
             android:text="10회"
-            app:layout_constraintStart_toStartOf="@+id/textView37"
-            app:layout_constraintTop_toBottomOf="@+id/textView37" />
+            app:layout_constraintStart_toStartOf="@+id/winner_dog_completed_num_ranking"
+            app:layout_constraintTop_toBottomOf="@+id/winner_dog_completed_num_ranking" />
 
         <TextView
             android:id="@+id/textView39"
@@ -164,7 +163,7 @@
             app:layout_constraintTop_toTopOf="@+id/view7" />
 
         <TextView
-            android:id="@+id/textView40"
+            android:id="@+id/winner_dog_success_ratio_ranking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="105dp"
@@ -179,11 +178,12 @@
             android:id="@+id/textView41"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
             android:fontFamily="@font/spoqahansansbold"
             android:text="등수"
+            android:textColor="#999999"
             app:layout_constraintBottom_toTopOf="@+id/recyclerView"
             app:layout_constraintEnd_toStartOf="@+id/textView42"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -191,33 +191,33 @@
             android:id="@+id/textView42"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
             android:fontFamily="@font/spoqahansansbold"
-            android:text="반려견이름"
+            android:text="반려견 이름"
+            android:textColor="#999999"
             app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-            app:layout_constraintEnd_toStartOf="@+id/textView43"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/textView41" />
 
         <TextView
             android:id="@+id/textView43"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
             android:fontFamily="@font/spoqahansansbold"
-            android:text="산책횟수"
+            android:text="달성 횟수"
+            android:textColor="#999999"
             app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-            app:layout_constraintEnd_toStartOf="@+id/textView44"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/textView42" />
 
         <TextView
             android:id="@+id/textView44"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="64dp"
             android:fontFamily="@font/spoqahansansbold"
             android:text="성공률"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            android:textColor="#999999"
             app:layout_constraintStart_toEndOf="@+id/textView43"
             app:layout_constraintTop_toBottomOf="@+id/view7" />
 
@@ -234,6 +234,7 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            tools:listitem="@layout/item_layout_ranking"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView44" />
 

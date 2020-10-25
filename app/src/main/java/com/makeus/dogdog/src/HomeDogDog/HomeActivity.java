@@ -57,14 +57,14 @@ public class HomeActivity extends BaseActivity {
                         mBottomNavigationView.getMenu().findItem(R.id.tracking_note).setChecked(true);
                         mFragmentTransaction.replace(R.id.FrameChanger, mTrackingNote).commitAllowingStateLoss();
                         break;
-//                    case R.id.ranking:
-//                        mBottomNavigationView.getMenu().findItem(R.id.ranking).setChecked(true);
-//                        mFragmentTransaction.replace(R.id.FrameChanger, mRanking).commitAllowingStateLoss();
-//                        break;
-////                    case R.id.mypage:
-//                        mBottomNavigationView.getMenu().findItem(R.id.mypage).setChecked(true);
-//                        mFragmentTransaction.replace(R.id.FrameChanger, mMypage).commitAllowingStateLoss();
-//                        break;
+                    case R.id.ranking:
+                        mBottomNavigationView.getMenu().findItem(R.id.ranking).setChecked(true);
+                        mFragmentTransaction.replace(R.id.FrameChanger, mRanking).commitAllowingStateLoss();
+                        break;
+                    case R.id.mypage:
+                        mBottomNavigationView.getMenu().findItem(R.id.mypage).setChecked(true);
+                        mFragmentTransaction.replace(R.id.FrameChanger, mMypage).commitAllowingStateLoss();
+                        break;
 
 
                 }

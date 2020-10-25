@@ -162,6 +162,7 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
 
 
         mHomeRefreshService = new HomeRefreshService(this);
+        showDogDogLoadingDialog();
         mHomeRefreshService.refreshHomeView();
         //여기로 해야 기본 선택에서 해제되도 리프뤠시
 
@@ -320,6 +321,7 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
         editor.putInt("dogIdx", mDogIdx);
 
         editor.apply();
+        hideDogDogLoadingDialog();
 
 
     }
@@ -330,7 +332,7 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
     }
 
     public void hideDogDogLoadingDialog() {
-        if (!lodingDialogFragment.isAdded()) {
+        if (lodingDialogFragment.isAdded()) {
 
             lodingDialogFragment.dismissAllowingStateLoss();
         }

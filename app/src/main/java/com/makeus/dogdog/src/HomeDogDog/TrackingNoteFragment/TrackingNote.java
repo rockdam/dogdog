@@ -152,8 +152,12 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
         if(isFirst) {
 
 //            showDogDogLoadingDialog();
+
+            showDogDogLoadingDialog();
             mTrackingNoteService = new TrackingNoteService(this, initialQueryStringDate());
             mTrackingNoteService.refreshUpdateWalkingMonth(); // 월에 일정 있으면 점 표시 .
+
+
 
             mTrackingNoteService = new TrackingNoteService(TrackingNote.this, createQueryStringDayDate(mYear, mMonth, mDay));
             mTrackingNoteService.refreshUpdateWalkingDay();
@@ -173,8 +177,10 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
             public void onDaySelect(int year, int month, int day) { //일별 조회 api
 
 
+
                 mTrackingNoteService = new TrackingNoteService(TrackingNote.this, createQueryStringDayDate(year, month, day));
                 mTrackingNoteService.refreshUpdateWalkingDay();
+                showDogDogLoadingDialog();
                 mHistoryService = new TrackingNoteService(TrackingNote.this, createQueryStringDayDate(year, month, day));
                 mHistoryService.initializeWalkingDay();
                 // 얜 히스토리
@@ -351,6 +357,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
             }
 
+            hideDogDogLoadingDialog();
         }
     }
 
@@ -387,13 +394,17 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
 
                     startActivityForResult(intent,0);
+
                 }
+
             });
+            hideDogDogLoadingDialog();
         } else {
 
             mWebView.setVisibility(View.INVISIBLE);
             mAddNote.setVisibility(View.VISIBLE);
             updateTrackingNote.setVisibility(View.INVISIBLE);
+            hideDogDogLoadingDialog();
         }
     }
 
@@ -444,7 +455,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
     }
     public void hideDogDogLoadingDialog()
     {
-        if(!lodingDialogFragment.isAdded())
+        if(lodingDialogFragment.isAdded())
         {
 
             lodingDialogFragment.dismissAllowingStateLoss();

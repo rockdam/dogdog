@@ -6,7 +6,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
 
     android:fillViewport="true"
     android:scrollbars="none"
@@ -21,7 +21,7 @@
 
     android:layout_width="match_parent"
     android:background="@color/background_white"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
 
     <View
@@ -97,7 +97,7 @@
                 app:layout_constraintStart_toEndOf="@+id/default_dogImage_home" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/goal_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="31dp"
@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 android:layout_marginBottom="1dp"
-                app:layout_constraintBottom_toTopOf="@+id/textView9"
+                app:layout_constraintBottom_toTopOf="@+id/goal_mypage"
                 app:layout_constraintStart_toEndOf="@+id/textView8"
                 app:srcCompat="@drawable/arrow_small" />
 
@@ -127,8 +127,8 @@
                 android:fontFamily="@font/spoqahansansbold"
                 android:text="목표"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView9"
-                app:layout_constraintStart_toStartOf="@+id/textView9"
+                app:layout_constraintBottom_toBottomOf="@+id/goal_mypage"
+                app:layout_constraintStart_toStartOf="@+id/goal_mypage"
                 app:layout_constraintTop_toBottomOf="@+id/default_dogImage_home" />
 
             <View
@@ -189,6 +189,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
             app:layout_constraintEnd_toStartOf="@+id/view"
             app:layout_constraintStart_toStartOf="@+id/view">
 
@@ -216,7 +217,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/walkingcnt_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/spoqahansansbold"
@@ -232,14 +233,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
-                android:text="성공률 평균"
+                android:text="우리 강아지 순위"
                 android:textColor="@color/BorderGray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/view"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView33"
+                android:id="@+id/myranking_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/spoqahansansbold"
@@ -287,132 +288,132 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_setting" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="218dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goal" >
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="218dp"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        app:cardCornerRadius="10dp"-->
+<!--        app:cardElevation="5dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/goal" >-->
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
 
 
-            <TextView
-                android:id="@+id/textView34"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="26dp"
-                android:layout_marginTop="19dp"
-                android:fontFamily="@font/spoqahansansbold"
-                android:text="획득뱃지"
-                android:textSize="19sp"
-                app:layout_constraintBottom_toTopOf="@+id/imageView42"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView34"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="26dp"-->
+<!--                android:layout_marginTop="19dp"-->
+<!--                android:fontFamily="@font/spoqahansansbold"-->
+<!--                android:text="획득뱃지"-->
+<!--                android:textSize="19sp"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/imageView42"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
-            <ImageView
-                android:id="@+id/imageView42"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="12dp"
-                app:layout_constraintBottom_toTopOf="@+id/imageView46"
-                app:layout_constraintEnd_toStartOf="@+id/imageView43"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView34"
-                app:srcCompat="@drawable/custom_oval" />
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView42"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginBottom="12dp"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/imageView46"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/imageView43"-->
+<!--                app:layout_constraintHorizontal_bias="0.5"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView34"-->
+<!--                app:srcCompat="@drawable/custom_oval" />-->
 
-            <ImageView
-                android:id="@+id/imageView43"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:layout_constraintBottom_toTopOf="@+id/imageView47"
-                app:layout_constraintEnd_toStartOf="@+id/imageView44"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/imageView42"
-                app:layout_constraintTop_toTopOf="@+id/imageView42"
-                app:srcCompat="@drawable/custom_oval" />
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView43"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="12dp"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/imageView47"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/imageView44"-->
+<!--                app:layout_constraintHorizontal_bias="0.5"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/imageView42"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/imageView42"-->
+<!--                app:srcCompat="@drawable/custom_oval" />-->
 
-            <ImageView
-                android:id="@+id/imageView44"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:layout_constraintBottom_toTopOf="@+id/imageView48"
-                app:layout_constraintEnd_toStartOf="@+id/imageView45"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/imageView43"
-                app:layout_constraintTop_toTopOf="@+id/imageView43"
-                app:srcCompat="@drawable/custom_oval" />
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView44"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="12dp"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/imageView48"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/imageView45"-->
+<!--                app:layout_constraintHorizontal_bias="0.5"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/imageView43"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/imageView43"-->
+<!--                app:srcCompat="@drawable/custom_oval" />-->
 
-            <ImageView
-                android:id="@+id/imageView45"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:layout_constraintBottom_toTopOf="@+id/imageView49"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/imageView44"
-                app:layout_constraintTop_toTopOf="@+id/imageView44"
-                app:srcCompat="@drawable/custom_oval" />
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView45"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="12dp"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/imageView49"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.5"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/imageView44"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/imageView44"-->
+<!--                app:srcCompat="@drawable/custom_oval" />-->
 
-            <ImageView
-                android:id="@+id/imageView46"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView47"
-                app:layout_constraintEnd_toStartOf="@+id/imageView47"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView42"
-                app:srcCompat="@drawable/custom_oval" />
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView46"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/imageView47"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/imageView47"-->
+<!--                app:layout_constraintHorizontal_bias="0.5"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/imageView42"-->
+<!--                app:srcCompat="@drawable/custom_oval" />-->
 
-            <ImageView
-                android:id="@+id/imageView47"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView48"
-                app:layout_constraintEnd_toStartOf="@+id/imageView48"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/imageView46"
-                app:layout_constraintTop_toBottomOf="@+id/imageView43"
-                app:srcCompat="@drawable/custom_oval" />
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView47"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/imageView48"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/imageView48"-->
+<!--                app:layout_constraintHorizontal_bias="0.5"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/imageView46"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/imageView43"-->
+<!--                app:srcCompat="@drawable/custom_oval" />-->
 
-            <ImageView
-                android:id="@+id/imageView48"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView49"
-                app:layout_constraintEnd_toStartOf="@+id/imageView49"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/imageView47"
-                app:layout_constraintTop_toBottomOf="@+id/imageView44"
-                app:srcCompat="@drawable/custom_oval" />
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView48"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/imageView49"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/imageView49"-->
+<!--                app:layout_constraintHorizontal_bias="0.5"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/imageView47"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/imageView44"-->
+<!--                app:srcCompat="@drawable/custom_oval" />-->
 
-            <ImageView
-                android:id="@+id/imageView49"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="41dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/imageView48"
-                app:layout_constraintTop_toBottomOf="@+id/imageView45"
-                app:srcCompat="@drawable/custom_oval" />
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView49"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="41dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.5"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/imageView48"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/imageView45"-->
+<!--                app:srcCompat="@drawable/custom_oval" />-->
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--    </androidx.cardview.widget.CardView>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
