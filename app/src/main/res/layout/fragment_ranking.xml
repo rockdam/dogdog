@@ -242,10 +242,12 @@
             android:id="@+id/recyclerView_ranking"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintHorizontal_bias="0.41"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view6"
+            app:layout_constraintVertical_bias="0.0"
             tools:itemCount="5"
             tools:listitem="@layout/item_layout_ranking" />
 
@@ -289,3 +291,4 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
+<!--https://stackoverflow.com/questions/45397199/android-recyclerview-in-constraintlayout-doesnt-scroll-->
