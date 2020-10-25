@@ -28,5 +28,4 @@ public class RankingResult {
     public void setMyRanking(MyRanking myRanking) {
         this.myRanking = myRanking;
     }
-
 }

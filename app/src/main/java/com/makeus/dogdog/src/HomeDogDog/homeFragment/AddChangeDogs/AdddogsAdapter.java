@@ -2,7 +2,6 @@ package com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,7 +79,7 @@ public class AdddogsAdapter  extends RecyclerView.Adapter<AdddogsAdapter.ItemVie
             super(itemView);
             dogName=itemView.findViewById(R.id.addchangeName_itemlayout);
             isCheckedImage=itemView.findViewById(R.id.isCheck_itemlayout);
-            profileImage=itemView.findViewById(R.id.profileImage);
+            profileImage=itemView.findViewById(R.id.profileImage_itemlayout);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {

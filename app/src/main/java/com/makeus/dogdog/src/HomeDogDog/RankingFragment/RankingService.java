@@ -51,7 +51,7 @@ public class RankingService {
                 if(response.code() ==200)
                 {
 
-                    mRankingView.refreshRanking(mRankingResponse.getResult());
+                    mRankingView.refreshRanking(mRankingResponse);
 
 
                 }// 자동로그인 안되면 로그인 해야지 .

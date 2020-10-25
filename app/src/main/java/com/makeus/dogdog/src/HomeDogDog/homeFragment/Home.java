@@ -9,14 +9,11 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.util.Log;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -34,7 +31,6 @@ import com.makeus.dogdog.src.HomeDogDog.homeFragment.interfaces.HomeRefreshView;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.models.Result;
 import com.makeus.dogdog.src.HomeDogDog.startWalking.StartWalking;
 import com.makeus.dogdog.src.LodingDialogFragment;
-import com.theartofdev.edmodo.cropper.CropImageView;
 
 import static android.app.Activity.RESULT_OK;
 import static com.makeus.dogdog.src.ApplicationClass.sSharedPreferences;
@@ -117,7 +113,7 @@ public class Home extends BaseFragment implements View.OnClickListener, HomeRefr
         mPrefs = this.getActivity().getSharedPreferences("startwalking", Context.MODE_PRIVATE);
         View v = inflater.inflate(R.layout.fragment_home, container, false);
         mAimProgressBar = v.findViewById(R.id.progressbar_home);
-        defaultDogImage = v.findViewById(R.id.default_dogImage_home);
+        defaultDogImage = v.findViewById(R.id.default_dogImage_mypage);
         mSmallestCamera = v.findViewById(R.id.smallest_camera_home);
         mPercentHome = v.findViewById(R.id.percent_home);
         mWelcomeMessage = v.findViewById(R.id.welcomeMessage_main);
@@ -317,7 +313,7 @@ public class Home extends BaseFragment implements View.OnClickListener, HomeRefr
             Glide.with(this)
                     .load(result.getDogInfo().getDogImg())
                     .circleCrop()
-
+                    .override(54, 54) // ex) override(600, 200)
                     .addListener(new RequestListener<Drawable>() {
                         @Override
                         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -332,7 +328,7 @@ public class Home extends BaseFragment implements View.OnClickListener, HomeRefr
                             return false;
                         }
                     })
-                    .override(54, 54) // ex) override(600, 200)
+
                     .into(defaultDogImage);
 //            https://stackoverflow.com/questions/25278821/how-to-round-an-image-with-glide-library
             mDogIdx = result.getDogInfo().getDogIdx();
@@ -341,7 +337,6 @@ public class Home extends BaseFragment implements View.OnClickListener, HomeRefr
         editor.putInt("dogIdx", mDogIdx);
 
         editor.apply();
-        hideDogDogLoadingDialog();
 
 
     }

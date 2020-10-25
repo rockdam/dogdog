@@ -8,16 +8,18 @@
 
 
     <TextView
-        android:id="@+id/textView31"
+        android:id="@+id/walkingcnt_itemlayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="56dp"
         android:layout_marginBottom="12dp"
         android:fontFamily="@font/spoqahansansregular"
         android:text="5회"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView32"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,58 +27,65 @@
         android:id="@+id/textView32"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="12dp"
         android:fontFamily="@font/spoqahansansregular"
         android:text="80%"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView31"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/walkingcnt_itemlayout"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
+        android:paddingLeft="10dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintEnd_toStartOf="@+id/walkingcnt_itemlayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/rank_itemlayout"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/profileImage"
+            android:id="@+id/profileImage_itemlayout"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginRight="16dp"
+
+            android:layout_marginRight="4dp"
             android:src="@drawable/default_profile_image" />
 
         <TextView
-            android:id="@+id/textView47"
+            android:id="@+id/name_itemlayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/spoqahansansbold"
-            android:textSize="16sp"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="28dp"
-            android:text="짱절미" />
+            android:fontFamily="@font/spoqahansansbold"
+            android:text="짱절미"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/rank_itemlayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
 
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/spoqahansansbold"
         android:text="5"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

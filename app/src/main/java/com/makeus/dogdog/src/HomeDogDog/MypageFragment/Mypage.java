@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
@@ -23,7 +21,6 @@ import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseFragment;
 import com.makeus.dogdog.src.HomeDogDog.MypageFragment.interfaces.MypageView;
 import com.makeus.dogdog.src.HomeDogDog.MypageFragment.models.MyPageRanking;
-import com.makeus.dogdog.src.LodingDialogFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +36,8 @@ public class Mypage extends BaseFragment implements MypageView {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+
 
     ImageView dogImage;
     TextView dogInfo, dogName, dogGoal, dogwalkingcnt, myranking;
@@ -79,7 +78,7 @@ public class Mypage extends BaseFragment implements MypageView {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_mypage, container, false);
-        dogImage = v.findViewById(R.id.default_dogImage_home);
+        dogImage = v.findViewById(R.id.default_dogImage_mypage);
         dogName = v.findViewById(R.id.dogName_home);
         dogInfo = v.findViewById(R.id.dogInfo_home);
         dogGoal = v.findViewById(R.id.goal_mypage);
@@ -97,10 +96,11 @@ public class Mypage extends BaseFragment implements MypageView {
     public void refresh(MyPageRanking myPageRanking) {
 
 
-        showDogDogLoadingDialog();
+//        showDogDogLoadingDialog();
         Glide.with(this)
                 .load(myPageRanking.getDogImg())
                 .circleCrop()
+                .override(54, 54) // ex) override(600, 200)
                 .addListener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -118,7 +118,7 @@ public class Mypage extends BaseFragment implements MypageView {
 
                     }
                 })//
-                .override(54, 54) // ex) override(600, 200)
+
                 .into(dogImage);
         dogName.setText(myPageRanking.getDogName());
 
@@ -128,7 +128,7 @@ public class Mypage extends BaseFragment implements MypageView {
         if(myPageRanking.getMyRanking().equals("-1"))
         {
 
-            myranking.setText("아직 산책한 횟수가 없습니다 :)");
+            myranking.setText("완주 기록이 없어요.");
 
         }else{
 

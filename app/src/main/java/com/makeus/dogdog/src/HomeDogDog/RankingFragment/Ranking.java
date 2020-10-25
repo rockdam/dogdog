@@ -3,6 +3,8 @@ package com.makeus.dogdog.src.HomeDogDog.RankingFragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +15,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.HomeDogDog.RankingFragment.interfaces.RankingView;
-import com.makeus.dogdog.src.HomeDogDog.RankingFragment.models.RankingResult;
+import com.makeus.dogdog.src.HomeDogDog.RankingFragment.models.RankingData;
+import com.makeus.dogdog.src.HomeDogDog.RankingFragment.models.RankingResponse;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,9 +31,13 @@ public class Ranking extends Fragment implements RankingView {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    ArrayList<RankingData> rankingRecyclerViewData;
+    RecyclerView rankingRecyclerView;
+    AdapterRanking mAdapterRanking;
     ImageView winnerImage;
-    TextView winnercompletedNum, winnerSuccessRatio, winnerName;
+    TextView winnercompletedNum, winnerSuccessRatio, winnerName,walkingcount;
+
+
 
     RankingService rankingService;
     // TODO: Rename and change types of parameters
@@ -75,8 +84,23 @@ public class Ranking extends Fragment implements RankingView {
         winnercompletedNum = v.findViewById(R.id.winner_dog_completed_num_ranking);
         winnerName = v.findViewById(R.id.winner_dog_name_ranking);
         winnerSuccessRatio = v.findViewById(R.id.winner_dog_success_ratio_ranking);
+        rankingRecyclerView=v.findViewById(R.id.recyclerView_ranking);
+        walkingcount=v.findViewById(R.id.walkingcount_Ranking);
+        rankingRecyclerViewData=new ArrayList<>();
+        RecyclerView.LayoutManager layoutManager =new LinearLayoutManager(getContext());
+        rankingRecyclerView.setLayoutManager(layoutManager);
+
+
+        mAdapterRanking=new AdapterRanking(getContext(),rankingRecyclerViewData);
+
+
+        rankingRecyclerView.setAdapter(mAdapterRanking);
+
+
         rankingService=new RankingService(this);
         rankingService.refreshRankingView();
+
+
 
 
 
@@ -84,16 +108,19 @@ public class Ranking extends Fragment implements RankingView {
     }
 
     @Override
-    public void refreshRanking(RankingResult rankingResult) {
-        if(rankingResult!=null) {
-            Glide.with(this)
-                    .load(rankingResult.getRanking().get(0))
-                    .circleCrop()
-                    .override(54, 54) // ex) override(600, 200)
-                    .into(winnerImage);
-            winnerName.setText(rankingResult.getRanking().get(0).getDogName());
+    public void refreshRanking(RankingResponse rankingResponse) {
+        if(rankingResponse!=null) {
+//            Glide.with(this)
+//                    .load(rankingResponse.getResult().getRanking().get(0).getDogImg())
+//                    .circleCrop()
+//                    .override(120, 120) // ex) override(600, 200)
+//                    .into(winnerImage);
+            winnerName.setText(rankingResponse.getResult().getRanking().get(0).getDogName());
+            walkingcount.setText(rankingResponse.getResult().getRanking().get(0).getWalkingCnt());
         }
 
-
+        rankingRecyclerViewData.addAll(rankingResponse.getResult().getRanking());
+        rankingRecyclerViewData.remove(0);
+        mAdapterRanking.notifyDataSetChanged();
     }
 }

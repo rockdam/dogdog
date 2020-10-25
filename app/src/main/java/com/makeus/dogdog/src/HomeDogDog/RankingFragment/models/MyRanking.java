@@ -4,9 +4,10 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class MyRanking {
+
     @SerializedName("dogRank")
     @Expose
-    private Integer dogRank;
+    private String dogRank;
     @SerializedName("userIdx")
     @Expose
     private Integer userIdx;
@@ -22,12 +23,15 @@ public class MyRanking {
     @SerializedName("walkingCnt")
     @Expose
     private String walkingCnt;
+    @SerializedName("walkingTime")
+    @Expose
+    private String walkingTime;
 
-    public Integer getDogRank() {
+    public String getDogRank() {
         return dogRank;
     }
 
-    public void setDogRank(Integer dogRank) {
+    public void setDogRank(String dogRank) {
         this.dogRank = dogRank;
     }
 
@@ -69,5 +73,13 @@ public class MyRanking {
 
     public void setWalkingCnt(String walkingCnt) {
         this.walkingCnt = walkingCnt;
+    }
+
+    public String getWalkingTime() {
+        return walkingTime;
+    }
+
+    public void setWalkingTime(String walkingTime) {
+        this.walkingTime = walkingTime;
     }
 }
