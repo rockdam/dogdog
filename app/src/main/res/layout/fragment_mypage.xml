@@ -5,6 +5,7 @@
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
@@ -39,12 +40,11 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="0dp"
-        android:layout_height="215dp"
+        android:layout_height="200dp"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+        android:paddingBottom="10dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
         app:layout_constraintBottom_toTopOf="@+id/goal"
@@ -59,29 +59,28 @@
 
             <ImageView
                 android:id="@+id/default_dogImage_home"
-                android:layout_width="54sp"
-                android:layout_height="54sp"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
 
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="26dp"
                 android:layout_marginEnd="18dp"
                 android:background="@drawable/custom_oval"
-                app:layout_constraintBottom_toBottomOf="@+id/dogInfo_home"
                 app:layout_constraintEnd_toStartOf="@+id/dogName_home"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.93"></ImageView>
+                app:layout_constraintTop_toTopOf="parent"></ImageView>
 
             <TextView
                 android:id="@+id/dogName_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
+                android:layout_marginBottom="16dp"
                 android:fontFamily="@font/spoqahansansbold"
                 android:text="뽀삐"
-                android:textSize="19sp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/dogInfo_home"
-                app:layout_constraintStart_toEndOf="@+id/default_dogImage_home"
+                app:layout_constraintStart_toStartOf="@+id/dogInfo_home"
                 app:layout_constraintTop_toTopOf="@+id/default_dogImage_home" />
 
             <TextView
@@ -89,30 +88,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:layout_marginBottom="40dp"
                 android:fontFamily="@font/spoqahansanslight"
                 android:text="3살 / 여아 / 말티즈"
+                android:textColor="@color/black"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/imageView7"
-                app:layout_constraintStart_toEndOf="@+id/default_dogImage_home" />
+                app:layout_constraintStart_toEndOf="@+id/default_dogImage_home"
+                app:layout_constraintTop_toBottomOf="@+id/dogName_home" />
 
             <TextView
                 android:id="@+id/goal_mypage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="31dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="22dp"
                 android:fontFamily="@font/spoqahansansregular"
                 android:text="🐶 하루 30분 산책하기"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
             <ImageView
                 android:id="@+id/imageView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
                 android:layout_marginBottom="1dp"
                 app:layout_constraintBottom_toTopOf="@+id/goal_mypage"
                 app:layout_constraintStart_toEndOf="@+id/textView8"
@@ -122,14 +123,15 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="11dp"
                 android:layout_marginBottom="26dp"
                 android:fontFamily="@font/spoqahansansbold"
                 android:text="목표"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/goal_mypage"
                 app:layout_constraintStart_toStartOf="@+id/goal_mypage"
-                app:layout_constraintTop_toBottomOf="@+id/default_dogImage_home" />
+                app:layout_constraintTop_toBottomOf="@+id/view2" />
 
             <View
                 android:id="@+id/view2"
@@ -158,6 +160,7 @@
         android:layout_marginBottom="40dp"
         android:fontFamily="@font/spoqahansansbold"
         android:text="마이페이지"
+        android:textColor="@color/black"
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -196,12 +199,11 @@
             <ImageView
                 android:id="@+id/imageView9"
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="68dp"
                 android:layout_marginStart="35dp"
-                android:layout_marginTop="44dp"
-                app:layout_constraintBottom_toBottomOf="@+id/view"
+                app:layout_constraintBottom_toBottomOf="@+id/walkingcnt_mypage"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView13"
                 app:srcCompat="@drawable/group" />
 
             <TextView
@@ -221,7 +223,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/spoqahansansbold"
-                android:text="10회"
+
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toStartOf="@+id/view"
                 app:layout_constraintHorizontal_bias="0.41"
@@ -244,7 +247,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/spoqahansansbold"
-                android:text="상위 15%"
+                android:text=""
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/view"

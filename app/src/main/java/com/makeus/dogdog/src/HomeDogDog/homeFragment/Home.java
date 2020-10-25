@@ -3,6 +3,7 @@ package com.makeus.dogdog.src.HomeDogDog.homeFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -21,7 +22,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.makeus.dogdog.R;
+import com.makeus.dogdog.src.BaseFragment;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.AddChangeDogs.AddChangeDogs;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.SelectedPicture.SelectedPicture;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.interfaces.HomeRefreshView;
@@ -38,7 +44,7 @@ import static com.makeus.dogdog.src.ApplicationClass.sSharedPreferences;
  * Use the {@link Home#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Home extends Fragment implements View.OnClickListener, HomeRefreshView {
+public class Home extends BaseFragment implements View.OnClickListener, HomeRefreshView {
 
 
     TextView mWelcomeMessage, mDogNickName, mDogInfo;
@@ -49,8 +55,7 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    LodingDialogFragment lodingDialogFragment;
-    FragmentManager manager;
+
     ProgressBar mProgressbar;
     int mPercent = 0;
     double mTimeTickin;
@@ -303,15 +308,30 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
             if (!result.getDogInfo().getDogImg().equals("https://firebasestorage.googleapis.com/v0/b/dogdog-1d2f8.appspot.com/o/default_profile_image.png?alt=media&token=9052b50b-dd25-46b1-ba22-f1581a1231f5")) {
 
                 mSmallestCamera.setVisibility(View.INVISIBLE);
-            }else{
+            } else {
                 mSmallestCamera.setVisibility(View.VISIBLE);
             }
 
 
+            showDogDogLoadingDialog();
             Glide.with(this)
                     .load(result.getDogInfo().getDogImg())
                     .circleCrop()
 
+                    .addListener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+
+                            hideDogDogLoadingDialog();
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            hideDogDogLoadingDialog();
+                            return false;
+                        }
+                    })
                     .override(54, 54) // ex) override(600, 200)
                     .into(defaultDogImage);
 //            https://stackoverflow.com/questions/25278821/how-to-round-an-image-with-glide-library
@@ -326,16 +346,5 @@ public class Home extends Fragment implements View.OnClickListener, HomeRefreshV
 
     }
 
-    public void showDogDogLoadingDialog() {
-        if (!lodingDialogFragment.isAdded())
-            lodingDialogFragment.show(manager, "loader");
-    }
 
-    public void hideDogDogLoadingDialog() {
-        if (lodingDialogFragment.isAdded()) {
-
-            lodingDialogFragment.dismissAllowingStateLoss();
-        }
-
-    }
 }

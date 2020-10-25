@@ -79,7 +79,7 @@ public class BaseActivity extends AppCompatActivity { // 얘가 근본이 되서
     @Override
     public void onStop() {
         super.onStop();
-        hideProgressDialog(); // 스톱 되면 하이드
+             hideDogDogLoadingDialog();
     }
 
 
