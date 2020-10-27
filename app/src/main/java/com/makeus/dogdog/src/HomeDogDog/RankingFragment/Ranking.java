@@ -110,11 +110,11 @@ public class Ranking extends Fragment implements RankingView {
     @Override
     public void refreshRanking(RankingResponse rankingResponse) {
         if(rankingResponse!=null) {
-//            Glide.with(this)
-//                    .load(rankingResponse.getResult().getRanking().get(0).getDogImg())
-//                    .circleCrop()
-//                    .override(120, 120) // ex) override(600, 200)
-//                    .into(winnerImage);
+            Glide.with(this)
+                    .load(rankingResponse.getResult().getRanking().get(0).getDogImg())
+                    .circleCrop()
+                    .override(120, 120) // ex) override(600, 200)
+                    .into(winnerImage);
             winnerName.setText(rankingResponse.getResult().getRanking().get(0).getDogName());
             walkingcount.setText(rankingResponse.getResult().getRanking().get(0).getWalkingCnt());
         }

@@ -9,7 +9,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/back_step4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="42dp"
@@ -19,7 +19,7 @@
             app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView60" />
+            app:layout_constraintTop_toBottomOf="@+id/back_step5" />
 
 
         <TextView
@@ -32,11 +32,11 @@
             android:text="STEP 5"
             android:textColor="@color/colorDogDogBlue"
             android:textSize="18sp"
-            android:fontFamily="@font/spoqahansansbold"
+            android:fontFamily="@font/spoqahansbold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/back_step4" />
 
         <TextView
             android:id="@+id/tellmePassword_Step2Activity"
@@ -74,7 +74,7 @@
 
                     android:backgroundTint="@color/editTextUnderLine"
                     android:ems="10"
-                    android:fontFamily="@font/spoqahansansregular"
+                    android:fontFamily="@font/spoqahansregular"
                     android:hint="예: 20150505"
                     android:inputType="textVisiblePassword|textNoSuggestions"
                     android:maxLength="10"
@@ -201,7 +201,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="34dp"
             android:layout_marginTop="20dp"
-            android:fontFamily="@font/spoqahansansbold"
+            android:fontFamily="@font/spoqahansbold"
             android:text="성별"
             android:textColor="@color/initDonutTextColor"
             android:textSize="16sp"
@@ -217,7 +217,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="34dp"
             android:layout_marginTop="12dp"
-            android:fontFamily="@font/spoqahansansbold"
+            android:fontFamily="@font/spoqahansbold"
             android:text="생년월일"
             android:textColor="@color/initDonutTextColor"
             android:textSize="16sp"
@@ -233,8 +233,8 @@
             android:layout_marginEnd="5dp"
             app:layout_constraintEnd_toStartOf="@+id/imageView33"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/back_step4"
+            app:layout_constraintTop_toTopOf="@+id/back_step4"
             app:srcCompat="@drawable/oval_6" />
 
         <ImageView
@@ -260,14 +260,14 @@
             app:srcCompat="@drawable/oval_6" />
 
         <ImageView
-            android:id="@+id/imageView60"
+            android:id="@+id/back_step5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:visibility="visible"
             android:layout_marginTop="44dp"
             android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/imageView2"
+            app:layout_constraintBottom_toTopOf="@+id/back_step4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_arrow" />

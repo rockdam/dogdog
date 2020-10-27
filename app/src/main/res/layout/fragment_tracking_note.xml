@@ -16,7 +16,7 @@
         android:background="@color/white"
         android:padding="20dp"
 
-        android:fontFamily="@font/spoqahansansbold"
+        android:fontFamily="@font/spoqahansbold"
         android:text="산책일지"
         android:textColor="@color/black"
         android:textSize="26sp"></TextView>

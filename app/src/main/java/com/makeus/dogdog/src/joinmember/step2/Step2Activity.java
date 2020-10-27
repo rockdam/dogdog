@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
+import com.makeus.dogdog.src.joinmember.login.LoginActivity;
 import com.makeus.dogdog.src.joinmember.step1.Step1Activity;
 import com.makeus.dogdog.src.joinmember.step2.interfaces.ShowToastStep2;
 import com.makeus.dogdog.src.joinmember.step2.models.DuplicateUserIdResponse;
@@ -37,6 +38,7 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
     String mNickname, mEmail;
     TextView tellmeEmail;
     userInfo mUserInfo;
+    ImageView backStep;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,9 +64,52 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
             if(mUserInfo.getEmail()!=null)
             mEdit_Input_Text_joinmember.setText(mUserInfo.getEmail());
         }
+        backStep=findViewById(R.id.back_step4);
+        backStep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Step2Activity.this, Step1Activity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+                if(mEdit_Input_Text_joinmember.getText().toString()==null) {
+                    mUserInfo.setEmail("");
+                }else{
+
+                    mUserInfo.setEmail(mEdit_Input_Text_joinmember.getText().toString());
+                }
+
+                mUserInfo.setEmail(mEdit_Input_Text_joinmember.getText().toString());
+                intent.putExtra("userInfo", mUserInfo);
+                overridePendingTransition(0, 0); // finish()시 애니메이션 삭제
+                startActivity(intent);
+                finish();
+
+
+            }
+        });
+
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(Step2Activity.this, Step1Activity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+        if(mEdit_Input_Text_joinmember.getText().toString()==null) {
+            mUserInfo.setEmail("");
+        }else{
+
+            mUserInfo.setEmail(mEdit_Input_Text_joinmember.getText().toString());
+        }
+
+        mUserInfo.setEmail(mEdit_Input_Text_joinmember.getText().toString());
+        intent.putExtra("userInfo", mUserInfo);
+        overridePendingTransition(0, 0); // finish()시 애니메이션 삭제
+        startActivity(intent);
+        finish();
+    }
 
     @Override
     protected void onResume() {

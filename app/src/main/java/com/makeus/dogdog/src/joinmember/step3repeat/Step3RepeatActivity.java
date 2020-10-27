@@ -27,7 +27,7 @@ public class Step3RepeatActivity extends BaseActivity implements View.OnClickLis
     TextView mNextButton, mBackButton, tellmePassword;
     TextView warningText;
 
-    ImageView warningImage, edtclear_step;
+    ImageView warningImage, edtclear_step,backStep3Repeat;
     EditText mEdit_Input_Text_joinmember;
     userInfo mUserInfo;
 
@@ -55,6 +55,32 @@ public class Step3RepeatActivity extends BaseActivity implements View.OnClickLis
 
         }
 
+
+        backStep3Repeat=findViewById(R.id.back_step3_repeat);
+        backStep3Repeat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent back = new Intent(Step3RepeatActivity.this, Step3Activity.class);
+                back.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                overridePendingTransition(0, 0); // finish()시 애니메이션 삭제
+                back.putExtra("userInfo", mUserInfo);
+                startActivity(back);
+                finish();
+            }
+        });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent back = new Intent(Step3RepeatActivity.this, Step3Activity.class);
+        back.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        overridePendingTransition(0, 0); // finish()시 애니메이션 삭제
+        back.putExtra("userInfo", mUserInfo);
+        startActivity(back);
+        finish();
     }
 
     public static boolean isValidPassword(final String Password) {

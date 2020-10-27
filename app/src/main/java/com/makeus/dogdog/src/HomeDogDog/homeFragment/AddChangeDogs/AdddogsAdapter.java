@@ -71,8 +71,8 @@ public class AdddogsAdapter  extends RecyclerView.Adapter<AdddogsAdapter.ItemVie
         ImageView profileImage;
         TextView dogName;
         String isDisplayed;
-        Typeface typeface = ResourcesCompat.getFont(mContext, R.font.spoqahansansbold);
-        Typeface typefaceRegular = ResourcesCompat.getFont(mContext, R.font.spoqahansansregular);
+        Typeface typeface = ResourcesCompat.getFont(mContext, R.font.spoqahansbold);
+        Typeface typefaceRegular = ResourcesCompat.getFont(mContext, R.font.spoqahansregular);
 
 
         public ItemViewHolder(@NonNull View itemView) {

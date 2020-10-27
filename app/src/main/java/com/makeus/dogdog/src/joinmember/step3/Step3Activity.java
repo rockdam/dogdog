@@ -34,6 +34,7 @@ public class Step3Activity extends BaseActivity implements View.OnClickListener 
     String mPassword;
     userInfo mUserInfo;
 
+    ImageView backstep3;
     TextView tellmePassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,36 @@ public class Step3Activity extends BaseActivity implements View.OnClickListener 
         }
 
 
+
+
+
+        backstep3=findViewById(R.id.back_step3);
+        backstep3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent back = new Intent(Step3Activity.this, Step2Activity.class);
+
+                back.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                overridePendingTransition(0, 0); // finish()시 애니메이션 삭제
+
+                back.putExtra("userInfo", mUserInfo);
+                startActivity(back);
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent back = new Intent(Step3Activity.this, Step2Activity.class);
+
+        back.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        overridePendingTransition(0, 0); // finish()시 애니메이션 삭제
+
+        back.putExtra("userInfo", mUserInfo);
+        startActivity(back);
+        finish();
     }
 
     public static boolean isValidPassword(final String Password) {

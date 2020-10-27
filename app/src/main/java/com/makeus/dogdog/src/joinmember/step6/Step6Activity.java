@@ -34,7 +34,7 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener,
     userInfo mUserInfo;
     float mWeight = 0;
     Step6Service mStep6Service;
-    ImageView edtclear_step;
+    ImageView edtclear_step,back_step4;
 
 
     @Override
@@ -116,6 +116,35 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener,
 
         }
 
+        back_step4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent back = new Intent(Step6Activity.this, Step5Activity.class);
+                back.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+                back.putExtra("dogInfo", mDogInfo);
+                back.putExtra("userInfo", mUserInfo);
+
+                overridePendingTransition(0, 0); // finish()시 애니메이션 삭제
+                startActivity(back);
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent back = new Intent(Step6Activity.this, Step5Activity.class);
+        back.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+        back.putExtra("dogInfo", mDogInfo);
+        back.putExtra("userInfo", mUserInfo);
+
+        overridePendingTransition(0, 0); // finish()시 애니메이션 삭제
+        startActivity(back);
+        finish();
     }
 
     public static boolean isValidKg(final String Kg) {

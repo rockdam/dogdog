@@ -26,7 +26,7 @@ public class Step4Activity extends BaseActivity implements View.OnClickListener{
     TextView mNextButton,mBackButton,tellmePassword;
     TextView warningText;
 
-    ImageView warningImage,edtclear_step;
+    ImageView warningImage,edtclear_step,back_step4;
     EditText mEdit_Input_Text_joinmember;
     String mInput;
     dogInfo mDogInfo;
@@ -62,6 +62,40 @@ public class Step4Activity extends BaseActivity implements View.OnClickListener{
             if(mDogInfo.getName()!=null)
                 mEdit_Input_Text_joinmember.setText(mDogInfo.getName());
         }
+
+        back_step4=findViewById(R.id.back_step4);
+        back_step4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent back = new Intent(Step4Activity.this, Step3Activity.class);
+                back.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+
+                back.putExtra("userInfo", mUserInfo);
+
+                Log.e("뭐여",mUserInfo.getPassword());
+                overridePendingTransition(0,0); // finish()시 애니메이션 삭제
+                startActivity(back);
+                finish();
+
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent back = new Intent(Step4Activity.this, Step3Activity.class);
+        back.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+
+        back.putExtra("userInfo", mUserInfo);
+
+        Log.e("뭐여",mUserInfo.getPassword());
+        overridePendingTransition(0,0); // finish()시 애니메이션 삭제
+        startActivity(back);
+        finish();
     }
 
     @Override

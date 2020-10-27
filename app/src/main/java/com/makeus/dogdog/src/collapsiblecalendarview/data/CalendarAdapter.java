@@ -3,12 +3,10 @@ package com.makeus.dogdog.src.collapsiblecalendarview.data;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.makeus.dogdog.R;
@@ -126,7 +124,7 @@ public class CalendarAdapter {
             TextView txtDay = (TextView) view.findViewById(R.id.txt_day);
             ImageView imgEventTag = (ImageView) view.findViewById(R.id.img_event_tag);
 
-            Typeface typeface = ResourcesCompat.getFont(mContext, R.font.spoqahansansbold);
+            Typeface typeface = ResourcesCompat.getFont(mContext, R.font.spoqahansbold);
 
 
             txtDay.setText(String.valueOf(day.getDay()));

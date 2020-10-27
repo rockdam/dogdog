@@ -155,7 +155,7 @@ public class CollapsibleCalendar extends UICalendar {
                 ((TextView) rowWeek.getChildAt(i)).setTextColor(ContextCompat.getColor(mContext, R.color.dayColor));
             } //이게 월 화 수 목 금 토 색깔 바꾸는거
         }
-        Typeface typeface = ResourcesCompat.getFont(mContext, R.font.spoqahansansbold);
+        Typeface typeface = ResourcesCompat.getFont(mContext, R.font.spoqahansbold);
 
         // redraw all views of day
         if (mAdapter != null) {

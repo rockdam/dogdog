@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/back_step4"
         android:layout_width="8dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
@@ -28,12 +28,12 @@
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="36dp"
-        android:fontFamily="@font/spoqahansansbold"
+        android:fontFamily="@font/spoqahansbold"
         android:text="STEP 2"
         android:textColor="@color/colorDogDogBlue"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/back_step4" />
 
     <TextView
         android:id="@+id/tellmePassword_Step2Activity"
@@ -70,7 +70,7 @@
 
             android:backgroundTint="@color/editTextUnderLine"
             android:ems="10"
-            android:fontFamily="@font/spoqahansansregular"
+            android:fontFamily="@font/spoqahansregular"
             android:inputType="textVisiblePassword|textNoSuggestions"
             android:maxLength="20"
             android:maxLines="1"
@@ -142,8 +142,8 @@
         app:layout_constraintEnd_toStartOf="@+id/imageView25"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+        app:layout_constraintStart_toEndOf="@+id/back_step4"
+        app:layout_constraintTop_toTopOf="@+id/back_step4" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -207,7 +207,7 @@
         android:id="@+id/warning_text_step2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/spoqahansansregular"
+        android:fontFamily="@font/spoqahansregular"
         android:text="아이디는 이메일 형식으로 , 중복 불가능 입니다 :)"
         android:textColor="@color/startwalkingGray"
         app:layout_constraintEnd_toEndOf="parent"
@@ -221,7 +221,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="44dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintBottom_toTopOf="@+id/back_step4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_arrow" />

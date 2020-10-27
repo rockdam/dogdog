@@ -8,19 +8,19 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/back_step1"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="44dp"
         android:visibility="visible"
         android:src="@drawable/ic_arrow"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintBottom_toTopOf="@+id/back_step4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/back_step4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
@@ -30,7 +30,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/back_step1"
         app:srcCompat="@drawable/rectangle_13" />
 
 
@@ -40,13 +40,13 @@
         android:layout_height="34dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="36dp"
-        android:fontFamily="@font/spoqahansansbold"
+        android:fontFamily="@font/spoqahansbold"
         android:text="STEP 1"
         android:textColor="@color/colorDogDogBlue"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/tellmePassword_Step2Activity"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/back_step4" />
 
     <TextView
         android:id="@+id/tellmePassword_Step2Activity"
@@ -83,7 +83,7 @@
 
             android:backgroundTint="@color/editTextUnderLine"
             android:ems="10"
-            android:fontFamily="@font/spoqahansansregular"
+            android:fontFamily="@font/spoqahansregular"
             android:inputType="textVisiblePassword|textNoSuggestions"
             android:maxLength="10"
             android:maxLines="1"
@@ -130,8 +130,8 @@
         android:src="@drawable/oval_6"
         app:layout_constraintEnd_toStartOf="@+id/imageView4"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+        app:layout_constraintStart_toEndOf="@+id/back_step4"
+        app:layout_constraintTop_toTopOf="@+id/back_step4" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -196,7 +196,7 @@
         android:id="@+id/warning_text_step"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/spoqahansansregular"
+        android:fontFamily="@font/spoqahansregular"
         android:textSize="14sp"
         android:text=" 2자 이상 입력해주세요."
         android:textColor="@color/startwalkingGray"

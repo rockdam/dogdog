@@ -109,7 +109,7 @@ public class DonutView extends View {
         int xPos = width / 2 - (int) (paint.measureText(testSizeText) / 2);
         int yPos = (int) (height / 2 - ((paint.descent() + paint.ascent()) / 2));
 
-        Typeface typeface = ResourcesCompat.getFont(context, R.font.spoqahansansbold);
+        Typeface typeface = ResourcesCompat.getFont(context, R.font.spoqahansbold);
         paint.setTypeface(typeface);
 
         canvas.drawText(result, xPos, yPos, paint);

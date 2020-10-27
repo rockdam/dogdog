@@ -28,7 +28,7 @@ public class Step5Activity extends BaseActivity implements View.OnClickListener 
     TextView mTellUsAge, mBackButton;
     TextView mJoinMessage, mNextButton;
     EditText mEdit_Input_Text_joinmember;
-    ImageView edtclear_step;
+    ImageView edtclear_step,back_step5;
     dogInfo mDogInfo;
     userInfo mUserInfo;
     RadioGroup mRgGender;
@@ -84,6 +84,8 @@ public class Step5Activity extends BaseActivity implements View.OnClickListener 
         }
 
 
+
+
         mRgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -102,8 +104,40 @@ public class Step5Activity extends BaseActivity implements View.OnClickListener 
             }
         });
 
+
+
+        back_step5=findViewById(R.id.back_step5);
+
+        back_step5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent back = new Intent(Step5Activity.this, Step4Activity.class);
+                back.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+                back.putExtra("dogInfo", mDogInfo);
+                back.putExtra("userInfo", mUserInfo);
+                overridePendingTransition(0,0); // finish()시 애니메이션 삭제
+                startActivity(back);
+                finish();
+
+            }
+        });
     }
-// 유효한 날짜인지 체크
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent back = new Intent(Step5Activity.this, Step4Activity.class);
+        back.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+        back.putExtra("dogInfo", mDogInfo);
+        back.putExtra("userInfo", mUserInfo);
+        overridePendingTransition(0,0); // finish()시 애니메이션 삭제
+        startActivity(back);
+        finish();
+    }
+
+    // 유효한 날짜인지 체크
     public  boolean  validationDate(String  checkDate){
 
         try{

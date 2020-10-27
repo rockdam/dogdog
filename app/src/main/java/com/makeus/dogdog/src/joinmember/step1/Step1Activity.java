@@ -31,6 +31,7 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
     ImageView warningImage,edtclear_step;
     EditText mEdit_Input_Text_joinmember;
     String mNickName;
+    ImageView backStep;
 
     userInfo mUserInfo;
     @Override
@@ -42,8 +43,9 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
         mNextTxt = findViewById(R.id.next_button_step);
         mJoinMessage.setText(Html.fromHtml("<b>" + "만나서 반가워요!" + "<br>" + "당신의 이름" + "</br>" + "</b>" + "이 궁금해요."));
         warningText = findViewById(R.id.warning_text_step);
+
         warningImage = findViewById(R.id.warning_image_step);
-        Typeface typeface = ResourcesCompat.getFont(this, R.font.spoqahansansregular);
+        Typeface typeface = ResourcesCompat.getFont(this, R.font.spoqahansregular);
         warningText.setTypeface(typeface);
         edtclear_step=findViewById(R.id.edtclear_step);
         mUserInfo=new userInfo();
@@ -66,7 +68,20 @@ public class Step1Activity extends BaseActivity implements View.OnClickListener 
             }
             }
 
+        backStep=findViewById(R.id.back_step1);
+        backStep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(Step1Activity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
+                startActivity(intent);
+                finish();
+
+
+
+            }
+        });
 
     }
 

@@ -61,7 +61,7 @@ public class AdapterRanking  extends RecyclerView.Adapter<AdapterRanking.ItemHol
    public class ItemHolder extends RecyclerView.ViewHolder {
 
 
-        TextView rank,name,walkingcnt;
+        TextView rank,name,walkingcnt,walkingtime;
         ImageView dogImage;
 
        public ItemHolder(@NonNull View view) {
@@ -71,6 +71,7 @@ public class AdapterRanking  extends RecyclerView.Adapter<AdapterRanking.ItemHol
            name=view.findViewById(R.id.name_itemlayout);
            walkingcnt=view.findViewById(R.id.walkingcnt_itemlayout);
            dogImage=view.findViewById(R.id.profileImage_itemlayout);
+           walkingtime=view.findViewById(R.id.walking_time_ranking);
 
 
        }
@@ -87,6 +88,7 @@ public class AdapterRanking  extends RecyclerView.Adapter<AdapterRanking.ItemHol
                    .circleCrop()
                    .override(54, 54); // ex) override(600, 200)
 
+           walkingtime.setText(""+rankingRecyclerViewData.getWalkingTime());
 
        }
    }
