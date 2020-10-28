@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<com.amar.library.ui.StickyScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    app:stickyHeader="@+id/titleLayout"
+  >
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -22,6 +29,11 @@
         android:textSize="26sp"></TextView>
 
 
+    <LinearLayout
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
     <com.makeus.dogdog.src.collapsiblecalendarview.widget.CollapsibleCalendar
         android:id="@+id/calendar_trackingnote"
         android:layout_width="match_parent"
@@ -29,7 +41,7 @@
     android:paddingBottom="5dp">
 
     </com.makeus.dogdog.src.collapsiblecalendarview.widget.CollapsibleCalendar>
-
+    </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -79,3 +91,4 @@
     </FrameLayout>
 
 </LinearLayout>
+</com.amar.library.ui.StickyScrollView>

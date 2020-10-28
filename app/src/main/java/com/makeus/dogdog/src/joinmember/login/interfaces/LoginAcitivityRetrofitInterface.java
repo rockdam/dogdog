@@ -17,4 +17,6 @@ public interface LoginAcitivityRetrofitInterface {
 @Headers("Content-Type: application/json")
 Call<LogInResponse> checkBody(@Body LoginBody loginBody);
 
+
+
 }

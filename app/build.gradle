@@ -97,7 +97,7 @@ dependencies {
     implementation 'com.github.esafirm.android-image-picker:imagepicker:2.0.0'
     implementation project(':richwysiwygeditor')
     implementation 'com.airbnb.android:lottie:3.0.7'
-
+    implementation 'com.github.amarjain07:StickyScrollView:1.0.2'
     // Import the BoM for the Firebase platform
     implementation platform('com.google.firebase:firebase-bom:25.12.0')
 
