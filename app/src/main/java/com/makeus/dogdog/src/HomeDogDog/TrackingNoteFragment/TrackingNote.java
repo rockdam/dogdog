@@ -387,6 +387,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
             mWebView.setFocusableInTouchMode(false);
             mWebView.setHtml( dayHistory.getContent());
 
+
 //            mWebView.getSettings().setSupportZoom(true);
 //            mWebView.getSettings().setBuiltInZoomControls(true);
             mAddNote.setVisibility(View.INVISIBLE);
