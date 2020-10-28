@@ -163,10 +163,12 @@
 
 
             android:layout_weight="1"
+            android:scrollbarAlwaysDrawHorizontalTrack="false"
             android:autoLink="web|email"
             android:background="@color/white"
             android:gravity="start"
-            android:textCursorDrawable="@drawable/edit_cursor" />
+
+             />
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

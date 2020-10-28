@@ -376,8 +376,10 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 //            mWebView.getSettings().setLoadWithOverviewMode(true);
 //            mWebView.getSettings().setUseWideViewPort(true);
 
-            mWebView.loadDataWithBaseURL(null, dayHistory.getContent(), "text/html", "utf-8", null);
+//            mWebView.loadDataWithBaseURL(null, dayHistory.getContent(), "text/html", "utf-8", null);
 
+            mWebView.setHtml( dayHistory.getContent());
+            mWebView.setClickable(false);
 //            mWebView.getSettings().setSupportZoom(true);
 //            mWebView.getSettings().setBuiltInZoomControls(true);
             mAddNote.setVisibility(View.INVISIBLE);

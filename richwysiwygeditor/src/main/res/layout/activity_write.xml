@@ -232,8 +232,11 @@
 
 
             android:layout_weight="1"
+
+
             android:autoLink="web|email"
             android:background="@color/white"
+            
             android:gravity="start"
             android:textCursorDrawable="@drawable/edit_cursor" />
 
