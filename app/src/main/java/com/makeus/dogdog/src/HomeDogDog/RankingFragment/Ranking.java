@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.makeus.dogdog.R;
+import com.makeus.dogdog.src.BaseFragment;
 import com.makeus.dogdog.src.HomeDogDog.RankingFragment.interfaces.RankingView;
 import com.makeus.dogdog.src.HomeDogDog.RankingFragment.models.RankingData;
 import com.makeus.dogdog.src.HomeDogDog.RankingFragment.models.RankingResponse;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
  * Use the {@link Ranking#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Ranking extends Fragment implements RankingView {
+public class Ranking extends BaseFragment implements RankingView {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -97,6 +98,9 @@ public class Ranking extends Fragment implements RankingView {
         rankingRecyclerView.setAdapter(mAdapterRanking);
 
 
+
+
+        showDogDogLoadingDialog();
         rankingService=new RankingService(this);
         rankingService.refreshRankingView();
 
@@ -122,5 +126,6 @@ public class Ranking extends Fragment implements RankingView {
         rankingRecyclerViewData.addAll(rankingResponse.getResult().getRanking());
         rankingRecyclerViewData.remove(0);
         mAdapterRanking.notifyDataSetChanged();
+        hideDogDogLoadingDialog();
     }
 }
