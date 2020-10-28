@@ -54,7 +54,9 @@
         <activity
             android:name=".src.HomeDogDog.homeFragment.AddChangeDogs.AddChangeDogs"
             android:theme="@style/AppFullScreenTheme" />
-        <activity android:name=".src.HomeDogDog.TrackingNoteFragment.AddTrackingNote.AddTrackingNote" />
+        <activity android:name=".src.HomeDogDog.TrackingNoteFragment.AddTrackingNote.AddTrackingNote"
+
+          />
         <activity android:name=".src.HomeDogDog.FeedFragment.AddFeedActivity.AddFeedActivity" />
         <activity android:name=".src.joinmember.step7.Step7Activity" >
 
@@ -97,7 +99,10 @@
             android:taskAffinity=""
 
             />
-        <activity android:name=".src.HomeDogDog.HomeActivity" />
+        <activity android:name=".src.HomeDogDog.HomeActivity"
+
+            android:theme="@style/NoteTheme"
+            />
         <activity
             android:name=".src.joinmember.step2.Step2Activity"
             android:windowSoftInputMode="adjustPan" />

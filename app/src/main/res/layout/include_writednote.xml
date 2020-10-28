@@ -160,6 +160,7 @@
         <com.makeus.dogdog.src.HomeDogDog.TrackingNoteFragment.TouchyWebView
             android:id="@+id/historyWebView_include"
 
+            android:layout_marginTop="24dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -169,7 +170,7 @@
             android:scrollbarAlwaysDrawHorizontalTrack="false"
             android:autoLink="web|email"
             android:background="@color/white"
-
+            android:textCursorDrawable="@drawable/cursor_transp"
             android:gravity="start"
 
              />

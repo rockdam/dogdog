@@ -238,7 +238,7 @@
             android:background="@color/white"
             
             android:gravity="start"
-            android:textCursorDrawable="@drawable/edit_cursor" />
+            android:textCursorDrawable="@drawable/cursor_transp" />
 
 
     </LinearLayout>
