@@ -198,6 +198,8 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
             stringBuffer.append(images.get(i).getPath()).append("\n");
             // Handle this
 
+
+            Log.e("경로 ",images.get(i).getPath() );
 //
 //            filePath= Uri.parse("file://\"" + images.get(i).getPath());
 //            uploadFile();

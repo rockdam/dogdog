@@ -149,6 +149,7 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
         mWebView.setVisibility(View.INVISIBLE);
         mAddNote.setVisibility(View.VISIBLE);
 
+
         if(isFirst) {
 
 //            showDogDogLoadingDialog();
@@ -372,14 +373,20 @@ public class TrackingNote extends Fragment implements TrackingNoteView {
 
 
             mWebView.setVisibility(View.VISIBLE);
-//            mWebView.getSettings().setDefaultFontSize(50);
+            mWebView.getSettings().setDefaultFontSize(20);
 //            mWebView.getSettings().setLoadWithOverviewMode(true);
 //            mWebView.getSettings().setUseWideViewPort(true);
 
 //            mWebView.loadDataWithBaseURL(null, dayHistory.getContent(), "text/html", "utf-8", null);
-
-            mWebView.setHtml( dayHistory.getContent());
             mWebView.setClickable(false);
+
+            mWebView.setEnabled(false);
+            mWebView.setFocusable(false);
+
+//            mWebView.setInputEnabled(false);
+            mWebView.setFocusableInTouchMode(false);
+            mWebView.setHtml( dayHistory.getContent());
+
 //            mWebView.getSettings().setSupportZoom(true);
 //            mWebView.getSettings().setBuiltInZoomControls(true);
             mAddNote.setVisibility(View.INVISIBLE);
