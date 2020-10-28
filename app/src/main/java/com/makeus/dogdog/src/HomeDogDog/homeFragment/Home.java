@@ -274,7 +274,10 @@ public class Home extends BaseFragment implements View.OnClickListener, HomeRefr
         mDogNickName.setText(result.getDogInfo().getDogName());
         mDogInfo.setText(dogInfo);
 
+
+
         mTime = result.getDogInfo().getTodayTime();
+        Log.e("mTime","왜"+mTime);
         if (mTime > 0) {
             mTimeTickin = ((double) mTime / (18));
 
@@ -283,7 +286,9 @@ public class Home extends BaseFragment implements View.OnClickListener, HomeRefr
             mStartWalking.setTextColor(ContextCompat.getColor(getContext(), R.color.colorDogDogBlue));
         } else {
             mTimeTickin = 0;
-
+            mStartWalking.setBackgroundResource(R.drawable.shape_full);
+            mStartWalking.setText("산책 시작하기");
+            mStartWalking.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
         }
         mAimProgressBar.setProgress((int) (mTimeTickin * (double) 10));
         if (mPercent == -1) {
