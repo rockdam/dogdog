@@ -225,7 +225,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/sanslight"
+        android:fontFamily="@font/spoqahanslight"
         android:text="권장 산책량을 알려드려요."
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/tellmePassword_Step2Activity"
