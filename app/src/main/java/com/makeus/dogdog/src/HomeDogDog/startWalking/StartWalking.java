@@ -18,6 +18,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Looper;
+import android.os.StrictMode;
 import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -43,6 +44,8 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.tasks.Task;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
 import com.makeus.dogdog.src.HomeDogDog.HomeActivity;
@@ -54,6 +57,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class StartWalking extends BaseActivity implements View.OnClickListener, StartWalkingView {
@@ -63,7 +67,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
     int mWalkingTime;
     TextView mWalkingDistanceTextView;
     int mWalkingDistance;
-    ImageView mStartWalking, mStopButton, mStartCamera,mCompltedWalking;
+    ImageView mStartWalking, mStopButton, mStartCamera, mCompltedWalking;
     private double mTimetickin;
     private int mPercent;
     private boolean mRunning;
@@ -76,7 +80,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
     boolean isFirst = true;
     FusedLocationProviderClient mFusedLocationClient;
     LocationRequest locationRequest;
-
+    PermissionListener permissionlistener;
     boolean isPause = true;
     boolean checkGps = true;
     Intent Serviceintent;
@@ -145,18 +149,16 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
 
 
     }
+
     private void SharedSns(File imageFile) {
-        Intent shareIntent =new Intent(Intent.ACTION_SEND);
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
         Uri uri = Uri.fromFile(imageFile);
-        shareIntent.putExtra(Intent.EXTRA_STREAM,uri);
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
         shareIntent.setDataAndType(uri, "image/*");
-        startActivity(Intent.createChooser(shareIntent,"목표 달성 공유하기"));
-
-
+        startActivity(Intent.createChooser(shareIntent, "목표 달성 공유하기"));
 
 
     }
-
 
 
     //https://stackoverflow.com/questions/42619863/how-to-calculate-distance-every-15-sec-with-using-gps-heavy-accuracy
@@ -174,20 +176,28 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
         mStartCamera = findViewById(R.id.cameraApp_startWalking);
         Serviceintent = new Intent(StartWalking.this, ForegroundWalkingService.class);
         mStopWalkingBody = new StopWalkingBody();
-        isFirstCompletedMission=true;
-        mIconShare=findViewById(R.id.share_startwalking);
-        mCompltedWalking=findViewById(R.id.completed_startwalking);
+        isFirstCompletedMission = true;
+        mIconShare = findViewById(R.id.share_startwalking);
+        mCompltedWalking = findViewById(R.id.completed_startwalking);
+
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+
+//        출처: https://docko.tistory.com/entry/androidosFileUriExposedException-filestorageemulated0-exposed-beyond-app-through-IntentgetData [장똘]
+// uri 노출 해결 이게 쉽다.
+
+
 //https://m.blog.naver.com/PostView.nhn?blogId=hg1286&logNo=220541645364&proxyReferer=https:%2F%2Fwww.google.com%2F 참조
         mIconShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            takeScreenshot();
+                takeScreenshot();
 
 
             }
         });
 
-        mFinishedText=findViewById(R.id.finishedText_startwalking);
+        mFinishedText = findViewById(R.id.finishedText_startwalking);
         mDogIdx = getIntent().getIntExtra("dogIdx", 1);
 //        if (getIntent().getStringExtra("timeTicking") != null) {
 //            mTimetickin = Double.parseDouble(getIntent().getStringExtra("timeTicking"));
@@ -195,7 +205,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
 //        mPercent = getIntent().getIntExtra("percent", 0);
 //        mStartTime = getIntent().getLongExtra("time", 0);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        backButton=findViewById(R.id.backButton_startwalking);
+        backButton = findViewById(R.id.backButton_startwalking);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -214,6 +224,8 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
 
             }
         });
+
+
         locationRequest = LocationRequest.create();
         locationRequest.setInterval(10000);
         locationRequest.setFastestInterval(6000);
@@ -222,6 +234,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
         onStartForegroundService();
         mStartCamera.setOnClickListener(this);
         mStartWalkingService = new StartWalkingService(this, mDogIdx);
+        showDogDogLoadingDialog();
         mStartWalkingService.refreshStartWalkingView();
 
         mStartWalking.setOnClickListener(this);
@@ -251,16 +264,46 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
             sendTime = s;
 
             //얘를 100으로 바꾸자
-            if(percent>=100 && isFirstCompletedMission)
-            {
+            if (percent >= 100 && isFirstCompletedMission) {
 
                 mCompltedWalking.setVisibility(View.VISIBLE);
-                isFirstCompletedMission=false;
+                isFirstCompletedMission = false;
                 mFinishedText.setText("목표를 달성했어요!");
 
             }
 
             Log.e("sendTime", "" + sendTime);
+        });
+        mStartCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                permissionlistener = new PermissionListener() {
+
+                    @Override
+
+                    public void onPermissionGranted() {
+
+//                Toast.makeText(SelectedPicture.this, "Permission Granted", Toast.LENGTH_SHORT).show();
+                        dispatchTakePictureIntent();
+
+                    }
+
+                    @Override
+                    public void onPermissionDenied(List<String> deniedPermissions) {
+
+//                Toast.makeText(SelectedPicture.this, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+                    }
+
+
+                };
+
+                TedPermission.with(getBaseContext())
+                        .setPermissionListener(permissionlistener)
+                        .setRationaleMessage("카메라 앱을 사용하시려면 권한을 허용해주세요.")
+                        .setDeniedMessage("권한을 거부하셨습니다.앱을 사용하시려면 [앱 설정]-[권한] 항목에서 권한을 허용해주세요.")
+                        .setPermissions(android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA)
+                        .check();
+            }
         });
 
 
@@ -458,21 +501,23 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
             case R.id.stopbutton_startwalking:
 
 
-                if (mRunning) {
+//                if (mRunning) {
+//
+//                    Toast.makeText(getApplicationContext(), "일시 중지를 눌러주세요 :)", Toast.LENGTH_SHORT).show();
+//
+//                } else {
 
-                    Toast.makeText(getApplicationContext(), "일시 중지를 눌러주세요 :)", Toast.LENGTH_SHORT).show();
-
-                } else {
-                    stopService(Serviceintent);
-                    sendStopWalkingTime();
+                showDogDogLoadingDialog();
+                stopService(Serviceintent);
+                sendStopWalkingTime();
 
 
-                }
+//                }
 
                 break;
             case R.id.cameraApp_startWalking:
 
-                dispatchTakePictureIntent();
+//                dispatchTakePictureIntent();
                 break;
 
 
@@ -496,16 +541,17 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
     public void onBackPressed() {
 //        super.onBackPressed();
 //        위의 메서드가 호출되면 액티비티가 종료 됩니다.
-        if (mRunning) {
+//        if (mRunning) {
+//
+//            Toast.makeText(getApplicationContext(), "일시 중지를 눌러주세요 :)", Toast.LENGTH_SHORT).show();
+//
+//        } else {
+        showDogDogLoadingDialog();
+        sendStopWalkingTime();
 
-            Toast.makeText(getApplicationContext(), "일시 중지를 눌러주세요 :)", Toast.LENGTH_SHORT).show();
-
-        } else {
-
-            sendStopWalkingTime();
-            onStopForegroundService();
-            finish();
-        }
+//            onStopForegroundService();
+        stopService(Serviceintent);
+//        }
     }
 
     LocationCallback locationCallback = new LocationCallback() {
@@ -536,9 +582,8 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
 //                Toast.makeText(getBaseContext(), "" + Initialdistance, Toast.LENGTH_SHORT).show();
 
 
-
                 mWalkingDistanceTextView.setText(output);
-                mWalkingDistance=(int) Initialdistance;
+                mWalkingDistance = (int) Initialdistance;
                 Log.e("거리 ", "" + Initialdistance); //반환 m
 
             }
@@ -561,7 +606,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
         mPercent = result.getPercent();
         mWalkingDistance = result.getDistance();
         mWalkingTime = result.getWalkingTime();
-        Initialdistance=mWalkingDistance;
+        Initialdistance = mWalkingDistance;
         Log.e("mWalkingTime", "" + mWalkingTime);
         double calculateddistance = Math.floor(Initialdistance / 1000);
         String dist = String.format(Locale.getDefault(), "%.2f", (Initialdistance / 1000));
@@ -576,7 +621,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
         mDonutView.setValue(mTimetickin, mPercent);//시점이 위에 있으면 안되네
         if (mWalkingTime == 0) {
             mWalkingDistanceTextView.setText("0.00" + "km");
-        }else {
+        } else {
 
             mWalkingDistanceTextView.setText(output);
         }
@@ -584,12 +629,12 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
 
         mWalkingTime *= 1000;
         Log.e("mPercent", "" + mPercent);
-        if(mPercent>=100)
-        {
+        if (mPercent >= 100) {
             mCompltedWalking.setVisibility(View.VISIBLE);
             mFinishedText.setText("목표를 달성했어요!");
 
         }
+        hideDogDogLoadingDialog();
 
     }
 
@@ -600,6 +645,7 @@ public class StartWalking extends BaseActivity implements View.OnClickListener, 
 
         Intent intent = new Intent(StartWalking.this, HomeActivity.class);
         startActivity(intent);
+        hideDogDogLoadingDialog();
         finish();
 
 

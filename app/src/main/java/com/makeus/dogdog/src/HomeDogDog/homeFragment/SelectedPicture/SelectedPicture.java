@@ -1,5 +1,6 @@
 package com.makeus.dogdog.src.HomeDogDog.homeFragment.SelectedPicture;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -24,6 +25,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
 import com.makeus.dogdog.src.HomeDogDog.homeFragment.SelectedPicture.interfaces.SelectedPictureView;
@@ -34,6 +37,7 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import static com.theartofdev.edmodo.cropper.CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE;
 
@@ -47,6 +51,7 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
     SendImagData sendImagData;
     ImageView closeAddchangedogs;
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    PermissionListener permissionlistener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,11 +71,7 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
             }
         });
 
-        takeaPicture.setOnClickListener(view -> {
 
-            dispatchTakePictureIntent();
-
-        });
         changeDefualtImage.setOnClickListener(view -> {
 
             String defaultUrl="https://firebasestorage.googleapis.com/v0/b/dogdog-1d2f8.appspot.com/o/default_profile_image.png?alt=media&token=9052b50b-dd25-46b1-ba22-f1581a1231f5";
@@ -98,12 +99,52 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
                         .start(SelectedPicture.this);
             }
         });
+
+        //TedPermission 라이브러리 -> 카메라 권한 획득
+        takeaPicture.setOnClickListener(view -> {
+
+            permissionlistener = new PermissionListener() {
+
+                @Override
+
+                public void onPermissionGranted() {
+                    dispatchTakePictureIntent();
+//                Toast.makeText(SelectedPicture.this, "Permission Granted", Toast.LENGTH_SHORT).show();
+
+                }
+
+                @Override
+                public void onPermissionDenied(List<String> deniedPermissions) {
+
+//                Toast.makeText(SelectedPicture.this, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+                }
+
+
+
+            };
+            TedPermission.with(this)
+                    .setPermissionListener(permissionlistener)
+                    .setRationaleMessage("카메라 앱을 사용하시려면 권한을 허용해주세요.")
+                    .setDeniedMessage("권한을 거부하셨습니다.앱을 사용하시려면 [앱 설정]-[권한] 항목에서 권한을 허용해주세요.")
+                    .setPermissions(android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA)
+                    .check();
+        });
+
+
+
+
+
+
     }
 
     @SuppressLint("QueryPermissionsNeeded")
     private void dispatchTakePictureIntent() {
+
+
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+
+
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }// 사진 어플 실행

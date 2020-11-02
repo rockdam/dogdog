@@ -152,6 +152,7 @@
             android:paddingTop="32dp"
             android:paddingRight="100dp"
             android:paddingBottom="32dp"
+            android:layout_marginBottom="32dp"
             android:text="+기록 남기기"
             android:textColor="#cccccc" />
         <!--  여기 참조      https://stackoverrun.com/ko/q/3569022-->

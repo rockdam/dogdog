@@ -108,5 +108,19 @@ public class BaseActivity extends AppCompatActivity { // 얘가 근본이 되서
                 .setPermissions(Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_FINE_LOCATION)
                 .check();
     }
+    @Override
+    public void setRequestedOrientation(int requestedOrientation) {
+   /*
+    if (Build.VERSION.SDK_INT == Build.VERSION_CODES.O) {
+        // no-op
+    }else{
+        super.setRequestedOrientation(requestedOrientation);
+    }
+    */
+        if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
+            super.setRequestedOrientation(requestedOrientation);
+        }
+    }
+
 
 }
