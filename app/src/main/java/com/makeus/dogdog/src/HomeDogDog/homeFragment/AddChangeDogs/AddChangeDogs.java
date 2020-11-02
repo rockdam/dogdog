@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
@@ -30,6 +31,7 @@ public class AddChangeDogs extends BaseActivity implements AddDogsView {
     AdddogsService adddogsService;
     ImageView addDosPlusButton;
 
+    LinearLayout changeLinearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,7 @@ public class AddChangeDogs extends BaseActivity implements AddDogsView {
         close.setOnClickListener(view ->
                 finish()
         );
-        addDosPlusButton=findViewById(R.id.addDosPlusButton);
+
 
         recyclerView = findViewById(R.id.adddogsRecyclerview);
         LinearLayoutManager linearLayoutManager =new LinearLayoutManager(getBaseContext());
@@ -52,13 +54,20 @@ public class AddChangeDogs extends BaseActivity implements AddDogsView {
         recyclerView.setAdapter(adddogsAdapter);
 
 
+        changeLinearLayout =findViewById(R.id.add_dogs_addchangedogs);
 
 
-        addDosPlusButton.setOnClickListener(new View.OnClickListener() {
+//        addDosPlusButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//
+//
+//            }
+//        });
+        changeLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 Intent intent=new Intent(AddChangeDogs.this, AddDogs.class);
                 startActivity(intent);
             }

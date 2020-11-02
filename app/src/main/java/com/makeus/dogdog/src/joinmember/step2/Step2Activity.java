@@ -18,7 +18,6 @@ import androidx.core.content.ContextCompat;
 
 import com.makeus.dogdog.R;
 import com.makeus.dogdog.src.BaseActivity;
-import com.makeus.dogdog.src.joinmember.login.LoginActivity;
 import com.makeus.dogdog.src.joinmember.step1.Step1Activity;
 import com.makeus.dogdog.src.joinmember.step2.interfaces.ShowToastStep2;
 import com.makeus.dogdog.src.joinmember.step2.models.DuplicateUserIdResponse;
@@ -64,7 +63,7 @@ public class Step2Activity extends BaseActivity implements View.OnClickListener,
             if(mUserInfo.getEmail()!=null)
             mEdit_Input_Text_joinmember.setText(mUserInfo.getEmail());
         }
-        backStep=findViewById(R.id.back_step4);
+        backStep=findViewById(R.id.back_step2);
         backStep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

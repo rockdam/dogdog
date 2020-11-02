@@ -1,7 +1,9 @@
 package com.makeus.dogdog.src.joinmember.step6;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.makeus.dogdog.src.ApplicationClass;
 import com.makeus.dogdog.src.joinmember.step6.interfaces.JoinMemberRetrofitInterface;
@@ -28,7 +30,7 @@ public class Step6Service {
     SearchBreedsResponse searchBreedsResponse;
     JoinMemberResponse joinMemberResponse;
     MoveAcitivity7Interface moveAcitivity7Interface;
-
+    Context mContext;
     public Step6Service(PassValueDialog passValueDialog) {
         this.mPassValueDialog = passValueDialog;
 
@@ -37,6 +39,11 @@ public class Step6Service {
     {
         this.moveAcitivity7Interface=moveAcitivity7Interface;
 
+    }
+    public Step6Service(MoveAcitivity7Interface moveAcitivity7Interface,Context mContext)
+    {
+        this.moveAcitivity7Interface=moveAcitivity7Interface;
+        this.mContext=mContext;
     }
 
 
@@ -91,12 +98,25 @@ public class Step6Service {
                 if(response.code() ==200)
                 {
 
-                  Log.e("jwt",joinMemberResponse.getJwt());
-                    SharedPreferences.Editor editor=sSharedPreferences.edit();
-                    editor.putString("X-ACCESS-TOKEN",joinMemberResponse.getJwt());
 
-                    editor.apply();
-                    moveAcitivity7Interface.move();
+
+
+
+                    if(joinMemberResponse.getIsSuccess()) {
+                        Log.e("jwt", joinMemberResponse.getJwt());
+                        SharedPreferences.Editor editor = sSharedPreferences.edit();
+                        editor.putString("X-ACCESS-TOKEN", joinMemberResponse.getJwt());
+
+                        editor.apply();
+                        moveAcitivity7Interface.move();
+
+                    }else{
+
+
+                        Toast.makeText(mContext,joinMemberResponse.getMessage(),Toast.LENGTH_LONG).show();
+
+                    }
+
 
                 }else{
 

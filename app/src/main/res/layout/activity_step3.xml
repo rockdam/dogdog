@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/back_step4"
+        android:id="@+id/dot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
@@ -33,7 +33,7 @@
         android:textColor="@color/colorDogDogBlue"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/back_step4" />
+        app:layout_constraintTop_toBottomOf="@+id/dot" />
 
     <TextView
         android:id="@+id/tellmePassword_Step2Activity"
@@ -162,8 +162,8 @@
         app:layout_constraintEnd_toStartOf="@+id/imageView20"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@+id/back_step4"
-        app:layout_constraintTop_toTopOf="@+id/back_step4"
+        app:layout_constraintStart_toEndOf="@+id/dot"
+        app:layout_constraintTop_toTopOf="@+id/dot"
         app:srcCompat="@drawable/oval_6" />
 
     <ImageView
@@ -216,12 +216,13 @@
 
     <ImageView
         android:id="@+id/back_step3"
+        android:background="?selectableItemBackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="44dp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/back_step4"
+        app:layout_constraintBottom_toTopOf="@+id/dot"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_arrow" />

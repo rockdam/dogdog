@@ -66,7 +66,7 @@
                 android:layout_width="54sp"
                 android:layout_height="54sp"
 
-
+                android:scaleType="centerCrop"
                 android:background="?selectableItemBackground"
 
 
@@ -76,6 +76,7 @@
                android:id="@+id/smallest_camera_home"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
+
                android:src="@drawable/smallest_camera"
                android:layout_gravity="top|right"
                ></ImageView>

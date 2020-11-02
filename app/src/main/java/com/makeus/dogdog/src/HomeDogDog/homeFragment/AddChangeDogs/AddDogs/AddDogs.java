@@ -373,7 +373,7 @@ public class AddDogs extends BaseActivity implements UpdateDogView {
             hideDogDogLoadingDialog();
         } else {
 
-            Toast.makeText(getBaseContext(), "빈 공간을 채워주세요", Toast.LENGTH_SHORT);
+            Toast.makeText(getBaseContext(), "빈 공간을 채워주세요", Toast.LENGTH_SHORT).show();
         }
     }
 }

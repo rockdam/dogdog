@@ -9,18 +9,19 @@
 
     <ImageView
         android:id="@+id/back_step1"
+        android:background="?selectableItemBackground"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="44dp"
         android:visibility="visible"
         android:src="@drawable/ic_arrow"
-        app:layout_constraintBottom_toTopOf="@+id/back_step4"
+        app:layout_constraintBottom_toTopOf="@+id/dot"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/back_step4"
+        android:id="@+id/dot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
@@ -46,7 +47,7 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/tellmePassword_Step2Activity"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/back_step4" />
+        app:layout_constraintTop_toBottomOf="@+id/dot" />
 
     <TextView
         android:id="@+id/tellmePassword_Step2Activity"
@@ -130,8 +131,8 @@
         android:src="@drawable/oval_6"
         app:layout_constraintEnd_toStartOf="@+id/imageView4"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/back_step4"
-        app:layout_constraintTop_toTopOf="@+id/back_step4" />
+        app:layout_constraintStart_toEndOf="@+id/dot"
+        app:layout_constraintTop_toTopOf="@+id/dot" />
 
     <ImageView
         android:id="@+id/imageView4"

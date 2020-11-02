@@ -36,6 +36,7 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -52,6 +53,9 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
     DayHistory dayHistory;
     String mGetHtml;
 
+    ArrayList<String> checkUrl; // 올라가는 url
+    ArrayList<String> allUrl; // 모든 url;
+    // 체크해서 아닌 녀석 지우기 .
     boolean isUpdate; // 얘로 수정을 해야되는건지 생성을 해야되는건지 파악 .
     AddTrackingNoteService addTrackingNoteService;
     int limitPictureUpload = 0; // 근데 이거 할려면 지워지면 알아차려야되는데 ;
@@ -63,6 +67,8 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
         String date = getIntent().getStringExtra("date");
 
 
+        checkUrl=new ArrayList<>();
+        allUrl=new ArrayList<>();
         wysiwyg = findViewById(R.id.richwysiwygeditor);
 
         isUpdate=false;
@@ -117,6 +123,7 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
                 CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
                         .setActivityTitle("사진 편집")
+
 
                         .setCropMenuCropButtonTitle("적용")
                         .setCropShape(CropImageView.CropShape.RECTANGLE)
@@ -188,6 +195,11 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
     }
 
 
+    private void checkHtmlImgFile(String html)
+    {
+
+
+    }
     //아 웹뷰니깐 아예 올리고 여기서 추가하면 되네 .
     //대신 로딩 바는 필요 .
     private void insertImages(List<Image> images) { // 얘는 여러개 되는건데 한번에 한장씩 하자 .. 위에 메소드로
@@ -248,6 +260,7 @@ public class AddTrackingNote extends BaseActivity implements FinishCallback {
 //                                    progressDialog.dismiss(); //업로드 진행 Dialog 상자 닫기
                                     hideDogDogLoadingDialog();
                                     wysiwyg.getContent().insertImage(downloadPhotoUrl, "alt"); // 파이어베이스에서 받은 URL 보여주기
+                                    allUrl.add(downloadPhotoUrl);
 //                                    sendImagData.setImgUrl(downloadPhotoUrl);
 //
 //                                    selectedPictureService=new SelectedPictureService(SelectedPicture.this,sendImagData);

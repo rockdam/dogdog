@@ -7,7 +7,6 @@ import android.text.Html;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +51,7 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener,
         mDogInfo = new dogInfo();
         dog_breeds_step6 = findViewById(R.id.dog_breeds_step6);
 
+        back_step4=findViewById(R.id.back_step6);
         mEdit_Input_Text_joinmember = findViewById(R.id.edit_Input_Text_joinmember);
         mSearchBreedsDialog = new SearchBreedsDialog(this);
 
@@ -207,11 +207,11 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener,
                 break;
             case R.id.next_button_step:
                 if (mEdit_Input_Text_joinmember.getText().toString() == null) {
-                    Toast.makeText(getBaseContext(),"몸무게를 입력해주세요",Toast.LENGTH_LONG);
+                    Toast.makeText(getBaseContext(),"몸무게를 입력해주세요",Toast.LENGTH_LONG).show();
                 }else if(!checkCorrectWeightValue() || mWeight <= 0)
                 {
 
-                    Toast.makeText(getBaseContext(),"정확한 몸무게를  입력해주세요",Toast.LENGTH_LONG);
+                    Toast.makeText(getBaseContext(),"정확한 몸무게를  입력해주세요",Toast.LENGTH_LONG).show();
                 }
 
                 else {
@@ -223,7 +223,7 @@ public class Step6Activity extends BaseActivity implements View.OnClickListener,
 
                     postJoinMember.setDogInfo(mDogInfo);
                     postJoinMember.setUserInfo(mUserInfo);
-                    mStep6Service = new Step6Service(this);
+                    mStep6Service = new Step6Service(this,getBaseContext());
                     mStep6Service.postJoinMember(postJoinMember);
                 }
 

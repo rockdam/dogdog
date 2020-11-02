@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/back_step4"
+        android:id="@+id/dot"
         android:layout_width="8dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
@@ -18,7 +18,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView13"
+        app:layout_constraintTop_toBottomOf="@+id/back_step2"
         app:srcCompat="@drawable/oval_6" />
 
 
@@ -33,7 +33,7 @@
         android:textColor="@color/colorDogDogBlue"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/back_step4" />
+        app:layout_constraintTop_toBottomOf="@+id/dot" />
 
     <TextView
         android:id="@+id/tellmePassword_Step2Activity"
@@ -72,7 +72,6 @@
             android:ems="10"
             android:fontFamily="@font/spoqahansregular"
             android:inputType="textVisiblePassword|textNoSuggestions"
-            android:maxLength="20"
             android:maxLines="1"
             android:textSize="24sp"></EditText>
 
@@ -142,8 +141,8 @@
         app:layout_constraintEnd_toStartOf="@+id/imageView25"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@+id/back_step4"
-        app:layout_constraintTop_toTopOf="@+id/back_step4" />
+        app:layout_constraintStart_toEndOf="@+id/dot"
+        app:layout_constraintTop_toTopOf="@+id/dot" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -216,12 +215,13 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_frame_step2" />
 
     <ImageView
-        android:id="@+id/imageView13"
+        android:id="@+id/back_step2"
+        android:background="?selectableItemBackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="44dp"
-        app:layout_constraintBottom_toTopOf="@+id/back_step4"
+        app:layout_constraintBottom_toTopOf="@+id/dot"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_arrow" />

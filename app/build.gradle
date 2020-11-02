@@ -17,8 +17,8 @@ android {
         applicationId "com.makeus.dogdog"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 2
-        versionName "1.1"
+        versionCode 3
+        versionName "1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -100,7 +100,7 @@ dependencies {
     implementation 'com.github.amarjain07:StickyScrollView:1.0.2'
     // Import the BoM for the Firebase platform
     implementation platform('com.google.firebase:firebase-bom:25.12.0')
-
+    implementation 'gun0912.ted:tedpermission:2.2.3'
     // Declare the dependencies for the Crashlytics and Analytics libraries
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-crashlytics'

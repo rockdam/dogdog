@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/back_step4"
+        android:id="@+id/dot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
@@ -19,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView61" />
+        app:layout_constraintTop_toBottomOf="@+id/back_step6" />
 
 
     <TextView
@@ -179,8 +179,8 @@
         android:layout_marginEnd="5dp"
         app:layout_constraintEnd_toStartOf="@+id/imageView32"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/back_step4"
-        app:layout_constraintTop_toTopOf="@+id/back_step4"
+        app:layout_constraintStart_toEndOf="@+id/dot"
+        app:layout_constraintTop_toTopOf="@+id/dot"
         app:srcCompat="@drawable/oval_6" />
 
     <ImageView
@@ -265,12 +265,13 @@
         app:srcCompat="@drawable/oval_6" />
 
     <ImageView
-        android:id="@+id/imageView61"
+        android:id="@+id/back_step6"
+        android:background="?selectableItemBackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="44dp"
-        app:layout_constraintBottom_toTopOf="@+id/back_step4"
+        app:layout_constraintBottom_toTopOf="@+id/dot"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"

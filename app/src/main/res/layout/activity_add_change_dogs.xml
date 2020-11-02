@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
 
-    android:paddingBottom="24dp"
+
 
     android:layout_height="wrap_content"
     android:background="@drawable/dialog_window_background"
@@ -66,7 +66,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view13"
-        app:layout_constraintVertical_bias="0.39999998"
+        app:layout_constraintVertical_bias="0.0"
         tools:itemCount="3"
         tools:listitem="@layout/item_layout_add_change" />
 
@@ -76,35 +76,50 @@
         android:layout_height="1dp"
         android:layout_margin="16dp"
         android:background="@color/donutUnFinished"
-        app:layout_constraintBottom_toTopOf="@+id/textView49"
+        app:layout_constraintBottom_toTopOf="@+id/add_dogs_addchangedogs"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/adddogsRecyclerview"></View>
 
 
-    <ImageView
-        android:id="@+id/addDosPlusButton"
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
+    <LinearLayout
+        android:id="@+id/add_dogs_addchangedogs"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="20dp"
+
+
         android:background="?selectableItemBackground"
-        app:layout_constraintBottom_toBottomOf="@+id/textView49"
-        app:layout_constraintStart_toStartOf="@+id/view14"
-        app:layout_constraintTop_toTopOf="@+id/textView49"
-        app:srcCompat="@drawable/add" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view14">
 
-    <TextView
-        android:id="@+id/textView49"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/spoqahansregular"
-        android:text="반려견 추가"
-        android:textColor="#333333"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/addDosPlusButton"
-        app:layout_constraintTop_toBottomOf="@+id/view14" />
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:id="@+id/addDosPlusButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
+            android:layout_marginStart="36dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView49"
+            app:layout_constraintStart_toStartOf="@+id/view14"
+            app:layout_constraintTop_toTopOf="@+id/textView49"
+            app:srcCompat="@drawable/add" />
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:id="@+id/textView49"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/spoqahansregular"
+            android:text="반려견 추가"
+            android:textColor="#333333"
+
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/addDosPlusButton"
+            app:layout_constraintTop_toBottomOf="@+id/view14" />
+    </LinearLayout>
 
 
 
