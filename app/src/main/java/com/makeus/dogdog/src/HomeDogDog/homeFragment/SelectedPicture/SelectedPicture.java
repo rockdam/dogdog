@@ -1,11 +1,10 @@
 package com.makeus.dogdog.src.HomeDogDog.homeFragment.SelectedPicture;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
@@ -17,10 +16,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -35,6 +32,8 @@ import com.makeus.dogdog.src.HomeDogDog.homeFragment.SelectedPicture.models.Send
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -46,12 +45,31 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
     TextView seletedGallery,changeDefualtImage,takeaPicture;
 
     private Uri filePath;
-    private static final int REQUEST_CODE = 0;
+    private static final int GALLERY_REQUEST_CODE = 0;
     SelectedPictureService selectedPictureService;
     SendImagData sendImagData;
     ImageView closeAddchangedogs;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     PermissionListener permissionlistener;
+    int counter;
+    Uri uri;
+
+    public void takePhoto() throws IOException {
+        counter++; //this is an int
+        String imageFileName = "JPEG_" + counter; //make a better file name
+        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(imageFileName,
+                ".jpg",
+                storageDir
+        );
+
+        uri = Uri.fromFile(image);
+        getBaseContext().sendBroadcast(new Intent( Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri) );
+        // 이래야 갤러리에 보임 .
+        Intent takePhotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        startActivityForResult(takePhotoIntent, REQUEST_IMAGE_CAPTURE);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +77,11 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
         seletedGallery=findViewById(R.id.seleted_gallery_selectedpicture);
         takeaPicture=findViewById(R.id.take_a_picture_selectedpicture);
         changeDefualtImage=findViewById(R.id.change_defualt_image_selectedpicture);
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
 
+//        출처: https://docko.tistory.com/entry/androidosFileUriExposedException-filestorageemulated0-exposed-beyond-app-through-IntentgetData [장똘]
+// uri 노출 해결 이게 쉽다. 사진
         sendImagData=new SendImagData();
         setWindow();
         closeAddchangedogs=findViewById(R.id.close_addchangedogs);
@@ -88,15 +110,20 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
             @Override
             public void onClick(View view) {
 
-                CropImage.activity()
-                        .setGuidelines(CropImageView.Guidelines.ON)
-                        .setActivityTitle("사진 편집")
+//                CropImage.activity()
+//                        .setGuidelines(CropImageView.Guidelines.ON)
+//                        .setActivityTitle("사진 편집")
+//
+//
+//
+//                        .setCropMenuCropButtonTitle("적용")
+//                        .setCropShape(CropImageView.CropShape.OVAL)
+//                        .start(SelectedPicture.this);
 
-
-
-                        .setCropMenuCropButtonTitle("적용")
-                        .setCropShape(CropImageView.CropShape.OVAL)
-                        .start(SelectedPicture.this);
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(intent, GALLERY_REQUEST_CODE);
             }
         });
 
@@ -108,7 +135,11 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
                 @Override
 
                 public void onPermissionGranted() {
-                    dispatchTakePictureIntent();
+                    try {
+                        takePhoto();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 //                Toast.makeText(SelectedPicture.this, "Permission Granted", Toast.LENGTH_SHORT).show();
 
                 }
@@ -137,17 +168,7 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
 
     }
 
-    @SuppressLint("QueryPermissionsNeeded")
-    private void dispatchTakePictureIntent() {
 
-
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-
-
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
-    }// 사진 어플 실행
     private void setWindow() {
         getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.WRAP_CONTENT);
@@ -162,12 +183,28 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+
+        if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == this.RESULT_OK)
+        {
+
+            Log.e("여기나와?","몰러유");
+            cropImage(uri);
+
+        }else if(requestCode == GALLERY_REQUEST_CODE && resultCode == this.RESULT_OK)//사진 촬영일 때
+        {
+
+            cropImage(data.getData());
+
+        }
+        else if (requestCode == CROP_IMAGE_ACTIVITY_REQUEST_CODE) { //사진 촬영 아닐 때
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
 //                Uri resultUri = result.getUri();
 
+                Log.e("여기나와?","ㅇ"+result.getUri());
+                getBaseContext().sendBroadcast(new Intent( Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, result.getUri()) );
                 filePath=result.getUri();
+
                 uploadFile();
 //                finish();
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
@@ -175,7 +212,18 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
             }
         }
     }
-
+    private void cropImage(Uri uri) {
+//        int height = (int) UIUtils.dip2px(160);
+//        int width = (int) UIUtils.dip2px(160);
+        Intent intent = CropImage.activity(uri)
+                .setCropShape(CropImageView.CropShape.OVAL)
+                .setGuidelines(CropImageView.Guidelines.ON)
+                .setActivityTitle("사진 편집")
+//                .setMinCropWindowSize(width, height)
+//                .setMaxCropResultSize(width, height)
+                .getIntent(SelectedPicture.this);
+        startActivityForResult(intent, CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE);
+    }
     //upload the file
     private void uploadFile() {
         //업로드할 파일이 있으면 수행
@@ -221,7 +269,6 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
                                     Log.e("Url",downloadPhotoUrl);
 //                                    progressDialog.dismiss(); //업로드 진행 Dialog 상자 닫기
 
-                                    hideDogDogLoadingDialog();
                                     sendImagData.setImgUrl(downloadPhotoUrl);
 
                                     selectedPictureService=new SelectedPictureService(SelectedPicture.this,sendImagData);
@@ -230,6 +277,7 @@ public class SelectedPicture extends BaseActivity implements SelectedPictureView
 //                                    resultIntent.putExtra("Url",downloadPhotoUrl);
 //                                    setResult(RESULT_OK,resultIntent);
 //                                    이 코드가 사실상 혼자만들어도 db 서버랑하면 아무의미가 없어 .; 진짜 잠깐 받을 때나 쓰는코드
+                                    hideDogDogLoadingDialog();
 
 
                                 }
