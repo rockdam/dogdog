@@ -66,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="42dp"
-            android:layout_marginEnd="52dp"
+            android:layout_marginEnd="42dp"
             app:layout_constraintEnd_toStartOf="@+id/imageView50"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
@@ -142,10 +142,10 @@
             android:id="@+id/walkingcount_Ranking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:fontFamily="@font/spoqahansbold"
             android:text="10회"
             android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/winner_dog_completed_num_ranking"
             app:layout_constraintStart_toStartOf="@+id/winner_dog_completed_num_ranking"
             app:layout_constraintTop_toBottomOf="@+id/winner_dog_completed_num_ranking" />
 
@@ -260,7 +260,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/paper" />
+            app:srcCompat="@drawable/ic_paper" />
 
 
         <View
