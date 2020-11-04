@@ -128,7 +128,7 @@ public class Mypage extends BaseFragment implements MypageView {
         if(myPageRanking.getMyRanking().equals("-1"))
         {
 
-            myranking.setText("완주 기록이 없어요.");
+            myranking.setText("  기록이 없어요.");
 
         }else{
 
