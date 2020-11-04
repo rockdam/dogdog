@@ -192,7 +192,7 @@
                 android:id="@+id/imageView9"
                 android:layout_width="wrap_content"
                 android:layout_height="68dp"
-                android:layout_marginStart="35dp"
+                android:layout_marginStart="31dp"
                 app:layout_constraintBottom_toBottomOf="@+id/walkingcnt_mypage"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView13"
